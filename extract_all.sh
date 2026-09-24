@@ -4,6 +4,11 @@
 set -u
 mkdir -p extracted
 
+# Ctrl-C reaches claude too, but claude catches it and exits normally, so bash would just move on
+# to the next transcript. Stop the whole loop instead.
+out=""
+trap 'echo; echo "Interrupted." >&2; rm -f "$out.tmp"; exit 130' INT
+
 for f in transcripts/*.txt; do
   id=$(basename "$f" .txt)
   out="extracted/$id.json"
@@ -13,7 +18,7 @@ for f in transcripts/*.txt; do
   fi
 
   echo "Extracting $id..."
-  claude -p "$(cat extract_prompt.md)" < "$f" > "$out.tmp"
+  claude -p --model claude-opus-5-5 "$(cat extract_prompt.md)" < "$f" > "$out.tmp"
 
   # Drop Markdown code fences, in case the model adds them despite the prompt.
   sed -i.bak -e '/^```/d' "$out.tmp" && rm -f "$out.tmp.bak"
