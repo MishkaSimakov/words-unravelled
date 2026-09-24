@@ -1,0 +1,9 @@
+# Raw downloads and intermediate files: large, and transcripts are not to be published.
+subs/
+transcripts/
+extracted/*.tmp
+__pycache__/
+.DS_Store
+
+site/node_modules/
+site/dist/

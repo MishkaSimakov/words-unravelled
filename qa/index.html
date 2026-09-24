@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wordhoard QA</title>
+<style>
+  :root {
+    --bg: #f4f1ea; --card: #fffdf8; --ink: #1d1a16; --muted: #6f665a; --rule: #ddd3c2;
+    --ok: #1f7a4a; --ok-soft: #dcefe3; --bad: #a3321f; --bad-soft: #f5ddd6; --warn: #8a6100; --warn-soft: #f6ebc9;
+    --hl: #fbe7a6; --focus: #1d5fa8;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161511; --card: #1f1d18; --ink: #ebe5d8; --muted: #a39a8a; --rule: #38332a;
+      --ok: #6fcf97; --ok-soft: #1b3326; --bad: #f0907a; --bad-soft: #3d1f18; --warn: #e7c267; --warn-soft: #3a3016;
+      --hl: #5a4a14; --focus: #8fbcf0;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  header { position: sticky; top: 0; z-index: 2; background: var(--bg); border-bottom: 1px solid var(--rule); }
+  .bar { max-width: 1280px; margin: 0 auto; padding: 10px 16px; display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; }
+  h1 { font: 600 1.1rem Georgia, serif; margin: 0; }
+  .progress { flex: 1; min-width: 200px; }
+  .progress-track { height: 6px; background: var(--rule); border-radius: 3px; overflow: hidden; display: flex; }
+  .progress-track span { display: block; height: 100%; }
+  .progress-text { font-size: .85rem; color: var(--muted); margin-top: 2px; }
+  select, input[type=text] { font: inherit; font-size: .9rem; padding: 5px 8px; border: 1px solid var(--rule); border-radius: 6px; background: var(--card); color: var(--ink); }
+  label.toggle { font-size: .9rem; display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+  main { max-width: 1280px; margin: 0 auto; padding: 16px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 20px; }
+  @media (max-width: 900px) { main { grid-template-columns: minmax(0, 1fr); } }
+  .card { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 20px; }
+  .episode { font-size: .9rem; color: var(--muted); margin: 0 0 8px; }
+  .episode a { color: inherit; }
+  .term { font: 700 2.2rem/1.1 Georgia, serif; margin: 0; overflow-wrap: anywhere; }
+  .classes { margin: 6px 0 0; color: var(--muted); }
+  .classes i { color: var(--ink); }
+  dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; margin: 16px 0 0; }
+  dt { color: var(--muted); font-size: .9rem; }
+  dd { margin: 0; }
+  .null { color: var(--muted); font-style: italic; }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .badge { font-size: .8rem; padding: 2px 9px; border-radius: 999px; background: var(--warn-soft); color: var(--warn); }
+  .badge.low { background: var(--bad-soft); color: var(--bad); }
+  .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+  .actions button { font: inherit; font-weight: 600; padding: 12px; border-radius: 8px; cursor: pointer; border: 1px solid transparent; }
+  .approve { background: var(--ok); color: #fff; }
+  .reject { background: var(--bad); color: #fff; }
+  .secondary { display: flex; gap: 10px; margin-top: 10px; }
+  .secondary button { flex: 1; font: inherit; font-size: .9rem; padding: 7px; border-radius: 8px; border: 1px solid var(--rule); background: transparent; color: var(--ink); cursor: pointer; }
+  .secondary button:disabled { opacity: .45; cursor: default; }
+  kbd { font: .75rem ui-monospace, Menlo, monospace; border: 1px solid currentColor; border-radius: 4px; padding: 0 5px; opacity: .75; margin-left: 6px; }
+  .comment { width: 100%; margin-top: 14px; }
+  .player { position: relative; aspect-ratio: 16/9; background: #000; border-radius: 10px; overflow: hidden; }
+  .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .transcript { margin-top: 14px; max-height: 46vh; overflow: auto; font-size: .92rem; }
+  .transcript p { margin: 0; padding: 3px 8px; border-radius: 4px; display: grid; grid-template-columns: 76px 1fr; gap: 8px; }
+  .transcript p.at { background: var(--hl); }
+  .transcript button { font: .8rem ui-monospace, Menlo, monospace; border: 0; background: none; color: var(--focus); cursor: pointer; text-align: left; padding: 0; }
+  .transcript .more { display: block; width: 100%; font: inherit; font-size: .85rem; color: var(--muted); padding: 6px; }
+  .done { grid-column: 1 / -1; text-align: center; padding: 60px 16px; }
+  .done h2 { font: 600 1.6rem Georgia, serif; }
+  .toast { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 8px 16px; border-radius: 8px; font-size: .9rem; opacity: 0; transition: opacity .2s; pointer-events: none; }
+  .toast.show { opacity: 1; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <h1>Wordhoard QA</h1>
+    <div class="progress">
+      <div class="progress-track" id="track"></div>
+      <div class="progress-text" id="progress">Loading…</div>
+    </div>
+    <select id="episode" aria-label="Episode"><option value="">All episodes</option></select>
+    <label class="toggle"><input type="checkbox" id="lowOnly" /> Low confidence only</label>
+    <label class="toggle"><input type="checkbox" id="autoplay" /> Autoplay</label>
+  </div>
+</header>
+<main id="main"></main>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $ = (id) => document.getElementById(id)
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
+const fmt = (t) => `${Math.floor(t / 3600)}:${String(Math.floor(t % 3600 / 60)).padStart(2, '0')}:${String(t % 60).padStart(2, '0')}`
+const store = { get: (k) => { try { return localStorage.getItem(k) } catch { return null } },
+                set: (k, v) => { try { localStorage.setItem(k, v) } catch {} } }
+
+let queue = []          // pending items, in the order they will be shown
+let stats = { total: 0, approved: 0, rejected: 0 }
+let undoStack = []        // decisions made in this session, for undo
+const transcripts = new Map()
+let current = null
+let contextBefore = 20, contextAfter = 80
+
+$('autoplay').checked = store.get('qa-autoplay') === '1'
+$('lowOnly').checked = store.get('qa-low-only') === '1'
+
+async function api(path, body) {
+  const res = await fetch(path, body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : {})
+  if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || res.statusText)
+  return res.json()
+}
+
+async function init() {
+  const data = await api('/api/items')
+  queue = data.items
+  stats = data.stats
+  const episodes = new Map()
+  for (const i of queue) episodes.set(i.video_id, i)
+  $('episode').innerHTML = '<option value="">All episodes</option>' +
+    [...episodes.values()].map((i) => `<option value="${i.video_id}">${esc(i.date || '')} ${esc(i.episode)}</option>`).join('')
+  $('episode').value = store.get('qa-episode') || ''
+  if ($('episode').selectedIndex < 0) $('episode').value = ''
+  show()
+}
+
+function visible() {
+  const ep = $('episode').value
+  const low = $('lowOnly').checked
+  return queue.filter((i) => (!ep || i.video_id === ep) && (!low || i.confidence === 'low' || i.flags.length))
+}
+
+function renderProgress() {
+  const done = stats.approved + stats.rejected
+  const pct = (n) => stats.total ? (100 * n / stats.total) : 0
+  $('track').innerHTML = `<span style="width:${pct(stats.approved)}%;background:var(--ok)"></span><span style="width:${pct(stats.rejected)}%;background:var(--bad)"></span>`
+  $('progress').textContent = `${done} of ${stats.total} reviewed · ${stats.approved} approved · ${stats.rejected} rejected · ${stats.total - done} left` +
+    (visible().length !== stats.total - done ? ` (${visible().length} in this view)` : '')
+}
+
+function show() {
+  renderProgress()
+  const items = visible()
+  current = items[0] || null
+  contextBefore = 20; contextAfter = 80
+  if (!current) {
+    $('main').innerHTML = `<div class="done"><h2>Nothing left to review${$('episode').value || $('lowOnly').checked ? ' in this view' : ''}.</h2>
+      <p>Decisions are saved in <code>data/review.json</code>. Run <code>python3 merge.py</code> to apply them.</p>
+      <div class="secondary" style="max-width:220px;margin:0 auto"><button onclick="undo()" ${undoStack.length ? '' : 'disabled'}>Undo last<kbd>U</kbd></button></div></div>`
+    return
+  }
+  const i = current
+  const field = (v) => v ? esc(v) : '<span class="null">none</span>'
+  const badges = [
+    i.confidence === 'low' ? '<span class="badge low">low confidence</span>' : '',
+    ...i.flags.map((f) => `<span class="badge">${esc(f)}</span>`),
+  ].join('')
+  $('main').innerHTML = `
+    <section class="card">
+      <p class="episode">${esc(i.date || '')} · <a href="https://www.youtube.com/watch?v=${i.video_id}&t=${Math.max(0, i.t - 3)}s" target="_blank" rel="noopener">${esc(i.episode)}</a> · ${esc(i.timestamp)}</p>
+      <h2 class="term">${esc(i.term)}</h2>
+      <p class="classes"><i>${esc(i.type)}</i> · ${esc(i.language)}</p>
+      <dl>
+        <dt>Original</dt><dd>${field(i.original)}</dd>
+        <dt>Translation</dt><dd>${field(i.translation)}</dd>
+        <dt>Note</dt><dd>${field(i.note)}</dd>
+      </dl>
+      ${badges ? `<div class="badges">${badges}</div>` : ''}
+      <input type="text" class="comment" id="comment" placeholder="Optional comment (e.g. correct spelling, better timestamp)…" />
+      <div class="actions">
+        <button class="approve" onclick="decide('approved')">Approve<kbd>A</kbd></button>
+        <button class="reject" onclick="decide('rejected')">Reject<kbd>R</kbd></button>
+      </div>
+      <div class="secondary">
+        <button onclick="skip()">Skip for now<kbd>S</kbd></button>
+        <button onclick="undo()" ${undoStack.length ? '' : 'disabled'}>Undo last<kbd>U</kbd></button>
+      </div>
+    </section>
+    <section>
+      <div class="player" id="player"></div>
+      <div class="card transcript" id="transcript"><p>Loading transcript…</p></div>
+    </section>`
+  play(Math.max(0, i.t - 3))
+  renderTranscript()
+}
+
+function play(start) {
+  const params = new URLSearchParams({ start, rel: 0, autoplay: $('autoplay').checked ? 1 : 0 })
+  $('player').innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${current.video_id}?${params}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="Video"></iframe>`
+}
+
+async function renderTranscript() {
+  const i = current
+  if (!transcripts.has(i.video_id)) transcripts.set(i.video_id, (await api(`/api/transcript/${i.video_id}`)).lines)
+  if (current !== i) return
+  const lines = transcripts.get(i.video_id)
+  if (!lines.length) { $('transcript').innerHTML = '<p class="null">No transcript for this episode.</p>'; return }
+  const shown = lines.filter((l) => l.t >= i.t - contextBefore && l.t <= i.t + contextAfter)
+  $('transcript').innerHTML =
+    `<button class="more" onclick="contextBefore += 60; renderTranscript()">↑ Earlier</button>` +
+    shown.map((l) => `<p class="${l.t === i.t ? 'at' : ''}"><button onclick="play(${Math.max(0, l.t - 2)})">${fmt(l.t)}</button><span>${esc(l.text)}</span></p>`).join('') +
+    `<button class="more" onclick="contextAfter += 90; renderTranscript()">↓ Later</button>`
+  $('transcript').querySelector('.at')?.scrollIntoView({ block: 'center' })
+}
+
+async function decide(status) {
+  if (!current) return
+  const item = current
+  const comment = $('comment')?.value.trim()
+  try {
+    const res = await api('/api/decision', { key: item.key, status, term: item.term, comment })
+    stats = res.stats
+    queue = queue.filter((q) => q !== item)
+    undoStack.push(item)
+    toast(`${status === 'approved' ? 'Approved' : 'Rejected'} “${item.term}”`)
+    show()
+  } catch (err) { toast(`Could not save: ${err.message}`) }
+}
+
+function skip() {
+  if (!current) return
+  queue = queue.filter((q) => q !== current).concat(current)
+  show()
+}
+
+async function undo() {
+  const item = undoStack.pop()
+  if (!item) return
+  try {
+    const res = await api('/api/decision', { key: item.key, status: null })
+    stats = res.stats
+    queue.unshift(item)
+    toast(`Undid “${item.term}”`)
+    show()
+  } catch (err) { undoStack.push(item); toast(`Could not undo: ${err.message}`) }
+}
+
+let toastTimer
+function toast(msg) {
+  $('toast').textContent = msg
+  $('toast').classList.add('show')
+  clearTimeout(toastTimer)
+  toastTimer = setTimeout(() => $('toast').classList.remove('show'), 1600)
+}
+
+document.addEventListener('keydown', (ev) => {
+  if (ev.target.matches('input[type=text], select') || ev.metaKey || ev.ctrlKey || ev.altKey) {
+    if (ev.key === 'Escape') ev.target.blur()
+    return
+  }
+  const k = ev.key.toLowerCase()
+  if (k === 'a') decide('approved')
+  else if (k === 'r') decide('rejected')
+  else if (k === 's') skip()
+  else if (k === 'u') undo()
+  else if (k === 'c') { ev.preventDefault(); $('comment')?.focus() }
+  else return
+  ev.preventDefault()
+})
+$('episode').addEventListener('change', () => { store.set('qa-episode', $('episode').value); show() })
+$('lowOnly').addEventListener('change', () => { store.set('qa-low-only', $('lowOnly').checked ? '1' : '0'); show() })
+$('autoplay').addEventListener('change', () => store.set('qa-autoplay', $('autoplay').checked ? '1' : '0'))
+
+init().catch((err) => { $('main').innerHTML = `<div class="done"><h2>Could not load items</h2><p>${esc(err.message)}</p></div>` })
+</script>
+</body>
+</html>
