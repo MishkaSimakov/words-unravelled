@@ -9,8 +9,8 @@
   "mentions": [
    {
     "episode_id": "JlgQIDxufh0",
-    "t": 1182,
-    "note": "Supposedly named for the average amount a man ejaculates.",
+    "t": 1190,
+    "note": "Supposedly named after the average volume of a man's ejaculation.",
     "confidence": "high"
    }
   ]
@@ -25,14 +25,14 @@
   "mentions": [
    {
     "episode_id": "6Rr6qfIIapY",
-    "t": 2617,
-    "note": "Found from the 16th century and common across Europe, probably from Ecclesiastes 10:20.",
+    "t": 2609,
+    "note": "Found in the 16th century and common across Europe, probably from Ecclesiastes 10:20, where a bird of the air carries your voice.",
     "confidence": "high"
    },
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1514,
-    "note": "Probably from Ecclesiastes, where a bird of the air carries your voice; many European languages share it.",
+    "note": "Most likely from Ecclesiastes ('a bird of the air may carry your voice'); many European languages also mention a little bird.",
     "confidence": "high"
    }
   ]
@@ -40,16 +40,16 @@
  {
   "slug": "a-magpie-brought-it-on-its-tail",
   "term": "a magpie brought it on its tail",
-  "original": "soroka na khvoste prinesla",
+  "original": null,
   "translation": "a magpie brought it on its tail",
   "type": "idiom",
   "language": "Russian",
   "mentions": [
    {
     "episode_id": "YBIXXAipmZw",
-    "t": 1609,
-    "note": "The Russian equivalent of 'a little bird told me', using a magpie.",
-    "confidence": "low"
+    "t": 1600,
+    "note": "A Russian counterpart of [[a little bird told me]] that features a magpie instead of a little bird.",
+    "confidence": "high"
    }
   ]
  },
@@ -75,12 +75,12 @@
   "original": null,
   "translation": null,
   "type": "word",
-  "language": "Latin",
+  "language": "English",
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
-    "t": 1849,
-    "note": "Latin suffix freely added to Germanic stems like watchable, winnable and knowable, making hybrid words.",
+    "t": 1857,
+    "note": "A Latin suffix English happily adds to Germanic stems (watchable, winnable, knowable), making hybrids alongside Romance words like visible and portable.",
     "confidence": "high"
    }
   ]
@@ -88,7 +88,7 @@
  {
   "slug": "agenda",
   "term": "agenda",
-  "original": "agere",
+  "original": null,
   "translation": "things to be done",
   "type": "word",
   "language": "English",
@@ -96,7 +96,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 2162,
-    "note": "A Latin plural used as a singular; from agere 'to do', once paired theologically with credenda.",
+    "note": "A Latin plural of agendum used as a singular; from agere, 'to do', originally a theological term paired with [[credenda]].",
     "confidence": "high"
    }
   ]
@@ -112,14 +112,14 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 2209,
-    "note": "Shares a root with act and actor; both are 'doers', one on stage and one on someone's behalf.",
+    "note": "Discussed in an earlier episode: agent, act and [[actor]] share the Latin root of [[agenda]]; actors and agents are both doers.",
     "confidence": "high"
    }
   ]
  },
  {
-  "slug": "algae",
-  "term": "algae",
+  "slug": "alga",
+  "term": "alga",
   "original": null,
   "translation": null,
   "type": "word",
@@ -128,7 +128,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 2126,
-    "note": "Plural of alga; there's no English plural like algas, and algae is often used as singular.",
+    "note": "The singular of algae; English has no native plural such as algas, and algae is also used as a singular.",
     "confidence": "high"
    }
   ]
@@ -144,7 +144,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1894,
-    "note": "Like 'the lights are on but no one's home'; it refers to the Finnish Moomin books.",
+    "note": "Like 'the lights are on but no one's home'; it refers to the Moomins from the Finnish writer's children's books, originally published in Swedish.",
     "confidence": "high"
    }
   ]
@@ -160,7 +160,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 416,
-    "note": "Arrived with Christian missionaries; probably from adolere 'to burn' rather than altus 'high'.",
+    "note": "From Latin altare, a Christian-era borrowing; it's thought to come from [[adolere]], 'to burn', rather than altus, 'high', because offerings were burned there.",
     "confidence": "high"
    }
   ]
@@ -176,7 +176,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 2033,
-    "note": "Like prospectus and status, its Latin plural is unchanged, not -i; some people still use apparatus as the plural.",
+    "note": "Its Latin plural is apparatus, not apparati; some circles still use apparatus as the plural, while apparatuses sounds odd.",
     "confidence": "high"
    }
   ]
@@ -192,7 +192,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 933,
-    "note": "Old English for the pupil, pictured as a small round fruit when 'apple' meant any fruit; it also appears in Shakespeare.",
+    "note": "In Old English, apple meant any fruit and 'the apple of the eye' meant the [[pupil]]; it translates a Hebrew phrase meaning 'little man of the eye' and appears in Shakespeare.",
     "confidence": "high"
    }
   ]
@@ -208,7 +208,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 2465,
-    "note": "Means perfect order, from the 1780s; possibly a folk etymology of French 'nappe pliée', a folded cloth.",
+    "note": "Means perfect order, first recorded in the 1780s diary of a British naval officer; one theory says it mishears French nappe pliée, a folded cloth.",
     "confidence": "high"
    }
   ]
@@ -224,7 +224,23 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 1129,
-    "note": "Replaced 'apples and oysters' in the late 19th and early 20th centuries, first in political and psychological writing.",
+    "note": "Replaced the older [[apples and oysters]] in the late 19th and early 20th centuries, first for false equivalences between similar-looking things, though now used for very different things.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "apples-and-oysters",
+  "term": "apples and oysters",
+  "original": null,
+  "translation": null,
+  "type": "idiom",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "6Rr6qfIIapY",
+    "t": 1151,
+    "note": "The original 17th-century comparison, recorded by John Ray, for two utterly dissimilar things, later displaced by [[apples and oranges]].",
     "confidence": "high"
    }
   ]
@@ -240,7 +256,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 1136,
-    "note": "Cockney rhyming slang for stairs, which Rob thinks of first when apples are compared.",
+    "note": "Cockney rhyming slang for stairs, which Rob thinks of before [[apples and oranges]].",
     "confidence": "low"
    }
   ]
@@ -256,7 +272,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 2318,
-    "note": "Originally a sandy place, since amphitheatres were strewn with sand; the deeper root may be Etruscan.",
+    "note": "Originally a sandy place, since Roman amphitheatres were strewn with sand to soak up blood; the exact root is unknown and may be Etruscan.",
     "confidence": "high"
    }
   ]
@@ -271,26 +287,9 @@
   "mentions": [
    {
     "episode_id": "6Rr6qfIIapY",
-    "t": 2468,
-    "note": "Built up through Johnny Appleseed, early cookbooks and WWII soldiers fighting 'for mom and apple pie'.",
+    "t": 2543,
+    "note": "Built up through Johnny Appleseed, early American cookbooks, pie as a symbol of prosperity, and WWII soldiers fighting for 'mom and apple pie'.",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "as-rare-as-hens-teeth",
-  "term": "as rare as hen's teeth",
-  "original": null,
-  "translation": null,
-  "type": "idiom",
-  "language": "English",
-  "mentions": [
-   {
-    "episode_id": "YBIXXAipmZw",
-    "t": 671,
-    "note": "Mentioned as a related English idiom used in both Britain and America.",
-    "confidence": "low",
-    "verified": true
    }
   ]
  },
@@ -305,7 +304,23 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 423,
-    "note": "The Croatian expression for heavy rain, which the hosts find alarming.",
+    "note": "The Croatian way to describe heavy rain; Rob would rather take his chances with the cats.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "bad-apple",
+  "term": "bad apple",
+  "original": null,
+  "translation": null,
+  "type": "idiom",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "6Rr6qfIIapY",
+    "t": 1252,
+    "note": "The saying that one rotten apple spoils the rest appears in a 1528 Reformation pamphlet and, earlier, a 1340 Kentish moral treatise.",
     "confidence": "high"
    }
   ]
@@ -315,20 +330,20 @@
   "term": "banana oil",
   "original": null,
   "translation": null,
-  "type": "idiom",
+  "type": "word",
   "language": "English",
   "mentions": [
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 2132,
-    "note": "1920s slang for nonsense, from artificial-smelling amyl acetate; Rube Goldberg made it popular.",
+    "note": "1920s slang for nonsense, named after banana-scented amyl acetate, an artificial chemical; Rube Goldberg popularized it in his comic strips.",
     "confidence": "high"
    }
   ]
  },
  {
-  "slug": "beating-around-the-bush",
-  "term": "beating around the bush",
+  "slug": "beat-around-the-bush",
+  "term": "beat around the bush",
   "original": null,
   "translation": null,
   "type": "idiom",
@@ -337,7 +352,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 2052,
-    "note": "From hunting: beating bushes to flush out birds instead of going straight for them.",
+    "note": "From hunting: beating bushes to scare birds out rather than going straight for them.",
     "confidence": "high"
    }
   ]
@@ -345,7 +360,7 @@
  {
   "slug": "better-a-bird-in-the-hand-than-a-hundred-flying",
   "term": "better a bird in the hand than a hundred flying",
-  "original": "más vale pájaro en mano que cien volando",
+  "original": "más vale pájaro en mano que ciento volando",
   "translation": "better a bird in the hand than a hundred flying",
   "type": "idiom",
   "language": "Spanish",
@@ -353,14 +368,14 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1333,
-    "note": "A Spanish variant of 'a bird in the hand is worth two in the bush'.",
+    "note": "A slight variation on the English [[a bird in the hand is worth two in the bush]].",
     "confidence": "high"
    }
   ]
  },
  {
-  "slug": "between-dog-and-wolf",
-  "term": "between dog and wolf",
+  "slug": "between-a-dog-and-a-wolf",
+  "term": "between a dog and a wolf",
   "original": "entre chien et loup",
   "translation": "between a dog and a wolf",
   "type": "idiom",
@@ -369,8 +384,8 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1738,
-    "note": "Means twilight, when fading light makes it hard to tell a dog from a wolf.",
-    "confidence": "low"
+    "note": "Means [[twilight]], when the fading light makes it hard to tell a familiar dog from a wolf.",
+    "confidence": "high"
    }
   ]
  },
@@ -384,8 +399,8 @@
   "mentions": [
    {
     "episode_id": "6Rr6qfIIapY",
-    "t": 1566,
-    "note": "Earlier slang for something desirable; attached to New York through John J. Fitzgerald's 1921 horse-racing columns.",
+    "t": 1572,
+    "note": "19th-century slang for something desirable or sure; it stuck to New York after sportswriter John J. Fitz Gerald used it in 1921 for the city's rich racetracks.",
     "confidence": "high"
    }
   ]
@@ -401,7 +416,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1397,
-    "note": "William Barnes's Germanic replacement for ornithology.",
+    "note": "William Barnes's Germanic alternative to ornithology, alongside [[starlore]].",
     "confidence": "high"
    }
   ]
@@ -417,7 +432,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1617,
-    "note": "If the birds don't tell, the mice will; someone always overhears.",
+    "note": "Means someone will always overhear: if the birds don't tell you, the mice will.",
     "confidence": "high"
    }
   ]
@@ -432,8 +447,8 @@
   "mentions": [
    {
     "episode_id": "JlgQIDxufh0",
-    "t": 2236,
-    "note": "The singer's name is the Icelandic word for birch.",
+    "t": 2244,
+    "note": "The singer's name is Icelandic for birch.",
     "confidence": "high"
    }
   ]
@@ -449,7 +464,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 1867,
-    "note": "Named after a Boris Karloff horror film, since horror films drew paying crowds.",
+    "note": "Named after a Boris Karloff horror film showing nearby, in the hope that people would pay to see them the way they paid for horror films.",
     "confidence": "high"
    }
   ]
@@ -465,7 +480,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 1851,
-    "note": "Given as nearly the only Cockney rhyming slang used widely in the US.",
+    "note": "Jess says it comes from Cockney rhyming slang; Rob says it's about the only rhyming slang that has caught on in the United States.",
     "confidence": "low"
    }
   ]
@@ -481,7 +496,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 964,
-    "note": "Colombian Spanish for daydreaming.",
+    "note": "A Colombian Spanish expression for daydreaming.",
     "confidence": "high"
    }
   ]
@@ -497,7 +512,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 424,
-    "note": "Dates to the 1600s, meaning harmful spirits, hallucinations and mental anguish; later used for sadness or despair.",
+    "note": "A 1600s term for harmful spirits, hallucinations and mental anguish that Jefferson and Byron used to mean sadness; later shortened to [[blues|the blues]].",
     "confidence": "high"
    }
   ]
@@ -513,7 +528,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 420,
-    "note": "Meant sadness long before the genre; the genre name came from song titles like 'Memphis Blues'.",
+    "note": "From [[blue devils]]. Its first printed musical use is in Charlotte Forten Grimké's diary; the genre was named after song titles like Memphis Blues.",
     "confidence": "high"
    }
   ]
@@ -529,7 +544,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 1371,
-    "note": "1970s American slang for the television; in Britain it's also the name of a garment.",
+    "note": "1970s slang for the television, whose watchers became 'boob tubers', the likely pun behind [[couch potato]]; in Britain it's also a 1990s garment.",
     "confidence": "high"
    }
   ]
@@ -545,7 +560,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1256,
-    "note": "Jess explains real bookworms are silverfish, book lice or beetle larvae that eat through old books.",
+    "note": "Real book-eating pests such as silverfish, book lice or beetle larvae are called bookworms; 'worm' for vermin needn't mean an actual worm.",
     "confidence": "high"
    }
   ]
@@ -555,13 +570,13 @@
   "term": "brass monkey",
   "original": null,
   "translation": null,
-  "type": "idiom",
+  "type": "phrase",
   "language": "English",
   "mentions": [
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 1937,
-    "note": "Rob rejects the cannonball-rack explanation because nautical guides never call such a rack a 'monkey'.",
+    "note": "Rob rejects the claim that it was a cannonball rack that shed its balls in the cold; no nautical guides he checked mention such a thing.",
     "confidence": "high"
    }
   ]
@@ -577,9 +592,8 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 95,
-    "note": "Most likely wishes bad luck so the opposite happens; the hosts reject theatre explanations like being 'in a cast'.",
-    "confidence": "high",
-    "verified": true
+    "note": "Covered in an earlier idiom episode; most likely wishes someone bad luck so they get good luck, and the hosts reject the 'being in a cast' explanation.",
+    "confidence": "high"
    }
   ]
  },
@@ -594,7 +608,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 214,
-    "note": "The Hungarian good-luck wish, similar to 'break a leg'.",
+    "note": "A Hungarian good-luck wish that closely resembles the English [[break a leg]].",
     "confidence": "high"
    }
   ]
@@ -610,7 +624,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 214,
-    "note": "The German good-luck wish, very close to the English 'break a leg'.",
+    "note": "A German good-luck wish that is very close to the English [[break a leg]].",
     "confidence": "high"
    }
   ]
@@ -620,13 +634,13 @@
   "term": "broken Irish is better than clever English",
   "original": null,
   "translation": "broken Irish is better than clever English",
-  "type": "idiom",
+  "type": "phrase",
   "language": "Irish",
   "mentions": [
    {
     "episode_id": "YBIXXAipmZw",
     "t": 2141,
-    "note": "Encourages people to speak Irish even badly; it rhymes in Irish and carries historical baggage.",
+    "note": "Encourages people to speak Irish even badly; it rhymes in Irish and carries a lot of historical baggage.",
     "confidence": "high"
    }
   ]
@@ -642,7 +656,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2319,
-    "note": "The band says it stands for 'Beyond the Scene', but it originally abbreviates the Korean for bulletproof boy scouts.",
+    "note": "The band says it stands for \"beyond the scene,\" but it originally abbreviates Korean Bangtan Sonyeondan, bulletproof boy scouts.",
     "confidence": "high"
    }
   ]
@@ -658,7 +672,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 1066,
-    "note": "An announcer forgot the band's name and used their song title instead; some broadcasters refused to say it.",
+    "note": "The band used a different name at every gig; an announcer who forgot the name used their song title Butthole Surfer, and it stuck.",
     "confidence": "high"
    }
   ]
@@ -674,7 +688,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 291,
-    "note": "Early Latin borrowing, originally about battle; related to German Kampf, campaign and champion.",
+    "note": "Taken from Latin on the continent, originally in a battle sense; related to German Kampf and to the later French borrowings [[campaign]] and [[champion]].",
     "confidence": "high"
    }
   ]
@@ -690,9 +704,8 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 880,
-    "note": "Stage name of musician Brian Cassar; the hosts suggest it was borrowed from the ballad of Casey Jones.",
-    "confidence": "low",
-    "verified": true
+    "note": "Stage name of Brian Cassar, borrowed from the Ballad of Casey Jones.",
+    "confidence": "high"
    }
   ]
  },
@@ -700,14 +713,14 @@
   "slug": "castle",
   "term": "castle",
   "original": "castellum",
-  "translation": "castle, fort, stronghold",
+  "translation": "fort, stronghold",
   "type": "word",
   "language": "English",
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
     "t": 370,
-    "note": "From Latin castellum, entering late Old English often through biblical usage; later borrowed again as chateau.",
+    "note": "From Latin castellum, a fort or stronghold, which entered late Old English through biblical usage; it was later borrowed again from French as château.",
     "confidence": "high"
    }
   ]
@@ -723,7 +736,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 2401,
-    "note": "Compared with the Quebec idiom; Jess finds it a derogatory taunt at someone not speaking.",
+    "note": "Jess finds it somewhat derogatory, a taunt aimed at someone who can't or won't speak.",
     "confidence": "high"
    }
   ]
@@ -738,25 +751,9 @@
   "mentions": [
    {
     "episode_id": "JlgQIDxufh0",
-    "t": 2552,
-    "note": "Verlan for 'français'.",
+    "t": 2554,
+    "note": "[[verlan|Verlan]] form of français.",
     "confidence": "low"
-   }
-  ]
- },
- {
-  "slug": "chateau",
-  "term": "chateau",
-  "original": "château",
-  "translation": null,
-  "type": "word",
-  "language": "French",
-  "mentions": [
-   {
-    "episode_id": "52GtCvS7HCU",
-    "t": 385,
-    "note": "A later French borrowing of the same Latin word that gave castle.",
-    "confidence": "high"
    }
   ]
  },
@@ -771,7 +768,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 274,
-    "note": "Another Latin loan picked up from the Romans before the Germanic dialects reached Britain.",
+    "note": "Like [[wine]], a Latin word taken from the Romans by Germanic speakers before English existed.",
     "confidence": "high"
    }
   ]
@@ -779,7 +776,7 @@
  {
   "slug": "chiaroscuro",
   "term": "chiaroscuro",
-  "original": null,
+  "original": "chiaroscuro",
   "translation": "bright dark",
   "type": "word",
   "language": "Italian",
@@ -787,7 +784,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1793,
-    "note": "Art term meaning bright-dark, sharing the obscure element; earlier covered in their art episode.",
+    "note": "From the art episode; meaning 'bright dark', it shares its dark element with [[obscure]].",
     "confidence": "high"
    }
   ]
@@ -803,7 +800,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 1684,
-    "note": "Often explained as putting a wood chip on your shoulder and daring someone to knock it off.",
+    "note": "The usual explanation is that someone wanting a fight would put a wood chip on their shoulder and dare others to knock it off.",
     "confidence": "high"
    }
   ]
@@ -818,8 +815,8 @@
   "mentions": [
    {
     "episode_id": "JlgQIDxufh0",
-    "t": 2552,
-    "note": "Verlan for 'merci'.",
+    "t": 2554,
+    "note": "[[verlan|Verlan]] form of merci.",
     "confidence": "low"
    }
   ]
@@ -835,8 +832,8 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 1991,
-    "note": "Previously Big Fat Noises and Starfish; the name came from a 1997 poetry collection.",
-    "confidence": "high"
+    "note": "Formerly Big Fat Noises and Starfish; named after Philip Horky's 1997 poetry collection Child's Reflections, Cold Play.",
+    "confidence": "low"
    }
   ]
  },
@@ -851,7 +848,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 854,
-    "note": "From via; to carry something with you along a road.",
+    "note": "To carry something with you along a road, from [[via]].",
     "confidence": "high"
    }
   ]
@@ -859,7 +856,7 @@
  {
   "slug": "corpus",
   "term": "corpus",
-  "original": null,
+  "original": "corpus",
   "translation": "body",
   "type": "word",
   "language": "Latin",
@@ -867,7 +864,23 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 2090,
-    "note": "Latin for body; the plural is corpora, not corpi.",
+    "note": "Latin for 'body', whose plural is corpora, not corpi.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "cost-a-kidney",
+  "term": "cost a kidney",
+  "original": null,
+  "translation": "to cost a kidney",
+  "type": "idiom",
+  "language": "Spanish",
+  "mentions": [
+   {
+    "episode_id": "YBIXXAipmZw",
+    "t": 273,
+    "note": "The Spanish version of [[cost an arm and a leg]]; Jess thinks it's the mildest price, since you have two kidneys.",
     "confidence": "high"
    }
   ]
@@ -883,7 +896,23 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 240,
-    "note": "Means a very heavy price, since losing an arm and a leg would be costly.",
+    "note": "Losing an arm and a leg would be a very heavy price to pay, so the phrase means something is very expensive.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "cost-the-eyes-of-your-head",
+  "term": "cost the eyes of your head",
+  "original": null,
+  "translation": "to cost the eyes in your head",
+  "type": "idiom",
+  "language": "French",
+  "mentions": [
+   {
+    "episode_id": "YBIXXAipmZw",
+    "t": 256,
+    "note": "The French version of [[cost an arm and a leg]]; Rob points out that you lose both eyes.",
     "confidence": "high"
    }
   ]
@@ -899,7 +928,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 1333,
-    "note": "Said to be coined in 1976 by Tom Iacino, probably a pun on 'boob tubers', since potatoes are tubers.",
+    "note": "Supposedly coined in 1976 by Tom Iacino, probably a pun on [[boob tube]] watchers as 'tubers'; other theories involve slouching or being vegetative.",
     "confidence": "high"
    }
   ]
@@ -907,7 +936,7 @@
  {
   "slug": "credenda",
   "term": "credenda",
-  "original": null,
+  "original": "credenda",
   "translation": "things to be believed",
   "type": "word",
   "language": "Latin",
@@ -915,7 +944,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 2200,
-    "note": "Theological counterpart to agenda: things to be believed versus things to be done.",
+    "note": "A theological counterpart to [[agenda]]: things to be believed alongside things to be done.",
     "confidence": "high"
    }
   ]
@@ -931,7 +960,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1322,
-    "note": "Cheke's native substitute for crucified; the hosts think it sounds like a euphemism.",
+    "note": "Cheke's substitute for crucified, which Jess says sounds like a euphemism.",
     "confidence": "high"
    }
   ]
@@ -947,7 +976,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 436,
-    "note": "The Bosnian expression for heavy rain.",
+    "note": "A Bosnian equivalent of [[raining cats and dogs]].",
     "confidence": "high"
    }
   ]
@@ -963,7 +992,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 561,
-    "note": "Slang for coffee from the 1930s, probably from 'jamoke'; the Josephus Daniels and 'average Joe' theories are unlikely.",
+    "note": "Slang for coffee first recorded in the 1930s, probably from [[jamoke]]; the Josephus Daniels navy alcohol ban theory lacks evidence, and the average-Joe idea is also unlikely.",
     "confidence": "high"
    }
   ]
@@ -979,7 +1008,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 419,
-    "note": "First found in 1908 and made popular by Punch in the 1930s; everyone likes their tea differently.",
+    "note": "'Not my cup of tea' dates to 1908 and was popularized by Punch in the 1930s; it rests on everyone liking their tea differently.",
     "confidence": "high"
    }
   ]
@@ -995,7 +1024,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2052,
-    "note": "First recorded as Darlin'; the name came from a Melody Maker review calling them 'a daft punky thrash'.",
+    "note": "Originally Darlin', after a Beach Boys single; renamed after a Melody Maker review called their music \"a daft punky thrash.\"",
     "confidence": "high"
    }
   ]
@@ -1011,7 +1040,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1950,
-    "note": "A British political term for raising a shocking issue to distract from another topic.",
+    "note": "A British political term for a shocking distraction, as if a dead cat were put on the table so no one discusses the real issue.",
     "confidence": "high"
    }
   ]
@@ -1019,7 +1048,7 @@
  {
   "slug": "dead-trousers",
   "term": "dead trousers",
-  "original": "tote Hosen",
+  "original": "tote Hose",
   "translation": "dead trousers",
   "type": "idiom",
   "language": "German",
@@ -1027,7 +1056,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2155,
-    "note": "Means having nothing going on: being bored or wasting time.",
+    "note": "Means having nothing going on, being bored or wasting time; the source of the band name [[Die Toten Hosen]].",
     "confidence": "high"
    }
   ]
@@ -1043,7 +1072,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 1294,
-    "note": "Started as 'Deaf Leopard' in a school art lesson; respelled playfully, echoing Led Zeppelin.",
+    "note": "Originally Deaf Leopard, coined in a school art lesson and respelled for fun; the band liked that it echoed [[Led Zeppelin]].",
     "confidence": "high"
    }
   ]
@@ -1059,7 +1088,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 838,
-    "note": "From via; to stray away from the course.",
+    "note": "To stray away from the course, from [[via]].",
     "confidence": "high"
    }
   ]
@@ -1074,8 +1103,8 @@
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
-    "t": 838,
-    "note": "Along with deviant, means straying from the moral path; from via.",
+    "t": 846,
+    "note": "Being devious or deviant means straying from the moral path, from [[via]].",
     "confidence": "high"
    }
   ]
@@ -1084,14 +1113,14 @@
   "slug": "diary",
   "term": "diary",
   "original": null,
-  "translation": "lasting one day",
+  "translation": null,
   "type": "word",
   "language": "English",
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
     "t": 2495,
-    "note": "Originally meant lasting one day, from dies; a doublet with journal.",
+    "note": "Originally 'lasting one day', from [[dies]]; a doublet of [[journal]], covered in a previous episode.",
     "confidence": "high"
    }
   ]
@@ -1107,7 +1136,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2132,
-    "note": "Name of a German band meaning the doctors.",
+    "note": "German band whose name means the doctors.",
     "confidence": "high"
    }
   ]
@@ -1123,7 +1152,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2141,
-    "note": "A popular German band named after an idiom about having nothing going on.",
+    "note": "German band whose name comes from the idiom [[dead trousers]], meaning to have nothing going on.",
     "confidence": "high"
    }
   ]
@@ -1132,14 +1161,14 @@
   "slug": "dis",
   "term": "dis-",
   "original": null,
-  "translation": "not, away",
+  "translation": null,
   "type": "word",
-  "language": "Latin",
+  "language": "English",
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
-    "t": 1686,
-    "note": "Latin prefix meaning not or away, as in distribute; French de-/des- words use the same prefix.",
+    "t": 1695,
+    "note": "Latin prefix meaning not, away or broadly, as in distribute; French words beginning de- or des- carry the same prefix after it passed through French.",
     "confidence": "high"
    }
   ]
@@ -1155,7 +1184,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 2346,
-    "note": "From the two unlucky 'Egyptian days' marked each month; first used as the noun phrase 'in the dismal'.",
+    "note": "From medieval Latin dies mali, the two unlucky days each month, also called [[Egyptian days]]; first used in 'in the dismal', then the tautological 'dismal day'.",
     "confidence": "high"
    }
   ]
@@ -1171,24 +1200,24 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 1867,
-    "note": "British Cockney rhyming slang for the telephone.",
+    "note": "Cockney rhyming slang for the telephone, given as an example of rhyming slang in everyday British speech.",
     "confidence": "low"
    }
   ]
  },
  {
   "slug": "dont-call-anything-splendid-until-youve-seen-nikko",
-  "term": "don't call anything splendid until you've seen Nikkō",
-  "original": "Nikkō wo minai uchi wa kekkō to iu na",
-  "translation": "don't call anything splendid until you've seen Nikkō",
+  "term": "don't call anything splendid until you've seen Nikko",
+  "original": "Nikkō o mizu shite kekkō to iu nakare",
+  "translation": "don't call anything splendid until you've seen Nikko",
   "type": "idiom",
   "language": "Japanese",
   "mentions": [
    {
     "episode_id": "YBIXXAipmZw",
-    "t": 2277,
-    "note": "Praises Nikkō's shrine complex, with a pun between 'Nikkō' and 'kekkō' (splendid).",
-    "confidence": "low"
+    "t": 2269,
+    "note": "Praises Nikko's shrine complex and puns on 'Nikko' and 'kekko' (splendid); the hosts compare it to Goethe's [[see Naples and die]].",
+    "confidence": "high"
    }
   ]
  },
@@ -1203,7 +1232,23 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 2191,
-    "note": "Stay out of other people's business.",
+    "note": "Advice to stay out of other people's business and problems.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "egyptian-days",
+  "term": "Egyptian days",
+  "original": null,
+  "translation": null,
+  "type": "phrase",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2367,
+    "note": "Another name for the dies mali behind [[dismal]], supposedly calculated by ancient Egyptian scholars or linked to the story of the plagues.",
     "confidence": "high"
    }
   ]
@@ -1219,7 +1264,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 739,
-    "note": "One of the words Jess used to teach fifth graders the Latin root meaning 'to speak'.",
+    "note": "One of the words Jess used with fifth graders to teach a Latin root meaning 'to talk', along with [[loquacious]] and [[soliloquy]].",
     "confidence": "high"
    }
   ]
@@ -1235,7 +1280,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 862,
-    "note": "From via; someone sent somewhere to represent another person.",
+    "note": "Someone sent somewhere to represent someone else; from [[via]] and related to [[invoice]].",
     "confidence": "high"
    }
   ]
@@ -1251,7 +1296,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 2334,
-    "note": "Even experts sometimes make mistakes.",
+    "note": "A reassuring saying that even experts sometimes make mistakes.",
     "confidence": "high"
    }
   ]
@@ -1267,15 +1312,15 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 2456,
-    "note": "Quebec French for 'brace yourself'; a toque here is a winter hat, sometimes a chef's hat.",
-    "confidence": "low"
+    "note": "In Quebec French, like 'fasten your seat belt'; a toque here is a winter hat, though the word can also mean a chef's hat.",
+    "confidence": "high"
    }
   ]
  },
  {
   "slug": "fasti",
   "term": "fasti",
-  "original": null,
+  "original": "fasti",
   "translation": null,
   "type": "word",
   "language": "Latin",
@@ -1283,7 +1328,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 2451,
-    "note": "Roman calendar lists of days allowed for official business; Jess enjoys the pun 'the fasti of Furius'.",
+    "note": "Roman calendar lists of official and religious events and of dies fasti, days allowed for business; Jess enjoys that the source is 'the fasti of Furius'.",
     "confidence": "high"
    }
   ]
@@ -1299,7 +1344,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2078,
-    "note": "A fan's praise: 'fett' meant great and 'Brot' was slang for hash, so 'really good hash'.",
+    "note": "A fan praised their music as fettes Brot, slang for really good hash, since fett meant great and Brot meant hash.",
     "confidence": "high"
    }
   ]
@@ -1307,7 +1352,7 @@
  {
   "slug": "flies-dont-enter-a-closed-mouth",
   "term": "flies don't enter a closed mouth",
-  "original": null,
+  "original": "en boca cerrada no entran moscas",
   "translation": "flies don't enter a closed mouth",
   "type": "idiom",
   "language": "Spanish",
@@ -1315,7 +1360,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1487,
-    "note": "Keep your mouth shut to stay out of trouble.",
+    "note": "Advice to keep your mouth shut to stay out of trouble.",
     "confidence": "high"
    }
   ]
@@ -1331,8 +1376,8 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1222,
-    "note": "Means hardly anyone showed up, like 'one man and his dog'.",
-    "confidence": "low"
+    "note": "Means hardly anyone showed up, roughly like 'one man and his dog'.",
+    "confidence": "high"
    }
   ]
  },
@@ -1347,7 +1392,23 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 689,
-    "note": "1800s stable slang for horses fed on beans before a race; it once also meant arrogant from new wealth.",
+    "note": "1800s stable slang for horses fed on beans before a race or hunt and in fit condition; it once also meant arrogant or purse-proud.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "go-ape",
+  "term": "go ape",
+  "original": null,
+  "translation": null,
+  "type": "idiom",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "6Rr6qfIIapY",
+    "t": 2058,
+    "note": "Dates to at least the early 1900s and was adapted into [[go bananas]].",
     "confidence": "high"
    }
   ]
@@ -1363,25 +1424,8 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 2058,
-    "note": "Adapted from 'go ape'; 'bananas' meant crazy by the 1920s, even though wild monkeys rarely eat bananas.",
+    "note": "Adapted from [[go ape]] by linking monkeys with bananas, with 'bananas' alone recorded from the 1920s, though wild monkeys rarely eat bananas.",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "go-down-like-a-lead-balloon",
-  "term": "go down like a lead balloon",
-  "original": null,
-  "translation": null,
-  "type": "idiom",
-  "language": "English",
-  "mentions": [
-   {
-    "episode_id": "JlgQIDxufh0",
-    "t": 1261,
-    "note": "The idiom behind Led Zeppelin's name; the hosts discuss whether Americans use it.",
-    "confidence": "low",
-    "verified": true
    }
   ]
  },
@@ -1396,8 +1440,8 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 2252,
-    "note": "For someone who trails after another person, like poop dangling from a goldfish.",
-    "confidence": "low"
+    "note": "Describes someone who trails around after someone else, the way poop dangles behind a goldfish.",
+    "confidence": "high"
    }
   ]
  },
@@ -1411,8 +1455,8 @@
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
-    "t": 747,
-    "note": "Grand plus the 'speak' root, so literally big talking; William Barnes suggested 'high talking' instead.",
+    "t": 764,
+    "note": "Grand ('big') plus the root meaning 'to talk', so literally 'big talking'; William Barnes proposed [[high-talking]] in its place.",
     "confidence": "high"
    }
   ]
@@ -1428,7 +1472,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 1531,
-    "note": "Literally means pomegranate, because grenades look like one and scatter pieces like seeds.",
+    "note": "Literally means [[pomegranate]], which grenades resemble, and when they explode bits burst out like pomegranate seeds.",
     "confidence": "high"
    }
   ]
@@ -1444,7 +1488,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 1966,
-    "note": "A genre name given by people who disliked the music.",
+    "note": "A genre name given by people who disliked the music and then adopted by it, like [[punk]].",
     "confidence": "high"
    }
   ]
@@ -1460,7 +1504,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 676,
-    "note": "A personal name that now applies to anyone, like Joe, Jack and Dick as names for the everyman.",
+    "note": "Originally just a person's name, now used for any person, another example of everyman names.",
     "confidence": "low"
    }
   ]
@@ -1476,7 +1520,23 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 2114,
-    "note": "Describes a stingy person; reaching into the pocket would be painful.",
+    "note": "Describes a stingy person: reaching into a pocket with a hedgehog in it would hurt, so they avoid paying.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "high-talking",
+  "term": "high-talking",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1405,
+    "note": "William Barnes's Germanic replacement for [[grandiloquent]].",
     "confidence": "high"
    }
   ]
@@ -1492,7 +1552,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 396,
-    "note": "Industry term for bluegrass-style music marketed to white Southern audiences; it developed into country music.",
+    "note": "Industry term for bluegrass-style music marketed to white audiences, the counterpart of [[race records]]; it developed into country music.",
     "confidence": "high"
    }
   ]
@@ -1508,7 +1568,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 1457,
-    "note": "Found in 1895 in the Bryan Daily Eagle; this date rules out the WWI toffee-apple shell theory.",
+    "note": "Found in 1895 in Texas's Bryan Daily Eagle, boasting about cotton receipts; the WWI toffee-apple mortar story is too late to be the source.",
     "confidence": "high"
    }
   ]
@@ -1524,7 +1584,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 2367,
-    "note": "A 19th-century pun on 'umble pie', a lowly dish of deer innards given to servants.",
+    "note": "A 19th-century phrase, probably a pun on [[umbles|umble pie]], a lowly dish of deer entrails given to servants.",
     "confidence": "high"
    }
   ]
@@ -1540,8 +1600,8 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1312,
-    "note": "Sir John Cheke used this instead of centurion in his Gospel of Matthew without loanwords.",
-    "confidence": "low"
+    "note": "Sir John Cheke's native replacement for centurion in his Gospel of Matthew, written to avoid excessive borrowings in the [[inkhorn]] spirit.",
+    "confidence": "high"
    }
   ]
  },
@@ -1550,13 +1610,13 @@
   "term": "hunger is a good sauce",
   "original": null,
   "translation": "hunger is a good sauce",
-  "type": "idiom",
+  "type": "phrase",
   "language": "Irish",
   "mentions": [
    {
     "episode_id": "YBIXXAipmZw",
     "t": 2182,
-    "note": "Hunger makes food taste better; Jess notes a historical undertone.",
+    "note": "Means hunger makes food taste better; Jess feels it carries historical baggage but is meant optimistically.",
     "confidence": "high"
    }
   ]
@@ -1572,7 +1632,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2454,
-    "note": "A Taylor Swift lyric that became a meme; Jess picked it up without knowing where it came from.",
+    "note": "A Taylor Swift lyric that became a meme; Jess picked it up without realising it came from the song.",
     "confidence": "high"
    }
   ]
@@ -1581,30 +1641,30 @@
   "slug": "impervious",
   "term": "impervious",
   "original": null,
-  "translation": "not through the road",
+  "translation": "no way through",
   "type": "word",
   "language": "English",
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
     "t": 819,
-    "note": "Im- 'not', per 'through', via 'road'; resistant to attack because there is no way through.",
+    "note": "Im- 'not', per 'through' and [[via]] 'road': something with no way through, and so resistant to attack.",
     "confidence": "high"
    }
   ]
  },
  {
-  "slug": "inkhorn-term",
-  "term": "inkhorn term",
+  "slug": "inkhorn",
+  "term": "inkhorn",
   "original": null,
   "translation": null,
-  "type": "phrase",
+  "type": "word",
   "language": "English",
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1259,
-    "note": "Renaissance backlash against classical borrowings; the name may come from dipping into the inkhorn often for long words.",
+    "note": "Name of the backlash against classical borrowings during the Renaissance; perhaps because long Latinate words meant dipping your quill into an inkhorn again and again.",
     "confidence": "high"
    }
   ]
@@ -1620,7 +1680,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1905,
-    "note": "An 18th-century non-hybrid alternative, with mundane meaning worldly.",
+    "note": "An 18th-century non-hybrid alternative to [[interplanetary]], with mundane meaning worldly.",
     "confidence": "high"
    }
   ]
@@ -1636,7 +1696,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1897,
-    "note": "A hybrid of Latin inter and Greek planet.",
+    "note": "A hybrid of Latin inter and Greek planet; avoiding such hybrids produced [[intermundane]].",
     "confidence": "high"
    }
   ]
@@ -1652,9 +1712,8 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 166,
-    "note": "The Italian way of wishing someone good luck, like 'break a leg'.",
-    "confidence": "high",
-    "verified": true
+    "note": "The Italian equivalent of [[break a leg]], which has a set reply, [[may the wolf die]].",
+    "confidence": "high"
    }
   ]
  },
@@ -1669,7 +1728,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 862,
-    "note": "Related to envoy; asks for a payment to be sent along. There's no voice in it, only a road.",
+    "note": "Related to [[envoy]]: a request for payment to be sent along. There's no voice in it, but there is a road ([[via]]).",
     "confidence": "high"
    }
   ]
@@ -1678,14 +1737,14 @@
   "slug": "its-raining-ropes",
   "term": "it's raining ropes",
   "original": null,
-  "translation": "it's raining ropes/string",
+  "translation": "it's raining ropes",
   "type": "idiom",
   "language": "French",
   "mentions": [
    {
     "episode_id": "YBIXXAipmZw",
     "t": 348,
-    "note": "French for heavy rain, as the drops look like dangling string; Rob's wife once said it in English.",
+    "note": "Rob's wife once said it in English; heavy rain looks like dangling strings, a French equivalent of [[raining cats and dogs]].",
     "confidence": "high"
    }
   ]
@@ -1701,7 +1760,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 572,
-    "note": "Late 19th-century American slang for coffee, a blend of 'java' and 'mocha'.",
+    "note": "Late-19th-century American slang for coffee, a blend of [[java]] and [[mocha]], and the likely source of [[cup of joe]].",
     "confidence": "high"
    }
   ]
@@ -1717,23 +1776,23 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 2283,
-    "note": "Latin for doorkeeper or porter, related to Janus; became a school usher, then a caretaker by the 1700s.",
+    "note": "In Latin a doorkeeper or porter, related to [[Janus]], the two-faced god of doorways; it later meant a school usher, then a caretaker by the 1700s.",
     "confidence": "high"
    }
   ]
  },
  {
-  "slug": "janus",
-  "term": "Janus",
+  "slug": "january",
+  "term": "January",
   "original": null,
   "translation": null,
   "type": "name",
-  "language": "Latin",
+  "language": "English",
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
-    "t": 2291,
-    "note": "Two-faced Roman god of doorways, linked to janitor; January is named after him.",
+    "t": 2299,
+    "note": "Named after [[Janus]], the god related to [[janitor]].",
     "confidence": "high"
    }
   ]
@@ -1749,7 +1808,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2536,
-    "note": "Verlan greeting that Rob challenges Jess to work out from the most common French greeting.",
+    "note": "A greeting that is bonjour reversed in [[verlan]].",
     "confidence": "low"
    }
   ]
@@ -1765,7 +1824,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 2495,
-    "note": "The word diurnal squashed through French; a doublet of diary.",
+    "note": "The word diurnal squeezed through French; a doublet of [[diary]].",
     "confidence": "high"
    }
   ]
@@ -1781,7 +1840,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 526,
-    "note": "African-American term for an informal place for music, dancing and gambling; probably from a Gullah word meaning rowdy.",
+    "note": "African-American term for an informal venue with music, dancing and gambling; juke probably comes from a Gullah word meaning rowdy or disorderly.",
     "confidence": "high"
    }
   ]
@@ -1797,24 +1856,8 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 548,
-    "note": "Takes its name from the juke joint.",
+    "note": "Named after the [[juke joint]].",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "kernewek",
-  "term": "Kernewek",
-  "original": null,
-  "translation": null,
-  "type": "name",
-  "language": "Cornish",
-  "mentions": [
-   {
-    "episode_id": "YBIXXAipmZw",
-    "t": 1670,
-    "note": "Jess gives the native name for the Cornish language (heard as 'Kernow').",
-    "confidence": "low"
    }
   ]
  },
@@ -1829,7 +1872,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 1722,
-    "note": "An American phrase from 1891, so not from OED editor C.T. Onions; the Cockney 'onion rings' theory is possible.",
+    "note": "American, first recorded in 1891, so not from OED editor C. T. Onions; the Cockney rhyming slang onion rings = things is possible but puzzling.",
     "confidence": "high"
    }
   ]
@@ -1845,7 +1888,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2124,
-    "note": "Chosen because the band was very into industry.",
+    "note": "Means power station, chosen because the band was into industry.",
     "confidence": "high"
    }
   ]
@@ -1860,9 +1903,9 @@
   "mentions": [
    {
     "episode_id": "JlgQIDxufh0",
-    "t": 2562,
-    "note": "Title of a Renaud album; Verlan for 'laisse tomber', meaning let it go or just leave it.",
-    "confidence": "high"
+    "t": 2570,
+    "note": "Title of an album by Renaud; it looks like \"leave concrete\" but is [[verlan]] for laisse tomber, meaning let it go or just leave it.",
+    "confidence": "low"
    }
   ]
  },
@@ -1872,28 +1915,12 @@
   "original": "Latinus",
   "translation": "of Latium",
   "type": "word",
-  "language": "Latin",
+  "language": "English",
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
     "t": 84,
-    "note": "The Romans' language is called Latin because it was the language of the Latins, people of the region Latium.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "latium",
-  "term": "Latium",
-  "original": null,
-  "translation": null,
-  "type": "name",
-  "language": "Latin",
-  "mentions": [
-   {
-    "episode_id": "52GtCvS7HCU",
-    "t": 92,
-    "note": "Ancient region around Rome and the lower Tiber; modern Italians call it Lazio, also a football team's name.",
+    "note": "Named after [[Latium]], the ancient region around Rome and the lower Tiber, now called Lazio; Latinus meant 'of Latium' and also named the language.",
     "confidence": "high"
    }
   ]
@@ -1909,7 +1936,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1425,
-    "note": "A Spanish version of 'lead a horse to water', harder because it's a cat.",
+    "note": "The Spanish version of [[you can lead a horse to water]], where you can't even get the animal as far as the water.",
     "confidence": "high"
    }
   ]
@@ -1925,7 +1952,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 1218,
-    "note": "From a remark that the supergroup would go down like a lead balloon; spelled 'Led' so it wouldn't be misread.",
+    "note": "From the remark that the supergroup would [[go down like a lead balloon]]; the spelling was changed so people wouldn't read it as the verb lead.",
     "confidence": "high"
    }
   ]
@@ -1941,7 +1968,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 399,
-    "note": "Nothing to do with the cat-o'-nine-tails; it comes from buying a pig in a poke but getting a cat.",
+    "note": "Covered in an earlier episode: it isn't about the cat-o'-nine-tails but about buying a [[pig in a poke]] and finding a worthless cat inside.",
     "confidence": "high"
    }
   ]
@@ -1957,8 +1984,8 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1245,
-    "note": "The Spanish equivalent of 'bookworm'.",
-    "confidence": "low"
+    "note": "The Spanish equivalent of [[bookworm]].",
+    "confidence": "high"
    }
   ]
  },
@@ -1972,40 +1999,40 @@
   "mentions": [
    {
     "episode_id": "YBIXXAipmZw",
-    "t": 997,
-    "note": "A British phrase for letting your mind wander during sex, implying bad sex being endured.",
+    "t": 1005,
+    "note": "A British phrase about letting your mind wander during sex, which implies bad sex; Jess says it isn't used in America.",
     "confidence": "high"
    }
   ]
  },
  {
-  "slug": "like-an-apple-to-an-oyster",
-  "term": "like an apple to an oyster",
+  "slug": "lift-the-cat-onto-the-table",
+  "term": "lift the cat onto the table",
+  "original": null,
+  "translation": "to lift the cat onto the table",
+  "type": "idiom",
+  "language": "Finnish",
+  "mentions": [
+   {
+    "episode_id": "YBIXXAipmZw",
+    "t": 1938,
+    "note": "Means raising an awkward subject everyone avoids, like addressing the elephant in the room; almost the inverse of the British [[dead cat]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "long-john-and-the-silver-beatles",
+  "term": "Long John and the Silver Beatles",
   "original": null,
   "translation": null,
-  "type": "idiom",
+  "type": "name",
   "language": "English",
   "mentions": [
    {
-    "episode_id": "6Rr6qfIIapY",
-    "t": 1151,
-    "note": "The original 17th-century comparison, recorded by John Ray, for two things with no resemblance at all.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "little-man-of-the-eye",
-  "term": "little man of the eye",
-  "original": null,
-  "translation": "the little man of the eye",
-  "type": "idiom",
-  "language": "Hebrew",
-  "mentions": [
-   {
-    "episode_id": "6Rr6qfIIapY",
-    "t": 996,
-    "note": "Hebrew phrase behind 'apple of the eye', referring to the person reflected in someone's pupil.",
+    "episode_id": "JlgQIDxufh0",
+    "t": 826,
+    "note": "Casey Jones said [[The Beatles]] needed more syllables, so they added Lennon's nickname Long John; it was later cut to the Silver Beatles and then dropped.",
     "confidence": "high"
    }
   ]
@@ -2021,7 +2048,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 739,
-    "note": "Shares the 'speak' root; Jess's students guessed its meaning from eloquent and soliloquy.",
+    "note": "The pupils guessed it from [[eloquent]] and [[soliloquy]], which share its root meaning 'to talk or speak'.",
     "confidence": "high"
    }
   ]
@@ -2037,7 +2064,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2294,
-    "note": "Name of the duo who sang the Macarena.",
+    "note": "The Macarena singers; the name means those from the river.",
     "confidence": "high"
    }
   ]
@@ -2053,7 +2080,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2310,
-    "note": "Name of the band known for La Bamba.",
+    "note": "The band behind La Bamba; the name means the wolves.",
     "confidence": "high"
    }
   ]
@@ -2069,7 +2096,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 1350,
-    "note": "Deliberately misspelled tribute to Leonard Skinner, a gym teacher at their school; pronounced 'Leonard Skinner'.",
+    "note": "Deliberately misspelled but still pronounced Leonard Skinner, after a gym teacher at the band's school.",
     "confidence": "high"
    }
   ]
@@ -2085,7 +2112,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1137,
-    "note": "Literally to hold in the hand, an example of how literal Latin compounds really are.",
+    "note": "Literally 'to hold in the hand', from [[tenere]]; an example of how literal Latin compounds really are.",
     "confidence": "high"
    }
   ]
@@ -2101,7 +2128,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2261,
-    "note": "The Italian Eurovision winners have a Danish name, suggested by their half-Danish bassist.",
+    "note": "The Italian Eurovision-winning band has a Danish name meaning moonlight, suggested by their half-Danish bassist.",
     "confidence": "high"
    }
   ]
@@ -2109,7 +2136,7 @@
  {
   "slug": "manus",
   "term": "manus",
-  "original": null,
+  "original": "manus",
   "translation": "hand",
   "type": "word",
   "language": "Latin",
@@ -2117,7 +2144,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 2101,
-    "note": "Latin for hand; the plural is manus too, not mani.",
+    "note": "Latin for 'hand', whose plural is also manus, not mani.",
     "confidence": "high"
    }
   ]
@@ -2133,8 +2160,8 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 174,
-    "note": "The set reply to 'in bocca al lupo'; the hosts wonder whether the wolf chokes or dies first.",
-    "confidence": "low"
+    "note": "The reply to [[into the wolf's mouth]]; the hosts wonder whether the wolf chokes on you or dies before it can swallow.",
+    "confidence": "high"
    }
   ]
  },
@@ -2149,7 +2176,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1723,
-    "note": "A Lithuanian equivalent of 'speak of the devil', sent in by a viewer.",
+    "note": "A listener-submitted Lithuanian equivalent of [[speak of the devil]].",
     "confidence": "high"
    }
   ]
@@ -2165,7 +2192,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 2521,
-    "note": "Originally meant noon; Latin medidies became meridies by dissimilation, D changing to R.",
+    "note": "Originally noon or midday ('night's meridian' meant midnight); from [[dies]], Latin medidies became meridies by dissimilation.",
     "confidence": "low"
    }
   ]
@@ -2181,7 +2208,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 1438,
-    "note": "Unnecessary umlauts in band names like Mötley Crüe and Motörhead, meant to look Germanic and dark.",
+    "note": "Decorative dots that bands like Mötley Crüe, Motörhead and Spinal Tap put on letters to look Germanic and dark.",
     "confidence": "high"
    }
   ]
@@ -2196,8 +2223,8 @@
   "mentions": [
    {
     "episode_id": "JlgQIDxufh0",
-    "t": 2511,
-    "note": "Verlan for 'femme' (woman), used by young French people.",
+    "t": 2520,
+    "note": "Young French people's word for a woman, from femme with its sounds reversed in [[verlan]].",
     "confidence": "high"
    }
   ]
@@ -2213,7 +2240,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 282,
-    "note": "From Latin for a thousand paces, since a Roman mile was a thousand paces long.",
+    "note": "An early Latin borrowing from mille passus, because a Roman mile was a thousand paces long.",
     "confidence": "high"
    }
   ]
@@ -2229,7 +2256,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 1565,
-    "note": "Taken from a passage in Virginia Woolf's story 'The Mark on the Wall'.",
+    "note": "From a passage in Virginia Woolf's story The Mark on the Wall mentioning \"modest mouse-coloured people.\"",
     "confidence": "high"
    }
   ]
@@ -2245,8 +2272,8 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1555,
-    "note": "The French equivalent of 'a little bird told me', said while raising the little finger.",
-    "confidence": "low"
+    "note": "The French counterpart of [[a little bird told me]], said while holding up the finger; its origin is harder to work out.",
+    "confidence": "high"
    }
   ]
  },
@@ -2261,23 +2288,23 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 214,
-    "note": "Said before a hunt to wish failure, meaning good luck; the reply is 'go to hell'.",
+    "note": "Said before a hunt to wish that you catch neither mammal nor bird; the expected reply is 'go to hell'.",
     "confidence": "high"
    }
   ]
  },
  {
   "slug": "nirvana",
-  "term": "Nirvana",
+  "term": "nirvana",
   "original": null,
-  "translation": "to blow away",
-  "type": "name",
+  "translation": "blowing away",
+  "type": "word",
   "language": "Sanskrit",
   "mentions": [
    {
     "episode_id": "JlgQIDxufh0",
     "t": 1927,
-    "note": "Sanskrit word meaning to blow away or wipe out; release from karma and rebirth.",
+    "note": "Sanskrit for blowing away or wiping out; in Buddhism it means release from karma and rebirth, having blown away life's entanglements.",
     "confidence": "high"
    }
   ]
@@ -2286,15 +2313,15 @@
   "slug": "norwegians-are-born-with-skis-on-their-feet",
   "term": "Norwegians are born with skis on their feet",
   "original": "nordmenn er født med ski på beina",
-  "translation": "Norwegians are born with skis on their legs/feet",
+  "translation": "Norsemen are born with skis on their legs",
   "type": "idiom",
   "language": "Norwegian",
   "mentions": [
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1995,
-    "note": "Presented as a typically Norwegian saying about their skiing culture.",
-    "confidence": "low"
+    "note": "A saying Rob finds wonderfully typical of Norwegian culture.",
+    "confidence": "high"
    }
   ]
  },
@@ -2309,7 +2336,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 526,
-    "note": "Late 19th century, meaning 'not at any price', because tea was a costly import.",
+    "note": "Late-19th-century phrase meaning under no circumstances or at no price, because tea was a costly import.",
     "confidence": "high"
    }
   ]
@@ -2325,7 +2352,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1183,
-    "note": "Disclaims responsibility; Jess thinks English may have borrowed it from Polish.",
+    "note": "Used to disclaim responsibility; Jess thinks Polish may have had it first and passed it to English.",
     "confidence": "high"
    }
   ]
@@ -2341,7 +2368,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 369,
-    "note": "Dutch version of 'spill the beans', possibly from a magic trick.",
+    "note": "The Dutch [[spill the beans]], possibly from a magic trick, with a more magician-like version of [[let the cat out of the bag]] energy.",
     "confidence": "low"
    }
   ]
@@ -2357,7 +2384,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1801,
-    "note": "A little-known ob- word meaning to walk around.",
+    "note": "A little-known ob- word meaning walking around; it reminds Rob of [[somnambulation]].",
     "confidence": "high"
    }
   ]
@@ -2365,15 +2392,15 @@
  {
   "slug": "obfuscate",
   "term": "obfuscate",
-  "original": "fuscare",
-  "translation": "to make dark before",
+  "original": null,
+  "translation": null,
   "type": "word",
   "language": "English",
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1785,
-    "note": "Ob- 'in front of' plus fuscare 'to make something dark'.",
+    "note": "Ob-, here 'in front of or before', plus fuscare, 'to make dark'.",
     "confidence": "high"
    }
   ]
@@ -2389,7 +2416,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1741,
-    "note": "Ob- plus litera 'letter'; originally to erase or blot out writing.",
+    "note": "Ob- plus litera: to erase or blot out writing, an idea close to [[oblivion]].",
     "confidence": "high"
    }
   ]
@@ -2405,7 +2432,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1725,
-    "note": "From Latin oblivio, forgetfulness; sending something into a state of empty nothingness.",
+    "note": "One of many ob- words, from oblivio, 'forgetfulness'; sending something into oblivion means wiping it away into empty nothingness.",
     "confidence": "high"
    }
   ]
@@ -2413,15 +2440,15 @@
  {
   "slug": "obnoxious",
   "term": "obnoxious",
-  "original": "noxa",
-  "translation": "toward hurt",
+  "original": null,
+  "translation": null,
   "type": "word",
   "language": "English",
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1749,
-    "note": "Toward noxa, hurt or injury; the Latin meant injurious, much stronger than today's 'annoying'.",
+    "note": "Toward noxa, 'hurt or injury'; the Latin predecessor meant injurious, much stronger than today's 'annoying'.",
     "confidence": "high"
    }
   ]
@@ -2430,14 +2457,14 @@
   "slug": "obscure",
   "term": "obscure",
   "original": null,
-  "translation": "covered",
+  "translation": null,
   "type": "word",
   "language": "English",
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
-    "t": 1785,
-    "note": "Ob- plus a Latin element the hosts say means covered, also seen in chiaroscuro.",
+    "t": 1793,
+    "note": "Ob- plus scurus, 'covered', the same element as in [[chiaroscuro]].",
     "confidence": "high"
    }
   ]
@@ -2453,7 +2480,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 811,
-    "note": "Literally in the way or in front of you on the road, so easy to trip over.",
+    "note": "Literally 'in the way', in front of you on the road, from [[via]]: so plain you might trip over it.",
     "confidence": "high"
    }
   ]
@@ -2469,7 +2496,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1770,
-    "note": "The initial o- is really ob-, another example of assimilation.",
+    "note": "Covered in the magic episode; its initial o- is an assimilated ob-.",
     "confidence": "high"
    }
   ]
@@ -2485,7 +2512,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1978,
-    "note": "Octopi is wrong in Latin and octopodes isn't really Greek, so octopuses is safest.",
+    "note": "From a recent episode: octopodes follows Greek, but the word didn't exist in Greek, and octopi isn't the Latin plural either, so octopuses is best.",
     "confidence": "high"
    }
   ]
@@ -2501,23 +2528,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 679,
-    "note": "Means never, because it names a saint's day that doesn't exist, like 'the 12th of never'.",
-    "confidence": "low"
-   }
-  ]
- },
- {
-  "slug": "one-bad-apple-spoils-the-bunch",
-  "term": "one bad apple spoils the bunch",
-  "original": null,
-  "translation": null,
-  "type": "idiom",
-  "language": "English",
-  "mentions": [
-   {
-    "episode_id": "6Rr6qfIIapY",
-    "t": 1252,
-    "note": "Found in a 1528 Reformation pamphlet and, in earlier form, in a 1340 Kentish moral treatise.",
+    "note": "It invokes a saint's day that doesn't exist, so it means something will never happen, like 'the 12th of never'.",
     "confidence": "high"
    }
   ]
@@ -2533,7 +2544,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 2523,
-    "note": "Uses two Hungarian words for dog; means six of one, half a dozen of the other.",
+    "note": "Uses two Hungarian words that both mean dog; like 'six of one, half a dozen of the other' for pointless comparisons.",
     "confidence": "high"
    }
   ]
@@ -2549,7 +2560,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 2233,
-    "note": "Means empty-headed, like a hollow green pepper with a few seeds rattling around.",
+    "note": "Describes an empty-headed person, like a green pepper that is hollow except for a few rattling seeds.",
     "confidence": "high"
    }
   ]
@@ -2565,7 +2576,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 2025,
-    "note": "A Norwegian saying that going outdoors lifts your mood, like 'go touch grass'.",
+    "note": "Jess's favourite Norwegian saying, which she compares to 'go outside and touch grass'.",
     "confidence": "high"
    }
   ]
@@ -2581,7 +2592,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1348,
-    "note": "Cheke's term, perhaps for exodus or diaspora; the hosts point out it isn't any shorter.",
+    "note": "Cheke's native term in his Matthew for the removal to Babylon; the hosts compare it to diaspora or Exodus and note that it isn't any shorter.",
     "confidence": "high"
    }
   ]
@@ -2597,7 +2608,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1002,
-    "note": "Jess packs fourteen related words into one riff, including depend, pendulum, suspense and compensate.",
+    "note": "Latin 'to hang'; Jess strings fourteen descendants together, including expend, compendium, depend, pendulum, suspense, [[ponder]] and [[pensive]].",
     "confidence": "high"
    }
   ]
@@ -2613,24 +2624,8 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1039,
-    "note": "From pensare, a frequentative of pendere; something hanging on your mind.",
+    "note": "From pensare, 'to weigh or consider', a frequentative of [[pendere]]: something hanging on your mind.",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "pie",
-  "term": "pie",
-  "original": null,
-  "translation": null,
-  "type": "word",
-  "language": "English",
-  "mentions": [
-   {
-    "episode_id": "6Rr6qfIIapY",
-    "t": 2346,
-    "note": "British speakers think of savoury pies, Americans of sweet fruit pies, or pizza in New York.",
-    "confidence": "low"
    }
   ]
  },
@@ -2645,7 +2640,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 482,
-    "note": "Probably came through other Germanic languages first, ultimately from Latin pulvinus, a small cushion.",
+    "note": "Ultimately from Latin pulvinus, a little cushion or small pillow, possibly reaching other Germanic languages first.",
     "confidence": "high"
    }
   ]
@@ -2654,14 +2649,14 @@
   "slug": "pomegranate",
   "term": "pomegranate",
   "original": null,
-  "translation": "grainy apple",
+  "translation": null,
   "type": "word",
   "language": "English",
   "mentions": [
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 1542,
-    "note": "Means 'grainy apple'; the 'pom' part is the same as French 'pomme', apple.",
+    "note": "Means 'grainy apple', with the first part matching French pomme, apple; the source of [[grenade]].",
     "confidence": "high"
    }
   ]
@@ -2677,7 +2672,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1077,
-    "note": "From Latin ponderare 'to weigh', linked to pendere; spelled roughly as a French speaker might say it.",
+    "note": "From Latin ponderare, 'to weigh', from [[pendere]]; Rob suggests it's spelled the way a French speaker would say it.",
     "confidence": "high"
    }
   ]
@@ -2693,7 +2688,23 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1103,
-    "note": "From libra pondo, where pondo means weight; tied to the same weighing and hanging family.",
+    "note": "From libra pondo, with pondo meaning weight, which Rob ties to [[ponder]]: weighty, hanging things.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "pourboire",
+  "term": "pourboire",
+  "original": "pourboire",
+  "translation": "for drinking",
+  "type": "word",
+  "language": "French",
+  "mentions": [
+   {
+    "episode_id": "JlgQIDxufh0",
+    "t": 650,
+    "note": "French for a tip, meaning money for a drink, like [[Trinkgeld]] and [[propina]].",
     "confidence": "high"
    }
   ]
@@ -2709,23 +2720,39 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 838,
-    "note": "From via; something that happens earlier on your route or path.",
+    "note": "Something that occurs earlier on your route or path, from [[via]].",
     "confidence": "high"
    }
   ]
  },
  {
-  "slug": "prove",
-  "term": "prove",
+  "slug": "propina",
+  "term": "propina",
+  "original": "la propina",
+  "translation": "tip",
+  "type": "word",
+  "language": "Spanish",
+  "mentions": [
+   {
+    "episode_id": "JlgQIDxufh0",
+    "t": 626,
+    "note": "Spanish for a tip, which goes back to a term for buying or having a drink, like [[Trinkgeld]] and [[pourboire]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "prospectus",
+  "term": "prospectus",
   "original": null,
   "translation": null,
   "type": "word",
   "language": "English",
   "mentions": [
    {
-    "episode_id": "6Rr6qfIIapY",
-    "t": 2246,
-    "note": "An old sense meaning 'to test', which survives in 'proving ground'.",
+    "episode_id": "52GtCvS7HCU",
+    "t": 2033,
+    "note": "Its Latin plural is prospectus, not prospecti, so English uses prospectuses; it shows that -us doesn't always become -i.",
     "confidence": "high"
    }
   ]
@@ -2741,7 +2768,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 178,
-    "note": "The study of elections, named from the Greek word for pebble, because Greeks dropped pebbles into jars to vote.",
+    "note": "The study of elections, from the Greek word for pebble, because ancient Greeks dropped pebbles into jars when voting.",
     "confidence": "high"
    }
   ]
@@ -2763,22 +2790,6 @@
   ]
  },
  {
-  "slug": "pudding",
-  "term": "pudding",
-  "original": null,
-  "translation": null,
-  "type": "word",
-  "language": "English",
-  "mentions": [
-   {
-    "episode_id": "6Rr6qfIIapY",
-    "t": 2284,
-    "note": "Once meant savoury dishes like stuffed stomach or haggis; now usually sweet, steamed desserts.",
-    "confidence": "low"
-   }
-  ]
- },
- {
   "slug": "punk",
   "term": "punk",
   "original": null,
@@ -2789,7 +2800,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 1972,
-    "note": "Meant horrible or inferior; applied to the music and embraced by musicians for its rawness.",
+    "note": "A word meaning horrible or inferior, applied to the music by its critics and then embraced by the musicians themselves.",
     "confidence": "high"
    }
   ]
@@ -2805,7 +2816,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 974,
-    "note": "Related to 'people', because you see a small reflection of yourself in someone else's pupil.",
+    "note": "Rob says it describes a little person, from the tiny reflection of yourself you see in someone else's eye, which ties in with [[apple of my eye]].",
     "confidence": "high"
    }
   ]
@@ -2821,7 +2832,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 927,
-    "note": "The four advanced subjects (arithmetic, astronomy, music, geometry) studied after the trivium; the older term.",
+    "note": "The more advanced studies that followed the [[trivium]]: arithmetic, astronomy, music and geometry.",
     "confidence": "high"
    }
   ]
@@ -2837,7 +2848,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 387,
-    "note": "Music industry term for records marketed to African-American audiences from the 1920s to the 1940s.",
+    "note": "Music-industry term used from the 1920s to the 1940s for records marketed to African-American audiences.",
     "confidence": "high"
    }
   ]
@@ -2853,7 +2864,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 327,
-    "note": "Heavy rain; probably from cats and dogs living in roofs being washed into the street.",
+    "note": "Covered in an earlier episode; the idea may be that rain washed cats and dogs living in roofs out into the street.",
     "confidence": "high"
    }
   ]
@@ -2869,7 +2880,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 423,
-    "note": "The Greek expression for very heavy rain.",
+    "note": "A Greek equivalent of [[raining cats and dogs]].",
     "confidence": "high"
    }
   ]
@@ -2885,7 +2896,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 436,
-    "note": "The Cantonese expression for heavy rain, compared to the French pissing cow.",
+    "note": "A Cantonese heavy-rain idiom that Jess compares with the French [[raining like a pissing cow|pissing cow]].",
     "confidence": "high"
    }
   ]
@@ -2901,7 +2912,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 452,
-    "note": "The Norwegian expression for heavy rain; the hosts find Scandinavian idioms adorable.",
+    "note": "A Norwegian heavy-rain idiom; Rob finds the Scandinavian versions adorable.",
     "confidence": "high"
    }
   ]
@@ -2917,7 +2928,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 444,
-    "note": "Afrikaans for heavy rain; a platanna is a type of frog.",
+    "note": "An Afrikaans heavy-rain idiom; a platanna is a type of frog.",
     "confidence": "high"
    }
   ]
@@ -2933,16 +2944,15 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 372,
-    "note": "Rob's wife Elodie's suggested French equivalent of 'raining cats and dogs'.",
-    "confidence": "low",
-    "verified": true
+    "note": "One of the idioms Rob's wife Elodie recommended; another French equivalent of [[raining cats and dogs]].",
+    "confidence": "high"
    }
   ]
  },
  {
   "slug": "raise-crows-and-they-will-peck-out-your-eyes",
   "term": "raise crows and they will peck out your eyes",
-  "original": null,
+  "original": "cría cuervos y te sacarán los ojos",
   "translation": "raise crows and they will peck out your eyes",
   "type": "idiom",
   "language": "Spanish",
@@ -2950,7 +2960,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1441,
-    "note": "Bad parenting or bad choices come back to haunt you, like 'you reap what you sow'.",
+    "note": "Jess reads it as bad parenting choices coming back to haunt you, or more generally like 'you reap what you sow'.",
     "confidence": "high"
    }
   ]
@@ -2966,8 +2976,24 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2170,
-    "note": "From a deadly air show crash at the Ramstein US air base; the extra M was a misspelling.",
+    "note": "Named after their own song about the air-show crash at the US base Ramstein; the extra M comes from a misspelling on their equipment.",
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "reveal-the-cake",
+  "term": "reveal the cake",
+  "original": "descubrir el pastel",
+  "translation": "to reveal the cake",
+  "type": "idiom",
+  "language": "Spanish",
+  "mentions": [
+   {
+    "episode_id": "6Rr6qfIIapY",
+    "t": 360,
+    "note": "The Spanish [[spill the beans]]; the hosts aren't sure what the secret cake refers to.",
+    "confidence": "low"
    }
   ]
  },
@@ -2981,8 +3007,8 @@
   "mentions": [
    {
     "episode_id": "JlgQIDxufh0",
-    "t": 361,
-    "note": "Reportedly coined by Billboard magazine as a euphemism to replace the label 'race music'.",
+    "t": 367,
+    "note": "Reportedly coined by Billboard magazine as a euphemism to replace [[race records|race music]] for music of Black origin.",
     "confidence": "high"
    }
   ]
@@ -2998,14 +3024,14 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 63,
-    "note": "First described ships at sea, then became African-American slang and a sexual euphemism; hosts also discuss how to spell it.",
+    "note": "First used of ships at sea, then as African-American slang and a sexual euphemism; the OED prefers rock 'n' roll, and DJ Alan Freed popularised the genre label.",
     "confidence": "high"
    }
   ]
  },
  {
   "slug": "romance",
-  "term": "Romance",
+  "term": "romance",
   "original": null,
   "translation": "in the Roman manner",
   "type": "word",
@@ -3014,7 +3040,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 158,
-    "note": "From Old French, late Latin 'in the Roman manner'; used for Latin-descended languages and later for novels.",
+    "note": "Borrowed from Old French, from a late Latin sense of 'in the Roman manner'; it gave Romance languages and romances for novels that celebrated the classics.",
     "confidence": "high"
    }
   ]
@@ -3029,8 +3055,8 @@
   "mentions": [
    {
     "episode_id": "6Rr6qfIIapY",
-    "t": 1044,
-    "note": "Taken from French, where it means lettuce; further back it meant something salted. German uses it for mayonnaise dishes.",
+    "t": 1046,
+    "note": "Taken from French, where it meant lettuce, and further back from the Roman sense of salted; Rob notes that in Germany it covers anything heavy with mayonnaise.",
     "confidence": "high"
    }
   ]
@@ -3046,24 +3072,24 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 1025,
-    "note": "From Cleopatra's lines in Shakespeare's Antony and Cleopatra, meaning a naive, 'green' youth.",
+    "note": "From Cleopatra's line in Shakespeare's Antony and Cleopatra: being green and cold like lettuce means naive, like unripe fruit.",
     "confidence": "high"
    }
   ]
  },
  {
-  "slug": "see-naples-and-die",
-  "term": "see Naples and die",
-  "original": null,
-  "translation": null,
-  "type": "phrase",
-  "language": "German",
+  "slug": "sell-the-fuse",
+  "term": "sell the fuse",
+  "original": "vendre la mèche",
+  "translation": "to sell the fuse",
+  "type": "idiom",
+  "language": "French",
   "mentions": [
    {
-    "episode_id": "YBIXXAipmZw",
-    "t": 2311,
-    "note": "Attributed by the hosts to Goethe; Naples is so beautiful you could die afterwards.",
-    "confidence": "low"
+    "episode_id": "6Rr6qfIIapY",
+    "t": 344,
+    "note": "The French [[spill the beans]], picturing a mine whose fuse was accidentally left sticking out, showing where the bomb is.",
+    "confidence": "high"
    }
   ]
  },
@@ -3078,8 +3104,8 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 455,
-    "note": "Latin word for a chest, then a chest holding relics, then a venerated place.",
-    "confidence": "low"
+    "note": "From Latin scrinium, a chest; it came to mean a chest holding a saint's relic, then a venerated place itself.",
+    "confidence": "high"
    }
   ]
  },
@@ -3094,7 +3120,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2244,
-    "note": "Also the name of the lead singer's younger sister, born as the band was forming.",
+    "note": "Means victory rose; it's also the name of the lead singer's younger sister, born as the band formed, written as one word.",
     "confidence": "high"
    }
   ]
@@ -3110,8 +3136,8 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 749,
-    "note": "Means having a charmed or privileged life, like being born with a silver spoon.",
-    "confidence": "low"
+    "note": "Describes a charmed or privileged life in which success comes easily, like being born with a silver spoon in your mouth.",
+    "confidence": "high"
    }
   ]
  },
@@ -3126,7 +3152,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 2178,
-    "note": "Jess links it, from memory, to Old West con artists selling oil that supposedly kept snakes away.",
+    "note": "Jess recalls, from memory and with uncertainty, Old West con men selling oil said to repel snakes.",
     "confidence": "high"
    }
   ]
@@ -3142,9 +3168,8 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 452,
-    "note": "A Norwegian weather expression mentioned alongside raining female trolls.",
-    "confidence": "low",
-    "verified": true
+    "note": "A cute Norwegian expression for heavy snowfall.",
+    "confidence": "high"
    }
   ]
  },
@@ -3158,8 +3183,8 @@
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
-    "t": 747,
-    "note": "Another word from the Latin root meaning to talk or speak, used in Jess's class.",
+    "t": 739,
+    "note": "Some pupils already knew it; it shares the root meaning 'to talk' with [[eloquent]] and [[grandiloquent]].",
     "confidence": "high"
    }
   ]
@@ -3175,7 +3200,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1820,
-    "note": "Means sleepwalking; Rob was reaching for it after obambulation.",
+    "note": "Sleepwalking; the word Rob was reaching for after [[obambulation]].",
     "confidence": "high"
    }
   ]
@@ -3190,8 +3215,8 @@
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
-    "t": 747,
-    "note": "Sleep-talking; students worked it out through the link with insomnia.",
+    "t": 772,
+    "note": "Sleep-talking; the pupils worked it out from [[insomnia]] and the talk root in [[grandiloquent]].",
     "confidence": "high"
    }
   ]
@@ -3206,9 +3231,25 @@
   "mentions": [
    {
     "episode_id": "6Rr6qfIIapY",
-    "t": 2699,
-    "note": "From Aesop's fox and the grapes; an idiom by the 1760s and revived by Mark Twain.",
+    "t": 2707,
+    "note": "From Aesop's fox, who calls the grapes he can't reach sour; it became an idiom around the 1760s, and Mark Twain revived it in Tom Sawyer.",
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "speak-like-a-spanish-cow",
+  "term": "speak like a Spanish cow",
+  "original": "parler français comme une vache espagnole",
+  "translation": "to speak like a Spanish cow",
+  "type": "idiom",
+  "language": "French",
+  "mentions": [
+   {
+    "episode_id": "6Rr6qfIIapY",
+    "t": 808,
+    "note": "Said of someone speaking a language badly; Rob notes it's offensive to learners, to the Spanish and to cows.",
+    "confidence": "low"
    }
   ]
  },
@@ -3239,7 +3280,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 60,
-    "note": "The popular story about ancient Greek bean ballots is probably wrong; the phrase first appears in 20th-century America.",
+    "note": "Often traced to ancient Greek elections using beans, but the phrase only appears in 20th-century America, and Greeks actually voted with pebbles (hence [[psephology]]).",
     "confidence": "high"
    }
   ]
@@ -3255,8 +3296,24 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 240,
-    "note": "Means sharing gossip on purpose; comes from Black drag culture, where 'T' meant your truth, punned as 'tea'.",
+    "note": "To reveal gossip on purpose, unlike the accidental [[spill the beans]]; it comes from late-20th-century Black drag culture, where 'T' meant truth, and Lady Chablis used it in 1994.",
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "spotted-dick",
+  "term": "spotted dick",
+  "original": null,
+  "translation": null,
+  "type": "name",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "6Rr6qfIIapY",
+    "t": 663,
+    "note": "Rob says Dick, like Jack and Joe, was a popular everyman name, which is why we have things like spotted dick.",
+    "confidence": "low"
    }
   ]
  },
@@ -3271,7 +3328,23 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1397,
-    "note": "William Barnes's Germanic replacement for astronomy.",
+    "note": "William Barnes's Germanic alternative to astronomy.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "status",
+  "term": "status",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2033,
+    "note": "Its Latin plural is status, not stati; English says statuses.",
     "confidence": "high"
    }
   ]
@@ -3287,7 +3360,23 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 1123,
-    "note": "Named after a dildo in William S. Burroughs' novel Naked Lunch.",
+    "note": "Named after a dildo in William S. Burroughs's Naked Lunch, because the band loved Beat Generation literature.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "step-on-the-same-rake",
+  "term": "step on the same rake",
+  "original": null,
+  "translation": "to step on the same rake",
+  "type": "idiom",
+  "language": "Russian",
+  "mentions": [
+   {
+    "episode_id": "YBIXXAipmZw",
+    "t": 905,
+    "note": "Means making the same avoidable mistake twice, like a cartoon character or Sideshow Bob hitting themselves with a rake.",
     "confidence": "high"
    }
   ]
@@ -3303,7 +3392,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 534,
-    "note": "A slightly newer version of 'tempest in a teapot', with the same meaning.",
+    "note": "A slightly newer version of [[tempest in a teapot]], with the same idea.",
     "confidence": "high"
    }
   ]
@@ -3311,15 +3400,15 @@
  {
   "slug": "street",
   "term": "street",
-  "original": "via strata",
-  "translation": "straight road",
+  "original": "strata",
+  "translation": "straight",
   "type": "word",
   "language": "English",
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
     "t": 327,
-    "note": "From Latin strata, as in via strata, so saying street is essentially saying 'straight'.",
+    "note": "From Latin strata, as in [[via]] strata, a straight road, so saying street is essentially saying 'straight'.",
     "confidence": "high"
    }
   ]
@@ -3335,25 +3424,8 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2478,
-    "note": "Belgian singer's name is 'maestro' with its two syllables swapped, using Verlan.",
+    "note": "The Belgian singer's name is [[maestro]] with its syllables swapped, in [[verlan]].",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "styx",
-  "term": "Styx",
-  "original": null,
-  "translation": null,
-  "type": "name",
-  "language": "English",
-  "mentions": [
-   {
-    "episode_id": "JlgQIDxufh0",
-    "t": 1921,
-    "note": "The hosts praise it as a strong classical reference.",
-    "confidence": "low",
-    "verified": true
    }
   ]
  },
@@ -3368,23 +3440,23 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1652,
-    "note": "Sub plus a verb meaning to come after, with the b assimilated to c.",
-    "confidence": "high"
+    "note": "sub- assimilated before cedere to mean 'come after'.",
+    "confidence": "low"
    }
   ]
  },
  {
   "slug": "suffer",
   "term": "suffer",
-  "original": "ferre",
-  "translation": "to be under a burden",
+  "original": null,
+  "translation": null,
   "type": "word",
   "language": "English",
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1665,
-    "note": "Sub plus ferre 'to carry', so literally to be under a burden; assimilated prefix.",
+    "note": "sub- plus ferre, 'to carry', so to be under a burden; another example of assimilation.",
     "confidence": "high"
    }
   ]
@@ -3400,7 +3472,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1644,
-    "note": "Sub plus a verb of looking: an example of the prefix sub assimilating to the following sound.",
+    "note": "An example of assimilation: sub- plus a root meaning 'to look', so being under observation.",
     "confidence": "high"
    }
   ]
@@ -3415,10 +3487,9 @@
   "mentions": [
    {
     "episode_id": "JlgQIDxufh0",
-    "t": 1396,
-    "note": "Guitar shop founded by a Lynyrd Skynyrd roadie who survived the plane crash; spelled with y's like the band's name.",
-    "confidence": "low",
-    "verified": true
+    "t": 1398,
+    "note": "Guitar shop founded by a [[Lynyrd Skynyrd]] roadie who survived the band's air crash; he spelled survivor with y's to echo the band's name.",
+    "confidence": "low"
    }
   ]
  },
@@ -3433,7 +3504,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 542,
-    "note": "The older form of 'storm in a teacup', going back to the early 1800s.",
+    "note": "Goes back to the early 1800s, a little earlier than [[storm in a teacup]].",
     "confidence": "high"
    }
   ]
@@ -3449,7 +3520,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1125,
-    "note": "Root in maintain, abstain, entertain, obtain and detain, all basically meaning to hold.",
+    "note": "Latin 'to hold', found in [[maintain]], abstain, entertain, obtain and detain.",
     "confidence": "high"
    }
   ]
@@ -3465,7 +3536,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 732,
-    "note": "Pun on beetles and beat, inspired by Buddy Holly's Crickets; earlier they were briefly called the Silver Beatles.",
+    "note": "A pun on beetles and beat, partly inspired by Buddy Holly's Crickets; coined by John Lennon and Stuart Sutcliffe.",
     "confidence": "high"
    }
   ]
@@ -3473,7 +3544,7 @@
  {
   "slug": "the-cat-climbed-onto-the-roof",
   "term": "the cat climbed onto the roof",
-  "original": null,
+  "original": "o gato subiu no telhado",
   "translation": "the cat climbed onto the roof",
   "type": "idiom",
   "language": "Portuguese",
@@ -3481,14 +3552,14 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1050,
-    "note": "Means a person or plan seems doomed; it comes from a joke about breaking bad news gradually.",
+    "note": "Means a person or plan seems doomed; it comes from a joke about a servant told to break bad news gradually.",
     "confidence": "high"
    }
   ]
  },
  {
-  "slug": "the-devil-knows-more-because-he-is-old-than-because-he-is-the-devil",
-  "term": "the devil knows more because he is old than because he is the devil",
+  "slug": "the-devil-knows-more-for-being-old-than-for-being-the-devil",
+  "term": "the devil knows more for being old than for being the devil",
   "original": "más sabe el diablo por viejo que por diablo",
   "translation": "the devil knows more because he is old than because he is the devil",
   "type": "idiom",
@@ -3497,8 +3568,8 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1773,
-    "note": "Experience teaches more than talent.",
-    "confidence": "low"
+    "note": "Means experience teaches more than talent does.",
+    "confidence": "high"
    }
   ]
  },
@@ -3513,7 +3584,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 1642,
-    "note": "Named after Aldous Huxley's essay The Doors of Perception, which quotes William Blake.",
+    "note": "Named after Aldous Huxley's mescaline essay The Doors of Perception, whose title quotes William Blake.",
     "confidence": "high"
    }
   ]
@@ -3529,7 +3600,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 1003,
-    "note": "Originally the Ravens; possibly chosen as a gimmick hinting at kinkiness, or just for subversive publicity.",
+    "note": "Originally the Ravens; the name was probably a gimmick hinting at kinkiness, meant to be subversive and to get publicity.",
     "confidence": "high"
    }
   ]
@@ -3545,7 +3616,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 2219,
-    "note": "'Proof' means test, so you only know whether a pudding made of offal is good by eating it.",
+    "note": "'Proof' uses the old meaning 'test', as in proving ground, and the pudding was stuffed entrails, like haggis, which you had to eat to judge.",
     "confidence": "high"
    }
   ]
@@ -3560,8 +3631,8 @@
   "mentions": [
    {
     "episode_id": "JlgQIDxufh0",
-    "t": 1706,
-    "note": "Named after a 1963 non-fiction exposé on non-heterosexual sex, later reclaimed by queer culture.",
+    "t": 1709,
+    "note": "Named after a disapproving 1963 non-fiction exposé of swinging, orgies and BDSM, which queer culture later adopted.",
     "confidence": "high"
    }
   ]
@@ -3577,7 +3648,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 1582,
-    "note": "Originally El Grupo de Rock and Roll; renamed after a film and play whose title refers to Don Quixote.",
+    "note": "Formerly El Grupo de Rock and Roll; named after a film and play whose title refers to Don Quixote's windmills.",
     "confidence": "high"
    }
   ]
@@ -3593,7 +3664,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 935,
-    "note": "Polish for daydreaming; the hosts guess a blue almond is doubly pointless.",
+    "note": "Means daydreaming; Rob suggests blue almonds are pointless, which makes thinking about them especially idle.",
     "confidence": "high"
    }
   ]
@@ -3609,7 +3680,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 972,
-    "note": "Venezuelan Spanish for daydreaming.",
+    "note": "A Venezuelan Spanish expression for daydreaming.",
     "confidence": "high"
    }
   ]
@@ -3625,7 +3696,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 964,
-    "note": "Colombian Spanish for daydreaming; a double entendre on eggs and rooster testicles.",
+    "note": "A Colombian Spanish expression for daydreaming, with a double entendre on rooster testicles.",
     "confidence": "high"
    }
   ]
@@ -3633,7 +3704,7 @@
  {
   "slug": "thinking-about-the-immortality-of-the-crab",
   "term": "thinking about the immortality of the crab",
-  "original": null,
+  "original": "pensar en la inmortalidad del cangrejo",
   "translation": "thinking about the immortality of the crab",
   "type": "idiom",
   "language": "Spanish",
@@ -3641,7 +3712,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 927,
-    "note": "Mexican Spanish for daydreaming or being mentally far away.",
+    "note": "Used in Mexico for someone who is daydreaming or mentally far away.",
     "confidence": "high"
    }
   ]
@@ -3657,7 +3728,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 981,
-    "note": "Used in Czech or Slovak for daydreaming.",
+    "note": "Used in Czech and Slovak for daydreaming; a variant of [[thinking about the immortality of the crab]].",
     "confidence": "high"
    }
   ]
@@ -3673,7 +3744,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 981,
-    "note": "Peruvian Spanish for daydreaming.",
+    "note": "The Peruvian Spanish variant of [[thinking about the immortality of the crab]].",
     "confidence": "high"
    }
   ]
@@ -3689,40 +3760,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 2066,
-    "note": "For someone who inserts themselves into every conversation or problem, uninvited.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "to-cost-a-kidney",
-  "term": "to cost a kidney",
-  "original": "costar un riñón",
-  "translation": "to cost a kidney",
-  "type": "idiom",
-  "language": "Spanish",
-  "mentions": [
-   {
-    "episode_id": "YBIXXAipmZw",
-    "t": 273,
-    "note": "The Spanish for very expensive; Jess thinks it's the mildest price because you have two kidneys.",
-    "confidence": "low",
-    "verified": true
-   }
-  ]
- },
- {
-  "slug": "to-cost-the-eyes-of-your-head",
-  "term": "to cost the eyes of your head",
-  "original": null,
-  "translation": "to cost the eyes in your head",
-  "type": "idiom",
-  "language": "French",
-  "mentions": [
-   {
-    "episode_id": "YBIXXAipmZw",
-    "t": 256,
-    "note": "The French equivalent of 'cost an arm and a leg', where you lose both eyes.",
+    "note": "Describes someone who inserts themselves into every conversation or problem, just as parsley turns up in every dish.",
     "confidence": "high"
    }
   ]
@@ -3737,9 +3775,9 @@
   "mentions": [
    {
     "episode_id": "YBIXXAipmZw",
-    "t": 1117,
-    "note": "For a clever profit scheme that loses money; Zabłocki smuggled soap underwater and it dissolved.",
-    "confidence": "low"
+    "t": 1125,
+    "note": "Used when a clever profit scheme loses money; it comes from a tale of a man who smuggled soap underwater and watched it dissolve.",
+    "confidence": "high"
    }
   ]
  },
@@ -3754,7 +3792,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1827,
-    "note": "Something so obvious you could feel it through wooden shoes; the hosts call it very Dutch.",
+    "note": "Used for something so obvious you could feel it even through wooden shoes; the hosts call it quintessentially Dutch.",
     "confidence": "high"
    }
   ]
@@ -3770,7 +3808,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 2442,
-    "note": "Quebec French for repeatedly nodding off to sleep.",
+    "note": "In Quebec French, used for someone who keeps nodding off to sleep.",
     "confidence": "high"
    }
   ]
@@ -3786,31 +3824,31 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 2395,
-    "note": "Quebec French for someone shy or silent.",
-    "confidence": "low"
+    "note": "A Québécois expression for a shy or silent person, gentler than the taunting [[cat's got your tongue]].",
+    "confidence": "high"
    }
   ]
  },
  {
-  "slug": "to-lift-the-cat-onto-the-table",
-  "term": "to lift the cat onto the table",
+  "slug": "to-have-shat-in-the-blue-cupboard",
+  "term": "to have shat in the blue cupboard",
   "original": null,
-  "translation": "to lift the cat onto the table",
+  "translation": "to have shat in the blue cupboard",
   "type": "idiom",
-  "language": "Finnish",
+  "language": "Swedish",
   "mentions": [
    {
     "episode_id": "YBIXXAipmZw",
-    "t": 1938,
-    "note": "Raising an awkward subject everyone avoids, like addressing the elephant in the room.",
-    "confidence": "high"
+    "t": 805,
+    "note": "Means making a bad mistake; blue cupboards were valuable because Berlin blue paint only became available in the 1800s.",
+    "confidence": "low"
    }
   ]
  },
  {
   "slug": "to-mount-a-chicken",
   "term": "to mount a chicken",
-  "original": null,
+  "original": "montar un pollo",
   "translation": "to mount a chicken",
   "type": "idiom",
   "language": "Spanish",
@@ -3818,7 +3856,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1495,
-    "note": "Used when someone makes a loud scene or big fuss, maybe like a mounted chicken would.",
+    "note": "Used when someone makes a loud scene; the hosts guess it's because a mounted chicken would make a fuss itself.",
     "confidence": "high"
    }
   ]
@@ -3834,79 +3872,15 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1363,
-    "note": "Brazilian (and Spanish) for being stuck with the bill or made the scapegoat; the hosts can't explain the duck.",
+    "note": "Suggested as Brazilian and also found in Spanish; means being stuck with the bill or made the scapegoat. Why a duck remains unexplained.",
     "confidence": "high"
    }
   ]
  },
  {
-  "slug": "to-reveal-the-cake",
-  "term": "to reveal the cake",
-  "original": "descubrir el pastel",
-  "translation": "to reveal the cake",
-  "type": "idiom",
-  "language": "Spanish",
-  "mentions": [
-   {
-    "episode_id": "6Rr6qfIIapY",
-    "t": 352,
-    "note": "Spanish version of 'spill the beans'; the hosts aren't sure what the secret cake means.",
-    "confidence": "low"
-   }
-  ]
- },
- {
-  "slug": "to-sell-the-fuse",
-  "term": "to sell the fuse",
-  "original": "vendre la mèche",
-  "translation": "to sell the fuse",
-  "type": "idiom",
-  "language": "French",
-  "mentions": [
-   {
-    "episode_id": "6Rr6qfIIapY",
-    "t": 344,
-    "note": "French version of 'spill the beans': you've left a mine's fuse showing, so people know where it is.",
-    "confidence": "low"
-   }
-  ]
- },
- {
-  "slug": "to-speak-like-a-spanish-cow",
-  "term": "to speak like a Spanish cow",
-  "original": "parler comme une vache espagnole",
-  "translation": "to speak like a Spanish cow",
-  "type": "idiom",
-  "language": "French",
-  "mentions": [
-   {
-    "episode_id": "6Rr6qfIIapY",
-    "t": 808,
-    "note": "French saying for someone who speaks a language badly, which insults both Spaniards and cows.",
-    "confidence": "low"
-   }
-  ]
- },
- {
-  "slug": "to-step-on-the-same-rake",
-  "term": "to step on the same rake",
-  "original": null,
-  "translation": "to step on the same rake",
-  "type": "idiom",
-  "language": "Russian",
-  "mentions": [
-   {
-    "episode_id": "YBIXXAipmZw",
-    "t": 905,
-    "note": "Russian for making an avoidable mistake again, like a cartoon character hit by a rake.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "to-tread-in-the-spinach",
-  "term": "to tread in the spinach",
-  "original": "træde i spinaten",
+  "slug": "tread-in-the-spinach",
+  "term": "tread in the spinach",
+  "original": "at træde i spinaten",
   "translation": "to tread in the spinach",
   "type": "idiom",
   "language": "Danish",
@@ -3914,40 +3888,24 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 867,
-    "note": "Danish for putting your foot in it; the hosts don't know why spinach is involved.",
-    "confidence": "low"
-   }
-  ]
- },
- {
-  "slug": "to-walk-around-the-porridge",
-  "term": "to walk around the porridge",
-  "original": null,
-  "translation": "to walk around the porridge",
-  "type": "idiom",
-  "language": "Norwegian",
-  "mentions": [
-   {
-    "episode_id": "YBIXXAipmZw",
-    "t": 2041,
-    "note": "Circling a subject instead of saying what you mean, like beating around the bush.",
+    "note": "Similar to putting your foot in it; the hosts don't know why it's spinach and ask viewers to explain.",
     "confidence": "high"
    }
   ]
  },
  {
-  "slug": "to-walk-in-the-clouds",
-  "term": "to walk in the clouds",
-  "original": null,
-  "translation": "to fly around / walk in / live in the clouds",
-  "type": "idiom",
-  "language": "Latvian",
+  "slug": "trinkgeld",
+  "term": "Trinkgeld",
+  "original": "Trinkgeld",
+  "translation": "drink money",
+  "type": "word",
+  "language": "German",
   "mentions": [
    {
-    "episode_id": "YBIXXAipmZw",
-    "t": 997,
-    "note": "Latvian cloud phrases for daydreaming, similar to having your head in the clouds.",
-    "confidence": "low"
+    "episode_id": "JlgQIDxufh0",
+    "t": 650,
+    "note": "German for a tip, literally drink money, like Spanish [[propina]].",
+    "confidence": "high"
    }
   ]
  },
@@ -3962,7 +3920,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 878,
-    "note": "A place where three roads met and people traded news; the fun-fact sense came from Logan Pearsall Smith's 1902 books.",
+    "note": "Literally 'three roads', a Roman crossroads where people met and swapped news; the fun-fact sense comes from Logan Pearsall Smith's 1902 book series Trivia.",
     "confidence": "high"
    }
   ]
@@ -3978,7 +3936,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 910,
-    "note": "Suggests the unimportant street talk of commoners gathered at Roman crossroads.",
+    "note": "Refers to the inconsequential talk of commoners at Roman crossroads, the [[trivia]].",
     "confidence": "high"
    }
   ]
@@ -3994,7 +3952,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 910,
-    "note": "The three classical arts of grammar, logic and rhetoric, named during the Carolingian Renaissance.",
+    "note": "Classical education's three arts of grammar, logic and rhetoric, named during the Carolingian Renaissance; they came before the [[quadrivium]] and underlie today's liberal arts.",
     "confidence": "high"
    }
   ]
@@ -4009,8 +3967,8 @@
   "mentions": [
    {
     "episode_id": "YBIXXAipmZw",
-    "t": 1754,
-    "note": "Explained as 'between lights'; the 'twi-' part is related to 'two' and 'between'.",
+    "t": 1762,
+    "note": "Rob suggests it means 'two lights'; Jess says it's more 'between lights', since [[between]] is related to [[two]].",
     "confidence": "high"
    }
   ]
@@ -4026,7 +3984,7 @@
    {
     "episode_id": "6Rr6qfIIapY",
     "t": 2384,
-    "note": "Deer innards, baked into pies for servants after aristocrats had hunted.",
+    "note": "Deer entrails baked into umble pie for servants after a hunt, eaten long before the pun [[humble pie]] appeared.",
     "confidence": "high"
    }
   ]
@@ -4042,7 +4000,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 2491,
-    "note": "For a very bad situation, mood or quality, since a frog's bottom is already very low.",
+    "note": "Describes a bad situation, mood or quality; a frog is already so low that being under it means rock bottom.",
     "confidence": "high"
    }
   ]
@@ -4057,15 +4015,15 @@
   "mentions": [
    {
     "episode_id": "JlgQIDxufh0",
-    "t": 1525,
-    "note": "Originally Spice; renamed after the Dickens villain in the 100th anniversary year of Dickens' death.",
+    "t": 1533,
+    "note": "Formerly Spice; renamed after the fawning David Copperfield villain while Dickens was everywhere on the centenary of his death.",
     "confidence": "high"
    }
   ]
  },
  {
   "slug": "verlan",
-  "term": "Verlan",
+  "term": "verlan",
   "original": "verlan",
   "translation": null,
   "type": "word",
@@ -4074,7 +4032,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2486,
-    "note": "French back slang that rearranges the syllables or sounds of words; a long-standing tradition.",
+    "note": "A long-established French back slang that rearranges the syllables of words, as in [[Stromae]].",
     "confidence": "high"
    }
   ]
@@ -4083,14 +4041,14 @@
   "slug": "via",
   "term": "via",
   "original": "via",
-  "translation": "way, road, path",
+  "translation": "road, way, path",
   "type": "word",
   "language": "Latin",
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
     "t": 680,
-    "note": "Latin for road or path, hidden inside many English words; one of Jess's favourite roots.",
+    "note": "Jess's favourite root, meaning way, road, path, channel or course, hidden in [[obvious]], [[impervious]], [[trivia]], [[voyage]] and [[invoice]].",
     "confidence": "high"
    }
   ]
@@ -4106,7 +4064,7 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 1763,
-    "note": "Named after Greenwich Village, birthplace of the modern LGBTQ rights movement; created for the gay disco market.",
+    "note": "Named after Greenwich Village, site of the Stonewall Uprising and birthplace of the modern LGBTQ rights movement; the band targeted the gay disco market.",
     "confidence": "high"
    }
   ]
@@ -4115,14 +4073,30 @@
   "slug": "voyage",
   "term": "voyage",
   "original": "viaticum",
-  "translation": "a journey",
+  "translation": "journey",
   "type": "word",
   "language": "English",
   "mentions": [
    {
     "episode_id": "52GtCvS7HCU",
     "t": 846,
-    "note": "Came through French from Latin viaticum, a journey, which contains via.",
+    "note": "From viaticum, 'a journey', related to [[via]], with French influence along the way.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "walk-around-the-porridge",
+  "term": "walk around the porridge",
+  "original": null,
+  "translation": "to walk around the porridge",
+  "type": "idiom",
+  "language": "Norwegian",
+  "mentions": [
+   {
+    "episode_id": "YBIXXAipmZw",
+    "t": 2041,
+    "note": "Means circling a subject instead of saying what you mean, like [[beat around the bush]].",
     "confidence": "high"
    }
   ]
@@ -4138,7 +4112,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 351,
-    "note": "From Latin vallum; the hosts note classical Latin pronounced V as W.",
+    "note": "From Latin vallum, which in classical Latin was pronounced with a W sound.",
     "confidence": "high"
    }
   ]
@@ -4154,8 +4128,8 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1474,
-    "note": "Jess's crow is named after a witch from Terry Pratchett's Discworld.",
-    "confidence": "low"
+    "note": "The name of the crow that follows Jess on runs, a reference to a witch in Terry Pratchett's Discworld.",
+    "confidence": "high"
    }
   ]
  },
@@ -4170,7 +4144,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 662,
-    "note": "French for 'never'; linked to the English 'as rare as hen's teeth'.",
+    "note": "A French equivalent of [[when pigs fly]], which the hosts compare with 'as rare as hen's teeth'.",
     "confidence": "high"
    }
   ]
@@ -4186,7 +4160,7 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 637,
-    "note": "Said of something that will never happen; the hosts look at foreign alternatives.",
+    "note": "Said about something that is never going to happen; the hosts look for foreign equivalents.",
     "confidence": "high"
    }
   ]
@@ -4202,31 +4176,31 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 733,
-    "note": "A Russian idiom for something that will never happen.",
+    "note": "A Russian way of saying something will never happen, like [[when pigs fly]].",
     "confidence": "high"
    }
   ]
  },
  {
   "slug": "when-you-speak-of-the-wolf-you-see-his-tail",
-  "term": "when you speak of the wolf, you see his tail",
+  "term": "when you speak of the wolf you see his tail",
   "original": "quand on parle du loup, on en voit la queue",
-  "translation": "when you speak of the wolf, you see his tail",
+  "translation": "when you speak of the wolf you see his tail",
   "type": "idiom",
   "language": "French",
   "mentions": [
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1702,
-    "note": "The French 'speak of the devil' uses a wolf, reflecting an ancestral European fear of wolves.",
-    "confidence": "low"
+    "note": "The French version of [[speak of the devil]], which uses a wolf; Rob links it to a lingering ancestral fear of wolves in Europe.",
+    "confidence": "high"
    }
   ]
  },
  {
   "slug": "when-you-talk-of-the-devil-hes-not-far-away",
   "term": "when you talk of the devil, he's not far away",
-  "original": "Wenn man vom Teufel spricht, ist er nicht weit",
+  "original": null,
   "translation": "when you talk of the devil, he's not far away",
   "type": "idiom",
   "language": "German",
@@ -4234,8 +4208,8 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1691,
-    "note": "The German version of 'speak of the devil'.",
-    "confidence": "low"
+    "note": "A German version of [[speak of the devil]] that is basically the same as the English.",
+    "confidence": "high"
    }
   ]
  },
@@ -4250,7 +4224,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 258,
-    "note": "Borrowed from the Romans by Germanic dialects on the continent, before English existed as a language.",
+    "note": "Germanic dialects took it from the Romans on the continent, before English existed in Britain.",
     "confidence": "high"
    }
   ]
@@ -4266,7 +4240,7 @@
    {
     "episode_id": "52GtCvS7HCU",
     "t": 1411,
-    "note": "First assumed to replace knowledge, but it was proposed for logic; reason and idea were French anyway.",
+    "note": "A purist coinage used for [[logic]], not knowledge, since know is already Germanic; it fits the original sense of wit, and reason and idea were ruled out as French.",
     "confidence": "high"
    }
   ]
@@ -4282,24 +4256,8 @@
    {
     "episode_id": "YBIXXAipmZw",
     "t": 1633,
-    "note": "A Cornish saying about when authority should solve a problem; Cornish is a revived Celtic language.",
+    "note": "A Cornish saying about situations where the authority that should solve a problem is itself compromised.",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "youve-shat-in-the-blue-cupboard",
-  "term": "you've shat in the blue cupboard",
-  "original": null,
-  "translation": "you've [shat] in the blue cupboard",
-  "type": "idiom",
-  "language": "Swedish",
-  "mentions": [
-   {
-    "episode_id": "YBIXXAipmZw",
-    "t": 805,
-    "note": "Means making a blunder; blue cupboards were valuable once Berlin blue paint arrived in the 1800s.",
-    "confidence": "low"
    }
   ]
  },
@@ -4314,9 +4272,8 @@
    {
     "episode_id": "JlgQIDxufh0",
     "t": 2528,
-    "note": "Verlan form of 'bizarre'.",
-    "confidence": "low",
-    "verified": true
+    "note": "[[verlan|Verlan]] for bizarre.",
+    "confidence": "low"
    }
   ]
  }

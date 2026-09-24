@@ -1,1 +1,475 @@
-{"video_id":"6Rr6qfIIapY","entries":[{"term":"spill the beans","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:01:00","note":"The popular story about ancient Greek bean ballots is probably wrong; the phrase first appears in 20th-century America.","confidence":"high"},{"term":"psephology","original":null,"translation":null,"type":"word","language":"English","timestamp":"00:02:58","note":"The study of elections, named from the Greek word for pebble, because Greeks dropped pebbles into jars to vote.","confidence":"high"},{"term":"spill the tea","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:04:00","note":"Means sharing gossip on purpose; comes from Black drag culture, where 'T' meant your truth, punned as 'tea'.","confidence":"high"},{"term":"to sell the fuse","original":"vendre la mèche","translation":"to sell the fuse","type":"idiom","language":"French","timestamp":"00:05:44","note":"French version of 'spill the beans': you've left a mine's fuse showing, so people know where it is.","confidence":"low"},{"term":"to reveal the cake","original":"descubrir el pastel","translation":"to reveal the cake","type":"idiom","language":"Spanish","timestamp":"00:05:52","note":"Spanish version of 'spill the beans'; the hosts aren't sure what the secret cake means.","confidence":"low"},{"term":"now the monkey comes out of the sleeve","original":"nu komt de aap uit de mouw","translation":"now the monkey comes out of the sleeve","type":"idiom","language":"Dutch","timestamp":"00:06:09","note":"Dutch version of 'spill the beans', possibly from a magic trick.","confidence":"low"},{"term":"let the cat out of the bag","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:06:39","note":"Nothing to do with the cat-o'-nine-tails; it comes from buying a pig in a poke but getting a cat.","confidence":"high"},{"term":"cup of tea","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:06:59","note":"First found in 1908 and made popular by Punch in the 1930s; everyone likes their tea differently.","confidence":"high"},{"term":"not for all the tea in China","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:08:46","note":"Late 19th century, meaning 'not at any price', because tea was a costly import.","confidence":"high"},{"term":"storm in a teacup","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:08:54","note":"A slightly newer version of 'tempest in a teapot', with the same meaning.","confidence":"high"},{"term":"tempest in a teapot","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:09:02","note":"The older form of 'storm in a teacup', going back to the early 1800s.","confidence":"high"},{"term":"cup of joe","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:09:21","note":"Slang for coffee from the 1930s, probably from 'jamoke'; the Josephus Daniels and 'average Joe' theories are unlikely.","confidence":"high"},{"term":"jamoke","original":null,"translation":null,"type":"word","language":"English","timestamp":"00:09:32","note":"Late 19th-century American slang for coffee, a blend of 'java' and 'mocha'.","confidence":"high"},{"term":"guy","original":null,"translation":null,"type":"word","language":"English","timestamp":"00:11:16","note":"A personal name that now applies to anyone, like Joe, Jack and Dick as names for the everyman.","confidence":"low"},{"term":"full of beans","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:11:29","note":"1800s stable slang for horses fed on beans before a race; it once also meant arrogant from new wealth.","confidence":"high"},{"term":"to speak like a Spanish cow","original":"parler comme une vache espagnole","translation":"to speak like a Spanish cow","type":"idiom","language":"French","timestamp":"00:13:28","note":"French saying for someone who speaks a language badly, which insults both Spaniards and cows.","confidence":"low"},{"term":"apple of my eye","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:15:33","note":"Old English for the pupil, pictured as a small round fruit when 'apple' meant any fruit; it also appears in Shakespeare.","confidence":"high"},{"term":"pupil","original":null,"translation":null,"type":"word","language":"English","timestamp":"00:16:14","note":"Related to 'people', because you see a small reflection of yourself in someone else's pupil.","confidence":"high"},{"term":"little man of the eye","original":null,"translation":"the little man of the eye","type":"idiom","language":"Hebrew","timestamp":"00:16:36","note":"Hebrew phrase behind 'apple of the eye', referring to the person reflected in someone's pupil.","confidence":"high"},{"term":"salad days","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:17:05","note":"From Cleopatra's lines in Shakespeare's Antony and Cleopatra, meaning a naive, 'green' youth.","confidence":"high"},{"term":"salad","original":null,"translation":null,"type":"word","language":"English","timestamp":"00:17:24","note":"Taken from French, where it means lettuce; further back it meant something salted. German uses it for mayonnaise dishes.","confidence":"high"},{"term":"apples and pears","original":null,"translation":null,"type":"phrase","language":"English","timestamp":"00:18:56","note":"Cockney rhyming slang for stairs, which Rob thinks of first when apples are compared.","confidence":"low"},{"term":"apples and oranges","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:18:49","note":"Replaced 'apples and oysters' in the late 19th and early 20th centuries, first in political and psychological writing.","confidence":"high"},{"term":"like an apple to an oyster","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:19:11","note":"The original 17th-century comparison, recorded by John Ray, for two things with no resemblance at all.","confidence":"high"},{"term":"one bad apple spoils the bunch","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:20:52","note":"Found in a 1528 Reformation pamphlet and, in earlier form, in a 1340 Kentish moral treatise.","confidence":"high"},{"term":"couch potato","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:22:13","note":"Said to be coined in 1976 by Tom Iacino, probably a pun on 'boob tubers', since potatoes are tubers.","confidence":"high"},{"term":"boob tube","original":null,"translation":null,"type":"word","language":"English","timestamp":"00:22:51","note":"1970s American slang for the television; in Britain it's also the name of a garment.","confidence":"high"},{"term":"how do you like them apples","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:24:17","note":"Found in 1895 in the Bryan Daily Eagle; this date rules out the WWI toffee-apple shell theory.","confidence":"high"},{"term":"grenade","original":null,"translation":null,"type":"word","language":"English","timestamp":"00:25:31","note":"Literally means pomegranate, because grenades look like one and scatter pieces like seeds.","confidence":"high"},{"term":"pomegranate","original":null,"translation":"grainy apple","type":"word","language":"English","timestamp":"00:25:42","note":"Means 'grainy apple'; the 'pom' part is the same as French 'pomme', apple.","confidence":"high"},{"term":"Big Apple","original":null,"translation":null,"type":"name","language":"English","timestamp":"00:26:06","note":"Earlier slang for something desirable; attached to New York through John J. Fitzgerald's 1921 horse-racing columns.","confidence":"high"},{"term":"chip on your shoulder","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:28:04","note":"Often explained as putting a wood chip on your shoulder and daring someone to knock it off.","confidence":"high"},{"term":"know your onions","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:28:42","note":"An American phrase from 1891, so not from OED editor C.T. Onions; the Cockney 'onion rings' theory is possible.","confidence":"high"},{"term":"blow a raspberry","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:30:51","note":"Given as nearly the only Cockney rhyming slang used widely in the US.","confidence":"low"},{"term":"dog and bone","original":null,"translation":null,"type":"phrase","language":"English","timestamp":"00:31:07","note":"British Cockney rhyming slang for the telephone.","confidence":"low"},{"term":"brass monkey","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:32:17","note":"Rob rejects the cannonball-rack explanation because nautical guides never call such a rack a 'monkey'.","confidence":"high"},{"term":"go bananas","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:34:18","note":"Adapted from 'go ape'; 'bananas' meant crazy by the 1920s, even though wild monkeys rarely eat bananas.","confidence":"high"},{"term":"banana oil","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:35:32","note":"1920s slang for nonsense, from artificial-smelling amyl acetate; Rube Goldberg made it popular.","confidence":"high"},{"term":"snake oil salesman","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:36:18","note":"Jess links it, from memory, to Old West con artists selling oil that supposedly kept snakes away.","confidence":"high"},{"term":"the proof of the pudding is in the eating","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:36:59","note":"'Proof' means test, so you only know whether a pudding made of offal is good by eating it.","confidence":"high"},{"term":"prove","original":null,"translation":null,"type":"word","language":"English","timestamp":"00:37:26","note":"An old sense meaning 'to test', which survives in 'proving ground'.","confidence":"high"},{"term":"pudding","original":null,"translation":null,"type":"word","language":"English","timestamp":"00:38:04","note":"Once meant savoury dishes like stuffed stomach or haggis; now usually sweet, steamed desserts.","confidence":"low"},{"term":"pie","original":null,"translation":null,"type":"word","language":"English","timestamp":"00:39:06","note":"British speakers think of savoury pies, Americans of sweet fruit pies, or pizza in New York.","confidence":"low"},{"term":"humble pie","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:39:27","note":"A 19th-century pun on 'umble pie', a lowly dish of deer innards given to servants.","confidence":"high"},{"term":"umbles","original":null,"translation":null,"type":"word","language":"English","timestamp":"00:39:44","note":"Deer innards, baked into pies for servants after aristocrats had hunted.","confidence":"high"},{"term":"apple pie order","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:41:05","note":"Means perfect order, from the 1780s; possibly a folk etymology of French 'nappe pliée', a folded cloth.","confidence":"high"},{"term":"as American as apple pie","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:41:08","note":"Built up through Johnny Appleseed, early cookbooks and WWII soldiers fighting 'for mom and apple pie'.","confidence":"high"},{"term":"a little bird told me","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:43:37","note":"Found from the 16th century and common across Europe, probably from Ecclesiastes 10:20.","confidence":"high"},{"term":"sour grapes","original":null,"translation":null,"type":"idiom","language":"English","timestamp":"00:44:59","note":"From Aesop's fox and the grapes; an idiom by the 1760s and revived by Mark Twain.","confidence":"high"}]}
+{
+  "video_id": "6Rr6qfIIapY",
+  "entries": [
+    {
+      "term": "spill the beans",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:01:00",
+      "note": "Often traced to ancient Greek elections using beans, but the phrase only appears in 20th-century America, and Greeks actually voted with pebbles (hence [[psephology]]).",
+      "confidence": "high"
+    },
+    {
+      "term": "psephology",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:02:58",
+      "note": "The study of elections, from the Greek word for pebble, because ancient Greeks dropped pebbles into jars when voting.",
+      "confidence": "high"
+    },
+    {
+      "term": "spill the tea",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:04:00",
+      "note": "To reveal gossip on purpose, unlike the accidental [[spill the beans]]; it comes from late-20th-century Black drag culture, where 'T' meant truth, and Lady Chablis used it in 1994.",
+      "confidence": "high"
+    },
+    {
+      "term": "sell the fuse",
+      "original": "vendre la mèche",
+      "translation": "to sell the fuse",
+      "type": "idiom",
+      "language": "French",
+      "timestamp": "00:05:44",
+      "note": "The French [[spill the beans]], picturing a mine whose fuse was accidentally left sticking out, showing where the bomb is.",
+      "confidence": "high"
+    },
+    {
+      "term": "reveal the cake",
+      "original": "descubrir el pastel",
+      "translation": "to reveal the cake",
+      "type": "idiom",
+      "language": "Spanish",
+      "timestamp": "00:06:00",
+      "note": "The Spanish [[spill the beans]]; the hosts aren't sure what the secret cake refers to.",
+      "confidence": "low"
+    },
+    {
+      "term": "now the monkey comes out of the sleeve",
+      "original": "nu komt de aap uit de mouw",
+      "translation": "now the monkey comes out of the sleeve",
+      "type": "idiom",
+      "language": "Dutch",
+      "timestamp": "00:06:09",
+      "note": "The Dutch [[spill the beans]], possibly from a magic trick, with a more magician-like version of [[let the cat out of the bag]] energy.",
+      "confidence": "low"
+    },
+    {
+      "term": "let the cat out of the bag",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:06:39",
+      "note": "Covered in an earlier episode: it isn't about the cat-o'-nine-tails but about buying a [[pig in a poke]] and finding a worthless cat inside.",
+      "confidence": "high"
+    },
+    {
+      "term": "cup of tea",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:06:59",
+      "note": "'Not my cup of tea' dates to 1908 and was popularized by Punch in the 1930s; it rests on everyone liking their tea differently.",
+      "confidence": "high"
+    },
+    {
+      "term": "not for all the tea in China",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:08:46",
+      "note": "Late-19th-century phrase meaning under no circumstances or at no price, because tea was a costly import.",
+      "confidence": "high"
+    },
+    {
+      "term": "storm in a teacup",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:08:54",
+      "note": "A slightly newer version of [[tempest in a teapot]], with the same idea.",
+      "confidence": "high"
+    },
+    {
+      "term": "tempest in a teapot",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:09:02",
+      "note": "Goes back to the early 1800s, a little earlier than [[storm in a teacup]].",
+      "confidence": "high"
+    },
+    {
+      "term": "cup of joe",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:09:21",
+      "note": "Slang for coffee first recorded in the 1930s, probably from [[jamoke]]; the Josephus Daniels navy alcohol ban theory lacks evidence, and the average-Joe idea is also unlikely.",
+      "confidence": "high"
+    },
+    {
+      "term": "jamoke",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:09:32",
+      "note": "Late-19th-century American slang for coffee, a blend of [[java]] and [[mocha]], and the likely source of [[cup of joe]].",
+      "confidence": "high"
+    },
+    {
+      "term": "spotted dick",
+      "original": null,
+      "translation": null,
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:11:03",
+      "note": "Rob says Dick, like Jack and Joe, was a popular everyman name, which is why we have things like spotted dick.",
+      "confidence": "low"
+    },
+    {
+      "term": "guy",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:11:16",
+      "note": "Originally just a person's name, now used for any person, another example of everyman names.",
+      "confidence": "low"
+    },
+    {
+      "term": "full of beans",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:11:29",
+      "note": "1800s stable slang for horses fed on beans before a race or hunt and in fit condition; it once also meant arrogant or purse-proud.",
+      "confidence": "high"
+    },
+    {
+      "term": "speak like a Spanish cow",
+      "original": "parler français comme une vache espagnole",
+      "translation": "to speak like a Spanish cow",
+      "type": "idiom",
+      "language": "French",
+      "timestamp": "00:13:28",
+      "note": "Said of someone speaking a language badly; Rob notes it's offensive to learners, to the Spanish and to cows.",
+      "confidence": "low"
+    },
+    {
+      "term": "apple of my eye",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:15:33",
+      "note": "In Old English, apple meant any fruit and 'the apple of the eye' meant the [[pupil]]; it translates a Hebrew phrase meaning 'little man of the eye' and appears in Shakespeare.",
+      "confidence": "high"
+    },
+    {
+      "term": "pupil",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:16:14",
+      "note": "Rob says it describes a little person, from the tiny reflection of yourself you see in someone else's eye, which ties in with [[apple of my eye]].",
+      "confidence": "high"
+    },
+    {
+      "term": "salad days",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:17:05",
+      "note": "From Cleopatra's line in Shakespeare's Antony and Cleopatra: being green and cold like lettuce means naive, like unripe fruit.",
+      "confidence": "high"
+    },
+    {
+      "term": "salad",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:17:26",
+      "note": "Taken from French, where it meant lettuce, and further back from the Roman sense of salted; Rob notes that in Germany it covers anything heavy with mayonnaise.",
+      "confidence": "high"
+    },
+    {
+      "term": "apples and pears",
+      "original": null,
+      "translation": null,
+      "type": "phrase",
+      "language": "English",
+      "timestamp": "00:18:56",
+      "note": "Cockney rhyming slang for stairs, which Rob thinks of before [[apples and oranges]].",
+      "confidence": "low"
+    },
+    {
+      "term": "apples and oranges",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:18:49",
+      "note": "Replaced the older [[apples and oysters]] in the late 19th and early 20th centuries, first for false equivalences between similar-looking things, though now used for very different things.",
+      "confidence": "high"
+    },
+    {
+      "term": "apples and oysters",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:19:11",
+      "note": "The original 17th-century comparison, recorded by John Ray, for two utterly dissimilar things, later displaced by [[apples and oranges]].",
+      "confidence": "high"
+    },
+    {
+      "term": "bad apple",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:20:52",
+      "note": "The saying that one rotten apple spoils the rest appears in a 1528 Reformation pamphlet and, earlier, a 1340 Kentish moral treatise.",
+      "confidence": "high"
+    },
+    {
+      "term": "couch potato",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:22:13",
+      "note": "Supposedly coined in 1976 by Tom Iacino, probably a pun on [[boob tube]] watchers as 'tubers'; other theories involve slouching or being vegetative.",
+      "confidence": "high"
+    },
+    {
+      "term": "boob tube",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:22:51",
+      "note": "1970s slang for the television, whose watchers became 'boob tubers', the likely pun behind [[couch potato]]; in Britain it's also a 1990s garment.",
+      "confidence": "high"
+    },
+    {
+      "term": "how do you like them apples",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:24:17",
+      "note": "Found in 1895 in Texas's Bryan Daily Eagle, boasting about cotton receipts; the WWI toffee-apple mortar story is too late to be the source.",
+      "confidence": "high"
+    },
+    {
+      "term": "grenade",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:25:31",
+      "note": "Literally means [[pomegranate]], which grenades resemble, and when they explode bits burst out like pomegranate seeds.",
+      "confidence": "high"
+    },
+    {
+      "term": "pomegranate",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:25:42",
+      "note": "Means 'grainy apple', with the first part matching French pomme, apple; the source of [[grenade]].",
+      "confidence": "high"
+    },
+    {
+      "term": "Big Apple",
+      "original": null,
+      "translation": null,
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:26:12",
+      "note": "19th-century slang for something desirable or sure; it stuck to New York after sportswriter John J. Fitz Gerald used it in 1921 for the city's rich racetracks.",
+      "confidence": "high"
+    },
+    {
+      "term": "chip on your shoulder",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:28:04",
+      "note": "The usual explanation is that someone wanting a fight would put a wood chip on their shoulder and dare others to knock it off.",
+      "confidence": "high"
+    },
+    {
+      "term": "know your onions",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:28:42",
+      "note": "American, first recorded in 1891, so not from OED editor C. T. Onions; the Cockney rhyming slang onion rings = things is possible but puzzling.",
+      "confidence": "high"
+    },
+    {
+      "term": "blow a raspberry",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:30:51",
+      "note": "Jess says it comes from Cockney rhyming slang; Rob says it's about the only rhyming slang that has caught on in the United States.",
+      "confidence": "low"
+    },
+    {
+      "term": "dog and bone",
+      "original": null,
+      "translation": null,
+      "type": "phrase",
+      "language": "English",
+      "timestamp": "00:31:07",
+      "note": "Cockney rhyming slang for the telephone, given as an example of rhyming slang in everyday British speech.",
+      "confidence": "low"
+    },
+    {
+      "term": "brass monkey",
+      "original": null,
+      "translation": null,
+      "type": "phrase",
+      "language": "English",
+      "timestamp": "00:32:17",
+      "note": "Rob rejects the claim that it was a cannonball rack that shed its balls in the cold; no nautical guides he checked mention such a thing.",
+      "confidence": "high"
+    },
+    {
+      "term": "go ape",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:34:18",
+      "note": "Dates to at least the early 1900s and was adapted into [[go bananas]].",
+      "confidence": "high"
+    },
+    {
+      "term": "go bananas",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:34:18",
+      "note": "Adapted from [[go ape]] by linking monkeys with bananas, with 'bananas' alone recorded from the 1920s, though wild monkeys rarely eat bananas.",
+      "confidence": "high"
+    },
+    {
+      "term": "banana oil",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:35:32",
+      "note": "1920s slang for nonsense, named after banana-scented amyl acetate, an artificial chemical; Rube Goldberg popularized it in his comic strips.",
+      "confidence": "high"
+    },
+    {
+      "term": "snake oil salesman",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:36:18",
+      "note": "Jess recalls, from memory and with uncertainty, Old West con men selling oil said to repel snakes.",
+      "confidence": "high"
+    },
+    {
+      "term": "the proof of the pudding is in the eating",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:36:59",
+      "note": "'Proof' uses the old meaning 'test', as in proving ground, and the pudding was stuffed entrails, like haggis, which you had to eat to judge.",
+      "confidence": "high"
+    },
+    {
+      "term": "humble pie",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:39:27",
+      "note": "A 19th-century phrase, probably a pun on [[umbles|umble pie]], a lowly dish of deer entrails given to servants.",
+      "confidence": "high"
+    },
+    {
+      "term": "umbles",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:39:44",
+      "note": "Deer entrails baked into umble pie for servants after a hunt, eaten long before the pun [[humble pie]] appeared.",
+      "confidence": "high"
+    },
+    {
+      "term": "apple pie order",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:41:05",
+      "note": "Means perfect order, first recorded in the 1780s diary of a British naval officer; one theory says it mishears French nappe pliée, a folded cloth.",
+      "confidence": "high"
+    },
+    {
+      "term": "as American as apple pie",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:42:23",
+      "note": "Built up through Johnny Appleseed, early American cookbooks, pie as a symbol of prosperity, and WWII soldiers fighting for 'mom and apple pie'.",
+      "confidence": "high"
+    },
+    {
+      "term": "a little bird told me",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:43:29",
+      "note": "Found in the 16th century and common across Europe, probably from Ecclesiastes 10:20, where a bird of the air carries your voice.",
+      "confidence": "high"
+    },
+    {
+      "term": "sour grapes",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:45:07",
+      "note": "From Aesop's fox, who calls the grapes he can't reach sour; it became an idiom around the 1760s, and Mark Twain revived it in Tom Sawyer.",
+      "confidence": "high"
+    }
+  ]
+}

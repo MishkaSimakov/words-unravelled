@@ -8,7 +8,7 @@
       "type": "idiom",
       "language": "English",
       "timestamp": "00:01:35",
-      "note": "Most likely wishes bad luck so the opposite happens; the hosts reject theatre explanations like being 'in a cast'.",
+      "note": "Covered in an earlier idiom episode; most likely wishes someone bad luck so they get good luck, and the hosts reject the 'being in a cast' explanation.",
       "confidence": "high"
     },
     {
@@ -18,7 +18,7 @@
       "type": "idiom",
       "language": "Italian",
       "timestamp": "00:02:46",
-      "note": "The Italian way of wishing someone good luck, like 'break a leg'.",
+      "note": "The Italian equivalent of [[break a leg]], which has a set reply, [[may the wolf die]].",
       "confidence": "high"
     },
     {
@@ -28,8 +28,8 @@
       "type": "idiom",
       "language": "Italian",
       "timestamp": "00:02:54",
-      "note": "The set reply to 'in bocca al lupo'; the hosts wonder whether the wolf chokes or dies first.",
-      "confidence": "low"
+      "note": "The reply to [[into the wolf's mouth]]; the hosts wonder whether the wolf chokes on you or dies before it can swallow.",
+      "confidence": "high"
     },
     {
       "term": "break your neck and leg",
@@ -38,7 +38,7 @@
       "type": "idiom",
       "language": "German",
       "timestamp": "00:03:34",
-      "note": "The German good-luck wish, very close to the English 'break a leg'.",
+      "note": "A German good-luck wish that is very close to the English [[break a leg]].",
       "confidence": "high"
     },
     {
@@ -48,7 +48,7 @@
       "type": "idiom",
       "language": "Hungarian",
       "timestamp": "00:03:34",
-      "note": "The Hungarian good-luck wish, similar to 'break a leg'.",
+      "note": "A Hungarian good-luck wish that closely resembles the English [[break a leg]].",
       "confidence": "high"
     },
     {
@@ -58,7 +58,7 @@
       "type": "idiom",
       "language": "Russian",
       "timestamp": "00:03:34",
-      "note": "Said before a hunt to wish failure, meaning good luck; the reply is 'go to hell'.",
+      "note": "Said before a hunt to wish that you catch neither mammal nor bird; the expected reply is 'go to hell'.",
       "confidence": "high"
     },
     {
@@ -68,28 +68,28 @@
       "type": "idiom",
       "language": "English",
       "timestamp": "00:04:00",
-      "note": "Means a very heavy price, since losing an arm and a leg would be costly.",
+      "note": "Losing an arm and a leg would be a very heavy price to pay, so the phrase means something is very expensive.",
       "confidence": "high"
     },
     {
-      "term": "to cost the eyes of your head",
+      "term": "cost the eyes of your head",
       "original": null,
       "translation": "to cost the eyes in your head",
       "type": "idiom",
       "language": "French",
       "timestamp": "00:04:16",
-      "note": "The French equivalent of 'cost an arm and a leg', where you lose both eyes.",
+      "note": "The French version of [[cost an arm and a leg]]; Rob points out that you lose both eyes.",
       "confidence": "high"
     },
     {
-      "term": "to cost a kidney",
-      "original": "costar un riñón",
+      "term": "cost a kidney",
+      "original": null,
       "translation": "to cost a kidney",
       "type": "idiom",
       "language": "Spanish",
       "timestamp": "00:04:33",
-      "note": "The Spanish for very expensive; Jess thinks it's the mildest price because you have two kidneys.",
-      "confidence": "low"
+      "note": "The Spanish version of [[cost an arm and a leg]]; Jess thinks it's the mildest price, since you have two kidneys.",
+      "confidence": "high"
     },
     {
       "term": "raining cats and dogs",
@@ -98,17 +98,17 @@
       "type": "idiom",
       "language": "English",
       "timestamp": "00:05:27",
-      "note": "Heavy rain; probably from cats and dogs living in roofs being washed into the street.",
+      "note": "Covered in an earlier episode; the idea may be that rain washed cats and dogs living in roofs out into the street.",
       "confidence": "high"
     },
     {
       "term": "it's raining ropes",
       "original": null,
-      "translation": "it's raining ropes/string",
+      "translation": "it's raining ropes",
       "type": "idiom",
       "language": "French",
       "timestamp": "00:05:48",
-      "note": "French for heavy rain, as the drops look like dangling string; Rob's wife once said it in English.",
+      "note": "Rob's wife once said it in English; heavy rain looks like dangling strings, a French equivalent of [[raining cats and dogs]].",
       "confidence": "high"
     },
     {
@@ -118,8 +118,8 @@
       "type": "idiom",
       "language": "French",
       "timestamp": "00:06:12",
-      "note": "Rob's wife Elodie's suggested French equivalent of 'raining cats and dogs'.",
-      "confidence": "low"
+      "note": "One of the idioms Rob's wife Elodie recommended; another French equivalent of [[raining cats and dogs]].",
+      "confidence": "high"
     },
     {
       "term": "raining chair legs",
@@ -128,7 +128,7 @@
       "type": "idiom",
       "language": "Greek",
       "timestamp": "00:07:03",
-      "note": "The Greek expression for very heavy rain.",
+      "note": "A Greek equivalent of [[raining cats and dogs]].",
       "confidence": "high"
     },
     {
@@ -138,7 +138,7 @@
       "type": "idiom",
       "language": "Croatian",
       "timestamp": "00:07:03",
-      "note": "The Croatian expression for heavy rain, which the hosts find alarming.",
+      "note": "The Croatian way to describe heavy rain; Rob would rather take his chances with the cats.",
       "confidence": "high"
     },
     {
@@ -148,7 +148,7 @@
       "type": "idiom",
       "language": "Cantonese",
       "timestamp": "00:07:16",
-      "note": "The Cantonese expression for heavy rain, compared to the French pissing cow.",
+      "note": "A Cantonese heavy-rain idiom that Jess compares with the French [[raining like a pissing cow|pissing cow]].",
       "confidence": "high"
     },
     {
@@ -158,7 +158,7 @@
       "type": "idiom",
       "language": "Bosnian",
       "timestamp": "00:07:16",
-      "note": "The Bosnian expression for heavy rain.",
+      "note": "A Bosnian equivalent of [[raining cats and dogs]].",
       "confidence": "high"
     },
     {
@@ -168,7 +168,7 @@
       "type": "idiom",
       "language": "Afrikaans",
       "timestamp": "00:07:24",
-      "note": "Afrikaans for heavy rain; a platanna is a type of frog.",
+      "note": "An Afrikaans heavy-rain idiom; a platanna is a type of frog.",
       "confidence": "high"
     },
     {
@@ -178,7 +178,7 @@
       "type": "idiom",
       "language": "Norwegian",
       "timestamp": "00:07:32",
-      "note": "The Norwegian expression for heavy rain; the hosts find Scandinavian idioms adorable.",
+      "note": "A Norwegian heavy-rain idiom; Rob finds the Scandinavian versions adorable.",
       "confidence": "high"
     },
     {
@@ -188,8 +188,8 @@
       "type": "idiom",
       "language": "Norwegian",
       "timestamp": "00:07:32",
-      "note": "A Norwegian weather expression mentioned alongside raining female trolls.",
-      "confidence": "low"
+      "note": "A cute Norwegian expression for heavy snowfall.",
+      "confidence": "high"
     },
     {
       "term": "when pigs fly",
@@ -198,7 +198,7 @@
       "type": "idiom",
       "language": "English",
       "timestamp": "00:10:37",
-      "note": "Said of something that will never happen; the hosts look at foreign alternatives.",
+      "note": "Said about something that is never going to happen; the hosts look for foreign equivalents.",
       "confidence": "high"
     },
     {
@@ -208,18 +208,8 @@
       "type": "idiom",
       "language": "French",
       "timestamp": "00:11:02",
-      "note": "French for 'never'; linked to the English 'as rare as hen's teeth'.",
+      "note": "A French equivalent of [[when pigs fly]], which the hosts compare with 'as rare as hen's teeth'.",
       "confidence": "high"
-    },
-    {
-      "term": "as rare as hen's teeth",
-      "original": null,
-      "translation": null,
-      "type": "idiom",
-      "language": "English",
-      "timestamp": "00:11:11",
-      "note": "Mentioned as a related English idiom used in both Britain and America.",
-      "confidence": "low"
     },
     {
       "term": "on Saint Glinglin's day",
@@ -228,8 +218,8 @@
       "type": "idiom",
       "language": "French",
       "timestamp": "00:11:19",
-      "note": "Means never, because it names a saint's day that doesn't exist, like 'the 12th of never'.",
-      "confidence": "low"
+      "note": "It invokes a saint's day that doesn't exist, so it means something will never happen, like 'the 12th of never'.",
+      "confidence": "high"
     },
     {
       "term": "when the crayfish whistles on the mountain",
@@ -238,7 +228,7 @@
       "type": "idiom",
       "language": "Russian",
       "timestamp": "00:12:13",
-      "note": "A Russian idiom for something that will never happen.",
+      "note": "A Russian way of saying something will never happen, like [[when pigs fly]].",
       "confidence": "high"
     },
     {
@@ -248,47 +238,47 @@
       "type": "idiom",
       "language": "Swedish",
       "timestamp": "00:12:29",
-      "note": "Means having a charmed or privileged life, like being born with a silver spoon.",
-      "confidence": "low"
+      "note": "Describes a charmed or privileged life in which success comes easily, like being born with a silver spoon in your mouth.",
+      "confidence": "high"
     },
     {
-      "term": "you've shat in the blue cupboard",
+      "term": "to have shat in the blue cupboard",
       "original": null,
-      "translation": "you've [shat] in the blue cupboard",
+      "translation": "to have shat in the blue cupboard",
       "type": "idiom",
       "language": "Swedish",
       "timestamp": "00:13:25",
-      "note": "Means making a blunder; blue cupboards were valuable once Berlin blue paint arrived in the 1800s.",
+      "note": "Means making a bad mistake; blue cupboards were valuable because Berlin blue paint only became available in the 1800s.",
       "confidence": "low"
     },
     {
-      "term": "to tread in the spinach",
-      "original": "træde i spinaten",
+      "term": "tread in the spinach",
+      "original": "at træde i spinaten",
       "translation": "to tread in the spinach",
       "type": "idiom",
       "language": "Danish",
       "timestamp": "00:14:27",
-      "note": "Danish for putting your foot in it; the hosts don't know why spinach is involved.",
-      "confidence": "low"
+      "note": "Similar to putting your foot in it; the hosts don't know why it's spinach and ask viewers to explain.",
+      "confidence": "high"
     },
     {
-      "term": "to step on the same rake",
+      "term": "step on the same rake",
       "original": null,
       "translation": "to step on the same rake",
       "type": "idiom",
       "language": "Russian",
       "timestamp": "00:15:05",
-      "note": "Russian for making an avoidable mistake again, like a cartoon character hit by a rake.",
+      "note": "Means making the same avoidable mistake twice, like a cartoon character or Sideshow Bob hitting themselves with a rake.",
       "confidence": "high"
     },
     {
       "term": "thinking about the immortality of the crab",
-      "original": null,
+      "original": "pensar en la inmortalidad del cangrejo",
       "translation": "thinking about the immortality of the crab",
       "type": "idiom",
       "language": "Spanish",
       "timestamp": "00:15:27",
-      "note": "Mexican Spanish for daydreaming or being mentally far away.",
+      "note": "Used in Mexico for someone who is daydreaming or mentally far away.",
       "confidence": "high"
     },
     {
@@ -298,7 +288,7 @@
       "type": "idiom",
       "language": "Polish",
       "timestamp": "00:15:35",
-      "note": "Polish for daydreaming; the hosts guess a blue almond is doubly pointless.",
+      "note": "Means daydreaming; Rob suggests blue almonds are pointless, which makes thinking about them especially idle.",
       "confidence": "high"
     },
     {
@@ -308,7 +298,7 @@
       "type": "idiom",
       "language": "Spanish",
       "timestamp": "00:16:04",
-      "note": "Colombian Spanish for daydreaming.",
+      "note": "A Colombian Spanish expression for daydreaming.",
       "confidence": "high"
     },
     {
@@ -318,7 +308,7 @@
       "type": "idiom",
       "language": "Spanish",
       "timestamp": "00:16:04",
-      "note": "Colombian Spanish for daydreaming; a double entendre on eggs and rooster testicles.",
+      "note": "A Colombian Spanish expression for daydreaming, with a double entendre on rooster testicles.",
       "confidence": "high"
     },
     {
@@ -328,7 +318,7 @@
       "type": "idiom",
       "language": "Spanish",
       "timestamp": "00:16:12",
-      "note": "Venezuelan Spanish for daydreaming.",
+      "note": "A Venezuelan Spanish expression for daydreaming.",
       "confidence": "high"
     },
     {
@@ -338,7 +328,7 @@
       "type": "idiom",
       "language": "Czech",
       "timestamp": "00:16:21",
-      "note": "Used in Czech or Slovak for daydreaming.",
+      "note": "Used in Czech and Slovak for daydreaming; a variant of [[thinking about the immortality of the crab]].",
       "confidence": "high"
     },
     {
@@ -348,18 +338,8 @@
       "type": "idiom",
       "language": "Spanish",
       "timestamp": "00:16:21",
-      "note": "Peruvian Spanish for daydreaming.",
+      "note": "The Peruvian Spanish variant of [[thinking about the immortality of the crab]].",
       "confidence": "high"
-    },
-    {
-      "term": "to walk in the clouds",
-      "original": null,
-      "translation": "to fly around / walk in / live in the clouds",
-      "type": "idiom",
-      "language": "Latvian",
-      "timestamp": "00:16:37",
-      "note": "Latvian cloud phrases for daydreaming, similar to having your head in the clouds.",
-      "confidence": "low"
     },
     {
       "term": "lie back and think of England",
@@ -367,18 +347,18 @@
       "translation": null,
       "type": "idiom",
       "language": "English",
-      "timestamp": "00:16:37",
-      "note": "A British phrase for letting your mind wander during sex, implying bad sex being endured.",
+      "timestamp": "00:16:45",
+      "note": "A British phrase about letting your mind wander during sex, which implies bad sex; Jess says it isn't used in America.",
       "confidence": "high"
     },
     {
       "term": "the cat climbed onto the roof",
-      "original": null,
+      "original": "o gato subiu no telhado",
       "translation": "the cat climbed onto the roof",
       "type": "idiom",
       "language": "Portuguese",
       "timestamp": "00:17:30",
-      "note": "Means a person or plan seems doomed; it comes from a joke about breaking bad news gradually.",
+      "note": "Means a person or plan seems doomed; it comes from a joke about a servant told to break bad news gradually.",
       "confidence": "high"
     },
     {
@@ -387,9 +367,9 @@
       "translation": "to end up like Zabłocki did with his soap",
       "type": "idiom",
       "language": "Polish",
-      "timestamp": "00:18:37",
-      "note": "For a clever profit scheme that loses money; Zabłocki smuggled soap underwater and it dissolved.",
-      "confidence": "low"
+      "timestamp": "00:18:45",
+      "note": "Used when a clever profit scheme loses money; it comes from a tale of a man who smuggled soap underwater and watched it dissolve.",
+      "confidence": "high"
     },
     {
       "term": "not my circus, not my monkeys",
@@ -398,7 +378,7 @@
       "type": "idiom",
       "language": "Polish",
       "timestamp": "00:19:43",
-      "note": "Disclaims responsibility; Jess thinks English may have borrowed it from Polish.",
+      "note": "Used to disclaim responsibility; Jess thinks Polish may have had it first and passed it to English.",
       "confidence": "high"
     },
     {
@@ -408,8 +388,8 @@
       "type": "idiom",
       "language": "Spanish",
       "timestamp": "00:20:22",
-      "note": "Means hardly anyone showed up, like 'one man and his dog'.",
-      "confidence": "low"
+      "note": "Means hardly anyone showed up, roughly like 'one man and his dog'.",
+      "confidence": "high"
     },
     {
       "term": "library rat",
@@ -418,8 +398,8 @@
       "type": "idiom",
       "language": "Spanish",
       "timestamp": "00:20:45",
-      "note": "The Spanish equivalent of 'bookworm'.",
-      "confidence": "low"
+      "note": "The Spanish equivalent of [[bookworm]].",
+      "confidence": "high"
     },
     {
       "term": "bookworm",
@@ -428,17 +408,17 @@
       "type": "word",
       "language": "English",
       "timestamp": "00:20:56",
-      "note": "Jess explains real bookworms are silverfish, book lice or beetle larvae that eat through old books.",
+      "note": "Real book-eating pests such as silverfish, book lice or beetle larvae are called bookworms; 'worm' for vermin needn't mean an actual worm.",
       "confidence": "high"
     },
     {
       "term": "better a bird in the hand than a hundred flying",
-      "original": "más vale pájaro en mano que cien volando",
+      "original": "más vale pájaro en mano que ciento volando",
       "translation": "better a bird in the hand than a hundred flying",
       "type": "idiom",
       "language": "Spanish",
       "timestamp": "00:22:13",
-      "note": "A Spanish variant of 'a bird in the hand is worth two in the bush'.",
+      "note": "A slight variation on the English [[a bird in the hand is worth two in the bush]].",
       "confidence": "high"
     },
     {
@@ -458,7 +438,7 @@
       "type": "idiom",
       "language": "Portuguese",
       "timestamp": "00:22:43",
-      "note": "Brazilian (and Spanish) for being stuck with the bill or made the scapegoat; the hosts can't explain the duck.",
+      "note": "Suggested as Brazilian and also found in Spanish; means being stuck with the bill or made the scapegoat. Why a duck remains unexplained.",
       "confidence": "high"
     },
     {
@@ -468,17 +448,17 @@
       "type": "idiom",
       "language": "Spanish",
       "timestamp": "00:23:45",
-      "note": "A Spanish version of 'lead a horse to water', harder because it's a cat.",
+      "note": "The Spanish version of [[you can lead a horse to water]], where you can't even get the animal as far as the water.",
       "confidence": "high"
     },
     {
       "term": "raise crows and they will peck out your eyes",
-      "original": null,
+      "original": "cría cuervos y te sacarán los ojos",
       "translation": "raise crows and they will peck out your eyes",
       "type": "idiom",
       "language": "Spanish",
       "timestamp": "00:24:01",
-      "note": "Bad parenting or bad choices come back to haunt you, like 'you reap what you sow'.",
+      "note": "Jess reads it as bad parenting choices coming back to haunt you, or more generally like 'you reap what you sow'.",
       "confidence": "high"
     },
     {
@@ -488,27 +468,27 @@
       "type": "name",
       "language": "English",
       "timestamp": "00:24:34",
-      "note": "Jess's crow is named after a witch from Terry Pratchett's Discworld.",
-      "confidence": "low"
+      "note": "The name of the crow that follows Jess on runs, a reference to a witch in Terry Pratchett's Discworld.",
+      "confidence": "high"
     },
     {
       "term": "flies don't enter a closed mouth",
-      "original": null,
+      "original": "en boca cerrada no entran moscas",
       "translation": "flies don't enter a closed mouth",
       "type": "idiom",
       "language": "Spanish",
       "timestamp": "00:24:47",
-      "note": "Keep your mouth shut to stay out of trouble.",
+      "note": "Advice to keep your mouth shut to stay out of trouble.",
       "confidence": "high"
     },
     {
       "term": "to mount a chicken",
-      "original": null,
+      "original": "montar un pollo",
       "translation": "to mount a chicken",
       "type": "idiom",
       "language": "Spanish",
       "timestamp": "00:24:55",
-      "note": "Used when someone makes a loud scene or big fuss, maybe like a mounted chicken would.",
+      "note": "Used when someone makes a loud scene; the hosts guess it's because a mounted chicken would make a fuss itself.",
       "confidence": "high"
     },
     {
@@ -518,7 +498,7 @@
       "type": "idiom",
       "language": "English",
       "timestamp": "00:25:14",
-      "note": "Probably from Ecclesiastes, where a bird of the air carries your voice; many European languages share it.",
+      "note": "Most likely from Ecclesiastes ('a bird of the air may carry your voice'); many European languages also mention a little bird.",
       "confidence": "high"
     },
     {
@@ -528,18 +508,18 @@
       "type": "idiom",
       "language": "French",
       "timestamp": "00:25:55",
-      "note": "The French equivalent of 'a little bird told me', said while raising the little finger.",
-      "confidence": "low"
+      "note": "The French counterpart of [[a little bird told me]], said while holding up the finger; its origin is harder to work out.",
+      "confidence": "high"
     },
     {
       "term": "a magpie brought it on its tail",
-      "original": "soroka na khvoste prinesla",
+      "original": null,
       "translation": "a magpie brought it on its tail",
       "type": "idiom",
       "language": "Russian",
-      "timestamp": "00:26:49",
-      "note": "The Russian equivalent of 'a little bird told me', using a magpie.",
-      "confidence": "low"
+      "timestamp": "00:26:40",
+      "note": "A Russian counterpart of [[a little bird told me]] that features a magpie instead of a little bird.",
+      "confidence": "high"
     },
     {
       "term": "birds hear words spoken by day and mice hear words spoken by night",
@@ -548,7 +528,7 @@
       "type": "idiom",
       "language": "Korean",
       "timestamp": "00:26:57",
-      "note": "If the birds don't tell, the mice will; someone always overhears.",
+      "note": "Means someone will always overhear: if the birds don't tell you, the mice will.",
       "confidence": "high"
     },
     {
@@ -558,18 +538,8 @@
       "type": "idiom",
       "language": "Cornish",
       "timestamp": "00:27:13",
-      "note": "A Cornish saying about when authority should solve a problem; Cornish is a revived Celtic language.",
+      "note": "A Cornish saying about situations where the authority that should solve a problem is itself compromised.",
       "confidence": "high"
-    },
-    {
-      "term": "Kernewek",
-      "original": null,
-      "translation": null,
-      "type": "name",
-      "language": "Cornish",
-      "timestamp": "00:27:50",
-      "note": "Jess gives the native name for the Cornish language (heard as 'Kernow').",
-      "confidence": "low"
     },
     {
       "term": "speak of the devil",
@@ -583,23 +553,23 @@
     },
     {
       "term": "when you talk of the devil, he's not far away",
-      "original": "Wenn man vom Teufel spricht, ist er nicht weit",
+      "original": null,
       "translation": "when you talk of the devil, he's not far away",
       "type": "idiom",
       "language": "German",
       "timestamp": "00:28:11",
-      "note": "The German version of 'speak of the devil'.",
-      "confidence": "low"
+      "note": "A German version of [[speak of the devil]] that is basically the same as the English.",
+      "confidence": "high"
     },
     {
-      "term": "when you speak of the wolf, you see his tail",
+      "term": "when you speak of the wolf you see his tail",
       "original": "quand on parle du loup, on en voit la queue",
-      "translation": "when you speak of the wolf, you see his tail",
+      "translation": "when you speak of the wolf you see his tail",
       "type": "idiom",
       "language": "French",
       "timestamp": "00:28:22",
-      "note": "The French 'speak of the devil' uses a wolf, reflecting an ancestral European fear of wolves.",
-      "confidence": "low"
+      "note": "The French version of [[speak of the devil]], which uses a wolf; Rob links it to a lingering ancestral fear of wolves in Europe.",
+      "confidence": "high"
     },
     {
       "term": "mention a wolf and the wolf is there",
@@ -608,18 +578,18 @@
       "type": "idiom",
       "language": "Lithuanian",
       "timestamp": "00:28:43",
-      "note": "A Lithuanian equivalent of 'speak of the devil', sent in by a viewer.",
+      "note": "A listener-submitted Lithuanian equivalent of [[speak of the devil]].",
       "confidence": "high"
     },
     {
-      "term": "between dog and wolf",
+      "term": "between a dog and a wolf",
       "original": "entre chien et loup",
       "translation": "between a dog and a wolf",
       "type": "idiom",
       "language": "French",
       "timestamp": "00:28:58",
-      "note": "Means twilight, when fading light makes it hard to tell a dog from a wolf.",
-      "confidence": "low"
+      "note": "Means [[twilight]], when the fading light makes it hard to tell a familiar dog from a wolf.",
+      "confidence": "high"
     },
     {
       "term": "twilight",
@@ -627,19 +597,19 @@
       "translation": null,
       "type": "word",
       "language": "English",
-      "timestamp": "00:29:14",
-      "note": "Explained as 'between lights'; the 'twi-' part is related to 'two' and 'between'.",
+      "timestamp": "00:29:22",
+      "note": "Rob suggests it means 'two lights'; Jess says it's more 'between lights', since [[between]] is related to [[two]].",
       "confidence": "high"
     },
     {
-      "term": "the devil knows more because he is old than because he is the devil",
+      "term": "the devil knows more for being old than for being the devil",
       "original": "más sabe el diablo por viejo que por diablo",
       "translation": "the devil knows more because he is old than because he is the devil",
       "type": "idiom",
       "language": "Spanish",
       "timestamp": "00:29:33",
-      "note": "Experience teaches more than talent.",
-      "confidence": "low"
+      "note": "Means experience teaches more than talent does.",
+      "confidence": "high"
     },
     {
       "term": "to feel it while wearing clogs",
@@ -648,7 +618,7 @@
       "type": "idiom",
       "language": "Dutch",
       "timestamp": "00:30:27",
-      "note": "Something so obvious you could feel it through wooden shoes; the hosts call it very Dutch.",
+      "note": "Used for something so obvious you could feel it even through wooden shoes; the hosts call it quintessentially Dutch.",
       "confidence": "high"
     },
     {
@@ -658,17 +628,17 @@
       "type": "idiom",
       "language": "Finnish",
       "timestamp": "00:31:34",
-      "note": "Like 'the lights are on but no one's home'; it refers to the Finnish Moomin books.",
+      "note": "Like 'the lights are on but no one's home'; it refers to the Moomins from the Finnish writer's children's books, originally published in Swedish.",
       "confidence": "high"
     },
     {
-      "term": "to lift the cat onto the table",
+      "term": "lift the cat onto the table",
       "original": null,
       "translation": "to lift the cat onto the table",
       "type": "idiom",
       "language": "Finnish",
       "timestamp": "00:32:18",
-      "note": "Raising an awkward subject everyone avoids, like addressing the elephant in the room.",
+      "note": "Means raising an awkward subject everyone avoids, like addressing the elephant in the room; almost the inverse of the British [[dead cat]].",
       "confidence": "high"
     },
     {
@@ -678,18 +648,18 @@
       "type": "phrase",
       "language": "English",
       "timestamp": "00:32:30",
-      "note": "A British political term for raising a shocking issue to distract from another topic.",
+      "note": "A British political term for a shocking distraction, as if a dead cat were put on the table so no one discusses the real issue.",
       "confidence": "high"
     },
     {
       "term": "Norwegians are born with skis on their feet",
       "original": "nordmenn er født med ski på beina",
-      "translation": "Norwegians are born with skis on their legs/feet",
+      "translation": "Norsemen are born with skis on their legs",
       "type": "idiom",
       "language": "Norwegian",
       "timestamp": "00:33:15",
-      "note": "Presented as a typically Norwegian saying about their skiing culture.",
-      "confidence": "low"
+      "note": "A saying Rob finds wonderfully typical of Norwegian culture.",
+      "confidence": "high"
     },
     {
       "term": "out on a trip, never sour",
@@ -698,27 +668,27 @@
       "type": "phrase",
       "language": "Norwegian",
       "timestamp": "00:33:45",
-      "note": "A Norwegian saying that going outdoors lifts your mood, like 'go touch grass'.",
+      "note": "Jess's favourite Norwegian saying, which she compares to 'go outside and touch grass'.",
       "confidence": "high"
     },
     {
-      "term": "to walk around the porridge",
+      "term": "walk around the porridge",
       "original": null,
       "translation": "to walk around the porridge",
       "type": "idiom",
       "language": "Norwegian",
       "timestamp": "00:34:01",
-      "note": "Circling a subject instead of saying what you mean, like beating around the bush.",
+      "note": "Means circling a subject instead of saying what you mean, like [[beat around the bush]].",
       "confidence": "high"
     },
     {
-      "term": "beating around the bush",
+      "term": "beat around the bush",
       "original": null,
       "translation": null,
       "type": "idiom",
       "language": "English",
       "timestamp": "00:34:12",
-      "note": "From hunting: beating bushes to flush out birds instead of going straight for them.",
+      "note": "From hunting: beating bushes to scare birds out rather than going straight for them.",
       "confidence": "high"
     },
     {
@@ -728,7 +698,7 @@
       "type": "idiom",
       "language": "Turkish",
       "timestamp": "00:34:26",
-      "note": "For someone who inserts themselves into every conversation or problem, uninvited.",
+      "note": "Describes someone who inserts themselves into every conversation or problem, just as parsley turns up in every dish.",
       "confidence": "high"
     },
     {
@@ -738,27 +708,27 @@
       "type": "idiom",
       "language": "Welsh",
       "timestamp": "00:35:14",
-      "note": "Describes a stingy person; reaching into the pocket would be painful.",
+      "note": "Describes a stingy person: reaching into a pocket with a hedgehog in it would hurt, so they avoid paying.",
       "confidence": "high"
     },
     {
       "term": "broken Irish is better than clever English",
       "original": null,
       "translation": "broken Irish is better than clever English",
-      "type": "idiom",
+      "type": "phrase",
       "language": "Irish",
       "timestamp": "00:35:41",
-      "note": "Encourages people to speak Irish even badly; it rhymes in Irish and carries historical baggage.",
+      "note": "Encourages people to speak Irish even badly; it rhymes in Irish and carries a lot of historical baggage.",
       "confidence": "high"
     },
     {
       "term": "hunger is a good sauce",
       "original": null,
       "translation": "hunger is a good sauce",
-      "type": "idiom",
+      "type": "phrase",
       "language": "Irish",
       "timestamp": "00:36:22",
-      "note": "Hunger makes food taste better; Jess notes a historical undertone.",
+      "note": "Means hunger makes food taste better; Jess feels it carries historical baggage but is meant optimistically.",
       "confidence": "high"
     },
     {
@@ -768,7 +738,7 @@
       "type": "idiom",
       "language": "Irish",
       "timestamp": "00:36:31",
-      "note": "Stay out of other people's business.",
+      "note": "Advice to stay out of other people's business and problems.",
       "confidence": "high"
     },
     {
@@ -778,7 +748,7 @@
       "type": "idiom",
       "language": "Japanese",
       "timestamp": "00:37:13",
-      "note": "Means empty-headed, like a hollow green pepper with a few seeds rattling around.",
+      "note": "Describes an empty-headed person, like a green pepper that is hollow except for a few rattling seeds.",
       "confidence": "high"
     },
     {
@@ -788,28 +758,18 @@
       "type": "idiom",
       "language": "Japanese",
       "timestamp": "00:37:32",
-      "note": "For someone who trails after another person, like poop dangling from a goldfish.",
-      "confidence": "low"
+      "note": "Describes someone who trails around after someone else, the way poop dangles behind a goldfish.",
+      "confidence": "high"
     },
     {
-      "term": "don't call anything splendid until you've seen Nikkō",
-      "original": "Nikkō wo minai uchi wa kekkō to iu na",
-      "translation": "don't call anything splendid until you've seen Nikkō",
+      "term": "don't call anything splendid until you've seen Nikko",
+      "original": "Nikkō o mizu shite kekkō to iu nakare",
+      "translation": "don't call anything splendid until you've seen Nikko",
       "type": "idiom",
       "language": "Japanese",
-      "timestamp": "00:37:57",
-      "note": "Praises Nikkō's shrine complex, with a pun between 'Nikkō' and 'kekkō' (splendid).",
-      "confidence": "low"
-    },
-    {
-      "term": "see Naples and die",
-      "original": null,
-      "translation": null,
-      "type": "phrase",
-      "language": "German",
-      "timestamp": "00:38:31",
-      "note": "Attributed by the hosts to Goethe; Naples is so beautiful you could die afterwards.",
-      "confidence": "low"
+      "timestamp": "00:37:49",
+      "note": "Praises Nikko's shrine complex and puns on 'Nikko' and 'kekko' (splendid); the hosts compare it to Goethe's [[see Naples and die]].",
+      "confidence": "high"
     },
     {
       "term": "even monkeys fall from trees",
@@ -818,7 +778,7 @@
       "type": "idiom",
       "language": "Japanese",
       "timestamp": "00:38:54",
-      "note": "Even experts sometimes make mistakes.",
+      "note": "A reassuring saying that even experts sometimes make mistakes.",
       "confidence": "high"
     },
     {
@@ -828,8 +788,8 @@
       "type": "idiom",
       "language": "French",
       "timestamp": "00:39:55",
-      "note": "Quebec French for someone shy or silent.",
-      "confidence": "low"
+      "note": "A Québécois expression for a shy or silent person, gentler than the taunting [[cat's got your tongue]].",
+      "confidence": "high"
     },
     {
       "term": "cat's got your tongue",
@@ -838,7 +798,7 @@
       "type": "idiom",
       "language": "English",
       "timestamp": "00:40:01",
-      "note": "Compared with the Quebec idiom; Jess finds it a derogatory taunt at someone not speaking.",
+      "note": "Jess finds it somewhat derogatory, a taunt aimed at someone who can't or won't speak.",
       "confidence": "high"
     },
     {
@@ -848,7 +808,7 @@
       "type": "idiom",
       "language": "French",
       "timestamp": "00:40:42",
-      "note": "Quebec French for repeatedly nodding off to sleep.",
+      "note": "In Quebec French, used for someone who keeps nodding off to sleep.",
       "confidence": "high"
     },
     {
@@ -858,8 +818,8 @@
       "type": "idiom",
       "language": "French",
       "timestamp": "00:40:56",
-      "note": "Quebec French for 'brace yourself'; a toque here is a winter hat, sometimes a chef's hat.",
-      "confidence": "low"
+      "note": "In Quebec French, like 'fasten your seat belt'; a toque here is a winter hat, though the word can also mean a chef's hat.",
+      "confidence": "high"
     },
     {
       "term": "under a frog's ass",
@@ -868,7 +828,7 @@
       "type": "idiom",
       "language": "Hungarian",
       "timestamp": "00:41:31",
-      "note": "For a very bad situation, mood or quality, since a frog's bottom is already very low.",
+      "note": "Describes a bad situation, mood or quality; a frog is already so low that being under it means rock bottom.",
       "confidence": "high"
     },
     {
@@ -878,7 +838,7 @@
       "type": "idiom",
       "language": "Hungarian",
       "timestamp": "00:42:03",
-      "note": "Uses two Hungarian words for dog; means six of one, half a dozen of the other.",
+      "note": "Uses two Hungarian words that both mean dog; like 'six of one, half a dozen of the other' for pointless comparisons.",
       "confidence": "high"
     }
   ]

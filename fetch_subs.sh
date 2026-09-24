@@ -37,7 +37,7 @@ echo "${#todo[@]} to download"
 [[ ${#todo[@]} -eq 0 ]] && exit 0
 
 yt-dlp --write-auto-subs --sub-langs en-orig --sub-format json3 --write-info-json \
-  --skip-download --sleep-requests 5 --sleep-subtitles 60 --no-progress \
+  --skip-download --sleep-subtitles 60 --no-progress \
   -o "subs/%(title)s [%(id)s].%(ext)s" "${todo[@]}"
 
 for url in "${todo[@]}"; do
