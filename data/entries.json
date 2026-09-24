@@ -70,6 +70,70 @@
   ]
  },
  {
+  "slug": "able",
+  "term": "-able",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "Latin",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1849,
+    "note": "Latin suffix freely added to Germanic stems like watchable, winnable and knowable, making hybrid words.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "agenda",
+  "term": "agenda",
+  "original": "agere",
+  "translation": "things to be done",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2162,
+    "note": "A Latin plural used as a singular; from agere 'to do', once paired theologically with credenda.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "agent",
+  "term": "agent",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2209,
+    "note": "Shares a root with act and actor; both are 'doers', one on stage and one on someone's behalf.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "algae",
+  "term": "algae",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2126,
+    "note": "Plural of alga; there's no English plural like algas, and algae is often used as singular.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "all-the-moomins-are-not-in-the-valley",
   "term": "all the Moomins are not in the valley",
   "original": null,
@@ -81,6 +145,38 @@
     "episode_id": "YBIXXAipmZw",
     "t": 1894,
     "note": "Like 'the lights are on but no one's home'; it refers to the Finnish Moomin books.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "altar",
+  "term": "altar",
+  "original": "altare",
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 416,
+    "note": "Arrived with Christian missionaries; probably from adolere 'to burn' rather than altus 'high'.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "apparatus",
+  "term": "apparatus",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2033,
+    "note": "Like prospectus and status, its Latin plural is unchanged, not -i; some people still use apparatus as the plural.",
     "confidence": "high"
    }
   ]
@@ -150,6 +246,22 @@
   ]
  },
  {
+  "slug": "arena",
+  "term": "arena",
+  "original": null,
+  "translation": "sandy place",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2318,
+    "note": "Originally a sandy place, since amphitheatres were strewn with sand; the deeper root may be Etruscan.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "as-american-as-apple-pie",
   "term": "as American as apple pie",
   "original": null,
@@ -177,7 +289,8 @@
     "episode_id": "YBIXXAipmZw",
     "t": 671,
     "note": "Mentioned as a related English idiom used in both Britain and America.",
-    "confidence": "low"
+    "confidence": "low",
+    "verified": true
    }
   ]
  },
@@ -273,6 +386,22 @@
     "episode_id": "6Rr6qfIIapY",
     "t": 1566,
     "note": "Earlier slang for something desirable; attached to New York through John J. Fitzgerald's 1921 horse-racing columns.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "birdlore",
+  "term": "birdlore",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1397,
+    "note": "William Barnes's Germanic replacement for ornithology.",
     "confidence": "high"
    }
   ]
@@ -449,7 +578,8 @@
     "episode_id": "YBIXXAipmZw",
     "t": 95,
     "note": "Most likely wishes bad luck so the opposite happens; the hosts reject theatre explanations like being 'in a cast'.",
-    "confidence": "high"
+    "confidence": "high",
+    "verified": true
    }
   ]
  },
@@ -534,6 +664,22 @@
   ]
  },
  {
+  "slug": "camp",
+  "term": "camp",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 291,
+    "note": "Early Latin borrowing, originally about battle; related to German Kampf, campaign and champion.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "casey-jones",
   "term": "Casey Jones",
   "original": null,
@@ -545,7 +691,24 @@
     "episode_id": "JlgQIDxufh0",
     "t": 880,
     "note": "Stage name of musician Brian Cassar; the hosts suggest it was borrowed from the ballad of Casey Jones.",
-    "confidence": "low"
+    "confidence": "low",
+    "verified": true
+   }
+  ]
+ },
+ {
+  "slug": "castle",
+  "term": "castle",
+  "original": "castellum",
+  "translation": "castle, fort, stronghold",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 370,
+    "note": "From Latin castellum, entering late Old English often through biblical usage; later borrowed again as chateau.",
+    "confidence": "high"
    }
   ]
  },
@@ -578,6 +741,54 @@
     "t": 2552,
     "note": "Verlan for 'français'.",
     "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "chateau",
+  "term": "chateau",
+  "original": "château",
+  "translation": null,
+  "type": "word",
+  "language": "French",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 385,
+    "note": "A later French borrowing of the same Latin word that gave castle.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "cheese",
+  "term": "cheese",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 274,
+    "note": "Another Latin loan picked up from the Romans before the Germanic dialects reached Britain.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "chiaroscuro",
+  "term": "chiaroscuro",
+  "original": null,
+  "translation": "bright dark",
+  "type": "word",
+  "language": "Italian",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1793,
+    "note": "Art term meaning bright-dark, sharing the obscure element; earlier covered in their art episode.",
+    "confidence": "high"
    }
   ]
  },
@@ -630,6 +841,38 @@
   ]
  },
  {
+  "slug": "convey",
+  "term": "convey",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 854,
+    "note": "From via; to carry something with you along a road.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "corpus",
+  "term": "corpus",
+  "original": null,
+  "translation": "body",
+  "type": "word",
+  "language": "Latin",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2090,
+    "note": "Latin for body; the plural is corpora, not corpi.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "cost-an-arm-and-a-leg",
   "term": "cost an arm and a leg",
   "original": null,
@@ -657,6 +900,38 @@
     "episode_id": "6Rr6qfIIapY",
     "t": 1333,
     "note": "Said to be coined in 1976 by Tom Iacino, probably a pun on 'boob tubers', since potatoes are tubers.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "credenda",
+  "term": "credenda",
+  "original": null,
+  "translation": "things to be believed",
+  "type": "word",
+  "language": "Latin",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2200,
+    "note": "Theological counterpart to agenda: things to be believed versus things to be done.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "crossed",
+  "term": "crossed",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1322,
+    "note": "Cheke's native substitute for crucified; the hosts think it sounds like a euphemism.",
     "confidence": "high"
    }
   ]
@@ -774,6 +1049,54 @@
   ]
  },
  {
+  "slug": "deviate",
+  "term": "deviate",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 838,
+    "note": "From via; to stray away from the course.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "devious",
+  "term": "devious",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 838,
+    "note": "Along with deviant, means straying from the moral path; from via.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "diary",
+  "term": "diary",
+  "original": null,
+  "translation": "lasting one day",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2495,
+    "note": "Originally meant lasting one day, from dies; a doublet with journal.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "die-arzte",
   "term": "Die Ärzte",
   "original": "Die Ärzte",
@@ -801,6 +1124,38 @@
     "episode_id": "JlgQIDxufh0",
     "t": 2141,
     "note": "A popular German band named after an idiom about having nothing going on.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "dis",
+  "term": "dis-",
+  "original": null,
+  "translation": "not, away",
+  "type": "word",
+  "language": "Latin",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1686,
+    "note": "Latin prefix meaning not or away, as in distribute; French de-/des- words use the same prefix.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "dismal",
+  "term": "dismal",
+  "original": "dies mali",
+  "translation": "evil or unlucky days",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2346,
+    "note": "From the two unlucky 'Egyptian days' marked each month; first used as the noun phrase 'in the dismal'.",
     "confidence": "high"
    }
   ]
@@ -854,6 +1209,38 @@
   ]
  },
  {
+  "slug": "eloquent",
+  "term": "eloquent",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 739,
+    "note": "One of the words Jess used to teach fifth graders the Latin root meaning 'to speak'.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "envoy",
+  "term": "envoy",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 862,
+    "note": "From via; someone sent somewhere to represent another person.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "even-monkeys-fall-from-trees",
   "term": "even monkeys fall from trees",
   "original": null,
@@ -882,6 +1269,22 @@
     "t": 2456,
     "note": "Quebec French for 'brace yourself'; a toque here is a winter hat, sometimes a chef's hat.",
     "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "fasti",
+  "term": "fasti",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "Latin",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2451,
+    "note": "Roman calendar lists of days allowed for official business; Jess enjoys the pun 'the fasti of Furius'.",
+    "confidence": "high"
    }
   ]
  },
@@ -977,7 +1380,8 @@
     "episode_id": "JlgQIDxufh0",
     "t": 1261,
     "note": "The idiom behind Led Zeppelin's name; the hosts discuss whether Americans use it.",
-    "confidence": "low"
+    "confidence": "low",
+    "verified": true
    }
   ]
  },
@@ -994,6 +1398,22 @@
     "t": 2252,
     "note": "For someone who trails after another person, like poop dangling from a goldfish.",
     "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "grandiloquent",
+  "term": "grandiloquent",
+  "original": null,
+  "translation": "big talking",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 747,
+    "note": "Grand plus the 'speak' root, so literally big talking; William Barnes suggested 'high talking' instead.",
+    "confidence": "high"
    }
   ]
  },
@@ -1110,6 +1530,22 @@
   ]
  },
  {
+  "slug": "hundreder",
+  "term": "hundreder",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1312,
+    "note": "Sir John Cheke used this instead of centurion in his Gospel of Matthew without loanwords.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "hunger-is-a-good-sauce",
   "term": "hunger is a good sauce",
   "original": null,
@@ -1142,6 +1578,70 @@
   ]
  },
  {
+  "slug": "impervious",
+  "term": "impervious",
+  "original": null,
+  "translation": "not through the road",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 819,
+    "note": "Im- 'not', per 'through', via 'road'; resistant to attack because there is no way through.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "inkhorn-term",
+  "term": "inkhorn term",
+  "original": null,
+  "translation": null,
+  "type": "phrase",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1259,
+    "note": "Renaissance backlash against classical borrowings; the name may come from dipping into the inkhorn often for long words.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "intermundane",
+  "term": "intermundane",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1905,
+    "note": "An 18th-century non-hybrid alternative, with mundane meaning worldly.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "interplanetary",
+  "term": "interplanetary",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1897,
+    "note": "A hybrid of Latin inter and Greek planet.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "into-the-wolfs-mouth",
   "term": "into the wolf's mouth",
   "original": "in bocca al lupo",
@@ -1153,6 +1653,23 @@
     "episode_id": "YBIXXAipmZw",
     "t": 166,
     "note": "The Italian way of wishing someone good luck, like 'break a leg'.",
+    "confidence": "high",
+    "verified": true
+   }
+  ]
+ },
+ {
+  "slug": "invoice",
+  "term": "invoice",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 862,
+    "note": "Related to envoy; asks for a payment to be sent along. There's no voice in it, only a road.",
     "confidence": "high"
    }
   ]
@@ -1190,6 +1707,38 @@
   ]
  },
  {
+  "slug": "janitor",
+  "term": "janitor",
+  "original": null,
+  "translation": "doorkeeper",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2283,
+    "note": "Latin for doorkeeper or porter, related to Janus; became a school usher, then a caretaker by the 1700s.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "janus",
+  "term": "Janus",
+  "original": null,
+  "translation": null,
+  "type": "name",
+  "language": "Latin",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2291,
+    "note": "Two-faced Roman god of doorways, linked to janitor; January is named after him.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "jourbon",
   "term": "jourbon",
   "original": "jourbon",
@@ -1202,6 +1751,22 @@
     "t": 2536,
     "note": "Verlan greeting that Rob challenges Jess to work out from the most common French greeting.",
     "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "journal",
+  "term": "journal",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2495,
+    "note": "The word diurnal squashed through French; a doublet of diary.",
+    "confidence": "high"
    }
   ]
  },
@@ -1297,6 +1862,38 @@
     "episode_id": "JlgQIDxufh0",
     "t": 2562,
     "note": "Title of a Renaud album; Verlan for 'laisse tomber', meaning let it go or just leave it.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "latin",
+  "term": "Latin",
+  "original": "Latinus",
+  "translation": "of Latium",
+  "type": "word",
+  "language": "Latin",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 84,
+    "note": "The Romans' language is called Latin because it was the language of the Latins, people of the region Latium.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "latium",
+  "term": "Latium",
+  "original": null,
+  "translation": null,
+  "type": "name",
+  "language": "Latin",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 92,
+    "note": "Ancient region around Rome and the lower Tiber; modern Italians call it Lazio, also a football team's name.",
     "confidence": "high"
    }
   ]
@@ -1414,6 +2011,22 @@
   ]
  },
  {
+  "slug": "loquacious",
+  "term": "loquacious",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 739,
+    "note": "Shares the 'speak' root; Jess's students guessed its meaning from eloquent and soliloquy.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "los-del-rio",
   "term": "Los del Río",
   "original": "Los del Río",
@@ -1462,6 +2075,22 @@
   ]
  },
  {
+  "slug": "maintain",
+  "term": "maintain",
+  "original": null,
+  "translation": "to hold in the hand",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1137,
+    "note": "Literally to hold in the hand, an example of how literal Latin compounds really are.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "maneskin",
   "term": "Måneskin",
   "original": "Måneskin",
@@ -1473,6 +2102,22 @@
     "episode_id": "JlgQIDxufh0",
     "t": 2261,
     "note": "The Italian Eurovision winners have a Danish name, suggested by their half-Danish bassist.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "manus",
+  "term": "manus",
+  "original": null,
+  "translation": "hand",
+  "type": "word",
+  "language": "Latin",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2101,
+    "note": "Latin for hand; the plural is manus too, not mani.",
     "confidence": "high"
    }
   ]
@@ -1510,6 +2155,22 @@
   ]
  },
  {
+  "slug": "meridian",
+  "term": "meridian",
+  "original": null,
+  "translation": "midday",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 2521,
+    "note": "Originally meant noon; Latin medidies became meridies by dissimilation, D changing to R.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "metal-umlaut",
   "term": "metal umlaut",
   "original": null,
@@ -1537,6 +2198,22 @@
     "episode_id": "JlgQIDxufh0",
     "t": 2511,
     "note": "Verlan for 'femme' (woman), used by young French people.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "mile",
+  "term": "mile",
+  "original": "mille passus",
+  "translation": "a thousand paces",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 282,
+    "note": "From Latin for a thousand paces, since a Roman mile was a thousand paces long.",
     "confidence": "high"
    }
   ]
@@ -1670,6 +2347,150 @@
   ]
  },
  {
+  "slug": "obambulation",
+  "term": "obambulation",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1801,
+    "note": "A little-known ob- word meaning to walk around.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "obfuscate",
+  "term": "obfuscate",
+  "original": "fuscare",
+  "translation": "to make dark before",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1785,
+    "note": "Ob- 'in front of' plus fuscare 'to make something dark'.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "obliterate",
+  "term": "obliterate",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1741,
+    "note": "Ob- plus litera 'letter'; originally to erase or blot out writing.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "oblivion",
+  "term": "oblivion",
+  "original": "oblivio",
+  "translation": "forgetfulness",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1725,
+    "note": "From Latin oblivio, forgetfulness; sending something into a state of empty nothingness.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "obnoxious",
+  "term": "obnoxious",
+  "original": "noxa",
+  "translation": "toward hurt",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1749,
+    "note": "Toward noxa, hurt or injury; the Latin meant injurious, much stronger than today's 'annoying'.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "obscure",
+  "term": "obscure",
+  "original": null,
+  "translation": "covered",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1785,
+    "note": "Ob- plus a Latin element the hosts say means covered, also seen in chiaroscuro.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "obvious",
+  "term": "obvious",
+  "original": null,
+  "translation": "in the way",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 811,
+    "note": "Literally in the way or in front of you on the road, so easy to trip over.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "occult",
+  "term": "occult",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1770,
+    "note": "The initial o- is really ob-, another example of assimilation.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "octopus",
+  "term": "octopus",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1978,
+    "note": "Octopi is wrong in Latin and octopodes isn't really Greek, so octopuses is safest.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "on-saint-glinglins-day",
   "term": "on Saint Glinglin's day",
   "original": "à la Saint-Glinglin",
@@ -1750,6 +2571,54 @@
   ]
  },
  {
+  "slug": "out-peopling",
+  "term": "out-peopling",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1348,
+    "note": "Cheke's term, perhaps for exodus or diaspora; the hosts point out it isn't any shorter.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "pendere",
+  "term": "pendere",
+  "original": "pendere",
+  "translation": "to hang",
+  "type": "word",
+  "language": "Latin",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1002,
+    "note": "Jess packs fourteen related words into one riff, including depend, pendulum, suspense and compensate.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "pensive",
+  "term": "pensive",
+  "original": "pensare",
+  "translation": "to weigh, consider",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1039,
+    "note": "From pensare, a frequentative of pendere; something hanging on your mind.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "pie",
   "term": "pie",
   "original": null,
@@ -1766,6 +2635,22 @@
   ]
  },
  {
+  "slug": "pillow",
+  "term": "pillow",
+  "original": "pulvinus",
+  "translation": "little cushion",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 482,
+    "note": "Probably came through other Germanic languages first, ultimately from Latin pulvinus, a small cushion.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "pomegranate",
   "term": "pomegranate",
   "original": null,
@@ -1777,6 +2662,54 @@
     "episode_id": "6Rr6qfIIapY",
     "t": 1542,
     "note": "Means 'grainy apple'; the 'pom' part is the same as French 'pomme', apple.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "ponder",
+  "term": "ponder",
+  "original": "ponderare",
+  "translation": "to weigh",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1077,
+    "note": "From Latin ponderare 'to weigh', linked to pendere; spelled roughly as a French speaker might say it.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "pound",
+  "term": "pound",
+  "original": "libra pondo",
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1103,
+    "note": "From libra pondo, where pondo means weight; tied to the same weighing and hanging family.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "previous",
+  "term": "previous",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 838,
+    "note": "From via; something that happens earlier on your route or path.",
     "confidence": "high"
    }
   ]
@@ -1873,6 +2806,22 @@
     "episode_id": "6Rr6qfIIapY",
     "t": 974,
     "note": "Related to 'people', because you see a small reflection of yourself in someone else's pupil.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "quadrivium",
+  "term": "quadrivium",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "Latin",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 927,
+    "note": "The four advanced subjects (arithmetic, astronomy, music, geometry) studied after the trivium; the older term.",
     "confidence": "high"
    }
   ]
@@ -1985,7 +2934,8 @@
     "episode_id": "YBIXXAipmZw",
     "t": 372,
     "note": "Rob's wife Elodie's suggested French equivalent of 'raining cats and dogs'.",
-    "confidence": "low"
+    "confidence": "low",
+    "verified": true
    }
   ]
  },
@@ -2054,6 +3004,22 @@
   ]
  },
  {
+  "slug": "romance",
+  "term": "Romance",
+  "original": null,
+  "translation": "in the Roman manner",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 158,
+    "note": "From Old French, late Latin 'in the Roman manner'; used for Latin-descended languages and later for novels.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "salad",
   "term": "salad",
   "original": null,
@@ -2097,6 +3063,22 @@
     "episode_id": "YBIXXAipmZw",
     "t": 2311,
     "note": "Attributed by the hosts to Goethe; Naples is so beautiful you could die afterwards.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "shrine",
+  "term": "shrine",
+  "original": "scrinium",
+  "translation": "chest",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 455,
+    "note": "Latin word for a chest, then a chest holding relics, then a venerated place.",
     "confidence": "low"
    }
   ]
@@ -2161,7 +3143,56 @@
     "episode_id": "YBIXXAipmZw",
     "t": 452,
     "note": "A Norwegian weather expression mentioned alongside raining female trolls.",
-    "confidence": "low"
+    "confidence": "low",
+    "verified": true
+   }
+  ]
+ },
+ {
+  "slug": "soliloquy",
+  "term": "soliloquy",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 747,
+    "note": "Another word from the Latin root meaning to talk or speak, used in Jess's class.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "somnambulation",
+  "term": "somnambulation",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1820,
+    "note": "Means sleepwalking; Rob was reaching for it after obambulation.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "somniloquy",
+  "term": "somniloquy",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 747,
+    "note": "Sleep-talking; students worked it out through the link with insomnia.",
+    "confidence": "high"
    }
   ]
  },
@@ -2230,6 +3261,22 @@
   ]
  },
  {
+  "slug": "starlore",
+  "term": "starlore",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1397,
+    "note": "William Barnes's Germanic replacement for astronomy.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "steely-dan",
   "term": "Steely Dan",
   "original": null,
@@ -2262,6 +3309,22 @@
   ]
  },
  {
+  "slug": "street",
+  "term": "street",
+  "original": "via strata",
+  "translation": "straight road",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 327,
+    "note": "From Latin strata, as in via strata, so saying street is essentially saying 'straight'.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "stromae",
   "term": "Stromae",
   "original": "Stromae",
@@ -2289,7 +3352,56 @@
     "episode_id": "JlgQIDxufh0",
     "t": 1921,
     "note": "The hosts praise it as a strong classical reference.",
-    "confidence": "low"
+    "confidence": "low",
+    "verified": true
+   }
+  ]
+ },
+ {
+  "slug": "succeed",
+  "term": "succeed",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1652,
+    "note": "Sub plus a verb meaning to come after, with the b assimilated to c.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "suffer",
+  "term": "suffer",
+  "original": "ferre",
+  "translation": "to be under a burden",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1665,
+    "note": "Sub plus ferre 'to carry', so literally to be under a burden; assimilated prefix.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "suspect",
+  "term": "suspect",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1644,
+    "note": "Sub plus a verb of looking: an example of the prefix sub assimilating to the following sound.",
+    "confidence": "high"
    }
   ]
  },
@@ -2305,7 +3417,8 @@
     "episode_id": "JlgQIDxufh0",
     "t": 1396,
     "note": "Guitar shop founded by a Lynyrd Skynyrd roadie who survived the plane crash; spelled with y's like the band's name.",
-    "confidence": "low"
+    "confidence": "low",
+    "verified": true
    }
   ]
  },
@@ -2321,6 +3434,22 @@
     "episode_id": "6Rr6qfIIapY",
     "t": 542,
     "note": "The older form of 'storm in a teacup', going back to the early 1800s.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "tenere",
+  "term": "tenere",
+  "original": "tenere",
+  "translation": "to hold",
+  "type": "word",
+  "language": "Latin",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1125,
+    "note": "Root in maintain, abstain, entertain, obtain and detain, all basically meaning to hold.",
     "confidence": "high"
    }
   ]
@@ -2577,7 +3706,8 @@
     "episode_id": "YBIXXAipmZw",
     "t": 273,
     "note": "The Spanish for very expensive; Jess thinks it's the mildest price because you have two kidneys.",
-    "confidence": "low"
+    "confidence": "low",
+    "verified": true
    }
   ]
  },
@@ -2822,6 +3952,54 @@
   ]
  },
  {
+  "slug": "trivia",
+  "term": "trivia",
+  "original": null,
+  "translation": "three roads",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 878,
+    "note": "A place where three roads met and people traded news; the fun-fact sense came from Logan Pearsall Smith's 1902 books.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "trivial",
+  "term": "trivial",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 910,
+    "note": "Suggests the unimportant street talk of commoners gathered at Roman crossroads.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "trivium",
+  "term": "trivium",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "Latin",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 910,
+    "note": "The three classical arts of grammar, logic and rhetoric, named during the Carolingian Renaissance.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "twilight",
   "term": "twilight",
   "original": null,
@@ -2902,6 +4080,22 @@
   ]
  },
  {
+  "slug": "via",
+  "term": "via",
+  "original": "via",
+  "translation": "way, road, path",
+  "type": "word",
+  "language": "Latin",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 680,
+    "note": "Latin for road or path, hidden inside many English words; one of Jess's favourite roots.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "village-people",
   "term": "Village People",
   "original": null,
@@ -2913,6 +4107,38 @@
     "episode_id": "JlgQIDxufh0",
     "t": 1763,
     "note": "Named after Greenwich Village, birthplace of the modern LGBTQ rights movement; created for the gay disco market.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "voyage",
+  "term": "voyage",
+  "original": "viaticum",
+  "translation": "a journey",
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 846,
+    "note": "Came through French from Latin viaticum, a journey, which contains via.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "wall",
+  "term": "wall",
+  "original": "vallum",
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 351,
+    "note": "From Latin vallum; the hosts note classical Latin pronounced V as W.",
     "confidence": "high"
    }
   ]
@@ -3014,6 +4240,38 @@
   ]
  },
  {
+  "slug": "wine",
+  "term": "wine",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 258,
+    "note": "Borrowed from the Romans by Germanic dialects on the continent, before English existed as a language.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "witcraft",
+  "term": "witcraft",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1411,
+    "note": "First assumed to replace knowledge, but it was proposed for logic; reason and idea were French anyway.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "you-do-not-sue-the-devil-when-the-court-is-in-hell",
   "term": "you do not sue the devil when the court is in hell",
   "original": null,
@@ -3057,7 +4315,8 @@
     "episode_id": "JlgQIDxufh0",
     "t": 2528,
     "note": "Verlan form of 'bizarre'.",
-    "confidence": "low"
+    "confidence": "low",
+    "verified": true
    }
   ]
  }
