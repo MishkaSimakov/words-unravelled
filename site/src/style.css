@@ -189,6 +189,9 @@ main.wrap {
   font-size: 0.9rem;
   font-style: italic;
 }
+[data-page='home'] .brand-tag {
+  display: none;
+}
 .brand-tag em {
   font-style: normal;
 }
@@ -292,10 +295,6 @@ main.wrap {
 .page-head .page-title {
   margin-top: 0;
 }
-.page-sub {
-  color: var(--muted);
-  margin: 0;
-}
 
 .crumbs {
   margin: 24px 0 0;
@@ -313,24 +312,28 @@ main.wrap {
 
 .hero {
   padding: 48px 0 20px;
-  max-width: 760px;
 }
 .hero-title {
   font-family: var(--serif-display);
   font-weight: 600;
-  font-size: clamp(2rem, 6vw, 3.4rem);
+  font-size: clamp(1.8rem, 4.8vw, 2.9rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
   margin: 4px 0 16px;
   text-wrap: balance;
 }
-.unravel {
-  font-style: italic;
-  font-weight: 400;
+.podcast {
+  font-style: normal;
   color: var(--rubric);
-  /* the letters loosen, like a thread coming undone */
-  letter-spacing: 0.04em;
-  word-spacing: 0.1em;
+  white-space: nowrap;
+}
+.hero-sub {
+  margin: 0 0 10px;
+  font-family: var(--serif-display);
+  font-size: clamp(1.2rem, 3vw, 1.45rem);
+  line-height: 1.3;
+  color: var(--ink-soft);
+  text-wrap: balance;
 }
 .stats {
   margin: 0;
@@ -342,12 +345,6 @@ main.wrap {
   font-weight: 650;
   color: var(--ink);
   font-variant-numeric: lining-nums;
-}
-.stats-types {
-  display: block;
-  color: var(--muted);
-  font-size: 0.92rem;
-  margin-top: 2px;
 }
 
 .search {
@@ -521,9 +518,14 @@ main.wrap {
 }
 .result-head {
   display: flex;
+  flex-direction: column;
+}
+.result-class {
+  display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 2px 8px;
+  gap: 0 8px;
+  font-size: 0.95rem;
 }
 .hw {
   font-family: var(--serif-display);
@@ -540,7 +542,7 @@ main.wrap {
   font-size: 0.92rem;
   color: var(--muted);
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

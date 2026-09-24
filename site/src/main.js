@@ -173,8 +173,10 @@ function entryItem(entry, query = '') {
       <a class="result" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">
         <span class="result-head">
           <span class="hw">${highlight(entry.term, query)}</span>
-          <span class="pos">${esc(typeLabel(entry.type))}</span>
-          ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
+          <span class="result-class">
+            <span class="pos">${esc(typeLabel(entry.type))}</span>
+            ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
+          </span>
         </span>
         ${gloss.length ? `<span class="gloss">${gloss.join(' · ')}</span>` : ''}
         ${note ? `<span class="result-note">${esc(note)}</span>` : ''}
@@ -234,14 +236,11 @@ function home(params) {
 
   main.innerHTML = `
     <section class="hero">
-      <p class="kicker">An unofficial index to the <em>Words Unravelled</em> podcast</p>
-      <h1 class="hero-title">Every word they’ve <span class="unravel">unravelled</span>, and where to hear it.</h1>
+      <h1 class="hero-title">An unofficial index to <em class="podcast">Words Unravelled</em></h1>
+      <p class="hero-sub">Every word they’ve unravelled, and where to hear it.</p>
       <p class="stats">
         <strong>${fmtNumber(db.entries.length)}</strong> entries from
         <strong>${fmtNumber(db.episodes.length)}</strong> episodes
-        <span class="stats-types">${types
-          .map((t) => `${fmtNumber(typeCounts.get(t))} ${typePlural(t).toLowerCase()}`)
-          .join(' · ')}</span>
       </p>
     </section>
 
@@ -470,7 +469,7 @@ function mentionItem(m) {
         <a class="mention-episode" href="${href(`episode/${ep.id}`)}">${esc(ep.title)}</a>
         <p class="meta">
           ${ep.date ? `<time datetime="${ep.date}">${fmtDate(ep.date)}</time> · ` : ''}
-          at <a href="${youtubeUrl(ep.id, Math.max(0, m.t - 3))}" target="_blank" rel="noopener">${fmtTime(m.t)} on YouTube ↗</a>
+          at <a href="${youtubeUrl(ep.id, Math.max(0, m.t - 3))}" target="_blank" rel="noopener">${fmtTime(m.t)} on YouTube</a>
         </p>
         ${m.note ? `<p class="note">${esc(m.note)}</p>` : ''}
         ${
@@ -497,7 +496,7 @@ function episodePage(id) {
       <p class="kicker">Episode${ep.date ? ` · ${fmtDate(ep.date)}` : ''}${ep.duration ? ` · ${Math.round(ep.duration / 60)} min` : ''}</p>
       <h1 class="episode-title">${esc(ep.title)}</h1>
       <p class="episode-links">${plural(items.length, 'entry', 'entries')} ·
-        <a href="${youtubeUrl(ep.id)}" target="_blank" rel="noopener">Watch on YouTube ↗</a></p>
+        <a href="${youtubeUrl(ep.id)}" target="_blank" rel="noopener">Watch on YouTube</a></p>
     </header>
     <div class="episode-layout">
       <div class="episode-player">${player(ep.id, 3, 'Play episode')}
@@ -538,7 +537,6 @@ function episodesPage() {
   main.innerHTML = `
     <header class="page-head">
       <h1 class="page-title">Episodes</h1>
-      <p class="page-sub">${plural(db.episodes.length, 'episode')} indexed so far, newest first.</p>
     </header>
     <ol class="episode-list">
       ${db.episodes
@@ -588,9 +586,6 @@ function aboutPage() {
         timestamps may land a little early or late. Entries the captions made uncertain are marked
         <span class="flag flag-inline">Unverified</span>.</p>
 
-      <h2>Why “Wordhoard”?</h2>
-      <p>In Old English poetry a <i>wordhord</i> is a speaker’s stock of words, literally a
-        ‘word-treasure’. A poet would <i>unlock the wordhoard</i> before a speech.</p>
     </article>`
 }
 
@@ -611,6 +606,7 @@ function notFound(message = 'That page isn’t in the hoard.', suggestion = '') 
 function render() {
   const path = decodeURIComponent(location.pathname.slice(BASE.length)).replace(/\/+$/, '')
   const [page, arg] = path.split('/')
+  document.body.dataset.page = page || 'home'
   document.querySelectorAll('.site-nav a').forEach((a) => {
     a.toggleAttribute('aria-current', a.pathname === location.pathname || (page === 'episode' && a.pathname === href('episodes')))
   })
