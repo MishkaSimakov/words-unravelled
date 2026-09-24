@@ -59,6 +59,18 @@ const typePlural = (type) => TYPES[type]?.many ?? (type ? type[0].toUpperCase() 
 const fold = (s) =>
   [...(s ?? '')].map((c) => c.normalize('NFD')[0].toLowerCase()).join('')
 
+// Original form and literal translation, minus any that merely restate the headword
+// ("raining frogs" / "it's raining frogs" say the same thing twice).
+const bare = (s) =>
+  fold(s).replace(/^(to|it's|it is)\s+/, '').replace(/[^\p{L}\p{N}]/gu, '')
+function forms(entry) {
+  const differs = (s) => s && bare(s) !== bare(entry.term)
+  return {
+    original: differs(entry.original) ? entry.original : null,
+    translation: differs(entry.translation) ? entry.translation : null,
+  }
+}
+
 function highlight(text, query) {
   const q = fold(query.trim())
   const i = q ? fold(text).indexOf(q) : -1
@@ -196,13 +208,10 @@ function search(query) {
 // Shared fragments
 
 function entryItem(entry, query = '') {
+  const { original, translation } = forms(entry)
   const gloss = []
-  if (entry.original && fold(entry.original) !== fold(entry.term)) {
-    gloss.push(`<i>${highlight(entry.original, query)}</i>`)
-  }
-  if (entry.translation && fold(entry.translation) !== fold(entry.term)) {
-    gloss.push(`‘${highlight(entry.translation, query)}’`)
-  }
+  if (original) gloss.push(`<i>${highlight(original, query)}</i>`)
+  if (translation) gloss.push(`‘${highlight(translation, query)}’`)
   const note = entry.mentions[0]?.note
   return `
     <li>
@@ -461,6 +470,7 @@ function entryPage(slug) {
   const i = db.entries.indexOf(entry)
   const prev = db.entries[i - 1]
   const next = db.entries[i + 1]
+  const { original, translation } = forms(entry)
   const mentions = [...entry.mentions].sort((a, b) =>
     (db.episodeById.get(b.episode_id)?.date ?? '').localeCompare(db.episodeById.get(a.episode_id)?.date ?? ''),
   )
@@ -475,10 +485,10 @@ function entryPage(slug) {
           ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
         </p>
         ${
-          entry.original || entry.translation
+          original || translation
             ? `<dl class="forms">
-                ${entry.original ? `<div><dt>Original form</dt><dd><i>${esc(entry.original)}</i></dd></div>` : ''}
-                ${entry.translation ? `<div><dt>Literally</dt><dd>‘${esc(entry.translation)}’</dd></div>` : ''}
+                ${original ? `<div><dt>Original form</dt><dd><i>${esc(original)}</i></dd></div>` : ''}
+                ${translation ? `<div><dt>Literally</dt><dd>‘${esc(translation)}’</dd></div>` : ''}
               </dl>`
             : ''
         }
