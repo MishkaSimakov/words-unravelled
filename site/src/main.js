@@ -71,6 +71,42 @@ function highlight(text, query) {
   )
 }
 
+// Same folding as slugify() in merge.py, so link targets can be looked up by slug.
+const UNFOLDABLE = { ß: 'ss', æ: 'ae', œ: 'oe', ø: 'o', ł: 'l', đ: 'd', ð: 'd', þ: 'th', ı: 'i', '&': ' and ' }
+const slugify = (term) =>
+  String(term ?? '')
+    .replace(/[­​-‏‪-‮⁠-⁤﻿]/g, '')
+    .toLowerCase()
+    .replace(/[ßæœøłđðþı&]/g, (c) => UNFOLDABLE[c])
+    .normalize('NFKD')
+    .replace(/\p{M}/gu, '')
+    .replace(/['’‘`´]/g, '')
+    .replace(/[^\p{L}\p{N}]+/gu, '-')
+    .replace(/^-+|-+$/g, '') || 'entry'
+
+const WIKILINK = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g
+
+/**
+ * A note with its Obsidian-style [[target]] / [[target|text]] links turned into entry links.
+ * Targets that aren't in the index, links back to `self`, and all links when `links` is
+ * false (e.g. inside another <a>) become plain text.
+ */
+function noteHtml(note, { links = true, self = null } = {}) {
+  let html = ''
+  let last = 0
+  for (const m of note.matchAll(WIKILINK)) {
+    const target = m[1].trim()
+    const text = (m[2] ?? m[1]).trim()
+    const entry = links ? db.bySlug.get(slugify(target)) : null
+    html += esc(note.slice(last, m.index))
+    html += entry && entry !== self
+      ? `<a href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">${esc(text)}</a>`
+      : esc(text)
+    last = m.index + m[0].length
+  }
+  return html + esc(note.slice(last))
+}
+
 function shuffle(list) {
   const a = [...list]
   for (let i = a.length - 1; i > 0; i--) {
@@ -179,7 +215,7 @@ function entryItem(entry, query = '') {
           </span>
         </span>
         ${gloss.length ? `<span class="gloss">${gloss.join(' · ')}</span>` : ''}
-        ${note ? `<span class="result-note">${esc(note)}</span>` : ''}
+        ${note ? `<span class="result-note">${noteHtml(note, { links: false })}</span>` : ''}
         <span class="result-count">${plural(entry.episodeCount, 'episode')}</span>
       </a>
     </li>`
@@ -450,7 +486,7 @@ function entryPage(slug) {
 
       <h2 class="section-title"><span>Discussed in ${plural(entry.episodeCount, 'episode')}</span></h2>
       <ol class="mentions">
-        ${mentions.map((m) => mentionItem(m)).join('')}
+        ${mentions.map((m) => mentionItem(m, entry)).join('')}
       </ol>
 
       <nav class="adjacent" aria-label="Neighbouring entries">
@@ -460,7 +496,7 @@ function entryPage(slug) {
     </article>`
 }
 
-function mentionItem(m) {
+function mentionItem(m, entry) {
   const ep = db.episodeById.get(m.episode_id) ?? { id: m.episode_id, title: 'Unknown episode' }
   return `
     <li class="mention">
@@ -471,7 +507,7 @@ function mentionItem(m) {
           ${ep.date ? `<time datetime="${ep.date}">${fmtDate(ep.date)}</time> · ` : ''}
           at <a href="${youtubeUrl(ep.id, Math.max(0, m.t - 3))}" target="_blank" rel="noopener">${fmtTime(m.t)} on YouTube</a>
         </p>
-        ${m.note ? `<p class="note">${esc(m.note)}</p>` : ''}
+        ${m.note ? `<p class="note">${noteHtml(m.note, { self: entry })}</p>` : ''}
         ${
           m.confidence === 'low' && !m.verified
             ? `<p class="flag" title="The automatic captions were unclear here, so the spelling or the entry itself may be wrong.">Unverified: the captions were unclear here</p>`
@@ -511,7 +547,7 @@ function episodePage(id) {
               <a class="hw" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">${esc(entry.term)}</a>
               <span class="pos">${esc(typeLabel(entry.type))}</span>
               ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
-              ${mention.note ? `<p class="note">${esc(mention.note)}</p>` : ''}
+              ${mention.note ? `<p class="note">${noteHtml(mention.note, { self: entry })}</p>` : ''}
               ${entry.episodeCount > 1 ? `<p class="also">Also in ${plural(entry.episodeCount - 1, 'other episode')}</p>` : ''}
             </div>
           </li>`,
