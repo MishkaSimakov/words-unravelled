@@ -543,7 +543,10 @@ function episodesPage() {
         .map(
           (ep) => `
         <li><a href="${href(`episode/${ep.id}`)}">
-          <img src="${thumbUrl(ep.id)}" alt="" loading="lazy" width="480" height="360" />
+          <span class="episode-list-thumb">
+            <img src="${thumbUrl(ep.id)}" alt="" loading="lazy" width="480" height="360" />
+            ${ep.duration ? `<span class="episode-list-duration">${fmtTime(ep.duration)}</span>` : ''}
+          </span>
           <span class="episode-list-text">
             <span class="episode-list-title">${esc(ep.title)}</span>
             <span class="meta">${fmtDate(ep.date)} · ${plural(db.byEpisode.get(ep.id)?.length ?? 0, 'entry', 'entries')}</span>
