@@ -1,0 +1,635 @@
+{
+  "video_id": "-nhPlHrJDsQ",
+  "entries": [
+    {
+      "term": "time",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:01:39",
+      "note": "Means a span or period; its Proto-Indo-European root means to divide. It replaced [[tide]], and the hosts contrast it with Latin [[tempus]], meaning to stretch.",
+      "confidence": "high"
+    },
+    {
+      "term": "tide",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:01:57",
+      "note": "Old English word for [[time]] in general, not just the sea's movement; it also meant an hour before French [[hour]] was imported.",
+      "confidence": "high"
+    },
+    {
+      "term": "tempus",
+      "original": "tempus",
+      "translation": null,
+      "type": "word",
+      "language": "Latin",
+      "timestamp": "00:02:22",
+      "note": "Latin word for time, said to mean to stretch; the hosts contrast it with the Germanic idea of [[time]] as a division.",
+      "confidence": "high"
+    },
+    {
+      "term": "clock",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:02:40",
+      "note": "Imitates the tick-like sound of an early square sheet-metal bell; adopted in the 14th century, probably from medieval Latin, possibly Celtic, and resembles German [[Glocke|Glocken]].",
+      "confidence": "high"
+    },
+    {
+      "term": "dægmæl",
+      "original": "dægmæl",
+      "translation": "day measure",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:03:35",
+      "note": "Old English word for a timepiece used before [[clock]] arrived in the 14th century, literally a day measure.",
+      "confidence": "low"
+    },
+    {
+      "term": "horologium",
+      "original": "horologium",
+      "translation": null,
+      "type": "word",
+      "language": "Latin",
+      "timestamp": "00:03:35",
+      "note": "Latin word for a timepiece, the source of [[horology]]; we still describe timepieces as horological.",
+      "confidence": "high"
+    },
+    {
+      "term": "clepsydra",
+      "original": "klepsydra",
+      "translation": "water thief",
+      "type": "word",
+      "language": "Greek",
+      "timestamp": "00:03:43",
+      "note": "Greek word for a water clock, literally water thief, sharing its stealing element with [[kleptomaniac]]; time was measured by water dripping into another vessel.",
+      "confidence": "high"
+    },
+    {
+      "term": "watch",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:05:07",
+      "note": "The wrist clock is named for us looking at it, whereas other languages, such as French [[montre]], name it for showing the time.",
+      "confidence": "high"
+    },
+    {
+      "term": "montre",
+      "original": "montre",
+      "translation": "show",
+      "type": "word",
+      "language": "French",
+      "timestamp": "00:05:31",
+      "note": "French word for a [[watch]], meaning show, because the device shows the time.",
+      "confidence": "high"
+    },
+    {
+      "term": "face",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:05:48",
+      "note": "Means the thing opposite or facing you, which is why a clock or watch has a face that looks at us.",
+      "confidence": "high"
+    },
+    {
+      "term": "second",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:06:17",
+      "note": "Same word as ordinal second, from Latin [[secunda minuta]], a second reduction of the hour. Before the Normans brought it, English used [[other]] instead.",
+      "confidence": "high"
+    },
+    {
+      "term": "minute",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:07:00",
+      "note": "The same word as minute meaning tiny: the small parts of an hour, the [[minuta prima|first minutes]]. The original medieval minute was a tenth of an hour.",
+      "confidence": "high"
+    },
+    {
+      "term": "hour",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:08:47",
+      "note": "From Greek hora, a unit or interval; the H was never pronounced in English, French or Spanish, though it is in [[horology]]. It shares an ancient root with [[year]].",
+      "confidence": "high"
+    },
+    {
+      "term": "year",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:10:40",
+      "note": "A very old Germanic word, probably from the same root as the Greek source of [[hour]]; the root meant both year and season.",
+      "confidence": "high"
+    },
+    {
+      "term": "point",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:13:43",
+      "note": "In the medieval system Bartholomeus Anglicus described (also mentioned by Bede), a quarter of an hour, made up of ten [[moment|moments]]; also called a [[prick]].",
+      "confidence": "high"
+    },
+    {
+      "term": "moment",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:13:51",
+      "note": "A medieval unit of time: a tenth of a [[point]], made up of twelve [[ounce|ounces]].",
+      "confidence": "high"
+    },
+    {
+      "term": "ounce",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:14:00",
+      "note": "A medieval unit of time: a twelfth of a [[moment]], made up of 47 [[atom|atoms]].",
+      "confidence": "high"
+    },
+    {
+      "term": "atom",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:14:02",
+      "note": "The smallest medieval time unit, meaning something that can't be divided: 22,560 per hour, far too small to measure then. It is unrelated to atomic clocks.",
+      "confidence": "high"
+    },
+    {
+      "term": "prick",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:15:04",
+      "note": "Another medieval name for the time unit called a [[point]], which Rob finds juvenilely funny; English literature has many prick-and-point jokes.",
+      "confidence": "high"
+    },
+    {
+      "term": "day",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:15:23",
+      "note": "From a Proto-Germanic root meaning to burn or be hot, likely from a heat-related Proto-Indo-European root. It is related to a Sanskrit word for a glow in the sky.",
+      "confidence": "high"
+    },
+    {
+      "term": "dusk",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:16:11",
+      "note": "The same word as dusky, meaning the darkest part of the day that isn't night; Old English dox underwent metathesis, like [[ask]] and axe.",
+      "confidence": "high"
+    },
+    {
+      "term": "noon",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:16:50",
+      "note": "From Latin nona, the ninth hour counted from 6 a.m., so originally about 3 p.m. It later moved to midday, giving [[afternoon]] and [[forenoon]].",
+      "confidence": "high"
+    },
+    {
+      "term": "afternoon",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:17:36",
+      "note": "Began as references to after [[noon]] that fused into a single word, alongside [[forenoon]].",
+      "confidence": "high"
+    },
+    {
+      "term": "forenoon",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:17:36",
+      "note": "Began as before [[noon]], became a word for the morning, and has now largely fallen out of use.",
+      "confidence": "high"
+    },
+    {
+      "term": "twilight",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:18:04",
+      "note": "Light that comes between, when the sun is below the horizon; originally it referred to both morning and evening, not just the end of the day.",
+      "confidence": "high"
+    },
+    {
+      "term": "crepuscular",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:18:29",
+      "note": "From the Latin word for twilight or dusk; it describes twilight hours and species that are active at twilight.",
+      "confidence": "high"
+    },
+    {
+      "term": "dawn",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:18:48",
+      "note": "Called a Shakespeare coinage, clipped from the earlier [[dawning]], perhaps to fit his pentameter; also mentioned in the Shakespeare episode.",
+      "confidence": "high"
+    },
+    {
+      "term": "décade",
+      "original": "décade",
+      "translation": null,
+      "type": "word",
+      "language": "French",
+      "timestamp": "00:22:32",
+      "note": "The name for a ten-day week in the French Revolutionary calendar, where each 30-day month had three; it meant ten days, not ten years.",
+      "confidence": "high"
+    },
+    {
+      "term": "halb eins",
+      "original": "halb eins",
+      "translation": "half one",
+      "type": "phrase",
+      "language": "German",
+      "timestamp": "00:23:29",
+      "note": "In German (and other Germanic languages) half one means 12:30, halfway to one, whereas in British English it means 1:30, which causes missed meetings.",
+      "confidence": "high"
+    },
+    {
+      "term": "Filipino time",
+      "original": null,
+      "translation": null,
+      "type": "phrase",
+      "language": "English",
+      "timestamp": "00:25:06",
+      "note": "A joke in the Philippines that Filipino time means being late; many cultures joke similarly, for example about [[Indian Standard Time]].",
+      "confidence": "high"
+    },
+    {
+      "term": "Indian Standard Time",
+      "original": null,
+      "translation": null,
+      "type": "phrase",
+      "language": "English",
+      "timestamp": "00:25:15",
+      "note": "Jokingly said by Jess's Indian friends to mean showing up an hour late, like [[Filipino time]].",
+      "confidence": "low"
+    },
+    {
+      "term": "week",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:26:10",
+      "note": "Literally a turning or succession, sharing a root with [[vice versa]] and [[vicarious]]; perhaps originally a change of duty, a theory backed by Old Icelandic [[vika]].",
+      "confidence": "high"
+    },
+    {
+      "term": "Wednesday",
+      "original": null,
+      "translation": null,
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:26:41",
+      "note": "Odin's day, with Odin called Woden by the Anglo-Saxons; a Germanic translation of the Roman planetary day names, covered in the mythology episode.",
+      "confidence": "high"
+    },
+    {
+      "term": "Thursday",
+      "original": null,
+      "translation": null,
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:26:41",
+      "note": "Thor's day, one of the Germanic translations of the Roman planetary day names.",
+      "confidence": "high"
+    },
+    {
+      "term": "vika",
+      "original": "vika",
+      "translation": null,
+      "type": "word",
+      "language": "Icelandic",
+      "timestamp": "00:27:20",
+      "note": "Old Icelandic for a distance traveled at sea, perhaps how far you rowed before changing rowers; it supports the change-of-duty theory for [[week]].",
+      "confidence": "high"
+    },
+    {
+      "term": "Monday",
+      "original": null,
+      "translation": null,
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:27:57",
+      "note": "Moon day; the moon is named in both Monday and every [[month]].",
+      "confidence": "high"
+    },
+    {
+      "term": "Tuesday",
+      "original": null,
+      "translation": null,
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:27:57",
+      "note": "Named after Tiw, the Germanic god of war.",
+      "confidence": "low"
+    },
+    {
+      "term": "Friday",
+      "original": null,
+      "translation": null,
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:27:57",
+      "note": "Jess suggests Freya's day, but Rob says it is generally thought to be Frigg's day; the two goddesses are similar but not identical.",
+      "confidence": "high"
+    },
+    {
+      "term": "Saturday",
+      "original": null,
+      "translation": null,
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:28:18",
+      "note": "Named for Saturn, a return to Latin among the otherwise Germanic day names.",
+      "confidence": "high"
+    },
+    {
+      "term": "Sunday",
+      "original": null,
+      "translation": null,
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:28:18",
+      "note": "Named for the sun.",
+      "confidence": "high"
+    },
+    {
+      "term": "calendar",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:28:35",
+      "note": "From Latin calendarium, an account book or register; originally a debt register, because interest was due on the [[kalends]].",
+      "confidence": "high"
+    },
+    {
+      "term": "kalends",
+      "original": "kalendae",
+      "translation": null,
+      "type": "word",
+      "language": "Latin",
+      "timestamp": "00:28:47",
+      "note": "The first day of the Roman month, from [[calare]] meaning to call out, because priests publicly proclaimed it after observing the new moon.",
+      "confidence": "high"
+    },
+    {
+      "term": "call",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:29:07",
+      "note": "Germanic, but from the same Proto-Indo-European root as Latin [[calare]], and it also meant to call out.",
+      "confidence": "high"
+    },
+    {
+      "term": "solstice",
+      "original": null,
+      "translation": "sun standing still",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:29:29",
+      "note": "Literally the sun standing still; knowing this helps Rob tell it apart from [[equinox]].",
+      "confidence": "high"
+    },
+    {
+      "term": "equinox",
+      "original": null,
+      "translation": "equal night",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:29:37",
+      "note": "Literally equal night, one of the transparent calendar terms along with [[solstice]].",
+      "confidence": "high"
+    },
+    {
+      "term": "fortnight",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:30:18",
+      "note": "A unit of two weeks, from Old English for fourteen nights; common in Britain but rarely used in the US; its counterpart was [[sennight]].",
+      "confidence": "high"
+    },
+    {
+      "term": "sennight",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:30:53",
+      "note": "From Old English for seven nights, a unit of seven days and counterpart of [[fortnight]]; no longer used.",
+      "confidence": "high"
+    },
+    {
+      "term": "twelvemonth",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:31:59",
+      "note": "Used since Old English for a period of twelve months, distinct from the calendar [[year]]; it appears in the 1800s folk song All Around My Hat.",
+      "confidence": "high"
+    },
+    {
+      "term": "ereyesterday",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:32:35",
+      "note": "A lost English word for the day before yesterday; compare German [[vorgestern]]. The hosts want to revive it with [[overmorrow]].",
+      "confidence": "high"
+    },
+    {
+      "term": "overmorrow",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:32:35",
+      "note": "A lost English word for the day after tomorrow, like German [[übermorgen]]; the hosts think it sounds modern and fun enough to revive.",
+      "confidence": "low"
+    },
+    {
+      "term": "übermorgen",
+      "original": "übermorgen",
+      "translation": null,
+      "type": "word",
+      "language": "German",
+      "timestamp": "00:32:43",
+      "note": "German for the day after tomorrow, still in use, unlike English [[overmorrow]].",
+      "confidence": "high"
+    },
+    {
+      "term": "vorgestern",
+      "original": "vorgestern",
+      "translation": null,
+      "type": "word",
+      "language": "German",
+      "timestamp": "00:32:52",
+      "note": "German for the day before yesterday; stacking more vors goes further back in time. Compare English [[ereyesterday]].",
+      "confidence": "high"
+    },
+    {
+      "term": "month",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:33:34",
+      "note": "Basically means a measurement, related to [[meter]], [[dimension]], [[menstrual]], [[menopause]], [[semester]] and [[trimester]]; it roughly matches a lunar cycle, so the moon names it.",
+      "confidence": "high"
+    },
+    {
+      "term": "trimester",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:33:54",
+      "note": "Means three months, not a division into three; Rob realized this during his wife's pregnancy. It is related to [[month]].",
+      "confidence": "high"
+    },
+    {
+      "term": "semester",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:33:54",
+      "note": "From Latin for six months, not half a year's worth of months; related to [[month]] and [[trimester]], though semesters no longer last six months.",
+      "confidence": "high"
+    },
+    {
+      "term": "great year",
+      "original": null,
+      "translation": null,
+      "type": "phrase",
+      "language": "English",
+      "timestamp": "00:35:45",
+      "note": "Also called the Platonic year: the roughly 25,920 (now 25,800) years it takes Earth's tilting axis to return to its original position. The hosts don't know Plato's connection.",
+      "confidence": "high"
+    },
+    {
+      "term": "season",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:38:56",
+      "note": "Essentially means a sowing; it was used more generally until the 14th century, when four fixed seasons were settled on.",
+      "confidence": "high"
+    },
+    {
+      "term": "hibernate",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:39:42",
+      "note": "Means to winterize yourself, and it evokes the French word for winter, [[hiver]].",
+      "confidence": "high"
+    },
+    {
+      "term": "fall",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:39:58",
+      "note": "The American name for the season, with a sense of decaying and dying; like [[autumn]], it replaced the older [[harvest]], and is unusual among Germanic languages.",
+      "confidence": "high"
+    },
+    {
+      "term": "autumn",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:39:58",
+      "note": "The British name for the season, borrowed from French and said to mean increase; like [[fall]], it replaced the older [[harvest]].",
+      "confidence": "high"
+    },
+    {
+      "term": "harvest",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:40:14",
+      "note": "The earlier English name for the season now called [[fall]] or [[autumn]]; many other Germanic languages still use their version of harvest.",
+      "confidence": "high"
+    },
+    {
+      "term": "Blōtmōnaþ",
+      "original": "Blōtmōnaþ",
+      "translation": "blood month",
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:40:58",
+      "note": "One of the scarier Anglo-Saxon month names, covered in the earlier calendar episode.",
+      "confidence": "low"
+    },
+    {
+      "term": "Þrimilce",
+      "original": "Þrimilce",
+      "translation": null,
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:40:59",
+      "note": "The Anglo-Saxon month when cows were milked extra; like all Anglo-Saxon month names it ended in 'month', and was covered in the calendar episode.",
+      "confidence": "low"
+    }
+  ]
+}

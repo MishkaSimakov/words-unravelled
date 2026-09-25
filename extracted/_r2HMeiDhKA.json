@@ -1,0 +1,745 @@
+{
+  "video_id": "_r2HMeiDhKA",
+  "entries": [
+    {
+      "term": "pet",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:00:49",
+      "note": "From a Scottish Gaelic or Irish word for a domesticated animal; the earliest Scottish uses in the 16th–17th centuries meant a hand-reared lamb, as in Johnson's dictionary.",
+      "confidence": "high"
+    },
+    {
+      "term": "petting",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:01:12",
+      "note": "Stroking an animal, a sense from the 1600s that comes from the noun [[pet]]; British 'no heavy petting' pool signs meant no snogging.",
+      "confidence": "high"
+    },
+    {
+      "term": "cade",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:03:15",
+      "note": "An animal abandoned by its mother and reared by hand; used almost interchangeably with [[pet]] for lambs.",
+      "confidence": "high"
+    },
+    {
+      "term": "pet peeve",
+      "original": null,
+      "translation": null,
+      "type": "phrase",
+      "language": "English",
+      "timestamp": "00:03:52",
+      "note": "An ironic use of [[pet]] meaning 'favourite': your absolute favourite worst thing.",
+      "confidence": "high"
+    },
+    {
+      "term": "teacher's pet",
+      "original": null,
+      "translation": null,
+      "type": "phrase",
+      "language": "English",
+      "timestamp": "00:04:58",
+      "note": "Reflects the older sense of [[pet]] as an indulged, spoilt child, quoted from 1788, which implies favouritism.",
+      "confidence": "high"
+    },
+    {
+      "term": "dog",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:05:20",
+      "note": "Origin unknown; one of a puzzling set with [[frog]], [[hog]], [[pig]] and [[stag]] that had an Old English double G, probably starting as cutesy diminutives that replaced [[hound]].",
+      "confidence": "high"
+    },
+    {
+      "term": "frog",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:05:30",
+      "note": "Like [[dog]], probably began as a cute diminutive and replaced the older word frosh, which German speakers will recognise.",
+      "confidence": "high"
+    },
+    {
+      "term": "pig",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:05:30",
+      "note": "Like [[dog]], probably a cutesy diminutive that became the generic word, replacing the older [[swine]].",
+      "confidence": "high"
+    },
+    {
+      "term": "dogue",
+      "original": "dogue",
+      "translation": null,
+      "type": "word",
+      "language": "French",
+      "timestamp": "00:06:27",
+      "note": "Borrowed from English [[dog]], like similar words in other languages; it usually means a mastiff, probably because Britain's best-known exported dog was the [[mastiff]].",
+      "confidence": "high"
+    },
+    {
+      "term": "hound",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:07:02",
+      "note": "Once the generic word for dogs; it swapped places with [[dog]] and became the more specific, breed-focused term.",
+      "confidence": "high"
+    },
+    {
+      "term": "corgi",
+      "original": null,
+      "translation": "dwarf dog",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:08:00",
+      "note": "A dog breed whose name means 'dwarf dog' in Welsh.",
+      "confidence": "high"
+    },
+    {
+      "term": "dachshund",
+      "original": null,
+      "translation": "badger hound",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:08:04",
+      "note": "From German Dachs 'badger' plus hound; the dogs were bred to chase badgers out of their holes.",
+      "confidence": "high"
+    },
+    {
+      "term": "mastiff",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:08:29",
+      "note": "The Old French source meant 'great [[cur]]' and came originally from a Latin word meaning tame or gentle.",
+      "confidence": "high"
+    },
+    {
+      "term": "cur",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:08:37",
+      "note": "A 13th-century word for a dog, almost always a badly behaved or ill-bred one; supposedly from a root meaning 'growl'.",
+      "confidence": "high"
+    },
+    {
+      "term": "feisty",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:08:39",
+      "note": "From Middle English 'fisting [[cur]]' (farting dog); it first described lively little dogs, supposedly because ladies blamed their farts on their lapdogs.",
+      "confidence": "high"
+    },
+    {
+      "term": "shiba",
+      "original": null,
+      "translation": "little brushwood dog",
+      "type": "word",
+      "language": "Japanese",
+      "timestamp": "00:09:20",
+      "note": "A Japanese breed name, perhaps after the brushwood landscape where it hunted or its golden coat.",
+      "confidence": "high"
+    },
+    {
+      "term": "saluki",
+      "original": null,
+      "translation": "plunge earth",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:09:28",
+      "note": "Said to be an ancient Sumerian word meaning 'plunge earth', supposedly because the dogs leapt off camels' backs during hunts.",
+      "confidence": "high"
+    },
+    {
+      "term": "poodle",
+      "original": "Pudelhund",
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:09:36",
+      "note": "From German Pudelhund, named after puddles because they were bred as water dogs with quick-drying curly coats.",
+      "confidence": "high"
+    },
+    {
+      "term": "Australian Shepherd",
+      "original": null,
+      "translation": null,
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:10:48",
+      "note": "A misleading breed name: neither Australian Shepherds nor mini Aussies are Australian, so Jess's mini American Shepherd is the accurate name.",
+      "confidence": "high"
+    },
+    {
+      "term": "puppy",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:11:20",
+      "note": "From French poupée 'doll', related to puppet and [[poppet]], since little dogs were playthings; it replaced [[whelp]].",
+      "confidence": "high"
+    },
+    {
+      "term": "poppet",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:11:29",
+      "note": "A term of endearment related to [[puppy]] and puppet; Rob wonders whether Americans use it.",
+      "confidence": "low"
+    },
+    {
+      "term": "whelp",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:11:46",
+      "note": "The earlier word for baby dogs, later replaced by [[puppy]].",
+      "confidence": "high"
+    },
+    {
+      "term": "litter of whelps",
+      "original": null,
+      "translation": null,
+      "type": "phrase",
+      "language": "English",
+      "timestamp": "00:11:55",
+      "note": "From the Book of St Albans, the first written use of 'litter' as a collective noun for [[whelp|puppies]]; its collective nouns were often tongue-in-cheek.",
+      "confidence": "high"
+    },
+    {
+      "term": "kindle of kittens",
+      "original": null,
+      "translation": null,
+      "type": "phrase",
+      "language": "English",
+      "timestamp": "00:12:26",
+      "note": "Another collective noun found in the Book of St Albans alongside [[litter of whelps]].",
+      "confidence": "low"
+    },
+    {
+      "term": "kitten",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:12:40",
+      "note": "Probably a variation on French chaton, 'little cat', from chat.",
+      "confidence": "high"
+    },
+    {
+      "term": "cat",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:12:48",
+      "note": "Similar words appear across many European language families, probably arising independently like [[meow]]; Late Latin cattus may come from a North African word, as Nubian and Berber show.",
+      "confidence": "high"
+    },
+    {
+      "term": "meow",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:13:42",
+      "note": "Many languages have similar words because they each imitate the sound, not because they borrowed it; the same reasoning is applied to [[cat]].",
+      "confidence": "high"
+    },
+    {
+      "term": "puss",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:14:02",
+      "note": "An imitative sound used to call a cat, like [[meow]].",
+      "confidence": "high"
+    },
+    {
+      "term": "feline",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:14:09",
+      "note": "From felis, the classical Latin word for cat, which is older than the Late Latin cattus behind [[cat]].",
+      "confidence": "high"
+    },
+    {
+      "term": "tabby",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:15:19",
+      "note": "From Attabi, a striped silk cloth made in Baghdad's Attabi district; once imported to England, its wavy striped pattern gave the cat its name.",
+      "confidence": "high"
+    },
+    {
+      "term": "Kater",
+      "original": "Kater",
+      "translation": "tomcat",
+      "type": "word",
+      "language": "German",
+      "timestamp": "00:16:01",
+      "note": "German word for a male cat that also means a hangover; the hosts don't know why, which leads them to [[hair of the dog that bit you]].",
+      "confidence": "high"
+    },
+    {
+      "term": "hair of the dog that bit you",
+      "original": null,
+      "translation": null,
+      "type": "idiom",
+      "language": "English",
+      "timestamp": "00:16:17",
+      "note": "Its earliest 16th-century uses mean drinking alcohol for a hangover, not treating dog bites, so the dog-bite cure was probably figurative from the start.",
+      "confidence": "high"
+    },
+    {
+      "term": "turtle",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:19:17",
+      "note": "In Old English it meant the turtle dove, imitating its cooing; in the 1600s French tortue was misheard as turtle and applied to the reptile, once called marine [[tortoise|tortoises]].",
+      "confidence": "high"
+    },
+    {
+      "term": "Testudines",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "Latin",
+      "timestamp": "00:19:17",
+      "note": "The order that includes all [[turtle|turtles]], tortoises and terrapins, from Latin testa 'shell'.",
+      "confidence": "high"
+    },
+    {
+      "term": "tortoise",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:19:25",
+      "note": "Now means land-dwelling turtles; from Middle English tortuse, spelling influenced by porpoise, from Latin 'twisted' (feet shape) or Tartarus, the abyss below Hades.",
+      "confidence": "high"
+    },
+    {
+      "term": "boa",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:21:49",
+      "note": "Probably related to [[bovine]]; Pliny described a giant mythical snake that drank cows' milk, and Linnaeus later applied boa constrictor (1758) to a South American snake.",
+      "confidence": "high"
+    },
+    {
+      "term": "gecko",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:22:52",
+      "note": "Named after the lizard's noisy call, probably through a Malay or Javanese imitation of the sound.",
+      "confidence": "low"
+    },
+    {
+      "term": "salamander",
+      "original": null,
+      "translation": "inside flame",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:23:37",
+      "note": "Probably Persian, meaning 'inside flame', from the myth that salamanders were born in fire because they crawled from burning rotten logs; heraldic ones look dragon-like.",
+      "confidence": "high"
+    },
+    {
+      "term": "axolotl",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:24:58",
+      "note": "An Aztec word, from Nahuatl.",
+      "confidence": "high"
+    },
+    {
+      "term": "chameleon",
+      "original": null,
+      "translation": "ground lion",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:25:17",
+      "note": "Means 'ground lion', covered in an earlier episode; the hosts joke that the eyes and colour change are more distinctive than anything lion-like.",
+      "confidence": "high"
+    },
+    {
+      "term": "chauve-souris",
+      "original": "chauve-souris",
+      "translation": "bald mouse",
+      "type": "word",
+      "language": "French",
+      "timestamp": "00:25:47",
+      "note": "The French word for [[bat]], meaning 'bald mouse'; Rob thinks 'flying mouse' would fit better.",
+      "confidence": "high"
+    },
+    {
+      "term": "flittermouse",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:25:59",
+      "note": "An old word for a [[bat]] that the hosts prefer to [[chauve-souris]].",
+      "confidence": "high"
+    },
+    {
+      "term": "bat",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:25:59",
+      "note": "Covered in an earlier episode; it means the same thing as flutter, like [[flittermouse]].",
+      "confidence": "high"
+    },
+    {
+      "term": "hamster",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:26:15",
+      "note": "From Old High German hamustro, from Russian, ultimately Iranian: Avestan hamaestar means 'one who tramples down', probably because they destroyed crops and food stores.",
+      "confidence": "high"
+    },
+    {
+      "term": "Hamsterkauf",
+      "original": "Hamsterkauf",
+      "translation": "hamster shopping",
+      "type": "word",
+      "language": "German",
+      "timestamp": "00:27:16",
+      "note": "Means hoarding, buying more than you need like a [[hamster]] storing food in its cheeks; German also has a verb meaning to hoard, and the term surged during the pandemic.",
+      "confidence": "high"
+    },
+    {
+      "term": "horde of hamsters",
+      "original": null,
+      "translation": null,
+      "type": "phrase",
+      "language": "English",
+      "timestamp": "00:27:32",
+      "note": "The collective noun for hamsters, 'horde' meaning an army rather than hoarding, which fits [[hamster]]'s 'trampler' meaning.",
+      "confidence": "high"
+    },
+    {
+      "term": "German rat",
+      "original": null,
+      "translation": null,
+      "type": "phrase",
+      "language": "English",
+      "timestamp": "00:27:54",
+      "note": "What English speakers called the [[hamster]] before the word 'hamster' was adopted.",
+      "confidence": "high"
+    },
+    {
+      "term": "guinea pig",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:28:20",
+      "note": "Neither from Guinea nor a pig: maybe named for pig-like shape and noises, or the guinea hog, with Guinea meaning any far-off land or slave-ship cargo.",
+      "confidence": "high"
+    },
+    {
+      "term": "guinea fowl",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:29:43",
+      "note": "Actually does come from Guinea, unlike the [[guinea pig]]; guinea fowls were originally called [[turkey|turkeys]].",
+      "confidence": "high"
+    },
+    {
+      "term": "turkey",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:29:48",
+      "note": "Originally meant [[guinea fowl]], sold into Europe by Turkish traders, before the name moved to the North American bird.",
+      "confidence": "high"
+    },
+    {
+      "term": "chinchilla",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:30:06",
+      "note": "Probably from an indigenous Peruvian language, Aymara or Quechua, reshaped to look like a Spanish diminutive ending in -illa.",
+      "confidence": "high"
+    },
+    {
+      "term": "gerbil",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:30:32",
+      "note": "A genuine diminutive, from Latin gerbillus, 'little jerboa'; ultimately from a Berber word, also found in Arabic, meaning 'flesh of the loins'.",
+      "confidence": "high"
+    },
+    {
+      "term": "muscle",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:31:41",
+      "note": "Named after mice because muscles look like mice running under the skin; Jess compares this to [[gerbil]]'s 'flesh of the loins'.",
+      "confidence": "high"
+    },
+    {
+      "term": "ferret",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:32:04",
+      "note": "Ultimately from a word meaning 'robber', as in Italian; English took it from French furet, which Rob links to fuir 'to flee'.",
+      "confidence": "high"
+    },
+    {
+      "term": "ferret out",
+      "original": null,
+      "translation": null,
+      "type": "phrase",
+      "language": "English",
+      "timestamp": "00:33:19",
+      "note": "Originally meant sending your hunting [[ferret]] after something, not acting like a ferret; ferrets were domesticated to chase rabbits out of warrens.",
+      "confidence": "high"
+    },
+    {
+      "term": "business of ferrets",
+      "original": null,
+      "translation": null,
+      "type": "phrase",
+      "language": "English",
+      "timestamp": "00:33:44",
+      "note": "The collective noun for [[ferret|ferrets]], a favourite term of the hosts.",
+      "confidence": "high"
+    },
+    {
+      "term": "budgie smuggler",
+      "original": null,
+      "translation": null,
+      "type": "phrase",
+      "language": "English",
+      "timestamp": "00:34:37",
+      "note": "An Australian term the hosts joke about; it leads them into [[budgerigar]].",
+      "confidence": "low"
+    },
+    {
+      "term": "budgerigar",
+      "original": null,
+      "translation": "good cockatoo",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:34:42",
+      "note": "From an unidentified Australian Aboriginal language: budgeri 'good' plus gar 'cockatoo'. Americans often call these birds [[parakeet|parakeets]].",
+      "confidence": "high"
+    },
+    {
+      "term": "parrot",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:35:48",
+      "note": "From Middle French Perrot, a diminutive of Pierre used for someone who talks a lot or clippedly; related to [[parakeet]], with a parallel in [[robin]].",
+      "confidence": "high"
+    },
+    {
+      "term": "parakeet",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:35:48",
+      "note": "Related to [[parrot]]; possibly influenced by Italian parrochetto 'periwig', after the tufts of feathers on their heads, linking it to [[peruke]].",
+      "confidence": "low"
+    },
+    {
+      "term": "lorikeet",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:36:24",
+      "note": "Lory, a Malay bird name, plus -keet from [[parakeet]], a [[cranberry morpheme]] from an Italian diminutive element.",
+      "confidence": "high"
+    },
+    {
+      "term": "cranberry morpheme",
+      "original": null,
+      "translation": null,
+      "type": "phrase",
+      "language": "English",
+      "timestamp": "00:36:51",
+      "note": "A [[morpheme]] found in only one word, like cran in [[cranberry]], rasp in [[raspberry]] or boysen in boysenberry.",
+      "confidence": "high"
+    },
+    {
+      "term": "cranberry",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:36:59",
+      "note": "Cran comes from crane, because the flowers look like little crane heads; the classic [[cranberry morpheme]].",
+      "confidence": "high"
+    },
+    {
+      "term": "raspberry",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:37:15",
+      "note": "Its rasp is thought to be unrelated to the rasp of a sore throat, making it another [[cranberry morpheme]].",
+      "confidence": "high"
+    },
+    {
+      "term": "morpheme",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:37:38",
+      "note": "A unit of a word, a bit like a syllable but not quite.",
+      "confidence": "high"
+    },
+    {
+      "term": "robin",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:37:57",
+      "note": "Originally a diminutive of Robert, just as [[parrot]] comes from Pierrot, a cute form of Peter.",
+      "confidence": "high"
+    },
+    {
+      "term": "magpie",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:38:22",
+      "note": "Pie was the bird's original name; mag, short for Margaret and an epithet for a chatty woman, was added because the birds are chatty.",
+      "confidence": "high"
+    },
+    {
+      "term": "canary",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:38:30",
+      "note": "Named after the Canary Islands, from Latin for 'island of dogs', so the bird is indirectly named after dogs.",
+      "confidence": "high"
+    },
+    {
+      "term": "Polly",
+      "original": null,
+      "translation": null,
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:38:58",
+      "note": "A familiar human nickname for parrots, a variant of Molly or Mary; popularised by Andrew Jackson's parrot Poll, which swore loudly at his funeral.",
+      "confidence": "high"
+    },
+    {
+      "term": "Fido",
+      "original": null,
+      "translation": "faithful",
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:39:35",
+      "note": "A classic dog name meaning faithful or trustworthy, related to [[fidelity]].",
+      "confidence": "high"
+    },
+    {
+      "term": "Rover",
+      "original": null,
+      "translation": null,
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:39:47",
+      "note": "A dog that roves and adventures; popularised by the 1905 British film Rescued by Rover, and similar in meaning to [[Ranger]].",
+      "confidence": "high"
+    },
+    {
+      "term": "Ranger",
+      "original": null,
+      "translation": null,
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:40:00",
+      "note": "Jess's long-legged dog, named in homage to Aragorn, the ranger nicknamed Longshanks in The Lord of the Rings.",
+      "confidence": "high"
+    },
+    {
+      "term": "Felix",
+      "original": null,
+      "translation": "happy, lucky",
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:40:25",
+      "note": "A common cat name meaning happy or lucky, popular thanks to Felix the Cat and its likeness to Latin felis, source of [[feline]].",
+      "confidence": "high"
+    },
+    {
+      "term": "Mally",
+      "original": null,
+      "translation": null,
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:41:18",
+      "note": "Justin Bieber's capuchin monkey, named after the rapper Mally Mall, who gave it to him.",
+      "confidence": "low"
+    }
+  ]
+}

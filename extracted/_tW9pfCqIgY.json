@@ -1,0 +1,965 @@
+{
+  "video_id": "_tW9pfCqIgY",
+  "entries": [
+    {
+      "term": "meseems",
+      "original": null,
+      "translation": "it seems to me",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:02:17",
+      "note": "Used in the 14th century like [[methinks]], but meaning 'it seems to me'; Jess wants to bring it back to fill a lexical gap.",
+      "confidence": "high"
+    },
+    {
+      "term": "eftsoons",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:02:50",
+      "note": "A Middle English word, used into the 19th century, meaning 'soon afterwards'; Jess suggests reviving it.",
+      "confidence": "low"
+    },
+    {
+      "term": "twelvemonth",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:03:14",
+      "note": "An old word for a year, one of several lost time frames that Rob thinks make perfect sense.",
+      "confidence": "high"
+    },
+    {
+      "term": "stound",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:03:14",
+      "note": "The Old English word for an hour before the French import [[hour]]; it matches similar Germanic words such as German Stunde.",
+      "confidence": "high"
+    },
+    {
+      "term": "billion",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:03:48",
+      "note": "In Britain a billion used to mean a million million; now it routinely means a thousand million, as in American usage.",
+      "confidence": "high"
+    },
+    {
+      "term": "milliard",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:04:21",
+      "note": "A lost word for a thousand million, from the time when a British [[billion]] meant a million million; the hosts joke it sounds like mallard.",
+      "confidence": "high"
+    },
+    {
+      "term": "myriad",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:04:37",
+      "note": "Means 10,000; Rob says both the noun use 'a myriad of' and the adjective use have been valid since the 16th–17th centuries, despite viewer criticism.",
+      "confidence": "high"
+    },
+    {
+      "term": "Solmonath",
+      "original": null,
+      "translation": "mud month",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:05:35",
+      "note": "The Old English name for February, meaning 'mud month'.",
+      "confidence": "low"
+    },
+    {
+      "term": "Hrethmonath",
+      "original": null,
+      "translation": "quick month",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:05:35",
+      "note": "The Old English name for March, which Jess says meant a quick month, or a month of nimbleness and activity.",
+      "confidence": "low"
+    },
+    {
+      "term": "Eostremonath",
+      "original": null,
+      "translation": "Easter month",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:05:43",
+      "note": "The Old English name for April, 'Easter month'.",
+      "confidence": "low"
+    },
+    {
+      "term": "Thrimilci",
+      "original": null,
+      "translation": "three-milk month",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:05:43",
+      "note": "An Old English month name, probably May, so called because cows could supposedly be milked three times a day then.",
+      "confidence": "low"
+    },
+    {
+      "term": "Blotmonath",
+      "original": null,
+      "translation": "blood month",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:05:59",
+      "note": "The Old English name for November, 'blood month', when early Saxons sacrificed and butchered animals to store as food for winter.",
+      "confidence": "low"
+    },
+    {
+      "term": "Saturnight",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:06:57",
+      "note": "An old word for Friday evening, the eve of Saturday.",
+      "confidence": "low"
+    },
+    {
+      "term": "dayrim",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:07:06",
+      "note": "A 13th-century word for dawn; Jess says it reminds her of the video game Skyrim.",
+      "confidence": "high"
+    },
+    {
+      "term": "endday",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:07:22",
+      "note": "A fairly transparent lost word meaning the day of one's death.",
+      "confidence": "high"
+    },
+    {
+      "term": "horologer",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:08:29",
+      "note": "A 14th-century word for a clockmaker, from the same source as [[hour]].",
+      "confidence": "high"
+    },
+    {
+      "term": "horologe",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:08:37",
+      "note": "An old word for a timepiece, sundial or hourglass; Rob compares it with the French word for a clock, and it is related to [[horologer]].",
+      "confidence": "high"
+    },
+    {
+      "term": "fleshmonger",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:09:09",
+      "note": "An old word for a butcher, used before English took [[butcher]] from French.",
+      "confidence": "high"
+    },
+    {
+      "term": "butcher",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:09:18",
+      "note": "From French; originally someone who dealt only in goat meat, since a [[buck]] was a male goat, which also relates it to [[springbok]].",
+      "confidence": "high"
+    },
+    {
+      "term": "questmonger",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:09:50",
+      "note": "Despite sounding heroic, it meant someone who habitually made money from spurious lawsuits, something like an ambulance chaser.",
+      "confidence": "high"
+    },
+    {
+      "term": "water-monger",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:10:14",
+      "note": "An old nickname for a doctor, from the practice of judging someone's health by examining their urine, probably in the 16th–17th centuries.",
+      "confidence": "high"
+    },
+    {
+      "term": "petticoat-monger",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:10:40",
+      "note": "An old word for a pimp.",
+      "confidence": "high"
+    },
+    {
+      "term": "treewright",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:10:57",
+      "note": "An Old English term for a carpenter, before the French word [[carpenter]] took over; Rob thinks it makes more literal sense.",
+      "confidence": "high"
+    },
+    {
+      "term": "wright",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:11:05",
+      "note": "Formed many old job titles for makers, also used figuratively as in poemwright; Rob says it is related to [[wrought]].",
+      "confidence": "high"
+    },
+    {
+      "term": "breadwright",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:11:05",
+      "note": "An old word for a baker, one of many [[wright]] job titles.",
+      "confidence": "high"
+    },
+    {
+      "term": "battlewright",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:11:05",
+      "note": "An old word for a soldier, one of many [[wright]] job titles.",
+      "confidence": "high"
+    },
+    {
+      "term": "housewright",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:11:13",
+      "note": "An old word for a builder, one of many [[wright]] job titles.",
+      "confidence": "high"
+    },
+    {
+      "term": "puddingwright",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:11:13",
+      "note": "Rob's favourite [[wright]] title; the pudding would have been a savoury dish made with suet, though he likes to imagine trifle sponges.",
+      "confidence": "high"
+    },
+    {
+      "term": "carpenter",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:11:46",
+      "note": "A French word that originally meant someone who made carriages and carts, so [[treewright]] makes more literal sense; [[cartwright]] is an alternative.",
+      "confidence": "high"
+    },
+    {
+      "term": "cartwright",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:11:54",
+      "note": "An alternative word for a maker of carts, like the original meaning of [[carpenter]]; it now survives mostly as a surname.",
+      "confidence": "high"
+    },
+    {
+      "term": "fingersmith",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:12:11",
+      "note": "An old word for a midwife, and also a nickname for a pickpocket.",
+      "confidence": "high"
+    },
+    {
+      "term": "midwife",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:12:19",
+      "note": "A very old word: 'mid' means with and 'wife' originally meant woman, so it is the person who is with the woman.",
+      "confidence": "high"
+    },
+    {
+      "term": "jawsmith",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:12:44",
+      "note": "Fairly modern US slang for someone who talks too much, quoted from the Philadelphia Saturday Evening Post in 1910.",
+      "confidence": "high"
+    },
+    {
+      "term": "ventosity",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:13:08",
+      "note": "A Latin-derived coinage from [[ventus]], 'wind', found from the 14th to 19th centuries, meaning either excess wind or figurative windbaggery; Washington Irving used it.",
+      "confidence": "low"
+    },
+    {
+      "term": "spinster",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:13:57",
+      "note": "Originally a woman who spun thread for a living, using the feminine [[-ster]] ending; unwed women of certain ranks traditionally took up spinning.",
+      "confidence": "high"
+    },
+    {
+      "term": "-ster",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:14:22",
+      "note": "An agent-noun ending, gender-neutral now in trickster and gangster, but specifically feminine in Middle English, unlike the neutral or masculine -er.",
+      "confidence": "high"
+    },
+    {
+      "term": "sewster",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:14:54",
+      "note": "A woman who sewed for a living, before the French-derived -ess ending gave seamstress; formed with [[-ster]].",
+      "confidence": "high"
+    },
+    {
+      "term": "whitster",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:15:02",
+      "note": "A woman who bleached cloth, formed with the feminine [[-ster]] ending.",
+      "confidence": "low"
+    },
+    {
+      "term": "Webster",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:15:10",
+      "note": "Originally a woman weaver, now a surname; formed with the feminine [[-ster]] ending.",
+      "confidence": "high"
+    },
+    {
+      "term": "Brewster",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:15:10",
+      "note": "Originally a woman brewer, now a surname; a female brewer Rob interviewed insisted on the title, and there was a UK pub chain called Brewsters.",
+      "confidence": "high"
+    },
+    {
+      "term": "Baxter",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:15:18",
+      "note": "From bakester, a woman baker, with a spelling change that hides it in plain sight; now a common surname, including in Jess's family.",
+      "confidence": "high"
+    },
+    {
+      "term": "spinnerweb",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:16:32",
+      "note": "One of Rob's favourite old names for a spider, essentially 'web spinner' with a fancy verb form.",
+      "confidence": "low"
+    },
+    {
+      "term": "arain",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:16:40",
+      "note": "An old word for a spider, similar to the French [[araignée]] and from the same Latin root.",
+      "confidence": "low"
+    },
+    {
+      "term": "attercop",
+      "original": null,
+      "translation": "venom head",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:16:48",
+      "note": "An old word for a spider meaning 'venom head', related to [[cobweb]] but not to adder; Jess notes it appears in The Hobbit.",
+      "confidence": "high"
+    },
+    {
+      "term": "cobweb",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:16:48",
+      "note": "Related to [[attercop]]; it simply means a spider web, since a spider could also be called a cop.",
+      "confidence": "high"
+    },
+    {
+      "term": "bilbowright",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:17:22",
+      "note": "An old job title for a sword maker, since a bilbo is a type of sword; the hosts note the Hobbit connection.",
+      "confidence": "high"
+    },
+    {
+      "term": "gangewifre",
+      "original": null,
+      "translation": "a weaver as he goes",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:18:04",
+      "note": "An old word for a spider, like a little walking weaver, since [[gang]] was an old way of saying walk.",
+      "confidence": "low"
+    },
+    {
+      "term": "coney",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:18:37",
+      "note": "An old word for a rabbit, possibly behind the name [[Coney Island]].",
+      "confidence": "high"
+    },
+    {
+      "term": "Coney Island",
+      "original": null,
+      "translation": null,
+      "type": "name",
+      "language": "English",
+      "timestamp": "00:18:45",
+      "note": "Perhaps named for its rabbit ([[coney]]) population, or after another place that was named for its rabbits.",
+      "confidence": "high"
+    },
+    {
+      "term": "tumbrel",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:18:53",
+      "note": "An old word for a [[porpoise]], used before English adopted the word porpoise.",
+      "confidence": "high"
+    },
+    {
+      "term": "porpoise",
+      "original": null,
+      "translation": "pig fish",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:19:34",
+      "note": "Means 'pig fish', fitting its blunt rounded snout; the hosts revisit an error from a previous episode about whether dolphins are porpoises.",
+      "confidence": "high"
+    },
+    {
+      "term": "squirrel",
+      "original": null,
+      "translation": "shadow tail",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:20:47",
+      "note": "From French, originally Greek, meaning 'shadow tail' and possibly related to [[obscure]]; supposedly the longest one-syllable word in English.",
+      "confidence": "high"
+    },
+    {
+      "term": "acweorna",
+      "original": null,
+      "translation": "oak dweller",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:21:03",
+      "note": "The Old English word for a squirrel; the first part means oak, and the best guess for the whole is 'oak dweller', compare [[Eichhörnchen]].",
+      "confidence": "low"
+    },
+    {
+      "term": "Eichhörnchen",
+      "original": "Eichhörnchen",
+      "translation": "little acorn",
+      "type": "word",
+      "language": "German",
+      "timestamp": "00:21:20",
+      "note": "German for squirrel, which Rob thinks involves folk etymology; like Dutch and other Germanic words for squirrel, it relates to the oak, as does [[acweorna]].",
+      "confidence": "high"
+    },
+    {
+      "term": "camelopard",
+      "original": null,
+      "translation": "camel leopard",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:22:35",
+      "note": "An old name for the [[giraffe]], a 'camel leopard'; it is also the name of a southern hemisphere constellation.",
+      "confidence": "high"
+    },
+    {
+      "term": "giraffe",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:23:25",
+      "note": "Comes from Arabic zarafa; Middle English also had other names like [[gerfaunt]] and [[orafle]].",
+      "confidence": "high"
+    },
+    {
+      "term": "gerfaunt",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:23:34",
+      "note": "A brief Middle English name for the [[giraffe]] whose ending was influenced by [[elephant]], a typical ending stuck onto exotic animals.",
+      "confidence": "low"
+    },
+    {
+      "term": "orafle",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:23:43",
+      "note": "Another Middle English name for the [[giraffe]], probably from a Latin rendering of the same Arabic word.",
+      "confidence": "high"
+    },
+    {
+      "term": "monoceros",
+      "original": null,
+      "translation": "single horn",
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:24:07",
+      "note": "An old word for either a rhinoceros or a unicorn, meaning anything with a single horn; Rob found it in Herbert Coleridge's dictionary.",
+      "confidence": "high"
+    },
+    {
+      "term": "apertly",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:25:54",
+      "note": "An old synonym for openly from Herbert Coleridge's dictionary, related to [[aperture]].",
+      "confidence": "high"
+    },
+    {
+      "term": "bemoidered",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:26:03",
+      "note": "An old word from Coleridge's dictionary meaning confused or perplexed; a relative survives as northern English dialect [[mither]].",
+      "confidence": "low"
+    },
+    {
+      "term": "mither",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:26:19",
+      "note": "A northern English dialect word meaning to bother someone, which Rob says is a relative of [[bemoidered]].",
+      "confidence": "low"
+    },
+    {
+      "term": "be-",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:26:27",
+      "note": "A prefix popular in the 15th–16th centuries, usually meaning around or on all sides (besiege, bespatter) but sometimes privative, as in behead.",
+      "confidence": "high"
+    },
+    {
+      "term": "bethwack",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:26:35",
+      "note": "Meant to thrash someone very soundly; one of the [[be-]] words Jess wants brought back.",
+      "confidence": "low"
+    },
+    {
+      "term": "betongue",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:26:35",
+      "note": "Meant to thrash someone verbally; formed with the [[be-]] prefix.",
+      "confidence": "low"
+    },
+    {
+      "term": "befool",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:26:44",
+      "note": "To make a fool of someone; a [[be-]] word that still comes up a little today.",
+      "confidence": "high"
+    },
+    {
+      "term": "overmirth",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:27:32",
+      "note": "Meant to insult someone; it sounds like filling them with joy, but actually means making them the object of [[mirth]].",
+      "confidence": "low"
+    },
+    {
+      "term": "self-willy",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:28:05",
+      "note": "Doing something of your own accord without any real cause; it made Rob snort and blush.",
+      "confidence": "high"
+    },
+    {
+      "term": "greme",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:28:37",
+      "note": "An old verb meaning to displease someone.",
+      "confidence": "low"
+    },
+    {
+      "term": "afterbloomed",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:28:45",
+      "note": "An old term meaning pregnant; its etymology is uncertain, but Rob thinks it is probably related to [[blossom]].",
+      "confidence": "low"
+    },
+    {
+      "term": "offken",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:29:27",
+      "note": "An old word meaning to give birth to a child, to bring forth.",
+      "confidence": "low"
+    },
+    {
+      "term": "rantallion",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:30:00",
+      "note": "A crude word from Francis Grose's 1785 Dictionary of the Vulgar Tongue for a man whose scrotum hangs longer than his penis.",
+      "confidence": "high"
+    },
+    {
+      "term": "rantipole",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:30:33",
+      "note": "A Grose word, supposedly related to [[rantallion]], for a sexual position with the woman on top facing the opposite direction.",
+      "confidence": "high"
+    },
+    {
+      "term": "callipygian",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:31:06",
+      "note": "Means having beautiful buttocks, named after the [[Callipygian Venus]], a statue whose reattached head looks back over her shoulder at her behind.",
+      "confidence": "high"
+    },
+    {
+      "term": "paddle",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:32:04",
+      "note": "A Francis Grose word for a little white lie.",
+      "confidence": "low"
+    },
+    {
+      "term": "pseudologist",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:32:12",
+      "note": "An old, fanciful word for a liar: someone who specializes in falsehoods.",
+      "confidence": "high"
+    },
+    {
+      "term": "wrinkler",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:32:20",
+      "note": "An old word for a liar, implying someone who adds figurative wrinkles to the truth.",
+      "confidence": "high"
+    },
+    {
+      "term": "gabber",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:32:28",
+      "note": "An old word for a liar, which Jess says kind of makes sense; she learned it from the card game League of the Lexicon.",
+      "confidence": "low"
+    },
+    {
+      "term": "hatchet-thrower",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:32:28",
+      "note": "One of several old words for a liar whose logic Jess doesn't fully understand yet.",
+      "confidence": "low"
+    },
+    {
+      "term": "leasemonger",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:32:36",
+      "note": "Another old word for a liar that Jess lists, without explaining its logic.",
+      "confidence": "low"
+    },
+    {
+      "term": "mumpsimus",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:33:09",
+      "note": "Someone who stubbornly insists they're right; spread by Erasmus's story of a priest who kept saying 'mumpsimus' instead of 'sumpsimus' in 'quod ore sumpsimus'.",
+      "confidence": "high"
+    },
+    {
+      "term": "mommet",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:33:51",
+      "note": "An old word for a scarecrow from Coleridge's dictionary, which reminds Rob of [[emmet]].",
+      "confidence": "low"
+    },
+    {
+      "term": "emmet",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:33:59",
+      "note": "Used in southwest England as an insult for people not from the area, especially tourists.",
+      "confidence": "high"
+    },
+    {
+      "term": "comeling",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:34:16",
+      "note": "A medieval word for a stranger, meaning someone who has come; one of the [[-ling]] words discussed in an earlier episode.",
+      "confidence": "high"
+    },
+    {
+      "term": "mulligrubs",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:34:32",
+      "note": "A fit of the blues, or sometimes a vague abdominal pain; its exact origin is unknown.",
+      "confidence": "high"
+    },
+    {
+      "term": "stertorous",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:34:49",
+      "note": "Describes someone who snores a lot, one of many old words for bodily conditions.",
+      "confidence": "low"
+    },
+    {
+      "term": "eructation",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:34:49",
+      "note": "Belching; Rob recalls a dictionary, possibly Johnson's, describing it as a gassy, meaty-smelling emission.",
+      "confidence": "high"
+    },
+    {
+      "term": "conspue",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:35:14",
+      "note": "A rare word meaning to spit on something, probably a fanciful Latinate formation related to [[sputum]]; quoted from the Saturday Review on the Shakespeare–Bacon craze.",
+      "confidence": "high"
+    },
+    {
+      "term": "jactitate",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:36:03",
+      "note": "From Latin iactare, 'to throw', meaning to swagger, boast or thrash in your sleep; it sounds naughtier than it is, like [[ejaculate]].",
+      "confidence": "low"
+    },
+    {
+      "term": "ejaculate",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:36:28",
+      "note": "Now has an almost solely crude meaning, but originally just meant to exclaim.",
+      "confidence": "high"
+    },
+    {
+      "term": "hubble-shubble",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:36:45",
+      "note": "An old imitative word for a fight or uproar, like [[bobbery]] and [[foofaraw]], from the same family as hullabaloo and kerfuffle.",
+      "confidence": "high"
+    },
+    {
+      "term": "bobbery",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:36:53",
+      "note": "An old imitative word describing the sounds and actions of fighting, like [[hubble-shubble]].",
+      "confidence": "high"
+    },
+    {
+      "term": "foofaraw",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:36:53",
+      "note": "An old imitative word describing the sounds and actions of fighting, like [[hubble-shubble]].",
+      "confidence": "low"
+    },
+    {
+      "term": "balter",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:37:10",
+      "note": "A Middle English word meaning to dance gracelessly, without skill but perhaps with enjoyment; one of Jess's two words to bring back.",
+      "confidence": "high"
+    },
+    {
+      "term": "latibulate",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:37:26",
+      "note": "Means to hide oneself in a corner, what you might do if you don't feel like [[balter|baltering]]; Jess wants it back.",
+      "confidence": "low"
+    },
+    {
+      "term": "catawampus",
+      "original": null,
+      "translation": null,
+      "type": "word",
+      "language": "English",
+      "timestamp": "00:38:24",
+      "note": "Rob thought it was obscure, but it is widely known in the US, with many spelling variants such as cattywampus.",
+      "confidence": "low"
+    }
+  ]
+}

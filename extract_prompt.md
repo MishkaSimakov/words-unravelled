@@ -94,3 +94,7 @@ Field definitions:
 - `note`: see rules above; may contain `[[links]]`.
 - `confidence`: `"high"` or `"low"`. Use `"low"` if you are unsure about the spelling,
   the original form, or whether the entry is really discussed rather than just mentioned.
+
+## Proposals
+
+If you find that a term from a transcript doesn't fit into the defined format, write about this in `proposals/<video_id>.md`. Propose how the format should be changed for this term.
