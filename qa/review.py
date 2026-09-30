@@ -87,7 +87,9 @@ def all_items():
             elif stamps and t not in stamps:
                 flags.append("timestamp not in transcript")
             typ = (e.get("type") or "").lower()
-            if typ not in KNOWN_TYPES + LEGACY_TYPES:
+            if version >= 3:
+                pass  # no type until the tagging pass
+            elif typ not in KNOWN_TYPES + LEGACY_TYPES:
                 flags.append(f"new type: {e.get('type')}")
             elif typ in LEGACY_TYPES and version >= 2:
                 flags.append(f"old type in a v2 file: {typ}")
