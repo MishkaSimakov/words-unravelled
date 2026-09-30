@@ -196,7 +196,9 @@ export function mountGraph(root, h) {
     if (f) return node === f || f.neighbors.has(node)
     return !!matches && matches.size <= 60 && matches.has(node)
   }
-  const radius = (node) => settings.nodeSize * (2 + Math.sqrt(node.deg) * 1.3)
+  const baseRadius = (node) => settings.nodeSize * (2 + Math.sqrt(node.deg) * 1.3)
+  // The focused node swells a little, as in Obsidian.
+  const radius = (node) => baseRadius(node) * (1 + 0.2 * (node.anim?.accent ?? 0))
   const FONT = getComputedStyle(document.body).fontFamily
   const LABEL_SIZE = 3.6
 
@@ -206,10 +208,52 @@ export function mountGraph(root, h) {
     return { nodes, links: graph.links.filter((l) => ids.has(l.source) && ids.has(l.target)) }
   }
 
+  // ---- animation ----------------------------------------------------------------------------
+
+  // Hover, selection and search change targets; every frame each node and link eases its
+  // displayed values towards them, so highlights fade in and out instead of switching.
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)')
+  const EASE_MS = 70 // time constant: ~95% of the way there after 3x this
+  let lastFrame = performance.now()
+
+  const nodeTargets = (node) => {
+    const f = focus()
+    return {
+      emphasis: emphasis(node),
+      highlight: isHighlighted(node) ? 1 : 0,
+      accent: node === f || (!f && matches?.has(node)) ? 1 : 0,
+      ring: node === selected ? 1 : 0,
+    }
+  }
+  const linkTargets = (link) => {
+    const f = focus()
+    const hi = !!f && (link.source === f || link.target === f)
+    return { alpha: f ? (hi ? 1 : 0.08) : matches ? 0.25 : 1, highlight: hi ? 1 : 0 }
+  }
+  const approach = (obj, targets, k) => {
+    if (!obj.anim) return (obj.anim = targets) // new on screen: start where it should be
+    for (const key in targets) {
+      const d = targets[key] - obj.anim[key]
+      obj.anim[key] = Math.abs(d) < 0.002 ? targets[key] : obj.anim[key] + d * k
+    }
+  }
+  function animate() {
+    const now = performance.now()
+    const dt = Math.min(100, now - lastFrame)
+    lastFrame = now
+    const k = reducedMotion.matches ? 1 : 1 - Math.exp(-dt / EASE_MS)
+    const { nodes, links } = fg.graphData()
+    for (const n of nodes) approach(n, nodeTargets(n), k)
+    for (const l of links) approach(l, linkTargets(l), k)
+  }
+  const lerp = (a, b, t) => a + (b - a) * t
+  const smooth = (t) => t * t * (3 - 2 * t)
+
   // ---- drawing ------------------------------------------------------------------------------
 
+  /** `strong` (0..1) grows the label from its zoom-dependent size to a readable highlight. */
   function drawLabel(node, ctx, scale, alpha, strong) {
-    const size = strong ? Math.max(LABEL_SIZE, 11 / scale) : LABEL_SIZE
+    const size = lerp(LABEL_SIZE, Math.max(LABEL_SIZE, 11 / scale), smooth(strong))
     ctx.globalAlpha = alpha
     ctx.font = `${strong ? 600 : 400} ${size}px ${FONT}`
     ctx.textAlign = 'center'
@@ -227,41 +271,50 @@ export function mountGraph(root, h) {
   }
 
   function drawNode(node, ctx, scale) {
-    const a = emphasis(node)
-    const f = focus()
+    const { emphasis: a, highlight, accent, ring } = node.anim ?? nodeTargets(node)
+    const r = radius(node)
     ctx.globalAlpha = a
     ctx.beginPath()
-    ctx.arc(node.x, node.y, radius(node), 0, 2 * Math.PI)
-    ctx.fillStyle = node === f || (matches?.has(node) && !f) ? colors.accent : nodeColor(node)
+    ctx.arc(node.x, node.y, r, 0, 2 * Math.PI)
+    ctx.fillStyle = nodeColor(node)
     ctx.fill()
-    if (node === selected) {
+    if (accent > 0) {
+      // Cross-fade to the accent colour by painting it over the base colour.
+      ctx.globalAlpha = a * accent
+      ctx.fillStyle = colors.accent
+      ctx.fill()
+    }
+    if (ring > 0) {
+      ctx.globalAlpha = ring
       ctx.lineWidth = 1.5 / scale
       ctx.strokeStyle = colors.accent
       ctx.beginPath()
-      ctx.arc(node.x, node.y, radius(node) + 2.5 / scale + 1, 0, 2 * Math.PI)
+      ctx.arc(node.x, node.y, r + lerp(0, 2.5 / scale + 1, smooth(ring)), 0, 2 * Math.PI)
       ctx.stroke()
     }
     ctx.globalAlpha = 1
     // Labels fade in as you zoom, like Obsidian's "text fade threshold". Highlighted labels are
-    // drawn later, on top of everything (see onRenderFramePost).
-    if (isHighlighted(node)) return
+    // drawn later, on top of everything (see onRenderFramePost), and cross-fade with these.
     const t = settings.textFade
-    const fade = clamp((scale - t) / (t * 0.5))
-    if (fade > 0.01) drawLabel(node, ctx, scale, fade * a, false)
+    const fade = clamp((scale - t) / (t * 0.5)) * a * (1 - highlight)
+    if (fade > 0.01) drawLabel(node, ctx, scale, fade, 0)
   }
 
   function drawLink(link, ctx, scale) {
-    const f = focus()
-    const hi = f && (link.source === f || link.target === f)
-    const a = f ? (hi ? 1 : 0.08) : matches ? 0.25 : 1
-    ctx.globalAlpha = a
-    ctx.strokeStyle = hi ? colors.linkHi : colors.link
+    const { alpha, highlight } = link.anim ?? linkTargets(link)
     // About 1px on screen, thickening only gently as you zoom in.
-    ctx.lineWidth = settings.linkWidth * (1 / scale + 0.12) * (hi ? 1.6 : 1)
-    ctx.beginPath()
-    ctx.moveTo(link.source.x, link.source.y)
-    ctx.lineTo(link.target.x, link.target.y)
-    ctx.stroke()
+    const width = settings.linkWidth * (1 / scale + 0.12)
+    const line = (color, a, w) => {
+      ctx.globalAlpha = a
+      ctx.strokeStyle = color
+      ctx.lineWidth = w
+      ctx.beginPath()
+      ctx.moveTo(link.source.x, link.source.y)
+      ctx.lineTo(link.target.x, link.target.y)
+      ctx.stroke()
+    }
+    if (highlight < 1) line(colors.link, alpha * (1 - highlight), width)
+    if (highlight > 0) line(colors.linkHi, alpha * highlight, width * lerp(1, 1.6, highlight))
     ctx.globalAlpha = 1
   }
 
@@ -287,8 +340,12 @@ export function mountGraph(root, h) {
     .maxZoom(8)
     .warmupTicks(40)
     .cooldownTime(20000)
+    .onRenderFramePre(animate)
     .onRenderFramePost((ctx, scale) => {
-      for (const node of fg.graphData().nodes) if (isHighlighted(node)) drawLabel(node, ctx, scale, 1, true)
+      for (const node of fg.graphData().nodes) {
+        const h = node.anim?.highlight ?? 0
+        if (h > 0.01) drawLabel(node, ctx, scale, h, h)
+      }
     })
     .onNodeHover((node) => {
       hovered = node
