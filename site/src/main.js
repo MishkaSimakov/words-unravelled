@@ -131,9 +131,12 @@ function shuffle(list) {
 const youtubeUrl = (id, t) => `https://www.youtube.com/watch?v=${id}${t ? `&t=${t}s` : ''}`
 const thumbUrl = (id) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
 
+// Seconds of lead-in before a mention's timestamp, so playback starts just before the term comes up.
+const LEAD_IN = 3
+
 /** A YouTube thumbnail that turns into a player when clicked (nothing loads from YouTube's player until then). */
 function player(videoId, t, label) {
-  const start = Math.max(0, t - 3)
+  const start = Math.max(0, t - LEAD_IN)
   return `
     <div class="player" data-video="${esc(videoId)}" data-start="${start}">
       <button type="button" class="player-cover" aria-label="${esc(label)}">
@@ -149,6 +152,50 @@ function startPlayer(el, start = Number(el.dataset.start)) {
     title="YouTube video player" allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
     allowfullscreen></iframe>`
   el.classList.add('is-playing')
+}
+
+let youtubeApi = null
+
+/** The YouTube IFrame Player API, loaded on first use. */
+function loadYoutubeApi() {
+  if (window.YT?.Player) return Promise.resolve(window.YT)
+  youtubeApi ??= new Promise((resolve, reject) => {
+    window.onYouTubeIframeAPIReady = () => resolve(window.YT)
+    const script = document.createElement('script')
+    script.src = 'https://www.youtube.com/iframe_api'
+    script.onerror = () => {
+      youtubeApi = null
+      script.remove()
+      reject(new Error('Could not load the YouTube player API'))
+    }
+    document.head.append(script)
+  })
+  return youtubeApi
+}
+
+/**
+ * Like startPlayer(), but through the IFrame API so the page can read the playback position.
+ * Resolves to the YT.Player, or to null if the API is blocked and a plain embed was used instead.
+ */
+async function startApiPlayer(el, start = Number(el.dataset.start)) {
+  let YT
+  try {
+    YT = await loadYoutubeApi()
+  } catch (err) {
+    console.warn(err)
+    startPlayer(el, start)
+    return null
+  }
+  el.innerHTML = '<div></div>'
+  el.classList.add('is-playing')
+  return new Promise((resolve) => {
+    const yt = new YT.Player(el.firstElementChild, {
+      host: 'https://www.youtube-nocookie.com',
+      videoId: el.dataset.video,
+      playerVars: { start: Math.floor(start), autoplay: 1, rel: 0, modestbranding: 1, playsinline: 1 },
+      events: { onReady: () => resolve(yt) },
+    })
+  })
 }
 
 // ---------------------------------------------------------------------------
@@ -510,12 +557,12 @@ function mentionItem(m, entry) {
   const ep = db.episodeById.get(m.episode_id) ?? { id: m.episode_id, title: 'Unknown episode' }
   return `
     <li class="mention">
-      ${player(ep.id, m.t, `Play from ${fmtTime(Math.max(0, m.t - 3))}`)}
+      ${player(ep.id, m.t, `Play from ${fmtTime(Math.max(0, m.t - LEAD_IN))}`)}
       <div class="mention-body">
         <a class="mention-episode" href="${href(`episode/${ep.id}`)}">${esc(ep.title)}</a>
         <p class="meta">
           ${ep.date ? `<time datetime="${ep.date}">${fmtDate(ep.date)}</time> · ` : ''}
-          at <a href="${youtubeUrl(ep.id, Math.max(0, m.t - 3))}" target="_blank" rel="noopener">${fmtTime(m.t)} on YouTube</a>
+          at <a href="${youtubeUrl(ep.id, Math.max(0, m.t - LEAD_IN))}" target="_blank" rel="noopener">${fmtTime(m.t)} on YouTube</a>
         </p>
         ${m.note ? `<p class="note">${noteHtml(m.note, { self: entry })}</p>` : ''}
         ${
@@ -545,13 +592,13 @@ function episodePage(id) {
         <a href="${youtubeUrl(ep.id)}" target="_blank" rel="noopener">Watch on YouTube</a></p>
     </header>
     <div class="episode-layout">
-      <div class="episode-player">${player(ep.id, 3, 'Play episode')}
-        <p class="hint">Click a timestamp to jump there.</p></div>
+      <div class="episode-player" data-follow>${player(ep.id, LEAD_IN, 'Play episode')}
+        <p class="hint">Click a timestamp to jump there. The list follows along as you watch.</p></div>
       <ol class="timeline">
         ${items
           .map(
             ({ entry, mention }) => `
-          <li>
+          <li data-t="${mention.t}">
             <button type="button" class="ts" data-t="${mention.t}" aria-label="Play from ${fmtTime(mention.t)}">${fmtTime(mention.t)}</button>
             <div>
               <a class="hw" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">${esc(entry.term)}</a>
@@ -567,11 +614,65 @@ function episodePage(id) {
     </div>`
 
   const playerEl = main.querySelector('.episode-player .player')
+  const rows = [...main.querySelectorAll('.timeline li')]
+  const times = rows.map((li) => Number(li.dataset.t) - LEAD_IN)
+  let yt = null // YT.Player once started; stays null if the API is blocked
+  let starting = null
+  let current = null // start time of the highlighted rows (entries that come up together share one)
+
+  const setCurrent = (time, { follow = true } = {}) => {
+    if (time === current) return
+    const prev = rows.find((li) => li.classList.contains('is-current'))
+    current = time
+    rows.forEach((li, i) => {
+      li.classList.toggle('is-current', times[i] === time)
+      li.querySelector('.ts').classList.toggle('is-current', times[i] === time)
+    })
+    const row = rows[times.indexOf(time)]
+    if (!row) return
+    // Keep the current row in view, but only while the reader is following along: not after they
+    // have scrolled away, and not on narrow screens where scrolling would take the video off screen.
+    const inView = (el) => {
+      const r = el.getBoundingClientRect()
+      return r.bottom > 0 && r.top < window.innerHeight
+    }
+    const sticky = getComputedStyle(playerEl.parentElement).position === 'sticky'
+    if (follow && sticky && (!prev || inView(prev))) {
+      const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches
+      row.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'center' })
+    }
+  }
+
+  // Poll the playback position and highlight the last entry that has come up.
+  const sync = () => {
+    if (!playerEl.isConnected) return clearInterval(timer)
+    if (!yt?.getCurrentTime) return
+    const now = yt.getCurrentTime()
+    setCurrent(times.findLast((t) => t <= now) ?? null)
+  }
+  const timer = setInterval(sync, 250)
+
+  const play = async (start) => {
+    if (!starting) {
+      starting = startApiPlayer(playerEl, start)
+      yt = await starting
+    } else if ((await starting) === null) {
+      startPlayer(playerEl, start) // no API: reload the plain embed at the new time
+    } else {
+      yt.seekTo(start, true)
+      yt.playVideo()
+    }
+  }
+
+  playerEl.addEventListener('click', (ev) => {
+    if (ev.target.closest('.player-cover')) play(Number(playerEl.dataset.start))
+  })
   main.querySelector('.timeline').addEventListener('click', (ev) => {
     const ts = ev.target.closest('.ts')
     if (!ts) return
-    startPlayer(playerEl, Math.max(0, Number(ts.dataset.t) - 3))
-    main.querySelectorAll('.ts').forEach((b) => b.classList.toggle('is-current', b === ts))
+    const time = times[rows.indexOf(ts.closest('li'))]
+    play(Math.max(0, time))
+    setCurrent(time, { follow: false })
     if (playerEl.getBoundingClientRect().top < 0 || window.innerWidth < 900) {
       playerEl.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
@@ -687,7 +788,7 @@ document.addEventListener('click', (ev) => {
 
 document.addEventListener('click', (ev) => {
   const cover = ev.target.closest('.player-cover')
-  if (cover) startPlayer(cover.parentElement)
+  if (cover && !cover.closest('[data-follow]')) startPlayer(cover.parentElement)
 })
 
 document.addEventListener('keydown', (ev) => {
