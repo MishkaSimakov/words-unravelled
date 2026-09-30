@@ -60,33 +60,13 @@ French, Spanish and Dutch ways to spill the beans). A list that illustrates a po
 another entry (*parchment*, *pageant*, *peasant*, *tyrant* as examples of an added T) is
 not a topic: its items are asides.
 
-### Type
+### One thing, one entry
 
-Apply the steps in order. The first match wins.
-
-0. **Scientific names.** A taxon written as such (*Monodon monoceros*, *Mysticeti*,
-   *Cetacea*) → `name`. A common word that is also a genus (octopus) follows the steps below.
-1. **One specific thing?** Can you say "a ___", "another ___" or "___s" and mean a different
-   one of the same kind? "every Sunday", "a Minoan", "a hieroglyph": yes, it's a kind, so go
-   to step 2. "another Mesopotamia": no, it's one specific thing:
-   - the hosts explain the name (its origin or meaning) → `name`;
-   - otherwise → `topic` (they talk about the thing, not its name).
-2. **Count the words** in `original` if it's set, otherwise in `term`. Spaces separate
-   words. A hyphenated compound (*mother-in-law*) or a contraction (*don't*) is one word.
-   For languages written without spaces, count the romanised form the hosts use.
-   - one word → `word`
-   - two or more → `expression` (idioms, proverbs, sayings, quotations, multi-word terms)
-
-Settled cases:
-- Days, months and festivals; peoples and demonyms (*Viking*); common nouns for scripts
-  (*cuneiform*) → `word`.
-- Languages and scripts (*Latin*, *Linear B*) → `name` or `topic`. A word that names both a
-  people and their language or script (*Phoenician*) is one entry: `word` if the hosts
-  discuss only the people, otherwise `name` or `topic`.
-- Brands, pets, gods, mythical individuals, works, bands and songs → `name` or `topic`.
-  A genericised brand ("to google") → `word`.
-- If both the name and the thing are discussed → `name`, as one entry. Never split them
-  into two entries (not *Phoenician* and *Phoenician alphabet*).
+- If both a name and the thing it names are discussed, they are one entry. Never split them
+  into two (not *Phoenician* and *Phoenician alphabet*).
+- A word that names both a people and their language or script (*Phoenician*) is one entry.
+- A taxon written as such (*Monodon monoceros*, *Mysticeti*) is its own entry, separate from
+  the common name (*narwhal*) when the hosts discuss both.
 
 ### Fields
 
@@ -100,18 +80,19 @@ Settled cases:
     translation, use the foreign form.
   - Never translate a name: "Fettes Brot", not "fat bread" (put the meaning in
     `translation`).
-  - For a topic, use its usual English name.
+  - For a named thing the hosts only talk about (a person, place or work whose name they
+    don't discuss), use its usual English name.
 - `original`: the foreign form, if the hosts say it. Captions often garble foreign words,
   so reconstruct what the hosts said, and set `confidence` to `"low"` if you're unsure.
   If the hosts say it only in English, `original` is `null`: never supply a form they
   didn't say. For English entries it is `null`.
 - `translation`: the literal English translation if the hosts give one; otherwise `null`.
-- `type`: `"word"`, `"expression"`, `"name"` or `"topic"` (see above).
 - `language`: the language the term is used in, not the one it comes from, as a plain
   English name without regional varieties ("French", not "French (Quebec)"). *Avon* is
   English even though the name is Celtic, and *abjad* discussed as an English word is
   English. A foreign word discussed as such keeps its language (French *moutarde à
-  l'ancienne*). Scientific names are Latin. Topics: `null`; every other entry has a
+  l'ancienne*). Scientific names are Latin. `null` for a named thing whose name the hosts
+  don't discuss (a person, place or work they only talk about); every other entry has a
   language (the name *Vulgar Latin* is English).
 - `timestamp`: see Rules.
 - `role`: `"subject"`, `"aside"` or `"mention"` (see above).
@@ -119,7 +100,7 @@ Settled cases:
 - `confidence`: `"low"` if you are unsure about the spelling, the original form or whether
   the entry qualifies; otherwise `"high"`.
 
-For topics, `original` and `translation` are `null` unless the hosts give them.
+For named things, `original` and `translation` are `null` unless the hosts give them.
 
 ## Rules
 
@@ -137,12 +118,13 @@ For topics, `original` and `translation` are `null` unless the hosts give them.
   correct form, keep your best guess and set `confidence` to `"low"`.
 - **No outside knowledge:** the note describes only what the hosts say in this episode,
   even if you know more.
-- **Notes** are one sentence of at most 30 words, in your own words. For a topic,
-  summarise what the hosts say about the thing. For a mention, say where it was discussed.
+- **Notes** are one sentence of at most 30 words, in your own words. For a named thing,
+  summarise what the hosts say about it, and if they explain its name (where it comes from
+  or what it means), include that explanation. For a mention, say where it was discussed.
 
 ## Links
 
-Mark connections between entries inside the note as `[[type:target]]`:
+Mark connections inside the note as `[[type:target]]`:
 
 | type | meaning | example |
 |---|---|---|
@@ -153,15 +135,25 @@ Mark connections between entries inside the note as `[[type:target]]`:
 | `unrelated` | the hosts say they look related but aren't | `unrelated to [[unrelated:desert]]` |
 | `see` | any other connection: a pun, a story, a contrast, an example | `a pun on [[see:umbles]]` |
 
-- Link only when the hosts make the connection in this episode, never from your own
-  knowledge, and never just because two entries share a topic. Most notes have no links.
+- **Link what the note names.** When the note names an entry in your output, or a person,
+  place, work or source word that is part of this entry's story (who coined or used it,
+  what it comes from, what it is compared with), link it, whether or not it is an entry.
+  In "coined by Sir John Cheke", link *Sir John Cheke*; in William Barnes's coinages, link
+  *William Barnes*.
+- **Don't link** words used in their ordinary sense ("a small toothed whale" in an
+  episode about whales), languages and nationalities ("from Latin", "offensive to the
+  Spanish"), which the `language` field already records, or the books, dictionaries and
+  scholars the hosts take information from.
+- Link only connections the hosts make in this episode, never from your own knowledge, and
+  never just because two entries share a topic.
 - Use the relation the hosts state. If one saying developed from another, use
   `from`/`gave`, not `equivalent`. If none of the types fits, use `see`.
 - If the hosts present the relation as uncertain or disputed ("may be related", "one
   theory says"), add `?` to the type: `[[from?:shesep ankh]]`, `[[same-root?:phoenix]]`.
 - **Target:** for an entry in your output, copy its `term`, or its `original` if it has
   one. Otherwise use the form the target is best known by in English, following the rules
-  for `term`. Don't link an entry to itself.
+  for `term`. Don't link an entry to itself. A possessive stays outside the link:
+  `[[see:Sir John Cheke]]'s`.
 - **Shown text:** the link shows its target. Letters written straight after `]]` become part
   of the link text, so `[[see:ounce]]s` shows "ounces". Use this only for inflections
   (plurals, -ed, -ing). Otherwise rephrase the sentence so the target reads naturally
@@ -174,13 +166,12 @@ other files.
 
 {
   "video_id": "<copied from the '# video_id:' header>",
-  "prompt_version": 2,
+  "prompt_version": 3,
   "entries": [
     {
       "term": "dessert",
       "original": null,
       "translation": null,
-      "type": "word",
       "language": "English",
       "timestamp": "00:12:40",
       "role": "subject",
@@ -191,12 +182,21 @@ other files.
       "term": "Kummerspeck",
       "original": "Kummerspeck",
       "translation": "grief bacon",
-      "type": "word",
       "language": "German",
       "timestamp": "00:31:05",
       "role": "aside",
       "note": "Weight put on by comfort eating, one of the German compounds the hosts compare with [[see:hangry]].",
       "confidence": "high"
+    },
+    {
+      "term": "hundredder",
+      "original": null,
+      "translation": null,
+      "language": "English",
+      "timestamp": "00:21:52",
+      "role": "subject",
+      "note": "[[see:Sir John Cheke]]'s native replacement for [[see:centurion]] in his translation of Matthew's Gospel.",
+      "confidence": "low"
     }
   ]
 }
