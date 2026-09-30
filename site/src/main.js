@@ -523,7 +523,8 @@ function entryPage(slug) {
   )
 
   main.innerHTML = `
-    <nav class="crumbs"><a href="${href()}">← Search the hoard</a></nav>
+    <nav class="crumbs"><a href="${href()}">← Search the hoard</a>
+      <a href="${href(`graph?focus=${encodeURIComponent(entry.slug)}`)}">Show in graph</a></nav>
     <article class="entry">
       <header class="entry-head">
         <h1 class="headword">${esc(entry.term)}</h1>
@@ -705,6 +706,28 @@ function episodesPage() {
 }
 
 // ---------------------------------------------------------------------------
+// Graph (prototype)
+
+let teardown = null // cleanup for the current page, run before the router renders the next one
+
+function graphPage() {
+  setTitle('Graph')
+  main.innerHTML = '<section class="graph-page"><p class="loading">Drawing the graph…</p></section>'
+  const root = main.querySelector('.graph-page')
+  import('./graph.js')
+    .then(({ mountGraph }) => {
+      if (!root.isConnected) return // navigated away while loading
+      teardown = mountGraph(root, {
+        db, esc, href, fold, slugify, WIKILINK, noteHtml, forms, typeLabel, typePlural, plural,
+      })
+    })
+    .catch((err) => {
+      console.error(err)
+      root.innerHTML = `<p class="loading">The graph could not be loaded (${esc(err.message)}).</p>`
+    })
+}
+
+// ---------------------------------------------------------------------------
 // About, 404
 
 function aboutPage() {
@@ -754,6 +777,8 @@ function notFound(message = 'That page isn’t in the hoard.', suggestion = '') 
 // Routing (History API; on GitHub Pages deep links arrive via 404.html)
 
 function render() {
+  teardown?.()
+  teardown = null
   const path = decodeURIComponent(location.pathname.slice(BASE.length)).replace(/\/+$/, '')
   const [page, arg] = path.split('/')
   document.body.dataset.page = page || 'home'
@@ -764,6 +789,7 @@ function render() {
   else if (page === 'entry' && arg) entryPage(arg)
   else if (page === 'episode' && arg) episodePage(arg)
   else if (page === 'episodes') episodesPage()
+  else if (page === 'graph') graphPage()
   else if (page === 'about') aboutPage()
   else notFound()
 }
