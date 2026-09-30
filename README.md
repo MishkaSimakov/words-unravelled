@@ -1,6 +1,6 @@
 # Wordhoard: a Words Unravelled word index (prototype)
 
-An unofficial fan project: a searchable index of the words, idioms, phrases and names
+An unofficial fan project: a searchable index of the words, expressions, names and topics
 discussed on the *Words Unravelled* podcast (Rob Watts and Jess Zafarris), with a link to
 the moment each one comes up. This prototype covers the **audience side** only. See
 `prototype_brief.md` for the background.
@@ -25,6 +25,7 @@ Requirements: Python 3.9+, [yt-dlp](https://github.com/yt-dlp/yt-dlp), Node 20+,
 ./fetch_subs.sh YBIXXAipmZw JlgQIDxufh0 #    ...or only some episodes
 python3 json3_to_text.py subs -o transcripts   # 2. captions -> timestamped text
 ./extract_all.sh                        # 3. Claude extracts entries (resumable)
+./extract_all.sh m9AaobtBMtA            #    ...or only some episodes
 python3 merge.py                        # 4. merge into data/*.json, print a summary
 ```
 
@@ -33,6 +34,12 @@ languages. On those videos YouTube's plain `en` auto-caption track is a round-tr
 translation, not what the hosts said. For example, "Sod's law" becomes "the law of
 meanness", and Jess's book titles get garbled. `fetch_subs.sh` downloads `en-orig`, and
 `json3_to_text.py` prefers it when both tracks exist.
+
+`extract_all.sh` runs `claude -p` with `extract_prompt.md` on each transcript. It skips
+episodes whose output is valid JSON with the current `prompt_version` (set at the top of the
+script), so files made with an older prompt are extracted again. It stops at the first failed
+`claude` call, e.g. at the usage limit; re-run it after the reset. `EXTRACT_DIR=<dir>` writes the
+output somewhere other than `extracted/`.
 
 Downloads sleep 60 s between caption files because YouTube rate-limits them (HTTP 429), so
 the full catalogue (about 100 episodes) takes about two hours. Every step skips work that's
@@ -43,20 +50,51 @@ already done, so you can stop and re-run any of them.
 Reads `subs/*.info.json` and `extracted/*.json` and writes:
 
 - `data/episodes.json`: `[{ id, title, date, duration }]`, newest first
-- `data/entries.json`: `[{ slug, term, original, translation, type, language, mentions: [{ episode_id, t, note, confidence, verified? }] }]`
+- `data/entries.json`: `[{ slug, term, original, translation, type, language, mentions: [...] }]`,
+  where each mention is
+
+  ```json
+  {"episode_id": "m9AaobtBMtA", "t": 978, "role": "subject",
+   "note": "A doublet of [[same-root:cartouche]]; …",
+   "links": [{"type": "same-root", "uncertain": false, "target": "cartouche", "slug": "cartouche"}],
+   "confidence": "high", "verified": true}
+  ```
+
+**Types** are `word`, `expression`, `name` and `topic` (a named thing the hosts talk about
+without explaining the name). `idiom` and `phrase`, from files made before `prompt_version` 2,
+are still accepted until every episode is re-extracted. If an entry's mentions say only `name`
+and `topic`, it is a `name`.
+
+**Role** belongs to the mention: `subject` (discussed for its own sake), `aside` (only to make a
+point about another entry) or `mention` (the hosts only point to where it was discussed). Mentions
+from old-format files have `role: null`.
+
+**Links.** Notes mark connections as `[[type:target]]trail`, with types `from`, `gave`,
+`same-root`, `equivalent`, `unrelated` and `see`, and `?` after the type for an uncertain relation
+(`[[from?:shesep ankh]]`). Letters straight after `]]` are part of the link text:
+`[[see:ounce]]s` reads "ounces". `links` lists them in order; `slug` is the entry the target
+resolves to after overrides (an entry in the same episode first, then any entry by term, then by
+original form), or `null` if it isn't an entry. Old-format notes have `[[target]]` and
+`[[target|text]]` links, recorded with `"type": null`.
 
 Mentions are grouped by slug: the term lowercased, with invisible characters removed,
 diacritics folded and spaces turned into hyphens (`Björk` → `bjork`). If mentions disagree
 on a field, the majority wins. Nothing else is merged automatically. Likely duplicates
-(plural/singular, spelling variants, "to kick the bucket" vs "kick the bucket", one entry's
-term being another's original form) go to `reports/duplicates.md`, each with a ready-to-paste
-override.
+(plural/singular, spelling variants, "to kick the bucket" vs "kick the bucket", one expression
+contained in another, one entry's term being another's original form) go to
+`reports/duplicates.md`, each with a ready-to-paste override, along with mentions that disagree
+on language or type (except `name`/`topic`).
 
-The summary also flags:
+The summary shows how many files there are at each `prompt_version`, and counts of types, roles
+and links. It also flags:
 
 - low-confidence mentions not yet approved in QA
 - timestamps that don't appear in the transcript (possibly invented)
-- **new types** outside word/idiom/phrase/name. These are kept as they are, never remapped.
+- **new types** outside word/expression/name/topic (and the legacy idiom/phrase). These are kept as
+  they are, never remapped. `idiom`/`phrase` in a `prompt_version` 2 file are flagged too.
+- roles other than subject/aside/mention
+- in `prompt_version` 2 files: untyped links (`[[x]]`, `[[x|y]]`) and unknown link types
+- the same entry twice in one episode (the mention with the highest role is kept)
 - episodes downloaded but not extracted yet
 - overrides that no longer match anything
 
@@ -112,7 +150,10 @@ npm run preview
 - Pages: home (search, filters, suggestions), `/entry/<slug>`, `/episode/<id>`,
   `/episodes`, `/about`.
 - Search is client-side with Fuse.js over `term`, `original` and `translation`. It ignores
-  accents and ranks exact and prefix matches first.
+  accents and ranks exact and prefix matches first; within each of those tiers, entries that are
+  only ever pointed to (role `mention`) come last.
+- Entry pages list the episodes that discuss the entry (`subject`, then `aside`), and put
+  episodes that only point to it under "Also mentioned in".
 - Query and filters are kept in the URL, so searches can be shared and the back button works.
 - YouTube players are thumbnails until clicked. They then load a `youtube-nocookie.com`
   embed at `t - 3` seconds.

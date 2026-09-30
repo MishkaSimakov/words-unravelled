@@ -13,6 +13,22 @@ Writes:
     data/entries.json       [{ slug, term, original, translation, type, language, mentions: [...] }]
     reports/duplicates.md   likely duplicates, for manual review (nothing is merged automatically)
 
+Each mention is {episode_id, t, role, note, links, confidence, verified?}:
+
+    {"episode_id": "m9AaobtBMtA", "t": 978, "role": "subject", "note": "A doublet of [[same-root:cartouche]]...",
+     "links": [{"type": "same-root", "uncertain": false, "target": "cartouche", "slug": "cartouche"}],
+     "confidence": "high"}
+
+Files written with prompt_version 2 have typed links in notes, [[type:target]]trail (letters right
+after ]] are part of the link text), with a "?" after the type for an uncertain relation. Older
+files (no prompt_version) have [[target]] / [[target|text]] links, recorded with "type": null, and
+their mentions get "role": null. "links" lists a note's links in the order they appear; "slug" is
+the entry the target resolves to (null if it isn't an entry), looked up after overrides: first an
+entry mentioned in the same episode, then any entry by term, then by original form.
+
+Types are word, expression, name and topic. If an entry's mentions say only name and topic, it is
+a name: the hosts explain a name in one episode and only talk about the thing in another.
+
 Overrides (data/overrides.json) are a list of operations applied in order:
 
     {"op": "rename",    "slug": "beatles", "term": "The Beatles"}
@@ -38,7 +54,11 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-KNOWN_TYPES = ("word", "idiom", "phrase", "name")
+KNOWN_TYPES = ("word", "expression", "name", "topic")
+# Types used before prompt_version 2. Accepted without a warning until every episode is re-extracted.
+LEGACY_TYPES = ("idiom", "phrase")
+ROLES = ("subject", "aside", "mention")  # in order of precedence
+LINK_TYPES = ("from", "gave", "same-root", "equivalent", "unrelated", "see")
 ENTRY_FIELDS = ("term", "original", "translation", "type", "language")
 VIDEO_ID = re.compile(r"\[([A-Za-z0-9_-]{11})\]")
 
@@ -136,6 +156,33 @@ def clean_str(value):
         return None
     value = INVISIBLE.sub("", str(value)).strip()
     return value or None
+
+
+# [[type:target]]trail, where trail is letters (Python's re has no \p{L}; [^\W\d_] is a letter).
+TYPED_LINK = re.compile(r"\[\[([a-z-]+)(\?)?:([^\]|]+)\]\]([^\W\d_]*)")
+OLD_LINK = re.compile(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]")  # [[target]] or [[target|text]]
+ANY_LINK = re.compile(r"\[\[([^\]]*)\]\]")
+
+
+def parse_links(note, version):
+    """The links in a note, in order, with "slug" left for resolve_links()."""
+    if version >= 2:
+        return [{"type": m.group(1), "uncertain": bool(m.group(2)), "target": m.group(3).strip(), "slug": None}
+                for m in TYPED_LINK.finditer(note)]
+    return [{"type": None, "uncertain": False, "target": m.group(1).strip(), "slug": None}
+            for m in OLD_LINK.finditer(note)]
+
+
+def link_problems(note):
+    """(problem, link) for each link in a v2 note that is untyped, has an alias or an unknown type."""
+    found = []
+    for m in ANY_LINK.finditer(note or ""):
+        typed = re.fullmatch(r"([a-z-]+)(\?)?:([^|]+)", m.group(1))
+        if not typed:
+            found.append(("untyped link (or |alias) in a v2 note", m.group(0)))
+        elif typed.group(1) not in LINK_TYPES:
+            found.append((f"unknown link type '{typed.group(1)}'", m.group(0)))
+    return found
 
 
 def review_key(video_id, term):
@@ -244,8 +291,22 @@ def vote(mentions, field):
     return next(v for v in values if counts[v] == best)
 
 
+def vote_type(mentions):
+    """Like vote(), but name beats topic when those are the only types given."""
+    types = {m["type"] for m in mentions if m.get("type")}
+    if "name" in types and types <= {"name", "topic"}:
+        return "name"
+    return vote(mentions, "type")
+
+
 def representative(mentions):
-    return {f: vote(mentions, f) for f in ENTRY_FIELDS}
+    fields = {f: vote(mentions, f) for f in ENTRY_FIELDS}
+    fields["type"] = vote_type(mentions)
+    return fields
+
+
+def role_rank(role):
+    return ROLES.index(role) if role in ROLES else len(ROLES)
 
 
 def group(mentions, episodes):
@@ -260,17 +321,57 @@ def group(mentions, episodes):
         entry = {"slug": slug, **representative(ms)}
         for f in ("language", "type"):
             values = Counter(m[f] for m in ms if m.get(f))
-            if len(values) > 1:
+            if len(values) > 1 and not (f == "type" and set(values) == {"name", "topic"}):
                 conflicts.append((slug, f, values))
         entry["mentions"] = []
         for m in ms:
-            mention = {"episode_id": m["episode_id"], "t": m["t"], "note": m["note"],
-                       "confidence": m["confidence"]}
+            mention = {"episode_id": m["episode_id"], "t": m["t"], "role": m["role"], "note": m["note"],
+                       "links": m["links"], "confidence": m["confidence"]}
             if m.get("verified"):
                 mention["verified"] = True
             entry["mentions"].append(mention)
         entries.append(entry)
     return entries, conflicts
+
+
+def resolve_links(entries, mentions):
+    """Set each link's "slug" to the entry its target names, or None. Run after overrides and grouping.
+
+    A mention's term as extracted counts as well as the entry's current term, so links still resolve
+    after an entry is renamed or merged into another.
+    """
+    by_slug = {e["slug"]: e for e in entries}
+    in_episode, by_term, by_original = defaultdict(set), defaultdict(set), defaultdict(set)
+    for e in entries:
+        by_term[slugify(e["term"])].add(e["slug"])
+        if e.get("original"):
+            by_original[slugify(e["original"])].add(e["slug"])
+    for m in mentions:
+        e = by_slug.get(m["slug"])
+        if not e:
+            continue
+        for term in (m["extracted_term"], m["term"]):
+            by_term[slugify(term)].add(e["slug"])
+        if m["original"]:
+            by_original[slugify(m["original"])].add(e["slug"])
+        for form in {m["extracted_term"], m["term"], m["original"], e["term"], e["original"]}:
+            if form:
+                in_episode[(m["episode_id"], slugify(form))].add(e["slug"])
+
+    def pick(slugs, target):
+        if not slugs:
+            return None
+        if target in slugs:
+            return target
+        return max(sorted(slugs), key=lambda s: len(by_slug[s]["mentions"]))
+
+    for m in mentions:
+        for link in m["links"]:
+            if not link["target"]:
+                continue
+            t = slugify(link["target"])
+            link["slug"] = (pick(in_episode.get((m["episode_id"], t)), t) or pick(by_term.get(t), t)
+                            or pick(by_original.get(t), t))
 
 
 # ---------------------------------------------------------------------------
@@ -350,6 +451,17 @@ def find_duplicates(entries, ignored_pairs):
                 if within_distance(ca, cb, limit):
                     add(a, b, "spelling variant")
 
+    # One expression inside another ("cat out of the bag" in "let the cat out of the bag"): the
+    # shorter one, at least 3 words long, is a run of consecutive words in the longer one.
+    slugs = {e["slug"] for e in entries}
+    for e in entries:
+        words = e["slug"].split("-")
+        for i in range(len(words)):
+            for j in range(i + 3, len(words) + 1):
+                part = "-".join(words[i:j])
+                if j - i < len(words) and part in slugs:
+                    add(part, e["slug"], "one expression contained in another")
+
     # The same thing in different languages: one entry's term is another's original form.
     forms = defaultdict(set)
     for e in entries:
@@ -420,8 +532,12 @@ def main():
 
     problems = defaultdict(list)
     episodes, mentions = {}, []
+    versions = Counter()
     for f in sorted((root / "extracted").glob("*.json")):
         data = load_json(f, None)
+        version = (data or {}).get("prompt_version")
+        versions[version] += 1
+        version = version if isinstance(version, int) else 1
         vid = (data or {}).get("video_id") or f.stem
         if vid != f.stem:
             problems["video_id differs from file name (file name used)"].append(f.name)
@@ -433,7 +549,7 @@ def main():
             ep = {"id": vid, "title": title or vid, "date": None, "duration": None}
         episodes[vid] = ep
 
-        seen = set()
+        seen = {}  # slug -> index in mentions
         for raw in (data or {}).get("entries", []):
             term = clean_str(raw.get("term"))
             where = f"{vid} {raw.get('timestamp')} {term!r}"
@@ -452,26 +568,40 @@ def main():
             decision = (review.get(review_key(vid, term)) or {}).get("status")
             if decision == "rejected":
                 continue
-            slug = slugify(term)
-            if slug in seen:
-                problems["same entry twice in one episode (first kept)"].append(where)
-                continue
-            seen.add(slug)
-
             typ = clean_str(raw.get("type"))
             typ = typ.lower() if typ else None
-            if typ not in KNOWN_TYPES:
+            if typ in LEGACY_TYPES and version >= 2:
+                problems[f"old type '{typ}' in a v2 file"].append(where)
+            elif typ not in KNOWN_TYPES + LEGACY_TYPES:
                 problems[f"NEW TYPE '{typ}' (kept as is, not remapped)"].append(where)
+            role = None
+            if version >= 2:
+                role = clean_str(raw.get("role"))
+                role = role.lower() if role else None
+                if role not in ROLES:
+                    problems[f"unknown role '{role}' (kept as is)"].append(where)
+            note = clean_str(raw.get("note")) or ""
+            if version >= 2:
+                for problem, link in link_problems(note):
+                    problems[problem].append(f"{where} {link}")
             confidence = clean_str(raw.get("confidence")) or "low"
-            mentions.append({
-                "slug": slug, "term": term,
+            mention = {
+                "slug": slugify(term), "term": term, "extracted_term": term,
                 "original": clean_str(raw.get("original")),
                 "translation": clean_str(raw.get("translation")),
                 "type": typ, "language": clean_str(raw.get("language")),
-                "episode_id": vid, "t": t, "note": clean_str(raw.get("note")) or "",
+                "episode_id": vid, "t": t, "role": role, "note": note, "links": parse_links(note, version),
                 "confidence": confidence if confidence in ("high", "low") else "low",
                 "verified": decision == "approved",
-            })
+            }
+            slug = mention["slug"]
+            if slug in seen:
+                problems["same entry twice in one episode (highest role kept)"].append(where)
+                if role_rank(role) < role_rank(mentions[seen[slug]]["role"]):
+                    mentions[seen[slug]] = mention
+                continue
+            seen[slug] = len(mentions)
+            mentions.append(mention)
 
     for vid in sorted(set(info) - set(episodes)):
         problems["downloaded but not extracted yet"].append(f"{vid} {info[vid]['title']}")
@@ -480,6 +610,7 @@ def main():
     mentions = overrides.apply_to_mentions(mentions)
     entries, conflicts = group(mentions, episodes)
     overrides.apply_to_entries(entries)
+    resolve_links(entries, mentions)
 
     # Only episodes that still have entries are published.
     used = {m["episode_id"] for e in entries for m in e["mentions"]}
@@ -502,9 +633,21 @@ def main():
     low = [(e, m) for e, m in all_mentions if m["confidence"] == "low" and not m.get("verified")]
     verified = sum(1 for _, m in all_mentions if m.get("verified"))
     types = Counter(e["type"] for e in entries)
+    roles = Counter(m["role"] for _, m in all_mentions)
+    links = [link for _, m in all_mentions for link in m["links"]]
+    link_types = Counter(link["type"] or "untyped (old format)" for link in links)
+
+    def counts(counter, label=str):
+        return ", ".join(f"{label(k)} {v}" for k, v in counter.most_common())
+
+    print(f"Files:     {sum(versions.values())}  "
+          f"({counts(versions, lambda v: 'old format' if v is None else f'prompt_version {v}')})")
     print(f"Episodes:  {len(episode_list)}")
-    print(f"Entries:   {len(entries)}  ({', '.join(f'{k} {v}' for k, v in types.most_common())})")
+    print(f"Entries:   {len(entries)}  ({counts(types)})")
     print(f"Mentions:  {len(all_mentions)}  ({verified} approved in QA, {rejected} rejected in QA)")
+    print(f"Roles:     {counts(roles, lambda r: r or 'none (old format)')}")
+    print(f"Links:     {len(links)}  ({sum(1 for link in links if link['slug'])} resolve to an entry; "
+          f"{counts(link_types)})")
     print(f"Low confidence, not yet reviewed: {len(low)}")
     for e, m in (low if args.verbose else low[:15]):
         print(f"    {m['episode_id']} {fmt_time(m['t'])}  {e['term']}")
