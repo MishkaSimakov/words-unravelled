@@ -26,6 +26,7 @@ const db = {
   episodes: [],
   entries: [],
   bySlug: new Map(),
+  linkedFrom: new Map(), // slug -> entries whose notes link to it
   episodeById: new Map(),
   byEpisode: new Map(), // episode id -> [{ entry, mention }] in timestamp order
   latest: null,
@@ -56,7 +57,7 @@ function fmtDate(date) {
   })
 }
 
-const typeLabel = (type) => TYPES[type]?.one ?? type ?? 'entry'
+const typeLabel = (type) => TYPES[type]?.one ?? type ?? ''
 const typePlural = (type) => TYPES[type]?.many ?? (type ? type[0].toUpperCase() + type.slice(1) : 'Other')
 
 // Fold one character at a time, so indices in the folded string match the original.
@@ -260,6 +261,13 @@ async function load() {
     for (const mention of entry.mentions) db.byEpisode.get(mention.episode_id)?.push({ entry, mention })
   }
   for (const list of db.byEpisode.values()) list.sort((a, b) => a.mention.t - b.mention.t)
+  for (const entry of db.entries) {
+    for (const link of entry.mentions.flatMap((m) => m.links ?? [])) {
+      if (!link.slug || link.slug === entry.slug) continue
+      if (!db.linkedFrom.has(link.slug)) db.linkedFrom.set(link.slug, new Set())
+      db.linkedFrom.get(link.slug).add(entry)
+    }
+  }
 
   db.fuse = new Fuse(db.entries, {
     keys: [
@@ -305,7 +313,7 @@ function entryItem(entry, query = '') {
         <span class="result-head">
           <span class="hw">${highlight(entry.term, query)}</span>
           <span class="result-class">
-            <span class="pos">${esc(typeLabel(entry.type))}</span>
+            ${entry.type ? `<span class="pos">${esc(typeLabel(entry.type))}</span>` : ''}
             ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
           </span>
         </span>
@@ -346,7 +354,7 @@ function home(params) {
   const typeCounts = new Map()
   const langCounts = new Map()
   for (const e of db.entries) {
-    typeCounts.set(e.type, (typeCounts.get(e.type) ?? 0) + 1)
+    if (e.type) typeCounts.set(e.type, (typeCounts.get(e.type) ?? 0) + 1)
     if (e.language) langCounts.set(e.language, (langCounts.get(e.language) ?? 0) + 1)
   }
   const types = [...typeCounts.keys()].sort((a, b) => {
@@ -563,6 +571,7 @@ function entryPage(slug) {
   const discussed = mentions.filter((m) => m.role !== 'mention')
   const pointers = mentions.filter((m) => m.role === 'mention')
   const count = (list) => new Set(list.map((m) => m.episode_id)).size
+  const linkedFrom = [...(db.linkedFrom.get(entry.slug) ?? [])].sort((a, b) => a.term.localeCompare(b.term))
 
   main.innerHTML = `
     <nav class="crumbs"><a href="${href()}">← Search the hoard</a></nav>
@@ -570,7 +579,7 @@ function entryPage(slug) {
       <header class="entry-head">
         <h1 class="headword">${esc(entry.term)}</h1>
         <p class="entry-class">
-          <span class="pos">${esc(typeLabel(entry.type))}</span>
+          ${entry.type ? `<span class="pos">${esc(typeLabel(entry.type))}</span>` : ''}
           ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
         </p>
         ${
@@ -593,6 +602,11 @@ function entryPage(slug) {
         pointers.length
           ? `<h2 class="section-title"><span>Also mentioned in</span></h2>
             <ol class="mentions">${pointers.map((m) => mentionItem(m, entry)).join('')}</ol>`
+          : ''
+      }
+      ${
+        linkedFrom.length
+          ? `<h2 class="section-title"><span>Linked from</span></h2>${entryList(linkedFrom)}`
           : ''
       }
 
@@ -652,7 +666,7 @@ function episodePage(id) {
             <button type="button" class="ts" data-t="${mention.t}" aria-label="Play from ${fmtTime(mention.t)}">${fmtTime(mention.t)}</button>
             <div>
               <a class="hw" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">${esc(entry.term)}</a>
-              <span class="pos">${esc(typeLabel(entry.type))}</span>
+              ${entry.type ? `<span class="pos">${esc(typeLabel(entry.type))}</span>` : ''}
               ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
               ${mention.note ? `<p class="note">${noteHtml(mention, { self: entry })}</p>` : ''}
               ${entry.episodeCount > 1 ? `<p class="also">Also in ${plural(entry.episodeCount - 1, 'other episode')}</p>` : ''}
