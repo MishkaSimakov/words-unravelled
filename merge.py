@@ -181,7 +181,7 @@ def link_problems(note):
     for m in ANY_LINK.finditer(note or ""):
         typed = re.fullmatch(r"([a-z-]+)(\?)?:([^|]+)", m.group(1))
         if not typed:
-            found.append(("untyped link (or |alias) in a v2 note", m.group(0)))
+            found.append(("untyped link or |alias (prompt_version 2+)", m.group(0)))
         elif typed.group(1) not in LINK_TYPES:
             found.append((f"unknown link type '{typed.group(1)}'", m.group(0)))
     return found
