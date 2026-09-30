@@ -9,11 +9,15 @@ const SITE = 'Wordhoard'
 const BASE = import.meta.env.BASE_URL // '/' locally, '/<repo>/' on GitHub Pages
 const main = document.getElementById('main')
 
+// In filter-chip order.
 const TYPES = {
   word: { one: 'word', many: 'Words' },
+  expression: { one: 'expression', many: 'Expressions' },
+  name: { one: 'name', many: 'Names' },
+  topic: { one: 'topic', many: 'Topics' },
+  // Types from before prompt_version 2; remove once every episode is re-extracted.
   idiom: { one: 'idiom', many: 'Idioms' },
   phrase: { one: 'phrase', many: 'Phrases' },
-  name: { one: 'name', many: 'Names' },
 }
 const SUGGESTION_COUNT = 12
 const PAGE_SIZE = 60
@@ -96,28 +100,60 @@ const slugify = (term) =>
     .replace(/[^\p{L}\p{N}]+/gu, '-')
     .replace(/^-+|-+$/g, '') || 'entry'
 
-const WIKILINK = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g
+// Links in notes: [[type:target]]trail (the letters straight after ]] are part of the link text,
+// as on Wikipedia), and, in notes extracted before prompt_version 2, [[target]] / [[target|text]].
+// Same patterns as TYPED_LINK and OLD_LINK in merge.py.
+const WIKILINK = /\[\[(?:([a-z-]+)(\?)?:([^\]|]+)\]\](\p{L}*)|([^\]|]+)(?:\|([^\]]+))?\]\])/gu
+const OLD_WIKILINK = /\[\[()()()()([^\]|]+)(?:\|([^\]]+))?\]\]/g // same groups as WIKILINK, old links only
+
+const LINK_TITLES = {
+  from: 'from', gave: 'gave', 'same-root': 'same root', equivalent: 'equivalent',
+  unrelated: 'unrelated', see: 'see also',
+}
+const linkTitle = (type, uncertain) => {
+  const title = LINK_TITLES[type] ?? type
+  return uncertain ? `possibly ${title}` : title
+}
 
 /**
- * A note with its Obsidian-style [[target]] / [[target|text]] links turned into entry links.
- * Targets that aren't in the index, links back to `self`, and all links when `links` is
- * false (e.g. inside another <a>) become plain text.
+ * A note with its links turned into entry links. The i-th typed link uses `mention.links[i].slug`,
+ * as resolved by merge.py; old links without a resolved slug are looked up by their target.
+ * Targets that aren't in the index, links back to `self`, and all links when `links` is false
+ * (e.g. inside another <a>) become plain text.
  */
-function noteHtml(note, { links = true, self = null } = {}) {
+function noteHtml(mention, { links = true, self = null } = {}) {
+  const note = mention.note ?? ''
+  const typed = (mention.links ?? []).filter((l) => l.type)
+  const old = (mention.links ?? []).filter((l) => !l.type)
+  // Notes extracted before prompt_version 2 (or merged before links existed) have only old links.
+  const oldFormat = !mention.links || old.length > 0
   let html = ''
   let last = 0
-  for (const m of note.matchAll(WIKILINK)) {
-    const target = m[1].trim()
-    const text = (m[2] ?? m[1]).trim()
-    const entry = links ? db.bySlug.get(slugify(target)) : null
+  for (const m of note.matchAll(oldFormat ? OLD_WIKILINK : WIKILINK)) {
+    let text, slug, attrs = ''
+    if (m[1]) {
+      const link = typed.shift()
+      text = m[3].trim() + m[4]
+      slug = link?.slug ?? null
+      attrs = ` data-type="${esc(m[1])}"${m[2] ? ' data-uncertain' : ''} title="${esc(linkTitle(m[1], m[2]))}"`
+    } else {
+      const link = old.shift()
+      text = (m[6] ?? m[5]).trim()
+      slug = link ? link.slug : slugify(m[5].trim())
+    }
+    const entry = links && slug ? db.bySlug.get(slug) : null
     html += esc(note.slice(last, m.index))
     html += entry && entry !== self
-      ? `<a href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">${esc(text)}</a>`
+      ? `<a class="note-link" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}"${attrs}>${esc(text)}</a>`
       : esc(text)
     last = m.index + m[0].length
   }
   return html + esc(note.slice(last))
 }
+
+// Roles in order of importance; `null` (notes extracted before roles existed) counts as a subject.
+const ROLE_RANK = { subject: 0, aside: 1, mention: 2 }
+const roleRank = (m) => ROLE_RANK[m.role] ?? 0
 
 function shuffle(list) {
   const a = [...list]
@@ -218,6 +254,8 @@ async function load() {
   db.entries = entries.sort((a, b) => a.term.localeCompare(b.term, 'en', { sensitivity: 'base' }))
   for (const entry of db.entries) {
     entry.episodeCount = new Set(entry.mentions.map((m) => m.episode_id)).size
+    // Only ever pointed to ("as we discussed in..."), never discussed.
+    entry.mentionOnly = entry.mentions.every((m) => m.role === 'mention')
     db.bySlug.set(entry.slug, entry)
     for (const mention of entry.mentions) db.byEpisode.get(mention.episode_id)?.push({ entry, mention })
   }
@@ -239,7 +277,8 @@ async function load() {
 
 function search(query) {
   const q = fold(query.trim())
-  // Fuse ranks by fuzziness only; put exact and prefix matches of the term first.
+  // Fuse ranks by fuzziness only; put exact and prefix matches of the term first, and within
+  // each tier, entries that are only ever mentioned after those that are discussed.
   const tier = (e) => {
     const t = fold(e.term)
     return t === q ? 0 : t.startsWith(q) ? 1 : 2
@@ -247,7 +286,7 @@ function search(query) {
   return db.fuse
     .search(query.trim())
     .map((r) => ({ entry: r.item, score: r.score, tier: tier(r.item) }))
-    .sort((a, b) => a.tier - b.tier || a.score - b.score)
+    .sort((a, b) => a.tier - b.tier || a.entry.mentionOnly - b.entry.mentionOnly || a.score - b.score)
     .map((r) => r.entry)
 }
 
@@ -259,7 +298,7 @@ function entryItem(entry, query = '') {
   const gloss = []
   if (original) gloss.push(`<i>${highlight(original, query)}</i>`)
   if (translation) gloss.push(`‘${highlight(translation, query)}’`)
-  const note = entry.mentions[0]?.note
+  const mention = [...entry.mentions].sort((a, b) => roleRank(a) - roleRank(b))[0]
   return `
     <li>
       <a class="result" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">
@@ -271,7 +310,7 @@ function entryItem(entry, query = '') {
           </span>
         </span>
         ${gloss.length ? `<span class="gloss">${gloss.join(' · ')}</span>` : ''}
-        ${note ? `<span class="result-note">${noteHtml(note, { links: false })}</span>` : ''}
+        ${mention?.note ? `<span class="result-note">${noteHtml(mention, { links: false })}</span>` : ''}
         <span class="result-count">${plural(entry.episodeCount, 'episode')}</span>
       </a>
     </li>`
@@ -341,7 +380,7 @@ function home(params) {
       <div class="search-box">
         <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
         <input id="q" name="q" type="search" value="${esc(state.q)}" spellcheck="false"
-          placeholder="Search a word, idiom or name…" aria-describedby="result-status" />
+          placeholder="Search a word, expression or name…" aria-describedby="result-status" />
         <kbd class="search-kbd" aria-hidden="true">/</kbd>
       </div>
       <div class="filters">
@@ -518,9 +557,12 @@ function entryPage(slug) {
   const prev = db.entries[i - 1]
   const next = db.entries[i + 1]
   const { original, translation } = forms(entry)
-  const mentions = [...entry.mentions].sort((a, b) =>
-    (db.episodeById.get(b.episode_id)?.date ?? '').localeCompare(db.episodeById.get(a.episode_id)?.date ?? ''),
-  )
+  // Subjects, then asides, newest first; episodes that only point to the entry go last.
+  const date = (m) => db.episodeById.get(m.episode_id)?.date ?? ''
+  const mentions = [...entry.mentions].sort((a, b) => roleRank(a) - roleRank(b) || date(b).localeCompare(date(a)))
+  const discussed = mentions.filter((m) => m.role !== 'mention')
+  const pointers = mentions.filter((m) => m.role === 'mention')
+  const count = (list) => new Set(list.map((m) => m.episode_id)).size
 
   main.innerHTML = `
     <nav class="crumbs"><a href="${href()}">← Search the hoard</a></nav>
@@ -541,10 +583,18 @@ function entryPage(slug) {
         }
       </header>
 
-      <h2 class="section-title"><span>Discussed in ${plural(entry.episodeCount, 'episode')}</span></h2>
-      <ol class="mentions">
-        ${mentions.map((m) => mentionItem(m, entry)).join('')}
-      </ol>
+      ${
+        discussed.length
+          ? `<h2 class="section-title"><span>Discussed in ${plural(count(discussed), 'episode')}</span></h2>
+            <ol class="mentions">${discussed.map((m) => mentionItem(m, entry)).join('')}</ol>`
+          : ''
+      }
+      ${
+        pointers.length
+          ? `<h2 class="section-title"><span>Also mentioned in</span></h2>
+            <ol class="mentions">${pointers.map((m) => mentionItem(m, entry)).join('')}</ol>`
+          : ''
+      }
 
       <nav class="adjacent" aria-label="Neighbouring entries">
         ${prev ? `<a rel="prev" href="${href(`entry/${encodeURIComponent(prev.slug)}`)}"><span>Previous entry</span>${esc(prev.term)}</a>` : '<span></span>'}
@@ -564,7 +614,7 @@ function mentionItem(m, entry) {
           ${ep.date ? `<time datetime="${ep.date}">${fmtDate(ep.date)}</time> · ` : ''}
           at <a href="${youtubeUrl(ep.id, Math.max(0, m.t - LEAD_IN))}" target="_blank" rel="noopener">${fmtTime(m.t)} on YouTube</a>
         </p>
-        ${m.note ? `<p class="note">${noteHtml(m.note, { self: entry })}</p>` : ''}
+        ${m.note ? `<p class="note">${noteHtml(m, { self: entry })}</p>` : ''}
         ${
           m.confidence === 'low' && !m.verified
             ? `<p class="flag" title="The automatic captions were unclear here, so the spelling or the entry itself may be wrong.">Unverified: the captions were unclear here</p>`
@@ -604,7 +654,7 @@ function episodePage(id) {
               <a class="hw" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">${esc(entry.term)}</a>
               <span class="pos">${esc(typeLabel(entry.type))}</span>
               ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
-              ${mention.note ? `<p class="note">${noteHtml(mention.note, { self: entry })}</p>` : ''}
+              ${mention.note ? `<p class="note">${noteHtml(mention, { self: entry })}</p>` : ''}
               ${entry.episodeCount > 1 ? `<p class="also">Also in ${plural(entry.episodeCount - 1, 'other episode')}</p>` : ''}
             </div>
           </li>`,
@@ -716,7 +766,7 @@ function aboutPage() {
         endorsed by or connected to RobWords, Words Unravelled, Rob Watts or Jess Zafarris.</p>
 
       <p><em>Words Unravelled</em> is a podcast about etymology hosted by Rob Watts and Jess Zafarris.
-        Each episode takes a theme and works through dozens of words, idioms and names. This site is an
+        Each episode takes a theme and works through dozens of words, expressions and names. This site is an
         index to that back catalogue: search for a word and it tells you which episodes discussed it,
         and plays the video from that moment.</p>
 

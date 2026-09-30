@@ -679,6 +679,15 @@ main.wrap {
   margin: 10px 0 0;
   font-size: 1.05rem;
 }
+/* Typed links in notes: "unrelated" is muted, uncertain relations get a dotted underline. */
+.note-link[data-type='unrelated'] {
+  color: var(--muted);
+  text-decoration-color: color-mix(in srgb, var(--muted) 55%, transparent);
+}
+.note-link[data-uncertain] {
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1.5px;
+}
 .flag {
   display: inline-block;
   margin: 10px 0 0;
