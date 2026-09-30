@@ -35,11 +35,12 @@ translation, not what the hosts said. For example, "Sod's law" becomes "the law 
 meanness", and Jess's book titles get garbled. `fetch_subs.sh` downloads `en-orig`, and
 `json3_to_text.py` prefers it when both tracks exist.
 
-`extract_all.sh` runs `claude -p` with `extract_prompt.md` on each transcript. It skips
-episodes whose output is valid JSON with the current `prompt_version` (set at the top of the
-script), so files made with an older prompt are extracted again. It stops at the first failed
-`claude` call, e.g. at the usage limit; re-run it after the reset. `EXTRACT_DIR=<dir>` writes the
-output somewhere other than `extracted/`.
+`extract_all.sh` runs `claude -p` with `extract_prompt.md` on each transcript, 5 episodes at a
+time (`-j N` to change that). It skips episodes whose output is valid JSON with the current
+`prompt_version` (set at the top of the script), so files made with an older prompt are
+extracted again. At the first failed `claude` call, e.g. at the usage limit, it lets the running
+calls finish and stops; re-run it after the reset. `EXTRACT_DIR=<dir>` writes the output
+somewhere other than `extracted/`.
 
 Downloads sleep 60 s between caption files because YouTube rate-limits them (HTTP 429), so
 the full catalogue (about 100 episodes) takes about two hours. Every step skips work that's
