@@ -86,6 +86,22 @@
   ]
  },
  {
+  "slug": "abjad",
+  "term": "abjad",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "Arabic",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 1698,
+    "note": "A script that focuses on consonants, like Phoenician and Arabic; the name comes from the first four letters of the old Arabic letter order.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "able",
   "term": "-able",
   "original": null,
@@ -177,6 +193,22 @@
     "episode_id": "1PM_iwxAyb8",
     "t": 3195,
     "note": "A contraction of Old Norse 'at do', since Norse used at instead of to for infinitives. So ado means much the same as a [[to-do]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "adobe",
+  "term": "adobe",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 1371,
+    "note": "Egyptian 'jebet' (vowels are guesswork), meaning brick, passed through Arabic to Spanish and into English from the Americas; it means the brick, its material or a building.",
     "confidence": "high"
    }
   ]
@@ -310,6 +342,22 @@
   ]
  },
  {
+  "slug": "aleph",
+  "term": "aleph",
+  "original": null,
+  "translation": "ox",
+  "type": "word",
+  "language": "Phoenician",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 1672,
+    "note": "A Phoenician letter meaning ox; the ox head was rotated to become the letter A, so we all 'write in ox house' with [[bet]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "alga",
   "term": "alga",
   "original": null,
@@ -433,6 +481,22 @@
     "episode_id": "_iAT5Z5cwJY",
     "t": 482,
     "note": "Theaters with seating on both sides; the amphi element can mean all around but also specifically both, as in [[amphibian]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "ancient",
+  "term": "ancient",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 53,
+    "note": "Meant loosely 'old' until about 1600, when it came to mean pre-476 antiquity; its T is unetymological, and it comes from Vulgar Latin antianus 'from before', like [[antebellum]].",
     "confidence": "high"
    }
   ]
@@ -1294,6 +1358,22 @@
     "t": 1563,
     "note": "An old word from Coleridge's dictionary meaning confused or perplexed; a relative survives as northern English dialect [[mither]].",
     "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "bet",
+  "term": "bet",
+  "original": null,
+  "translation": "house",
+  "type": "word",
+  "language": "Phoenician",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 1664,
+    "note": "A Phoenician letter meaning house, which came from the Egyptian house hieroglyph and became the letter B.",
+    "confidence": "high"
    }
   ]
  },
@@ -2554,6 +2634,38 @@
   ]
  },
  {
+  "slug": "cartouche",
+  "term": "cartouche",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 913,
+    "note": "The loop around royal names that helped Champollion; a doublet of [[cartridge]], from French cartouche 'pistol charge', ultimately from Latin and Italian words for a paper roll.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "cartridge",
+  "term": "cartridge",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 978,
+    "note": "A doublet of [[cartouche]] that went from cartouche through cartage to cartridge, with an unetymological R.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "cartwright",
   "term": "cartwright",
   "original": null,
@@ -2947,6 +3059,22 @@
     "episode_id": "-54FiJ0PsXo",
     "t": 2185,
     "note": "Doesn't need to invoke the shellfish, since [[clam]] itself means to constrict or clinch.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "classifier",
+  "term": "classifier",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 954,
+    "note": "An unpronounced hieroglyph showing a word's general theme, such as a scroll for writing; Rob compares drawing a gift or clock beside 'present'.",
     "confidence": "high"
    }
   ]
@@ -3621,6 +3749,22 @@
     "episode_id": "_iAT5Z5cwJY",
     "t": 1016,
     "note": "From Latin crusta, shell, referring to their hard exoskeletons; basically the opposite of [[mollusk]] in crunchiness.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "cuneiform",
+  "term": "cuneiform",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 1753,
+    "note": "Means 'wedge-shaped', from Latin [[cuneus]] 'wedge', after the triangular marks a reed stylus makes in clay; it may be as old as writing itself.",
     "confidence": "high"
    }
   ]
@@ -6666,6 +6810,22 @@
   ]
  },
  {
+  "slug": "hieroglyph",
+  "term": "hieroglyph",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 1089,
+    "note": "According to Egyptologist Ilona Regulski, the signs should be called hieroglyphs, not hieroglyphics.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "high-talking",
   "term": "high-talking",
   "original": null,
@@ -7782,6 +7942,22 @@
   ]
  },
  {
+  "slug": "kheper",
+  "term": "kheper",
+  "original": null,
+  "translation": "to become, to happen, to develop, to create",
+  "type": "word",
+  "language": "Egyptian",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 1256,
+    "note": "A triliteral verb written with the scarab sign, because the Egyptian word for scarab had the same three consonants.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "killer-whale",
   "term": "killer whale",
   "original": null,
@@ -8884,6 +9060,12 @@
     "t": 1714,
     "note": "Means between rivers, sharing its river element with [[hippopotamus]].",
     "confidence": "high"
+   },
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 2035,
+    "note": "The heartland of cuneiform, literally the area between two rivers, the Euphrates and the Tigris.",
+    "confidence": "high"
    }
   ]
  },
@@ -9043,6 +9225,22 @@
     "episode_id": "0xi1MatI3pw",
     "t": 1955,
     "note": "Not related to minimum or minuscule; from Latin miniare, 'to paint red', from [[minium]]. The meaning 'small' came from small manuscript illuminations and portrait miniatures.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "minoan",
+  "term": "Minoan",
+  "original": null,
+  "translation": null,
+  "type": "name",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 2209,
+    "note": "Named after King Minos, owner of the Minotaur; Arthur Evans thought the script found at Knossos recorded the Minoans' language.",
     "confidence": "high"
    }
   ]
@@ -9432,6 +9630,22 @@
   ]
  },
  {
+  "slug": "mummy",
+  "term": "mummy",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 384,
+    "note": "From Arabic mumia, an embalmed body; in English it first meant a medicinal substance made from bitumen or Egyptian corpses, which people ate for centuries.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "mumpsimus",
   "term": "mumpsimus",
   "original": null,
@@ -9503,6 +9717,22 @@
     "episode_id": "1PM_iwxAyb8",
     "t": 2766,
     "note": "From Spanish mestengo, 'stray animal'. That comes from the Mesta, a livestock owners' council said to mean 'mixed', perhaps for dividing mixed strays; not mixed breeds.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "mustard-in-the-style-of-the-ancients",
+  "term": "mustard in the style of the ancients",
+  "original": "moutarde à l'ancienne",
+  "translation": "mustard in the style of the ancients",
+  "type": "phrase",
+  "language": "French",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 122,
+    "note": "French name for whole-grain mustard, from the same French word that gave [[ancient]]; Rob thinks it just means 'old-style', not Roman-style.",
     "confidence": "high"
    }
   ]
@@ -9877,6 +10107,22 @@
     "episode_id": "52GtCvS7HCU",
     "t": 1801,
     "note": "A little-known ob- word meaning walking around; it reminds Rob of [[somnambulation]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "obelisk",
+  "term": "obelisk",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 533,
+    "note": "Greek for 'little spit' or cooking skewer; it's also a dagger-like printing mark, or obelus, that dictionaries used for obsolete words, alongside the star-named [[asterisk]].",
     "confidence": "high"
    }
   ]
@@ -10556,6 +10802,22 @@
   ]
  },
  {
+  "slug": "pageant",
+  "term": "pageant",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 182,
+    "note": "Another word with no T in French that got an unetymological T in English, like [[ancient]] and [[parchment]].",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "pangolin",
   "term": "pangolin",
   "original": null,
@@ -10636,6 +10898,22 @@
   ]
  },
  {
+  "slug": "parchment",
+  "term": "parchment",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 182,
+    "note": "Like [[ancient]] and [[pageant]], it had no T in French; English added one in Middle English to match words ending in -ant/-ent.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "parrot",
   "term": "parrot",
   "original": null,
@@ -10648,6 +10926,22 @@
     "t": 2148,
     "note": "From Middle French Perrot, a diminutive of Pierre used for someone who talks a lot or clippedly; related to [[parakeet]], with a parallel in [[robin]].",
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "peasant",
+  "term": "peasant",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 182,
+    "note": "Its T was added in French itself, the same process that gave English [[ancient]] its unetymological T; compare [[tyrant]].",
+    "confidence": "low"
    }
   ]
  },
@@ -10856,6 +11150,12 @@
     "t": 678,
     "note": "The Egyptian word means 'great house' and originally referred to the building the ruler lived in rather than the office.",
     "confidence": "high"
+   },
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 352,
+    "note": "One of the few words from Egyptian; it meant the palace before the ruler, a bit like saying the [[White House]]. It was covered in their top-100 episode.",
+    "confidence": "high"
    }
   ]
  },
@@ -10871,6 +11171,22 @@
     "episode_id": "2Jvlji9GlOw",
     "t": 1356,
     "note": "A Vietnamese noodle soup invented during French occupation; the name may come from French [[pot-au-feu]], from Chinese words like fàn, or from both.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "phoenician",
+  "term": "Phoenician",
+  "original": null,
+  "translation": null,
+  "type": "name",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 1718,
+    "note": "From Greek phoinix, used for Phoenicians, purple and red dyes, and date palms; it looks like, but may not be related to, [[phoenix]].",
     "confidence": "high"
    }
   ]
@@ -11434,6 +11750,22 @@
   ]
  },
  {
+  "slug": "prehistory",
+  "term": "prehistory",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 1801,
+    "note": "Defined as the time before writing, when nobody could yet record what was happening.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "prestidigitation",
   "term": "prestidigitation",
   "original": null,
@@ -11776,6 +12108,22 @@
   ]
  },
  {
+  "slug": "pyramid",
+  "term": "pyramid",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 278,
+    "note": "From Greek pyramis, which is probably Egyptian and also meant a pyramid-shaped honey cake; every pyramid, even in the Americas, is named after the Egyptian ones.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "pyriform",
   "term": "pyriform",
   "original": null,
@@ -12096,6 +12444,22 @@
   ]
  },
  {
+  "slug": "rebus-principle",
+  "term": "rebus principle",
+  "original": null,
+  "translation": null,
+  "type": "phrase",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 1211,
+    "note": "Spelling a word with pictures of things that sound like its parts, as some hieroglyphs do; for example, a bee plus a leaf for 'belief'.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "rembrandt",
   "term": "Rembrandt",
   "original": "Rembrandt Harmenszoon van Rijn",
@@ -12320,6 +12684,22 @@
   ]
  },
  {
+  "slug": "rosetta-stone",
+  "term": "Rosetta Stone",
+  "original": null,
+  "translation": null,
+  "type": "name",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 778,
+    "note": "Named after Rosetta, the French name for Rashid, where Napoleon's soldiers found it in 1799; its Greek, Demotic and hieroglyphic text helped decipher hieroglyphs.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "rover",
   "term": "Rover",
   "original": null,
@@ -12470,6 +12850,22 @@
   ]
  },
  {
+  "slug": "sarcasm",
+  "term": "sarcasm",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 473,
+    "note": "It shares its flesh element with [[sarcophagus]]: being sarcastic is tearing at someone's flesh.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "sarcastic-fringehead",
   "term": "sarcastic fringehead",
   "original": null,
@@ -12481,6 +12877,22 @@
     "episode_id": "-54FiJ0PsXo",
     "t": 3038,
     "note": "A fish whose name uses sarcastic in its root sense of flesh-tearing, as in [[sarcasm]], for its large mouth with scary teeth.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "sarcophagus",
+  "term": "sarcophagus",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 445,
+    "note": "From Greek sarcophagus lithos, 'flesh-eating stone', meaning limestone thought to decompose bodies; it shares [[-phage]] and the flesh root of [[sarcasm]]. It meant a carved coffin from 1705.",
     "confidence": "high"
    }
   ]
@@ -12954,6 +13366,22 @@
     "t": 321,
     "note": "Not a fish; the name reflects the older meaning of [[fish]] as any sea-dwelling animal.",
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "shesep-ankh",
+  "term": "shesep ankh",
+  "original": null,
+  "translation": "living image",
+  "type": "word",
+  "language": "Egyptian",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 675,
+    "note": "Egyptian name for the Sphinx statue, which Susan Wise Bauer proposes as the source of Greek [[Sphinx]]; most sources disagree.",
+    "confidence": "low"
    }
   ]
  },
@@ -13598,6 +14026,22 @@
   ]
  },
  {
+  "slug": "sphinx",
+  "term": "Sphinx",
+  "original": null,
+  "translation": null,
+  "type": "name",
+  "language": "Greek",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 585,
+    "note": "From a Greek word meaning 'squeeze, bind, embrace', after the riddling Greek Sphinx. Susan Wise Bauer suggests it may instead corrupt Egyptian [[shesep ankh]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "spill-the-beans",
   "term": "spill the beans",
   "original": null,
@@ -13823,6 +14267,22 @@
     "episode_id": "1PM_iwxAyb8",
     "t": 600,
     "note": "Named in 1877 by Othniel Charles Marsh from Greek stegos 'roof' and sauros 'lizard'. He thought its plates lay flat like shingles.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "stele",
+  "term": "stele",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 800,
+    "note": "Greek for a standing block or slab; the Rosetta Stone is a broken piece of one.",
     "confidence": "high"
    }
   ]
@@ -14143,6 +14603,22 @@
     "episode_id": "0TTPpHUVL3Y",
     "t": 1532,
     "note": "Basically means something squidgy; related to German [[Schwamm]], sponge or mushroom, and to [[sump]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "syllabogram",
+  "term": "syllabogram",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 1988,
+    "note": "A sign that stands for a syllable, which later cuneiform adopted.",
     "confidence": "high"
    }
   ]
@@ -14970,6 +15446,22 @@
   ]
  },
  {
+  "slug": "triliteral",
+  "term": "triliteral",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 1240,
+    "note": "A hieroglyph that stands for three consonants at once; uniliteral and biliteral signs stand for one or two. The scarab sign for [[kheper]] is an example.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "trimester",
   "term": "trimester",
   "original": null,
@@ -15202,6 +15694,22 @@
     "t": 1762,
     "note": "Rob suggests it means 'two lights'; Jess says it's more 'between lights', since [[between]] is related to [[two]].",
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "tyrant",
+  "term": "tyrant",
+  "original": null,
+  "translation": null,
+  "type": "word",
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 182,
+    "note": "Like [[peasant]], French added the final T, in the same way English added one to [[ancient]].",
+    "confidence": "low"
    }
   ]
  },
