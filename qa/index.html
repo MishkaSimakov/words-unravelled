@@ -44,6 +44,9 @@
   .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
   .badge { font-size: .8rem; padding: 2px 9px; border-radius: 999px; background: var(--warn-soft); color: var(--warn); }
   .badge.low { background: var(--bad-soft); color: var(--bad); }
+  .role { font-size: .85rem; font-weight: 600; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--rule); color: var(--ink); }
+  .role-aside { border-style: dashed; }
+  .role-mention { border-style: dotted; color: var(--muted); }
   .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
   .actions button { font: inherit; font-weight: 600; padding: 12px; border-radius: 8px; cursor: pointer; border: 1px solid transparent; }
   .approve { background: var(--ok); color: #fff; }
@@ -76,6 +79,13 @@
       <div class="progress-text" id="progress">Loading…</div>
     </div>
     <select id="episode" aria-label="Episode"><option value="">All episodes</option></select>
+    <select id="role" aria-label="Role">
+      <option value="">All roles</option>
+      <option value="subject">Subject</option>
+      <option value="aside">Aside</option>
+      <option value="mention">Mention</option>
+      <option value="none">No role (old format)</option>
+    </select>
     <label class="toggle"><input type="checkbox" id="lowOnly" /> Low confidence only</label>
     <label class="toggle"><input type="checkbox" id="autoplay" /> Autoplay</label>
   </div>
@@ -99,6 +109,7 @@ let contextBefore = 20, contextAfter = 80
 
 $('autoplay').checked = store.get('qa-autoplay') === '1'
 $('lowOnly').checked = store.get('qa-low-only') === '1'
+$('role').value = store.get('qa-role') || ''
 
 async function api(path, body) {
   const res = await fetch(path, body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : {})
@@ -122,7 +133,9 @@ async function init() {
 function visible() {
   const ep = $('episode').value
   const low = $('lowOnly').checked
-  return queue.filter((i) => (!ep || i.video_id === ep) && (!low || i.confidence === 'low' || i.flags.length))
+  const role = $('role').value
+  return queue.filter((i) => (!ep || i.video_id === ep) && (!low || i.confidence === 'low' || i.flags.length) &&
+    (!role || (role === 'none' ? !i.role : i.role === role)))
 }
 
 function renderProgress() {
@@ -139,7 +152,7 @@ function show() {
   current = items[0] || null
   contextBefore = 20; contextAfter = 80
   if (!current) {
-    $('main').innerHTML = `<div class="done"><h2>Nothing left to review${$('episode').value || $('lowOnly').checked ? ' in this view' : ''}.</h2>
+    $('main').innerHTML = `<div class="done"><h2>Nothing left to review${$('episode').value || $('lowOnly').checked || $('role').value ? ' in this view' : ''}.</h2>
       <p>Decisions are saved in <code>data/review.json</code>. Run <code>python3 merge.py</code> to apply them.</p>
       <div class="secondary" style="max-width:220px;margin:0 auto"><button onclick="undo()" ${undoStack.length ? '' : 'disabled'}>Undo last<kbd>U</kbd></button></div></div>`
     return
@@ -154,7 +167,8 @@ function show() {
     <section class="card">
       <p class="episode">${esc(i.date || '')} · <a href="https://www.youtube.com/watch?v=${i.video_id}&t=${Math.max(0, i.t - 3)}s" target="_blank" rel="noopener">${esc(i.episode)}</a> · ${esc(i.timestamp)}</p>
       <h2 class="term">${esc(i.term)}</h2>
-      <p class="classes"><i>${esc(i.type)}</i> · ${esc(i.language)}</p>
+      <p class="classes"><i>${esc(i.type)}</i> · ${i.language ? esc(i.language) : '<span class="null">no language</span>'} ·
+        ${i.role ? `<span class="role role-${esc(i.role)}">${esc(i.role)}</span>` : '<span class="null">no role</span>'}</p>
       <dl>
         <dt>Original</dt><dd>${field(i.original)}</dd>
         <dt>Translation</dt><dd>${field(i.translation)}</dd>
@@ -254,6 +268,7 @@ document.addEventListener('keydown', (ev) => {
 })
 $('episode').addEventListener('change', () => { store.set('qa-episode', $('episode').value); show() })
 $('lowOnly').addEventListener('change', () => { store.set('qa-low-only', $('lowOnly').checked ? '1' : '0'); show() })
+$('role').addEventListener('change', () => { store.set('qa-role', $('role').value); show() })
 $('autoplay').addEventListener('change', () => store.set('qa-autoplay', $('autoplay').checked ? '1' : '0'))
 
 init().catch((err) => { $('main').innerHTML = `<div class="done"><h2>Could not load items</h2><p>${esc(err.message)}</p></div>` })

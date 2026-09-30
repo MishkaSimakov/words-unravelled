@@ -3,6 +3,7 @@
 
     python3 qa/review.py              # then open http://localhost:8765
     python3 qa/review.py --port 9000
+    python3 qa/review.py --root /path/to/project-copy
 
 The page shows each extracted entry next to the video (starting at its timestamp) and the
 transcript around it. Decisions are saved immediately to data/review.json, keyed by
@@ -27,7 +28,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from merge import KNOWN_TYPES, load_info, parse_timestamp, review_key  # noqa: E402
+from merge import (KNOWN_TYPES, LEGACY_TYPES, ROLES, link_problems, load_info,  # noqa: E402
+                   parse_timestamp, review_key)
 
 PAGE = Path(__file__).resolve().parent / "index.html"
 REVIEW = ROOT / "data" / "review.json"
@@ -70,6 +72,8 @@ def all_items():
         except json.JSONDecodeError:
             continue
         vid = f.stem
+        version = data.get("prompt_version")
+        version = version if isinstance(version, int) else 1
         ep = info.get(vid, {})
         stamps = {line["t"] for line in transcript_lines(vid)}
         for e in data.get("entries", []):
@@ -82,8 +86,16 @@ def all_items():
                 flags.append("unreadable timestamp")
             elif stamps and t not in stamps:
                 flags.append("timestamp not in transcript")
-            if (e.get("type") or "").lower() not in KNOWN_TYPES:
+            typ = (e.get("type") or "").lower()
+            if typ not in KNOWN_TYPES + LEGACY_TYPES:
                 flags.append(f"new type: {e.get('type')}")
+            elif typ in LEGACY_TYPES and version >= 2:
+                flags.append(f"old type in a v2 file: {typ}")
+            role = e.get("role") if version >= 2 else None
+            if version >= 2:
+                if role not in ROLES:
+                    flags.append(f"unknown role: {role}")
+                flags += [f"{problem}: {link}" for problem, link in link_problems(e.get("note"))]
             items.append({
                 "key": review_key(vid, term),
                 "video_id": vid,
@@ -95,6 +107,7 @@ def all_items():
                 "type": e.get("type"),
                 "language": e.get("language"),
                 "timestamp": e.get("timestamp"),
+                "role": role,
                 "t": t or 0,
                 "note": e.get("note"),
                 "confidence": e.get("confidence"),
@@ -170,10 +183,14 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main():
+    global ROOT, REVIEW
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--port", type=int, default=8765)
+    p.add_argument("--root", type=Path, default=ROOT, help="project directory (default: the one with this script)")
     p.add_argument("--no-browser", action="store_true", help="don't open the page automatically")
     args = p.parse_args()
+    ROOT = args.root.resolve()
+    REVIEW = ROOT / "data" / "review.json"
 
     server = ThreadingHTTPServer(("127.0.0.1", args.port), Handler)
     url = f"http://localhost:{args.port}/"
