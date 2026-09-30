@@ -62,7 +62,8 @@ Reads `subs/*.info.json` and `extracted/*.json` and writes:
   ```
 
 **Types** are `word`, `expression`, `name` and `topic` (a named thing the hosts talk about
-without explaining the name). `idiom` and `phrase`, from files made before `prompt_version` 2,
+without explaining the name). Files with `prompt_version` 3 have no type: kinds will come from a
+separate tagging pass over the merged entries, and until then their entries have `type: null`. `idiom` and `phrase`, from files made before `prompt_version` 2,
 are still accepted until every episode is re-extracted. If an entry's mentions say only `name`
 and `topic`, it is a `name`.
 

@@ -27,7 +27,9 @@ the entry the target resolves to (null if it isn't an entry), looked up after ov
 entry mentioned in the same episode, then any entry by term, then by original form.
 
 Types are word, expression, name and topic. If an entry's mentions say only name and topic, it is
-a name: the hosts explain a name in one episode and only talk about the thing in another.
+a name: the hosts explain a name in one episode and only talk about the thing in another. Files
+with prompt_version 3 or later have no type: kinds come from a separate tagging pass, so their
+mentions leave "type" null.
 
 Overrides (data/overrides.json) are a list of operations applied in order:
 
@@ -568,9 +570,11 @@ def main():
             decision = (review.get(review_key(vid, term)) or {}).get("status")
             if decision == "rejected":
                 continue
-            typ = clean_str(raw.get("type"))
+            typ = clean_str(raw.get("type")) if version < 3 else None
             typ = typ.lower() if typ else None
-            if typ in LEGACY_TYPES and version >= 2:
+            if version >= 3:
+                pass  # no type until the tagging pass
+            elif typ in LEGACY_TYPES and version >= 2:
                 problems[f"old type '{typ}' in a v2 file"].append(where)
             elif typ not in KNOWN_TYPES + LEGACY_TYPES:
                 problems[f"NEW TYPE '{typ}' (kept as is, not remapped)"].append(where)
@@ -643,7 +647,7 @@ def main():
     print(f"Files:     {sum(versions.values())}  "
           f"({counts(versions, lambda v: 'old format' if v is None else f'prompt_version {v}')})")
     print(f"Episodes:  {len(episode_list)}")
-    print(f"Entries:   {len(entries)}  ({counts(types)})")
+    print(f"Entries:   {len(entries)}  ({counts(types, lambda t: t or 'no type yet')})")
     print(f"Mentions:  {len(all_mentions)}  ({verified} approved in QA, {rejected} rejected in QA)")
     print(f"Roles:     {counts(roles, lambda r: r or 'none (old format)')}")
     print(f"Links:     {len(links)}  ({sum(1 for link in links if link['slug'])} resolve to an entry; "
