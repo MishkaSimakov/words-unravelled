@@ -15,9 +15,13 @@ Writes:
 
 Each mention is {episode_id, t, role, note, links, confidence, verified?}:
 
-    {"episode_id": "m9AaobtBMtA", "t": 978, "role": "subject", "note": "A doublet of [[same-root:cartouche]]...",
-     "links": [{"type": "same-root", "uncertain": false, "target": "cartouche", "slug": "cartouche"}],
+    {"episode_id": "m9AaobtBMtA", "t": 978, "role": "subject", "note": "A doublet of cartouche...",
+     "links": [{"type": "same-root", "uncertain": false, "target": "cartouche", "slug": "cartouche",
+                "start": 13, "end": 22}],
      "confidence": "high"}
+
+"note" is plain text: each link is replaced by its text, and "start"/"end" give the link's position
+in it, in UTF-16 code units (how JavaScript indexes strings), so the site never parses notes.
 
 Files written with prompt_version 2 have typed links in notes, [[type:target]]trail (letters right
 after ]] are part of the link text), with a "?" after the type for an uncertain relation. Older
@@ -160,19 +164,53 @@ def clean_str(value):
     return value or None
 
 
-# [[type:target]]trail, where trail is letters (Python's re has no \p{L}; [^\W\d_] is a letter).
-TYPED_LINK = re.compile(r"\[\[([a-z-]+)(\?)?:([^\]|]+)\]\]([^\W\d_]*)")
 OLD_LINK = re.compile(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]")  # [[target]] or [[target|text]]
 ANY_LINK = re.compile(r"\[\[([^\]]*)\]\]")
 
 
-def parse_links(note, version):
-    """The links in a note, in order, with "slug" left for resolve_links()."""
-    if version >= 2:
-        return [{"type": m.group(1), "uncertain": bool(m.group(2)), "target": m.group(3).strip(), "slug": None}
-                for m in TYPED_LINK.finditer(note)]
-    return [{"type": None, "uncertain": False, "target": m.group(1).strip(), "slug": None}
-            for m in OLD_LINK.finditer(note)]
+def utf16_len(text):
+    return len(text.encode("utf-16-le")) // 2
+
+
+def render_note(note, version):
+    """(plain text, links): the note with each [[...]] replaced by its text, and the links in order.
+
+    A typed link shows its target plus the letters straight after "]]" (its trail). Each link
+    records where its text is in the plain note ("start", "end", in UTF-16 code units); "slug" is
+    left for resolve_links(). In typed notes (prompt_version 2+), malformed links (untyped, with a
+    |alias) become plain text.
+    """
+    parts, links, pos, last = [], [], 0, 0
+
+    def add(text):
+        nonlocal pos
+        parts.append(text)
+        pos += utf16_len(text)
+
+    for m in ANY_LINK.finditer(note):
+        add(note[last:m.start()])
+        last = m.end()
+        inner = m.group(1)
+        typed = re.fullmatch(r"([a-z-]+)(\?)?:([^|]+)", inner) if version >= 2 else None
+        if typed:
+            # The trail is letters; Python's re has no \p{L}, and [^\W\d_] is a letter.
+            trail = re.match(r"[^\W\d_]*", note[m.end():]).group(0)
+            last += len(trail)
+            link = {"type": typed.group(1), "uncertain": bool(typed.group(2)), "target": typed.group(3).strip()}
+            text = link["target"] + trail
+        elif version < 2 and OLD_LINK.fullmatch(m.group(0)):
+            target, _, alias = inner.partition("|")
+            link = {"type": None, "uncertain": False, "target": target.strip()}
+            text = (alias or target).strip()
+        else:
+            target, _, alias = inner.partition("|")
+            add((alias or target).strip())
+            continue
+        start = pos
+        add(text)
+        links.append({**link, "slug": None, "start": start, "end": pos})
+    add(note[last:])
+    return "".join(parts), links
 
 
 def link_problems(note):
@@ -185,6 +223,56 @@ def link_problems(note):
         elif typed.group(1) not in LINK_TYPES:
             found.append((f"unknown link type '{typed.group(1)}'", m.group(0)))
     return found
+
+
+def read_entry(raw, version, stamps=None, duration=None):
+    """Clean and check one extracted entry. merge.py and the QA tool both use this.
+
+    Returns (entry, problems). entry is None if it has no term; its "t" is None if the timestamp
+    can't be read. problems is a list of (kind, detail): kind groups them in the summary, detail
+    (possibly "") says which link or value. "note" is the plain text from render_note(), "markup"
+    the note as extracted.
+    """
+    problems = []
+    term = clean_str(raw.get("term"))
+    if not term:
+        return None, [("entry without a term (skipped)", "")]
+    t = parse_timestamp(raw.get("timestamp"))
+    if t is None:
+        problems.append(("unreadable timestamp (skipped)", ""))
+    elif duration and t > duration:
+        problems.append(("timestamp after the end of the video", ""))
+    elif stamps is not None and t not in stamps:
+        problems.append(("timestamp not found in transcript (possibly invented)", ""))
+
+    typ = clean_str(raw.get("type")) if version < 3 else None
+    typ = typ.lower() if typ else None
+    if version >= 3:
+        pass  # no type until the tagging pass
+    elif typ in LEGACY_TYPES and version >= 2:
+        problems.append((f"old type '{typ}' in a v2 file", ""))
+    elif typ not in KNOWN_TYPES + LEGACY_TYPES:
+        problems.append((f"NEW TYPE '{typ}' (kept as is, not remapped)", ""))
+
+    role = None
+    if version >= 2:
+        role = clean_str(raw.get("role"))
+        role = role.lower() if role else None
+        if role not in ROLES:
+            problems.append((f"unknown role '{role}' (kept as is)", ""))
+
+    markup = clean_str(raw.get("note")) or ""
+    if version >= 2:
+        problems += link_problems(markup)
+    note, links = render_note(markup, version)
+    confidence = clean_str(raw.get("confidence"))
+    return {
+        "term": term, "original": clean_str(raw.get("original")),
+        "translation": clean_str(raw.get("translation")), "type": typ,
+        "language": clean_str(raw.get("language")), "t": t, "role": role,
+        "note": note, "markup": markup, "links": links,
+        "confidence": confidence if confidence in ("high", "low") else "low",
+    }, problems
 
 
 def review_key(video_id, term):
@@ -339,8 +427,8 @@ def group(mentions, episodes):
 def resolve_links(entries, mentions):
     """Set each link's "slug" to the entry its target names, or None. Run after overrides and grouping.
 
-    A mention's term as extracted counts as well as the entry's current term, so links still resolve
-    after an entry is renamed or merged into another.
+    A mention's term and original form as extracted count as well as the entry's current ones, so
+    links still resolve after an entry is renamed or merged into another.
     """
     by_slug = {e["slug"]: e for e in entries}
     in_episode, by_term, by_original = defaultdict(set), defaultdict(set), defaultdict(set)
@@ -354,9 +442,11 @@ def resolve_links(entries, mentions):
             continue
         for term in (m["extracted_term"], m["term"]):
             by_term[slugify(term)].add(e["slug"])
-        if m["original"]:
-            by_original[slugify(m["original"])].add(e["slug"])
-        for form in {m["extracted_term"], m["term"], m["original"], e["term"], e["original"]}:
+        for original in (m["extracted_original"], m["original"]):
+            if original:
+                by_original[slugify(original)].add(e["slug"])
+        for form in {m["extracted_term"], m["term"], m["extracted_original"], m["original"],
+                     e["term"], e["original"]}:
             if form:
                 in_episode[(m["episode_id"], slugify(form))].add(e["slug"])
 
@@ -553,55 +643,25 @@ def main():
 
         seen = {}  # slug -> index in mentions
         for raw in (data or {}).get("entries", []):
-            term = clean_str(raw.get("term"))
-            where = f"{vid} {raw.get('timestamp')} {term!r}"
-            if not term:
-                problems["entry without a term (skipped)"].append(where)
+            entry, found = read_entry(raw, version, stamps, ep["duration"])
+            where = f"{vid} {raw.get('timestamp')} {clean_str(raw.get('term'))!r}"
+            for kind, detail in found:
+                problems[kind].append(f"{where} {detail}".rstrip())
+            if entry is None or entry["t"] is None:
                 continue
-            t = parse_timestamp(raw.get("timestamp"))
-            if t is None:
-                problems["unreadable timestamp (skipped)"].append(where)
-                continue
-            if ep["duration"] and t > ep["duration"]:
-                problems["timestamp after the end of the video"].append(where)
-            elif stamps is not None and t not in stamps:
-                problems["timestamp not found in transcript (possibly invented)"].append(where)
-
-            decision = (review.get(review_key(vid, term)) or {}).get("status")
+            decision = (review.get(review_key(vid, entry["term"])) or {}).get("status")
             if decision == "rejected":
                 continue
-            typ = clean_str(raw.get("type")) if version < 3 else None
-            typ = typ.lower() if typ else None
-            if version >= 3:
-                pass  # no type until the tagging pass
-            elif typ in LEGACY_TYPES and version >= 2:
-                problems[f"old type '{typ}' in a v2 file"].append(where)
-            elif typ not in KNOWN_TYPES + LEGACY_TYPES:
-                problems[f"NEW TYPE '{typ}' (kept as is, not remapped)"].append(where)
-            role = None
-            if version >= 2:
-                role = clean_str(raw.get("role"))
-                role = role.lower() if role else None
-                if role not in ROLES:
-                    problems[f"unknown role '{role}' (kept as is)"].append(where)
-            note = clean_str(raw.get("note")) or ""
-            if version >= 2:
-                for problem, link in link_problems(note):
-                    problems[problem].append(f"{where} {link}")
-            confidence = clean_str(raw.get("confidence")) or "low"
             mention = {
-                "slug": slugify(term), "term": term, "extracted_term": term,
-                "original": clean_str(raw.get("original")),
-                "translation": clean_str(raw.get("translation")),
-                "type": typ, "language": clean_str(raw.get("language")),
-                "episode_id": vid, "t": t, "role": role, "note": note, "links": parse_links(note, version),
-                "confidence": confidence if confidence in ("high", "low") else "low",
+                **entry, "slug": slugify(entry["term"]), "episode_id": vid,
+                # As extracted, so links still resolve after overrides rename or merge the entry.
+                "extracted_term": entry["term"], "extracted_original": entry["original"],
                 "verified": decision == "approved",
             }
             slug = mention["slug"]
             if slug in seen:
                 problems["same entry twice in one episode (highest role kept)"].append(where)
-                if role_rank(role) < role_rank(mentions[seen[slug]]["role"]):
+                if role_rank(entry["role"]) < role_rank(mentions[seen[slug]]["role"]):
                     mentions[seen[slug]] = mention
                 continue
             seen[slug] = len(mentions)

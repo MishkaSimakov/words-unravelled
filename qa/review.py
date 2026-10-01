@@ -28,8 +28,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from merge import (KNOWN_TYPES, LEGACY_TYPES, ROLES, link_problems, load_info,  # noqa: E402
-                   parse_timestamp, review_key)
+from merge import load_info, parse_timestamp, read_entry, review_key  # noqa: E402
 
 PAGE = Path(__file__).resolve().parent / "index.html"
 REVIEW = ROOT / "data" / "review.json"
@@ -75,45 +74,28 @@ def all_items():
         version = data.get("prompt_version")
         version = version if isinstance(version, int) else 1
         ep = info.get(vid, {})
-        stamps = {line["t"] for line in transcript_lines(vid)}
-        for e in data.get("entries", []):
-            term = (e.get("term") or "").strip()
-            if not term:
+        stamps = {line["t"] for line in transcript_lines(vid)} or None
+        for raw in data.get("entries", []):
+            # The same checks as merge.py, so both tools agree on what's wrong with an entry.
+            e, problems = read_entry(raw, version, stamps, ep.get("duration"))
+            if e is None:
                 continue
-            t = parse_timestamp(e.get("timestamp"))
-            flags = []
-            if t is None:
-                flags.append("unreadable timestamp")
-            elif stamps and t not in stamps:
-                flags.append("timestamp not in transcript")
-            typ = (e.get("type") or "").lower()
-            if version >= 3:
-                pass  # no type until the tagging pass
-            elif typ not in KNOWN_TYPES + LEGACY_TYPES:
-                flags.append(f"new type: {e.get('type')}")
-            elif typ in LEGACY_TYPES and version >= 2:
-                flags.append(f"old type in a v2 file: {typ}")
-            role = e.get("role") if version >= 2 else None
-            if version >= 2:
-                if role not in ROLES:
-                    flags.append(f"unknown role: {role}")
-                flags += [f"{problem}: {link}" for problem, link in link_problems(e.get("note"))]
             items.append({
-                "key": review_key(vid, term),
+                "key": review_key(vid, e["term"]),
                 "video_id": vid,
                 "episode": ep.get("title") or vid,
                 "date": ep.get("date"),
-                "term": term,
-                "original": e.get("original"),
-                "translation": e.get("translation"),
-                "type": e.get("type"),
-                "language": e.get("language"),
-                "timestamp": e.get("timestamp"),
-                "role": role,
-                "t": t or 0,
-                "note": e.get("note"),
-                "confidence": e.get("confidence"),
-                "flags": flags,
+                "term": e["term"],
+                "original": e["original"],
+                "translation": e["translation"],
+                "type": e["type"],
+                "language": e["language"],
+                "timestamp": raw.get("timestamp"),
+                "role": e["role"],
+                "t": e["t"] or 0,
+                "note": e["markup"],
+                "confidence": e["confidence"],
+                "flags": [f"{kind}: {detail}" if detail else kind for kind, detail in problems],
             })
     items.sort(key=lambda i: (i["date"] or "", i["video_id"], -i["t"]), reverse=True)
     return items
