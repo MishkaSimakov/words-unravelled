@@ -91,13 +91,16 @@ links. It also flags:
 - low-confidence mentions not yet approved in the review tool
 - timestamps after the end of the video
 - missing roles, and roles other than subject/aside/mention
-- malformed links in notes (`[[x]]`, `[[x|y]]`) and unknown link types
-- the same entry twice in one episode (the mention with the highest role is kept)
-- episodes without a title or date
+- malformed links in notes (`[[x]]`, `[[x|y]]`, `[[see: ]]`) and unknown link types
+- the same entry twice in one episode, including after overrides (the mention with the highest
+  role is kept)
+- episodes without a title (the video ID is used) or a date (listed last)
 - overrides that no longer match anything
 
 Timestamps that aren't in the transcript are reported by `ingest/3-extract.sh` and flagged in
 the review tool, which both have the transcript.
+
+Tests: `python3 -m unittest discover data/test`.
 
 ### Manual fixes: data/overrides.json
 

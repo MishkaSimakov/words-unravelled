@@ -121,7 +121,7 @@ def clean_str(value):
     return value or None
 
 
-ANY_LINK = re.compile(r"\[\[([^\]]*)\]\]")
+ANY_LINK = re.compile(r"\[\[((?:(?!\[\[).)*?)\]\]")  # the innermost [[...]]; a target may contain "]"
 TYPED_LINK = re.compile(r"([a-z-]+)(\?)?:([^|]+)")  # the inside of [[type:target]] or [[type?:target]]
 
 
@@ -134,7 +134,7 @@ def render_note(note):
 
     A link shows its target plus the letters straight after "]]" (its trail). Each link records
     where its text is in the plain note ("start", "end", in UTF-16 code units); "slug" is left for
-    resolve_links(). Malformed links (no type, or a |alias) become plain text.
+    resolve_links(). Malformed links (no type or target, or a |alias) become plain text.
     """
     parts, links, pos, last = [], [], 0, 0
 
@@ -148,7 +148,7 @@ def render_note(note):
         last = m.end()
         inner = m.group(1)
         typed = TYPED_LINK.fullmatch(inner)
-        if not typed:
+        if not typed or not typed.group(3).strip():
             target, _, alias = inner.partition("|")
             add((alias or target).strip())
             continue
@@ -165,12 +165,14 @@ def render_note(note):
 
 
 def link_problems(note):
-    """(problem, link) for each link in a note that is untyped, has an alias or an unknown type."""
+    """(problem, link) for each link in a note that is untyped, has an alias, no target or an unknown type."""
     found = []
     for m in ANY_LINK.finditer(note or ""):
         typed = TYPED_LINK.fullmatch(m.group(1))
         if not typed:
             found.append(("untyped link or |alias (shown as plain text)", m.group(0)))
+        elif not typed.group(3).strip():
+            found.append(("link without a target (shown as plain text)", m.group(0)))
         elif typed.group(1) not in LINK_TYPES:
             found.append((f"unknown link type '{typed.group(1)}'", m.group(0)))
     return found
@@ -328,6 +330,23 @@ def representative(mentions):
 
 def role_rank(role):
     return ROLES.index(role) if role in ROLES else len(ROLES)
+
+
+def dedupe(mentions):
+    """(kept, dropped): one mention per entry and episode, the one with the highest role (the
+    first on a tie). Run after overrides, which can give two mentions the same slug."""
+    kept, dropped = {}, []
+    for m in mentions:
+        key = (m["slug"], m["episode_id"])
+        other = kept.get(key)
+        if other is None:
+            kept[key] = m
+        elif role_rank(m["role"]) < role_rank(other["role"]):
+            kept[key] = m
+            dropped.append(other)
+        else:
+            dropped.append(m)
+    return list(kept.values()), dropped
 
 
 def group(mentions, episodes):
@@ -565,12 +584,13 @@ def main():
             vid = f.stem
         ep = {"id": vid, "title": (data or {}).get("title"), "date": (data or {}).get("date"),
               "duration": (data or {}).get("duration")}
-        if not ep["title"] or not ep["date"]:
-            problems["episode without a title or date (video ID used as title)"].append(vid)
-            ep["title"] = ep["title"] or vid
+        if not ep["title"]:
+            problems["episode without a title (video ID used as title)"].append(vid)
+            ep["title"] = vid
+        if not ep["date"]:
+            problems["episode without a date (listed last)"].append(vid)
         episodes[vid] = ep
 
-        seen = {}  # slug -> index in mentions
         for raw in (data or {}).get("entries", []):
             entry, found = read_entry(raw, duration=ep["duration"])
             where = f"{vid} {raw.get('timestamp')} {clean_str(raw.get('term'))!r}"
@@ -581,23 +601,18 @@ def main():
             decision = (review.get(review_key(vid, entry["term"])) or {}).get("status")
             if decision == "rejected":
                 continue
-            mention = {
+            mentions.append({
                 **entry, "slug": slugify(entry["term"]), "episode_id": vid,
                 # As extracted, so links still resolve after overrides rename or merge the entry.
                 "extracted_term": entry["term"], "extracted_original": entry["original"],
-                "verified": decision == "approved",
-            }
-            slug = mention["slug"]
-            if slug in seen:
-                problems["same entry twice in one episode (highest role kept)"].append(where)
-                if role_rank(entry["role"]) < role_rank(mentions[seen[slug]]["role"]):
-                    mentions[seen[slug]] = mention
-                continue
-            seen[slug] = len(mentions)
-            mentions.append(mention)
+                "verified": decision == "approved", "where": where,
+            })
 
     rejected = sum(1 for v in review.values() if v.get("status") == "rejected")
     mentions = overrides.apply_to_mentions(mentions)
+    mentions, dropped = dedupe(mentions)
+    for m in dropped:
+        problems["same entry twice in one episode (highest role kept)"].append(f"{m['where']} -> {m['slug']}")
     entries, conflicts = group(mentions, episodes)
     overrides.apply_to_entries(entries)
     resolve_links(entries, mentions)
