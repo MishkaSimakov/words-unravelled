@@ -13,7 +13,7 @@ set -u
 
 # Must match "prompt_version" in extract_prompt.md. Output files with another version (or none)
 # are extracted again.
-PROMPT_VERSION=3
+PROMPT_VERSION=4
 jobs=5
 while getopts "j:" opt; do
   case $opt in
