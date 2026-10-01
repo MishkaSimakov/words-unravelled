@@ -27,7 +27,6 @@ jobs=5
 while (( $# )); do
   case $1 in
     -j) (( $# >= 2 )) || usage; jobs=$2; shift 2 ;;
-    -j*) jobs=${1#-j}; shift ;;
     -h|--help) usage ;;
     --) shift; break ;;
     *) break ;;
@@ -66,6 +65,8 @@ stamp() {
   python3 - "$1" "$2" "$3" "$PROMPT_VERSION" <<'EOF'
 import json, os, re, sys
 from pathlib import Path
+sys.path.insert(0, "../data")
+from build import parse_timestamp
 src, dst, vid, version = sys.argv[1], sys.argv[2], sys.argv[3], int(sys.argv[4])
 try:
     data = json.load(open(src, encoding="utf-8"))
@@ -85,9 +86,9 @@ duration = int(info["duration"]) if info.get("duration") else None
 if not info:
     print(f"  no metadata in 1-youtube/ for {vid}: title from the transcript, no date", file=sys.stderr)
 
-stamps = set(re.findall(r"^\[(\d\d:\d\d:\d\d)\]", transcript, re.M))
+stamps = {parse_timestamp(t) for t in re.findall(r"^\[(\d\d:\d\d:\d\d)\]", transcript, re.M)}
 bad = [f"{e.get('term')} ({e.get('timestamp')})" for e in data["entries"]
-       if isinstance(e, dict) and e.get("timestamp") not in stamps]
+       if isinstance(e, dict) and parse_timestamp(e.get("timestamp")) not in stamps]
 if bad:
     print(f"  {len(bad)} timestamp(s) not in the transcript for {vid}: {', '.join(bad)}", file=sys.stderr)
 
@@ -122,25 +123,33 @@ echo "Extracting ${#todo[@]} episode(s), $jobs at a time."
 #   $run/failed       a claude call failed: start no new episodes, keep finished output
 #   $run/interrupted  Ctrl-C: stop now, discard unfinished output
 #   $run/pid-<id>     the running claude call for an episode, in its own process group
+#   $run/active-<id>  the episode's <id>.json.tmp is unfinished: Ctrl-C deletes it
 run=$(mktemp -d)
 failed="$run/failed"
 interrupted="$run/interrupted"
 
+# Stops a claude call started by extract_one: its process group, or only the process if it hasn't
+# made its group yet.
+stop_call() { { kill -TERM -- "-$1" || kill -TERM "$1"; } 2>/dev/null; }
+
 extract_one() {
   local id=$1 out="$out_dir/$1.json" pid status
   echo "Extracting $id..."
+  touch "$run/active-$id"
   # A process group of its own keeps Ctrl-C away from claude: only this script decides to stop
   # (claude would otherwise catch it and exit normally with partial output).
   python3 -c 'import os, sys; os.setpgid(0, 0); os.execvp(sys.argv[1], sys.argv[1:])' \
     claude -p --model claude-opus-5-5 "$(cat 3-extract-prompt.md)" < "2-transcripts/$id.txt" > "$out.tmp" &
   pid=$!
   echo "$pid" > "$run/pid-$id"
+  # on_interrupt may have looked for pid files before this one was written.
+  [[ -e "$interrupted" ]] && stop_call "$pid"
   { wait "$pid"; } 2>/dev/null  # bash 3.2 reports "Terminated" jobs on stderr
   status=$?
   rm -f "$run/pid-$id"
 
   if [[ -e "$interrupted" ]]; then
-    rm -f "$out.tmp"
+    rm -f "$out.tmp" "$run/active-$id"
     return 1
   fi
   # A failed call (e.g. "You've hit your session limit", exit 1) would fail every remaining
@@ -148,7 +157,7 @@ extract_one() {
   if (( status != 0 )); then
     touch "$failed"
     { echo "  claude exited with status $status for $id:"; sed -e 's/^/    /' "$out.tmp"; } >&2
-    rm -f "$out.tmp"
+    rm -f "$out.tmp" "$run/active-$id"
     return 1
   fi
 
@@ -161,6 +170,7 @@ extract_one() {
   else
     echo "  invalid JSON for $id, kept in $out.tmp" >&2
   fi
+  rm -f "$run/active-$id"
 }
 
 worker() {
@@ -178,11 +188,12 @@ on_interrupt() {
   touch "$interrupted"
   local f
   for f in "$run"/pid-*; do
-    [[ -e $f ]] && { kill -TERM -- "-$(cat "$f")" || kill -TERM "$(cat "$f")"; } 2>/dev/null
+    [[ -e $f ]] && stop_call "$(cat "$f")"
   done
   wait
-  for f in "$run"/claim-*; do
-    [[ -e $f ]] && rm -f "$out_dir/${f##*/claim-}.json.tmp" "$out_dir/${f##*/claim-}.json.part"
+  # Only what a worker left unfinished (e.g. one killed by SIGTERM), not invalid output it kept.
+  for f in "$run"/active-*; do
+    [[ -e $f ]] && rm -f "$out_dir/${f##*/active-}.json.tmp" "$out_dir/${f##*/active-}.json.part"
   done
   rm -rf "$run"
   exit 130

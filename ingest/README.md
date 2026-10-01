@@ -47,6 +47,9 @@ limit, it starts no new episodes, keeps the output of calls already running, and
 re-run it after the reset. Ctrl-C stops everything at once and discards unfinished output.
 `EXTRACT_DIR=<dir>` writes the output somewhere other than `3-entries/`.
 
+Tests: `python3 -m unittest discover ingest/test`. They run the script in a temporary folder
+with a mock `claude` (`test/mocks/`), so they use no Claude usage.
+
 ## Extras
 
 `extras/grab_frames.py` takes video frames around each entry's timestamp and packs them into
