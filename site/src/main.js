@@ -112,7 +112,8 @@ function noteHtml(mention, { links = true, self = null } = {}) {
 
 // Roles in order of importance.
 const ROLE_RANK = { subject: 0, aside: 1, mention: 2 }
-const roleRank = (m) => ROLE_RANK[m.role]
+// A missing or unknown role (merge.py warns about it) ranks last, as in merge.py's role_rank().
+const roleRank = (m) => ROLE_RANK[m.role] ?? Object.keys(ROLE_RANK).length
 
 // Debug only: a mention's role, or the roles of all an entry's mentions ("subject · aside ×2").
 const roleBadge = (role, text = role) =>
