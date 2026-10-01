@@ -91,9 +91,11 @@ not a topic: its items are asides.
   English name without regional varieties ("French", not "French (Quebec)"). *Avon* is
   English even though the name is Celtic, and *abjad* discussed as an English word is
   English. A foreign word discussed as such keeps its language (French *moutarde à
-  l'ancienne*). Scientific names are Latin. `null` for a named thing whose name the hosts
-  don't discuss (a person, place or work they only talk about); every other entry has a
-  language (the name *Vulgar Latin* is English).
+  l'ancienne*). Scientific names are Latin. For a named thing whose name the hosts discuss,
+  it is the language the name is used in, not the one it comes from: *Montana* is an
+  English name, even though it comes from Spanish. `null` for a named thing whose name the
+  hosts don't discuss (a person, place or work they only talk about). Every other entry has
+  a language (the name *Vulgar Latin* is English).
 - `timestamp`: see Rules.
 - `role`: `"subject"`, `"aside"` or `"mention"` (see above).
 - `note`: see Rules. May contain links.
@@ -137,9 +139,14 @@ Mark connections inside the note as `[[type:target]]`:
 
 - **Link what the note names.** When the note names an entry in your output, or a person,
   place, work or source word that is part of this entry's story (who coined or used it,
-  what it comes from, what it is compared with), link it, whether or not it is an entry.
-  In "coined by Sir John Cheke", link *Sir John Cheke*; in William Barnes's coinages, link
-  *William Barnes*.
+  what it comes from, what it is compared with), link it. In "named after Jules Léotard",
+  link *Jules Léotard*.
+- **A link never replaces an entry.** First decide the entries (see "What counts as an
+  entry"); links come after. Anything that qualifies is listed as its own entry, even if
+  another entry's note also links to it. This includes the equivalents of a saying, in
+  English or other languages: if the hosts give an English saying as the equivalent of a
+  foreign idiom, the English saying is an entry too. Link to something that isn't an entry
+  only when it doesn't qualify, like a root named only as an origin or a person only named.
 - **Don't link** words used in their ordinary sense ("a small toothed whale" in an
   episode about whales), languages and nationalities ("from Latin", "offensive to the
   Spanish"), which the `language` field already records, or the books, dictionaries and
@@ -153,10 +160,10 @@ Mark connections inside the note as `[[type:target]]`:
 - **Target:** for an entry in your output, copy its `term`, or its `original` if it has
   one. Otherwise use the form the target is best known by in English, following the rules
   for `term`. Don't link an entry to itself. A possessive stays outside the link:
-  `[[see:Sir John Cheke]]'s`.
-- **Shown text:** the link shows its target. Letters written straight after `]]` become part
-  of the link text, so `[[see:ounce]]s` shows "ounces". Use this only for inflections
-  (plurals, -ed, -ing). Otherwise rephrase the sentence so the target reads naturally
+  `[[see:Jules Léotard]]'s`.
+- **Shown text:** the link shows its target; there is no `[[type:target|text]]` form.
+  Letters written straight after `]]` become part of the link text, so `[[see:ounce]]s`
+  shows "ounces". Use this only for inflections (plurals, -ed, -ing). Otherwise rephrase the sentence so the target reads naturally
   ("The [[see:verlan]] form of…"). Link text counts toward the 30-word limit.
 
 ## Output
@@ -189,14 +196,14 @@ other files.
       "confidence": "high"
     },
     {
-      "term": "hundredder",
+      "term": "leotard",
       "original": null,
       "translation": null,
       "language": "English",
-      "timestamp": "00:21:52",
+      "timestamp": "00:24:17",
       "role": "subject",
-      "note": "[[see:Sir John Cheke]]'s native replacement for [[see:centurion]] in his translation of Matthew's Gospel.",
-      "confidence": "low"
+      "note": "Named after [[from:Jules Léotard]], the French acrobat who popularised the one-piece garment in the 1860s.",
+      "confidence": "high"
     }
   ]
 }
