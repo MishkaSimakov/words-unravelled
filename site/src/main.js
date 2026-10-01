@@ -90,25 +90,6 @@ function highlight(text, query) {
   )
 }
 
-// Same folding as slugify() in merge.py, so link targets can be looked up by slug.
-const UNFOLDABLE = { ß: 'ss', æ: 'ae', œ: 'oe', ø: 'o', ł: 'l', đ: 'd', ð: 'd', þ: 'th', ı: 'i', '&': ' and ' }
-const slugify = (term) =>
-  String(term ?? '')
-    .replace(/[­​-‏‪-‮⁠-⁤﻿]/g, '')
-    .toLowerCase()
-    .replace(/[ßæœøłđðþı&]/g, (c) => UNFOLDABLE[c])
-    .normalize('NFKD')
-    .replace(/\p{M}/gu, '')
-    .replace(/['’‘`´]/g, '')
-    .replace(/[^\p{L}\p{N}]+/gu, '-')
-    .replace(/^-+|-+$/g, '') || 'entry'
-
-// Links in notes: [[type:target]]trail (the letters straight after ]] are part of the link text,
-// as on Wikipedia), and, in notes extracted before prompt_version 2, [[target]] / [[target|text]].
-// Same patterns as TYPED_LINK and OLD_LINK in merge.py.
-const WIKILINK = /\[\[(?:([a-z-]+)(\?)?:([^\]|]+)\]\](\p{L}*)|([^\]|]+)(?:\|([^\]]+))?\]\])/gu
-const OLD_WIKILINK = /\[\[()()()()([^\]|]+)(?:\|([^\]]+))?\]\]/g // same groups as WIKILINK, old links only
-
 const LINK_TITLES = {
   from: 'from', gave: 'gave', 'same-root': 'same root', equivalent: 'equivalent',
   unrelated: 'unrelated', see: 'see also',
@@ -119,37 +100,25 @@ const linkTitle = (type, uncertain) => {
 }
 
 /**
- * A note with its links turned into entry links. The i-th typed link uses `mention.links[i].slug`,
- * as resolved by merge.py; old links without a resolved slug are looked up by their target.
- * Targets that aren't in the index, links back to `self`, and all links when `links` is false
- * (e.g. inside another <a>) become plain text.
+ * A mention's note with its links turned into entry links. merge.py gives the note as plain text
+ * and each link's position in it (`start`, `end`) and resolved `slug`, so notes are never parsed
+ * here. Links to things that aren't entries, links back to `self`, and all links when `links` is
+ * false (e.g. inside another <a>) stay plain text.
  */
 function noteHtml(mention, { links = true, self = null } = {}) {
   const note = mention.note ?? ''
-  const typed = (mention.links ?? []).filter((l) => l.type)
-  const old = (mention.links ?? []).filter((l) => !l.type)
-  // Notes extracted before prompt_version 2 (or merged before links existed) have only old links.
-  const oldFormat = !mention.links || old.length > 0
   let html = ''
   let last = 0
-  for (const m of note.matchAll(oldFormat ? OLD_WIKILINK : WIKILINK)) {
-    let text, slug, attrs = ''
-    if (m[1]) {
-      const link = typed.shift()
-      text = m[3].trim() + m[4]
-      slug = link?.slug ?? null
-      attrs = ` data-type="${esc(m[1])}"${m[2] ? ' data-uncertain' : ''} title="${esc(linkTitle(m[1], m[2]))}"`
-    } else {
-      const link = old.shift()
-      text = (m[6] ?? m[5]).trim()
-      slug = link ? link.slug : slugify(m[5].trim())
-    }
-    const entry = links && slug ? db.bySlug.get(slug) : null
-    html += esc(note.slice(last, m.index))
+  for (const link of mention.links ?? []) {
+    const text = note.slice(link.start, link.end)
+    const entry = links && link.slug ? db.bySlug.get(link.slug) : null
+    html += esc(note.slice(last, link.start))
     html += entry && entry !== self
-      ? `<a class="note-link" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}"${attrs}>${esc(text)}</a>`
+      ? `<a class="note-link" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}"` +
+        ` data-type="${esc(link.type)}"${link.uncertain ? ' data-uncertain' : ''}` +
+        ` title="${esc(linkTitle(link.type, link.uncertain))}">${esc(text)}</a>`
       : esc(text)
-    last = m.index + m[0].length
+    last = link.end
   }
   return html + esc(note.slice(last))
 }
@@ -268,9 +237,11 @@ async function load() {
   }
   db.entries = entries.sort((a, b) => a.term.localeCompare(b.term, 'en', { sensitivity: 'base' }))
   for (const entry of db.entries) {
-    entry.episodeCount = new Set(entry.mentions.map((m) => m.episode_id)).size
-    // Only ever pointed to ("as we discussed in..."), never discussed.
-    entry.mentionOnly = entry.mentions.every((m) => m.role === 'mention')
+    // Episodes that discuss the entry, and all episodes, including those that only point to it
+    // ("as we discussed in..."): the entry page lists the first under "Discussed in".
+    entry.episodeCount = new Set(entry.mentions.filter((m) => m.role !== 'mention').map((m) => m.episode_id)).size
+    entry.allEpisodeCount = new Set(entry.mentions.map((m) => m.episode_id)).size
+    entry.mentionOnly = entry.episodeCount === 0
     db.bySlug.set(entry.slug, entry)
     for (const mention of entry.mentions) db.byEpisode.get(mention.episode_id)?.push({ entry, mention })
   }
@@ -333,7 +304,9 @@ function entryItem(entry, query = '') {
         </span>
         ${gloss.length ? `<span class="gloss">${gloss.join(' · ')}</span>` : ''}
         ${mention?.note ? `<span class="result-note">${noteHtml(mention, { links: false })}</span>` : ''}
-        <span class="result-count">${plural(entry.episodeCount, 'episode')} ${roleBadges(entry)}</span>
+        <span class="result-count">${
+          entry.mentionOnly ? `Mentioned in ${plural(entry.allEpisodeCount, 'episode')}` : plural(entry.episodeCount, 'episode')
+        } ${roleBadges(entry)}</span>
       </a>
     </li>`
 }
@@ -685,7 +658,7 @@ function episodePage(id) {
               ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
               ${roleBadge(mention.role)}
               ${mention.note ? `<p class="note">${noteHtml(mention, { self: entry })}</p>` : ''}
-              ${entry.episodeCount > 1 ? `<p class="also">Also in ${plural(entry.episodeCount - 1, 'other episode')}</p>` : ''}
+              ${entry.allEpisodeCount > 1 ? `<p class="also">Also in ${plural(entry.allEpisodeCount - 1, 'other episode')}</p>` : ''}
             </div>
           </li>`,
           )
