@@ -27,15 +27,16 @@ out_dir=${EXTRACT_DIR:-extracted}
 mkdir -p "$out_dir"
 
 # Checks the model's output in $1 (a JSON object with an "entries" list) and writes it to $2
-# with the current prompt_version. Fails, writing nothing, if the output isn't valid.
+# with the video ID $3 and the current prompt_version. Fails, writing nothing, if the output
+# isn't valid.
 stamp() {
-  python3 - "$1" "$2" "$PROMPT_VERSION" 2>/dev/null <<'EOF'
+  python3 - "$1" "$2" "$3" "$PROMPT_VERSION" 2>/dev/null <<'EOF'
 import json, sys
-src, dst, version = sys.argv[1], sys.argv[2], int(sys.argv[3])
+src, dst, vid, version = sys.argv[1], sys.argv[2], sys.argv[3], int(sys.argv[4])
 data = json.load(open(src, encoding="utf-8"))
 if not isinstance(data, dict) or not isinstance(data.get("entries"), list):
     sys.exit(1)
-data = {"video_id": data.get("video_id"), "prompt_version": version,
+data = {"video_id": vid, "prompt_version": version,
         **{k: v for k, v in data.items() if k not in ("video_id", "prompt_version")}}
 with open(dst, "w", encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False)
@@ -98,7 +99,7 @@ extract_one() {
   # Drop Markdown code fences, in case the model adds them despite the prompt.
   sed -i.bak -e '/^```/d' "$out.tmp" && rm -f "$out.tmp.bak"
 
-  if stamp "$out.tmp" "$out"; then
+  if stamp "$out.tmp" "$out" "$id"; then
     rm -f "$out.tmp"
     echo "  done $id"
   else

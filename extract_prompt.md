@@ -172,7 +172,6 @@ Respond with a single JSON object and nothing else: no Markdown fences, no comme
 other files.
 
 {
-  "video_id": "<copied from the '# video_id:' header>",
   "entries": [
     {
       "term": "dessert",

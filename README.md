@@ -36,8 +36,8 @@ meanness", and Jess's book titles get garbled. `fetch_subs.sh` downloads `en-ori
 `json3_to_text.py` prefers it when both tracks exist.
 
 `extract_all.sh` runs `claude -p` with `extract_prompt.md` on each transcript, 5 episodes at a
-time (`-j N` to change that). It checks each output and writes `prompt_version` into it (set
-at the top of the script; increase it whenever the prompt changes). It skips episodes whose
+time (`-j N` to change that). It checks each output and writes `video_id` and `prompt_version`
+into it (the version is set at the top of the script; increase it whenever the prompt changes). It skips episodes whose
 output is valid JSON with the current `prompt_version`, so files made with an older prompt are
 extracted again. At the first failed `claude` call, e.g. at the usage limit, it lets the running
 calls finish and stops; re-run it after the reset. `EXTRACT_DIR=<dir>` writes the output
