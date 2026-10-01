@@ -1,3 +1,7 @@
+> **Status: the prototype is built; kept for the record.** The audience-side prototype this brief
+> describes was built: it is the site in `site/`. The hosts' side and the later extensions
+> listed below are not implemented. `README.md` describes the current behaviour.
+
 # Words Unravelled Word Index: prototype brief
 
 ## Background

@@ -3,7 +3,7 @@
 An unofficial fan project: a searchable index of the words, expressions, names and topics
 discussed on the *Words Unravelled* podcast (Rob Watts and Jess Zafarris), with a link to
 the moment each one comes up. This prototype covers the **audience side** only. See
-`prototype_brief.md` for the background.
+`docs/prototype_brief.md` for the background.
 
 ```
 subs/          raw captions (.json3) and metadata (.info.json) from yt-dlp
