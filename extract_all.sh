@@ -11,8 +11,9 @@
 # Don't run two copies at once on the same output folder.
 set -u
 
-# Must match "prompt_version" in extract_prompt.md. Output files with another version (or none)
-# are extracted again.
+# Version of extract_prompt.md: increase it whenever the prompt changes. The script writes it
+# into each output file as "prompt_version"; files with another version (or none) are
+# extracted again.
 PROMPT_VERSION=4
 jobs=5
 while getopts "j:" opt; do
@@ -24,6 +25,22 @@ done
 shift $((OPTIND - 1))
 out_dir=${EXTRACT_DIR:-extracted}
 mkdir -p "$out_dir"
+
+# Checks the model's output in $1 (a JSON object with an "entries" list) and writes it to $2
+# with the current prompt_version. Fails, writing nothing, if the output isn't valid.
+stamp() {
+  python3 - "$1" "$2" "$PROMPT_VERSION" 2>/dev/null <<'EOF'
+import json, sys
+src, dst, version = sys.argv[1], sys.argv[2], int(sys.argv[3])
+data = json.load(open(src, encoding="utf-8"))
+if not isinstance(data, dict) or not isinstance(data.get("entries"), list):
+    sys.exit(1)
+data = {"video_id": data.get("video_id"), "prompt_version": version,
+        **{k: v for k, v in data.items() if k not in ("video_id", "prompt_version")}}
+with open(dst, "w", encoding="utf-8") as f:
+    json.dump(data, f, ensure_ascii=False)
+EOF
+}
 
 # True if $1 is valid JSON with the current prompt_version.
 is_current() {
@@ -81,11 +98,11 @@ extract_one() {
   # Drop Markdown code fences, in case the model adds them despite the prompt.
   sed -i.bak -e '/^```/d' "$out.tmp" && rm -f "$out.tmp.bak"
 
-  if is_current "$out.tmp"; then
-    mv "$out.tmp" "$out"
+  if stamp "$out.tmp" "$out"; then
+    rm -f "$out.tmp"
     echo "  done $id"
   else
-    echo "  invalid JSON or prompt_version is not $PROMPT_VERSION for $id, kept in $out.tmp" >&2
+    echo "  invalid JSON for $id, kept in $out.tmp" >&2
   fi
 }
 

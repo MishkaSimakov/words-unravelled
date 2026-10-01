@@ -173,7 +173,6 @@ other files.
 
 {
   "video_id": "<copied from the '# video_id:' header>",
-  "prompt_version": 4,
   "entries": [
     {
       "term": "dessert",
