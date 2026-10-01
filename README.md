@@ -1,6 +1,6 @@
 # Wordhoard: a Words Unravelled word index (prototype)
 
-An unofficial fan project: a searchable index of the words, expressions, names and topics
+An unofficial fan project: a searchable index of the words, expressions and named things
 discussed on the *Words Unravelled* podcast (Rob Watts and Jess Zafarris), with a link to
 the moment each one comes up. This prototype covers the **audience side** only. See
 `docs/prototype_brief.md` for the background.
@@ -54,33 +54,32 @@ already done, so you can stop and re-run any of them.
 Reads `subs/*.info.json` and `extracted/*.json` and writes:
 
 - `data/episodes.json`: `[{ id, title, date, duration }]`, newest first
-- `data/entries.json`: `[{ slug, term, original, translation, type, language, mentions: [...] }]`,
+- `data/entries.json`: `[{ slug, term, original, translation, language, mentions: [...] }]`,
   where each mention is
 
   ```json
   {"episode_id": "m9AaobtBMtA", "t": 978, "role": "subject",
-   "note": "A doublet of [[same-root:cartouche]]; …",
-   "links": [{"type": "same-root", "uncertain": false, "target": "cartouche", "slug": "cartouche"}],
+   "note": "A doublet of cartouche; …",
+   "links": [{"type": "same-root", "uncertain": false, "target": "cartouche", "slug": "cartouche",
+              "start": 13, "end": 22}],
    "confidence": "high", "verified": true}
   ```
 
-**Types** are `word`, `expression`, `name` and `topic` (a named thing the hosts talk about
-without explaining the name). Files with `prompt_version` 3 have no type: kinds will come from a
-separate tagging pass over the merged entries, and until then their entries have `type: null`. `idiom` and `phrase`, from files made before `prompt_version` 2,
-are still accepted until every episode is re-extracted. If an entry's mentions say only `name`
-and `topic`, it is a `name`.
+Entries have no kind (word, expression, name...): that will come from a later tagging pass over
+the merged entries.
 
 **Role** belongs to the mention: `subject` (discussed for its own sake), `aside` (only to make a
-point about another entry) or `mention` (the hosts only point to where it was discussed). Mentions
-from old-format files have `role: null`.
+point about another entry) or `mention` (the hosts only point to where it was discussed).
 
-**Links.** Notes mark connections as `[[type:target]]trail`, with types `from`, `gave`,
+**Links.** Extracted notes mark connections as `[[type:target]]trail`, with types `from`, `gave`,
 `same-root`, `equivalent`, `unrelated` and `see`, and `?` after the type for an uncertain relation
 (`[[from?:shesep ankh]]`). Letters straight after `]]` are part of the link text:
-`[[see:ounce]]s` reads "ounces". `links` lists them in order; `slug` is the entry the target
-resolves to after overrides (an entry in the same episode first, then any entry by term, then by
-original form), or `null` if it isn't an entry. Old-format notes have `[[target]]` and
-`[[target|text]]` links, recorded with `"type": null`.
+`[[see:ounce]]s` reads "ounces". In `entries.json` the note is plain text, with each link
+replaced by its text; `links` lists the links in order, with `start` and `end` giving the
+position of the link text in the note, in UTF-16 code units (how JavaScript indexes strings),
+so the site never parses notes. `slug` is the entry the target resolves to after overrides (an
+entry in the same episode first, then any entry by term, then by original form), or `null` if
+it isn't an entry.
 
 Mentions are grouped by slug: the term lowercased, with invisible characters removed,
 diacritics folded and spaces turned into hyphens (`Björk` → `bjork`). If mentions disagree
@@ -88,17 +87,15 @@ on a field, the majority wins. Nothing else is merged automatically. Likely dupl
 (plural/singular, spelling variants, "to kick the bucket" vs "kick the bucket", one expression
 contained in another, one entry's term being another's original form) go to
 `reports/duplicates.md`, each with a ready-to-paste override, along with mentions that disagree
-on language or type (except `name`/`topic`).
+on language.
 
-The summary shows how many files there are at each `prompt_version`, and counts of types, roles
-and links. It also flags:
+The summary shows how many files there are at each `prompt_version`, and counts of roles and
+links. It also flags:
 
 - low-confidence mentions not yet approved in QA
 - timestamps that don't appear in the transcript (possibly invented)
-- **new types** outside word/expression/name/topic (and the legacy idiom/phrase). These are kept as
-  they are, never remapped. `idiom`/`phrase` in a `prompt_version` 2 file are flagged too.
-- roles other than subject/aside/mention
-- in `prompt_version` 2 files: untyped links (`[[x]]`, `[[x|y]]`) and unknown link types
+- missing roles, and roles other than subject/aside/mention
+- malformed links in notes (`[[x]]`, `[[x|y]]`) and unknown link types
 - the same entry twice in one episode (the mention with the highest role is kept)
 - episodes downloaded but not extracted yet
 - overrides that no longer match anything
@@ -152,7 +149,7 @@ npm run build      # -> site/dist (data copied into dist/data, index.html copied
 npm run preview
 ```
 
-- Pages: home (search, filters, suggestions), `/entry/<slug>`, `/episode/<id>`,
+- Pages: home (search, language filter, suggestions), `/entry/<slug>`, `/episode/<id>`,
   `/episodes`, `/about`.
 - `npm run dev` also shows debug details: each mention's role (subject / aside / mention) as a
   small badge on result cards, entry pages and episode timelines. `npm run build` leaves them out.
