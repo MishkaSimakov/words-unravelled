@@ -1,3 +1,3 @@
 [
-  {"_comment": "Manual fixes applied by merge.py on every run. See the docstring of merge.py for the operations."}
+  {"_comment": "Manual fixes applied by data/build.py on every run. See its docstring or the README for the operations."}
 ]

@@ -265,10 +265,6 @@ main.wrap {
   font-size: 0.95rem;
 }
 
-.pos {
-  font-style: italic;
-  color: var(--ink-soft);
-}
 .lang {
   font-variant-caps: all-small-caps;
   letter-spacing: 0.06em;
@@ -428,41 +424,6 @@ main.wrap {
   align-items: center;
   gap: 10px 14px;
   margin-top: 12px;
-}
-.chips {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  max-width: 100%;
-  padding: 2px;
-}
-.chips::-webkit-scrollbar {
-  display: none;
-}
-.chip {
-  flex: none;
-  border: 1px solid var(--rule);
-  background: transparent;
-  border-radius: 999px;
-  padding: 4px 13px;
-  cursor: pointer;
-  font-size: 0.95rem;
-  white-space: nowrap;
-  transition: background-color 0.15s, border-color 0.15s;
-}
-.chip:hover {
-  border-color: var(--ink-soft);
-}
-.chip[aria-pressed='true'] {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper);
-}
-.chip-count {
-  font-size: 0.8rem;
-  opacity: 0.7;
-  font-variant-numeric: tabular-nums;
 }
 .lang-select select {
   font: inherit;
@@ -679,6 +640,15 @@ main.wrap {
   margin: 10px 0 0;
   font-size: 1.05rem;
 }
+/* Typed links in notes: "unrelated" is muted, uncertain relations get a dotted underline. */
+.note-link[data-type='unrelated'] {
+  color: var(--muted);
+  text-decoration-color: color-mix(in srgb, var(--muted) 55%, transparent);
+}
+.note-link[data-uncertain] {
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1.5px;
+}
 .flag {
   display: inline-block;
   margin: 10px 0 0;
@@ -690,6 +660,32 @@ main.wrap {
 }
 .flag-inline {
   margin: 0;
+}
+
+/* Debug only (npm run dev): the role of a mention. Solid, dashed and dotted, from subject to mention. */
+.role-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 7px;
+  border: 1px solid var(--muted);
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-variant-caps: normal;
+  letter-spacing: 0;
+  line-height: 1.5;
+  color: var(--muted);
+  vertical-align: 1px;
+}
+.role-badge[data-role='subject'] {
+  border-color: var(--rubric);
+  color: var(--rubric);
+}
+.role-badge[data-role='aside'] {
+  border-style: dashed;
+}
+.role-badge[data-role='mention'] {
+  border-style: dotted;
 }
 
 .adjacent {

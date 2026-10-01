@@ -7,14 +7,10 @@ import './style.css'
 
 const SITE = 'Wordhoard'
 const BASE = import.meta.env.BASE_URL // '/' locally, '/<repo>/' on GitHub Pages
+// Extra information for checking the data, shown by `npm run dev` only; `npm run build` drops it.
+const DEBUG = import.meta.env.DEV
 const main = document.getElementById('main')
 
-const TYPES = {
-  word: { one: 'word', many: 'Words' },
-  idiom: { one: 'idiom', many: 'Idioms' },
-  phrase: { one: 'phrase', many: 'Phrases' },
-  name: { one: 'name', many: 'Names' },
-}
 const SUGGESTION_COUNT = 12
 const PAGE_SIZE = 60
 
@@ -22,6 +18,7 @@ const db = {
   episodes: [],
   entries: [],
   bySlug: new Map(),
+  linkedFrom: new Map(), // slug -> entries whose notes link to it
   episodeById: new Map(),
   byEpisode: new Map(), // episode id -> [{ entry, mention }] in timestamp order
   latest: null,
@@ -52,9 +49,6 @@ function fmtDate(date) {
   })
 }
 
-const typeLabel = (type) => TYPES[type]?.one ?? type ?? 'entry'
-const typePlural = (type) => TYPES[type]?.many ?? (type ? type[0].toUpperCase() + type.slice(1) : 'Other')
-
 // Fold one character at a time, so indices in the folded string match the original.
 const fold = (s) =>
   [...(s ?? '')].map((c) => c.normalize('NFD')[0].toLowerCase()).join('')
@@ -83,40 +77,54 @@ function highlight(text, query) {
   )
 }
 
-// Same folding as slugify() in merge.py, so link targets can be looked up by slug.
-const UNFOLDABLE = { ß: 'ss', æ: 'ae', œ: 'oe', ø: 'o', ł: 'l', đ: 'd', ð: 'd', þ: 'th', ı: 'i', '&': ' and ' }
-const slugify = (term) =>
-  String(term ?? '')
-    .replace(/[­​-‏‪-‮⁠-⁤﻿]/g, '')
-    .toLowerCase()
-    .replace(/[ßæœøłđðþı&]/g, (c) => UNFOLDABLE[c])
-    .normalize('NFKD')
-    .replace(/\p{M}/gu, '')
-    .replace(/['’‘`´]/g, '')
-    .replace(/[^\p{L}\p{N}]+/gu, '-')
-    .replace(/^-+|-+$/g, '') || 'entry'
-
-const WIKILINK = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g
+const LINK_TITLES = {
+  from: 'from', gave: 'gave', 'same-root': 'same root', equivalent: 'equivalent',
+  unrelated: 'unrelated', see: 'see also',
+}
+const linkTitle = (type, uncertain) => {
+  const title = LINK_TITLES[type] ?? type
+  return uncertain ? `possibly ${title}` : title
+}
 
 /**
- * A note with its Obsidian-style [[target]] / [[target|text]] links turned into entry links.
- * Targets that aren't in the index, links back to `self`, and all links when `links` is
- * false (e.g. inside another <a>) become plain text.
+ * A mention's note with its links turned into entry links. data/build.py gives the note as plain text
+ * and each link's position in it (`start`, `end`) and resolved `slug`, so notes are never parsed
+ * here. Links to things that aren't entries, links back to `self`, and all links when `links` is
+ * false (e.g. inside another <a>) stay plain text.
  */
-function noteHtml(note, { links = true, self = null } = {}) {
+function noteHtml(mention, { links = true, self = null } = {}) {
+  const note = mention.note ?? ''
   let html = ''
   let last = 0
-  for (const m of note.matchAll(WIKILINK)) {
-    const target = m[1].trim()
-    const text = (m[2] ?? m[1]).trim()
-    const entry = links ? db.bySlug.get(slugify(target)) : null
-    html += esc(note.slice(last, m.index))
+  for (const link of mention.links ?? []) {
+    const text = note.slice(link.start, link.end)
+    const entry = links && link.slug ? db.bySlug.get(link.slug) : null
+    html += esc(note.slice(last, link.start))
     html += entry && entry !== self
-      ? `<a href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">${esc(text)}</a>`
+      ? `<a class="note-link" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}"` +
+        ` data-type="${esc(link.type)}"${link.uncertain ? ' data-uncertain' : ''}` +
+        ` title="${esc(linkTitle(link.type, link.uncertain))}">${esc(text)}</a>`
       : esc(text)
-    last = m.index + m[0].length
+    last = link.end
   }
   return html + esc(note.slice(last))
+}
+
+// Roles in order of importance.
+const ROLE_RANK = { subject: 0, aside: 1, mention: 2 }
+// A missing or unknown role (data/build.py warns about it) ranks last, as in build.py's role_rank().
+const roleRank = (m) => ROLE_RANK[m.role] ?? Object.keys(ROLE_RANK).length
+
+// Debug only: a mention's role, or the roles of all an entry's mentions ("subject · aside ×2").
+const roleBadge = (role, text = role) =>
+  DEBUG ? `<span class="role-badge" data-role="${esc(role)}">${esc(text)}</span>` : ''
+function roleBadges(entry) {
+  if (!DEBUG) return ''
+  const counts = new Map()
+  for (const m of [...entry.mentions].sort((a, b) => roleRank(a) - roleRank(b))) {
+    counts.set(m.role, (counts.get(m.role) ?? 0) + 1)
+  }
+  return [...counts].map(([role, n]) => roleBadge(role, `${role}${n > 1 ? ` ×${n}` : ''}`)).join('')
 }
 
 function shuffle(list) {
@@ -217,11 +225,22 @@ async function load() {
   }
   db.entries = entries.sort((a, b) => a.term.localeCompare(b.term, 'en', { sensitivity: 'base' }))
   for (const entry of db.entries) {
-    entry.episodeCount = new Set(entry.mentions.map((m) => m.episode_id)).size
+    // Episodes that discuss the entry, and all episodes, including those that only point to it
+    // ("as we discussed in..."): the entry page lists the first under "Discussed in".
+    entry.episodeCount = new Set(entry.mentions.filter((m) => m.role !== 'mention').map((m) => m.episode_id)).size
+    entry.allEpisodeCount = new Set(entry.mentions.map((m) => m.episode_id)).size
+    entry.mentionOnly = entry.episodeCount === 0
     db.bySlug.set(entry.slug, entry)
     for (const mention of entry.mentions) db.byEpisode.get(mention.episode_id)?.push({ entry, mention })
   }
   for (const list of db.byEpisode.values()) list.sort((a, b) => a.mention.t - b.mention.t)
+  for (const entry of db.entries) {
+    for (const link of entry.mentions.flatMap((m) => m.links ?? [])) {
+      if (!link.slug || link.slug === entry.slug) continue
+      if (!db.linkedFrom.has(link.slug)) db.linkedFrom.set(link.slug, new Set())
+      db.linkedFrom.get(link.slug).add(entry)
+    }
+  }
 
   db.fuse = new Fuse(db.entries, {
     keys: [
@@ -239,7 +258,8 @@ async function load() {
 
 function search(query) {
   const q = fold(query.trim())
-  // Fuse ranks by fuzziness only; put exact and prefix matches of the term first.
+  // Fuse ranks by fuzziness only; put exact and prefix matches of the term first, and within
+  // each tier, entries that are only ever mentioned after those that are discussed.
   const tier = (e) => {
     const t = fold(e.term)
     return t === q ? 0 : t.startsWith(q) ? 1 : 2
@@ -247,7 +267,7 @@ function search(query) {
   return db.fuse
     .search(query.trim())
     .map((r) => ({ entry: r.item, score: r.score, tier: tier(r.item) }))
-    .sort((a, b) => a.tier - b.tier || a.score - b.score)
+    .sort((a, b) => a.tier - b.tier || a.entry.mentionOnly - b.entry.mentionOnly || a.score - b.score)
     .map((r) => r.entry)
 }
 
@@ -259,20 +279,21 @@ function entryItem(entry, query = '') {
   const gloss = []
   if (original) gloss.push(`<i>${highlight(original, query)}</i>`)
   if (translation) gloss.push(`‘${highlight(translation, query)}’`)
-  const note = entry.mentions[0]?.note
+  const mention = [...entry.mentions].sort((a, b) => roleRank(a) - roleRank(b))[0]
   return `
     <li>
       <a class="result" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">
         <span class="result-head">
           <span class="hw">${highlight(entry.term, query)}</span>
           <span class="result-class">
-            <span class="pos">${esc(typeLabel(entry.type))}</span>
             ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
           </span>
         </span>
         ${gloss.length ? `<span class="gloss">${gloss.join(' · ')}</span>` : ''}
-        ${note ? `<span class="result-note">${noteHtml(note, { links: false })}</span>` : ''}
-        <span class="result-count">${plural(entry.episodeCount, 'episode')}</span>
+        ${mention?.note ? `<span class="result-note">${noteHtml(mention, { links: false })}</span>` : ''}
+        <span class="result-count">${
+          entry.mentionOnly ? `Mentioned in ${plural(entry.allEpisodeCount, 'episode')}` : plural(entry.episodeCount, 'episode')
+        } ${roleBadges(entry)}</span>
       </a>
     </li>`
 }
@@ -304,23 +325,14 @@ function setTitle(title) {
 
 function home(params) {
   setTitle('')
-  const typeCounts = new Map()
   const langCounts = new Map()
   for (const e of db.entries) {
-    typeCounts.set(e.type, (typeCounts.get(e.type) ?? 0) + 1)
     if (e.language) langCounts.set(e.language, (langCounts.get(e.language) ?? 0) + 1)
   }
-  const types = [...typeCounts.keys()].sort((a, b) => {
-    const order = Object.keys(TYPES)
-    const ia = order.indexOf(a) < 0 ? 99 : order.indexOf(a)
-    const ib = order.indexOf(b) < 0 ? 99 : order.indexOf(b)
-    return ia - ib || String(a).localeCompare(String(b))
-  })
   const languages = [...langCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
 
   const state = {
     q: params.get('q') ?? '',
-    type: params.get('type') ?? '',
     lang: params.get('lang') ?? '',
     all: params.has('all'),
     limit: PAGE_SIZE,
@@ -341,17 +353,10 @@ function home(params) {
       <div class="search-box">
         <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
         <input id="q" name="q" type="search" value="${esc(state.q)}" spellcheck="false"
-          placeholder="Search a word, idiom or name…" aria-describedby="result-status" />
+          placeholder="Search the hoard…" aria-describedby="result-status" />
         <kbd class="search-kbd" aria-hidden="true">/</kbd>
       </div>
       <div class="filters">
-        <div class="chips" role="group" aria-label="Type">
-          <button type="button" class="chip" data-type="" aria-pressed="${!state.type}">All</button>
-          ${types
-            .map((t) => `<button type="button" class="chip" data-type="${esc(t)}" aria-pressed="${state.type === t}">
-                ${esc(typePlural(t))} <span class="chip-count">${fmtNumber(typeCounts.get(t))}</span></button>`)
-            .join('')}
-        </div>
         <label class="lang-select">
           <span class="visually-hidden">Language</span>
           <select name="lang">
@@ -375,16 +380,15 @@ function home(params) {
   const syncUrl = () => {
     const p = new URLSearchParams()
     if (state.q) p.set('q', state.q)
-    if (state.type) p.set('type', state.type)
     if (state.lang) p.set('lang', state.lang)
-    if (state.all && !state.q && !state.type && !state.lang) p.set('all', '')
+    if (state.all && !state.q && !state.lang) p.set('all', '')
     const qs = p.toString().replace(/=(&|$)/g, '$1')
     history.replaceState(history.state, '', href(qs ? `?${qs}` : ''))
   }
 
   const update = () => {
     const filtered = (list) =>
-      list.filter((e) => (!state.type || e.type === state.type) && (!state.lang || e.language === state.lang))
+      list.filter((e) => !state.lang || e.language === state.lang)
     const q = state.q.trim()
 
     if (q) {
@@ -396,8 +400,8 @@ function home(params) {
         ? entryList(found.slice(0, state.limit), q) + more(found.length)
         : `<div class="empty"><p class="empty-title">Nothing in the hoard for “${esc(q)}”.</p>
            <p>It may not have come up on the show yet, or the captions misheard it. Try a shorter
-           spelling${state.type || state.lang ? ', or clear the filters' : ''}.</p></div>`
-    } else if (state.type || state.lang || state.all) {
+           spelling${state.lang ? ', or clear the language filter' : ''}.</p></div>`
+    } else if (state.lang || state.all) {
       const found = filtered(db.entries)
       status.textContent = `${plural(found.length, 'entry', 'entries')}, A to Z`
       results.innerHTML = entryList(found.slice(0, state.limit), '', { letters: true }) + more(found.length)
@@ -428,15 +432,6 @@ function home(params) {
     syncUrl()
     update()
   })
-  form.querySelectorAll('[data-type]').forEach((chip) =>
-    chip.addEventListener('click', () => {
-      state.type = chip.dataset.type
-      state.limit = PAGE_SIZE
-      form.querySelectorAll('[data-type]').forEach((c) => c.setAttribute('aria-pressed', String(c === chip)))
-      syncUrl()
-      update()
-    }),
-  )
   results.addEventListener('click', (ev) => {
     if (ev.target.closest('[data-more]')) {
       state.limit += PAGE_SIZE * 4
@@ -518,9 +513,13 @@ function entryPage(slug) {
   const prev = db.entries[i - 1]
   const next = db.entries[i + 1]
   const { original, translation } = forms(entry)
-  const mentions = [...entry.mentions].sort((a, b) =>
-    (db.episodeById.get(b.episode_id)?.date ?? '').localeCompare(db.episodeById.get(a.episode_id)?.date ?? ''),
-  )
+  // Subjects, then asides, newest first; episodes that only point to the entry go last.
+  const date = (m) => db.episodeById.get(m.episode_id)?.date ?? ''
+  const mentions = [...entry.mentions].sort((a, b) => roleRank(a) - roleRank(b) || date(b).localeCompare(date(a)))
+  const discussed = mentions.filter((m) => m.role !== 'mention')
+  const pointers = mentions.filter((m) => m.role === 'mention')
+  const count = (list) => new Set(list.map((m) => m.episode_id)).size
+  const linkedFrom = [...(db.linkedFrom.get(entry.slug) ?? [])].sort((a, b) => a.term.localeCompare(b.term))
 
   main.innerHTML = `
     <nav class="crumbs"><a href="${href()}">← Search the hoard</a></nav>
@@ -528,7 +527,6 @@ function entryPage(slug) {
       <header class="entry-head">
         <h1 class="headword">${esc(entry.term)}</h1>
         <p class="entry-class">
-          <span class="pos">${esc(typeLabel(entry.type))}</span>
           ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
         </p>
         ${
@@ -541,10 +539,23 @@ function entryPage(slug) {
         }
       </header>
 
-      <h2 class="section-title"><span>Discussed in ${plural(entry.episodeCount, 'episode')}</span></h2>
-      <ol class="mentions">
-        ${mentions.map((m) => mentionItem(m, entry)).join('')}
-      </ol>
+      ${
+        discussed.length
+          ? `<h2 class="section-title"><span>Discussed in ${plural(count(discussed), 'episode')}</span></h2>
+            <ol class="mentions">${discussed.map((m) => mentionItem(m, entry)).join('')}</ol>`
+          : ''
+      }
+      ${
+        pointers.length
+          ? `<h2 class="section-title"><span>Also mentioned in</span></h2>
+            <ol class="mentions">${pointers.map((m) => mentionItem(m, entry)).join('')}</ol>`
+          : ''
+      }
+      ${
+        linkedFrom.length
+          ? `<h2 class="section-title"><span>Linked from</span></h2>${entryList(linkedFrom)}`
+          : ''
+      }
 
       <nav class="adjacent" aria-label="Neighbouring entries">
         ${prev ? `<a rel="prev" href="${href(`entry/${encodeURIComponent(prev.slug)}`)}"><span>Previous entry</span>${esc(prev.term)}</a>` : '<span></span>'}
@@ -563,8 +574,9 @@ function mentionItem(m, entry) {
         <p class="meta">
           ${ep.date ? `<time datetime="${ep.date}">${fmtDate(ep.date)}</time> · ` : ''}
           at <a href="${youtubeUrl(ep.id, Math.max(0, m.t - LEAD_IN))}" target="_blank" rel="noopener">${fmtTime(m.t)} on YouTube</a>
+          ${roleBadge(m.role)}
         </p>
-        ${m.note ? `<p class="note">${noteHtml(m.note, { self: entry })}</p>` : ''}
+        ${m.note ? `<p class="note">${noteHtml(m, { self: entry })}</p>` : ''}
         ${
           m.confidence === 'low' && !m.verified
             ? `<p class="flag" title="The automatic captions were unclear here, so the spelling or the entry itself may be wrong.">Unverified: the captions were unclear here</p>`
@@ -602,10 +614,10 @@ function episodePage(id) {
             <button type="button" class="ts" data-t="${mention.t}" aria-label="Play from ${fmtTime(mention.t)}">${fmtTime(mention.t)}</button>
             <div>
               <a class="hw" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">${esc(entry.term)}</a>
-              <span class="pos">${esc(typeLabel(entry.type))}</span>
               ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
-              ${mention.note ? `<p class="note">${noteHtml(mention.note, { self: entry })}</p>` : ''}
-              ${entry.episodeCount > 1 ? `<p class="also">Also in ${plural(entry.episodeCount - 1, 'other episode')}</p>` : ''}
+              ${roleBadge(mention.role)}
+              ${mention.note ? `<p class="note">${noteHtml(mention, { self: entry })}</p>` : ''}
+              ${entry.allEpisodeCount > 1 ? `<p class="also">Also in ${plural(entry.allEpisodeCount - 1, 'other episode')}</p>` : ''}
             </div>
           </li>`,
           )
@@ -716,7 +728,7 @@ function aboutPage() {
         endorsed by or connected to RobWords, Words Unravelled, Rob Watts or Jess Zafarris.</p>
 
       <p><em>Words Unravelled</em> is a podcast about etymology hosted by Rob Watts and Jess Zafarris.
-        Each episode takes a theme and works through dozens of words, idioms and names. This site is an
+        Each episode takes a theme and works through dozens of words, expressions and names. This site is an
         index to that back catalogue: search for a word and it tells you which episodes discussed it,
         and plays the video from that moment.</p>
 
