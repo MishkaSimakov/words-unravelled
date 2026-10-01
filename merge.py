@@ -10,7 +10,7 @@ Reads:
 
 Writes:
     data/episodes.json      [{ id, title, date, duration }]
-    data/entries.json       [{ slug, term, original, translation, type, language, mentions: [...] }]
+    data/entries.json       [{ slug, term, original, translation, language, mentions: [...] }]
     reports/duplicates.md   likely duplicates, for manual review (nothing is merged automatically)
 
 Each mention is {episode_id, t, role, note, links, confidence, verified?}:
@@ -20,20 +20,13 @@ Each mention is {episode_id, t, role, note, links, confidence, verified?}:
                 "start": 13, "end": 22}],
      "confidence": "high"}
 
+"role" is subject, aside or mention. Extracted notes mark links as [[type:target]]trail (letters
+right after ]] are part of the link text), with a "?" after the type for an uncertain relation.
 "note" is plain text: each link is replaced by its text, and "start"/"end" give the link's position
 in it, in UTF-16 code units (how JavaScript indexes strings), so the site never parses notes.
-
-Files written with prompt_version 2 have typed links in notes, [[type:target]]trail (letters right
-after ]] are part of the link text), with a "?" after the type for an uncertain relation. Older
-files (no prompt_version) have [[target]] / [[target|text]] links, recorded with "type": null, and
-their mentions get "role": null. "links" lists a note's links in the order they appear; "slug" is
-the entry the target resolves to (null if it isn't an entry), looked up after overrides: first an
-entry mentioned in the same episode, then any entry by term, then by original form.
-
-Types are word, expression, name and topic. If an entry's mentions say only name and topic, it is
-a name: the hosts explain a name in one episode and only talk about the thing in another. Files
-with prompt_version 3 or later have no type: kinds come from a separate tagging pass, so their
-mentions leave "type" null.
+"links" lists a note's links in the order they appear; "slug" is the entry the target resolves to
+(null if it isn't an entry), looked up after overrides: first an entry mentioned in the same
+episode, then any entry by term, then by original form.
 
 Overrides (data/overrides.json) are a list of operations applied in order:
 
@@ -60,12 +53,9 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-KNOWN_TYPES = ("word", "expression", "name", "topic")
-# Types used before prompt_version 2. Accepted without a warning until every episode is re-extracted.
-LEGACY_TYPES = ("idiom", "phrase")
 ROLES = ("subject", "aside", "mention")  # in order of precedence
 LINK_TYPES = ("from", "gave", "same-root", "equivalent", "unrelated", "see")
-ENTRY_FIELDS = ("term", "original", "translation", "type", "language")
+ENTRY_FIELDS = ("term", "original", "translation", "language")
 VIDEO_ID = re.compile(r"\[([A-Za-z0-9_-]{11})\]")
 
 # ---------------------------------------------------------------------------
@@ -164,21 +154,20 @@ def clean_str(value):
     return value or None
 
 
-OLD_LINK = re.compile(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]")  # [[target]] or [[target|text]]
 ANY_LINK = re.compile(r"\[\[([^\]]*)\]\]")
+TYPED_LINK = re.compile(r"([a-z-]+)(\?)?:([^|]+)")  # the inside of [[type:target]] or [[type?:target]]
 
 
 def utf16_len(text):
     return len(text.encode("utf-16-le")) // 2
 
 
-def render_note(note, version):
+def render_note(note):
     """(plain text, links): the note with each [[...]] replaced by its text, and the links in order.
 
-    A typed link shows its target plus the letters straight after "]]" (its trail). Each link
-    records where its text is in the plain note ("start", "end", in UTF-16 code units); "slug" is
-    left for resolve_links(). In typed notes (prompt_version 2+), malformed links (untyped, with a
-    |alias) become plain text.
+    A link shows its target plus the letters straight after "]]" (its trail). Each link records
+    where its text is in the plain note ("start", "end", in UTF-16 code units); "slug" is left for
+    resolve_links(). Malformed links (no type, or a |alias) become plain text.
     """
     parts, links, pos, last = [], [], 0, 0
 
@@ -191,21 +180,16 @@ def render_note(note, version):
         add(note[last:m.start()])
         last = m.end()
         inner = m.group(1)
-        typed = re.fullmatch(r"([a-z-]+)(\?)?:([^|]+)", inner) if version >= 2 else None
-        if typed:
-            # The trail is letters; Python's re has no \p{L}, and [^\W\d_] is a letter.
-            trail = re.match(r"[^\W\d_]*", note[m.end():]).group(0)
-            last += len(trail)
-            link = {"type": typed.group(1), "uncertain": bool(typed.group(2)), "target": typed.group(3).strip()}
-            text = link["target"] + trail
-        elif version < 2 and OLD_LINK.fullmatch(m.group(0)):
-            target, _, alias = inner.partition("|")
-            link = {"type": None, "uncertain": False, "target": target.strip()}
-            text = (alias or target).strip()
-        else:
+        typed = TYPED_LINK.fullmatch(inner)
+        if not typed:
             target, _, alias = inner.partition("|")
             add((alias or target).strip())
             continue
+        # The trail is letters; Python's re has no \p{L}, and [^\W\d_] is a letter.
+        trail = re.match(r"[^\W\d_]*", note[m.end():]).group(0)
+        last += len(trail)
+        link = {"type": typed.group(1), "uncertain": bool(typed.group(2)), "target": typed.group(3).strip()}
+        text = link["target"] + trail
         start = pos
         add(text)
         links.append({**link, "slug": None, "start": start, "end": pos})
@@ -214,18 +198,18 @@ def render_note(note, version):
 
 
 def link_problems(note):
-    """(problem, link) for each link in a v2 note that is untyped, has an alias or an unknown type."""
+    """(problem, link) for each link in a note that is untyped, has an alias or an unknown type."""
     found = []
     for m in ANY_LINK.finditer(note or ""):
-        typed = re.fullmatch(r"([a-z-]+)(\?)?:([^|]+)", m.group(1))
+        typed = TYPED_LINK.fullmatch(m.group(1))
         if not typed:
-            found.append(("untyped link or |alias (prompt_version 2+)", m.group(0)))
+            found.append(("untyped link or |alias (shown as plain text)", m.group(0)))
         elif typed.group(1) not in LINK_TYPES:
             found.append((f"unknown link type '{typed.group(1)}'", m.group(0)))
     return found
 
 
-def read_entry(raw, version, stamps=None, duration=None):
+def read_entry(raw, stamps=None, duration=None):
     """Clean and check one extracted entry. merge.py and the QA tool both use this.
 
     Returns (entry, problems). entry is None if it has no term; its "t" is None if the timestamp
@@ -245,30 +229,20 @@ def read_entry(raw, version, stamps=None, duration=None):
     elif stamps is not None and t not in stamps:
         problems.append(("timestamp not found in transcript (possibly invented)", ""))
 
-    typ = clean_str(raw.get("type")) if version < 3 else None
-    typ = typ.lower() if typ else None
-    if version >= 3:
-        pass  # no type until the tagging pass
-    elif typ in LEGACY_TYPES and version >= 2:
-        problems.append((f"old type '{typ}' in a v2 file", ""))
-    elif typ not in KNOWN_TYPES + LEGACY_TYPES:
-        problems.append((f"NEW TYPE '{typ}' (kept as is, not remapped)", ""))
-
-    role = None
-    if version >= 2:
-        role = clean_str(raw.get("role"))
-        role = role.lower() if role else None
-        if role not in ROLES:
-            problems.append((f"unknown role '{role}' (kept as is)", ""))
+    role = clean_str(raw.get("role"))
+    role = role.lower() if role else None
+    if not role:
+        problems.append(("missing role", ""))
+    elif role not in ROLES:
+        problems.append((f"unknown role '{role}' (kept as is)", ""))
 
     markup = clean_str(raw.get("note")) or ""
-    if version >= 2:
-        problems += link_problems(markup)
-    note, links = render_note(markup, version)
+    problems += link_problems(markup)
+    note, links = render_note(markup)
     confidence = clean_str(raw.get("confidence"))
     return {
         "term": term, "original": clean_str(raw.get("original")),
-        "translation": clean_str(raw.get("translation")), "type": typ,
+        "translation": clean_str(raw.get("translation")),
         "language": clean_str(raw.get("language")), "t": t, "role": role,
         "note": note, "markup": markup, "links": links,
         "confidence": confidence if confidence in ("high", "low") else "low",
@@ -381,18 +355,8 @@ def vote(mentions, field):
     return next(v for v in values if counts[v] == best)
 
 
-def vote_type(mentions):
-    """Like vote(), but name beats topic when those are the only types given."""
-    types = {m["type"] for m in mentions if m.get("type")}
-    if "name" in types and types <= {"name", "topic"}:
-        return "name"
-    return vote(mentions, "type")
-
-
 def representative(mentions):
-    fields = {f: vote(mentions, f) for f in ENTRY_FIELDS}
-    fields["type"] = vote_type(mentions)
-    return fields
+    return {f: vote(mentions, f) for f in ENTRY_FIELDS}
 
 
 def role_rank(role):
@@ -409,10 +373,9 @@ def group(mentions, episodes):
     for slug in sorted(by_slug):
         ms = by_slug[slug]
         entry = {"slug": slug, **representative(ms)}
-        for f in ("language", "type"):
-            values = Counter(m[f] for m in ms if m.get(f))
-            if len(values) > 1 and not (f == "type" and set(values) == {"name", "topic"}):
-                conflicts.append((slug, f, values))
+        languages = Counter(m["language"] for m in ms if m.get("language"))
+        if len(languages) > 1:
+            conflicts.append((slug, languages))
         entry["mentions"] = []
         for m in ms:
             mention = {"episode_id": m["episode_id"], "t": m["t"], "role": m["role"], "note": m["note"],
@@ -573,7 +536,7 @@ def write_report(path, entries, duplicates, conflicts, episodes):
 
     def describe(slug):
         e = by_slug[slug]
-        bits = [e["type"] or "?", e["language"] or "?"]
+        bits = [e["language"] or "?"]
         if e.get("original"):
             bits.append(f"original: {e['original']}")
         eps = sorted({m["episode_id"] for m in e["mentions"]})
@@ -596,13 +559,13 @@ def write_report(path, entries, duplicates, conflicts, episodes):
                       f"  - merge: `{json.dumps({'op': 'merge', 'from': drop, 'into': keep})}`",
                       f"  - keep apart: `{json.dumps({'op': 'distinct', 'slugs': [a, b]})}`", ""]
     if conflicts:
-        lines += ["## Mentions that disagree on language or type", "",
-                  "These mentions were grouped under one slug but were classified differently.",
+        lines += ["## Mentions that disagree on language", "",
+                  "These mentions were grouped under one slug but give different languages.",
                   "The majority value is used; fix it with a `set` override, or split the entry",
                   "with a `rename` override limited to one `episode_id`.", ""]
-        for slug, field, values in conflicts:
+        for slug, values in conflicts:
             detail = ", ".join(f"{v} ×{n}" for v, n in values.most_common())
-            lines.append(f"- `{slug}` {field}: {detail}")
+            lines.append(f"- `{slug}` language: {detail}")
         lines.append("")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(lines), encoding="utf-8")
@@ -627,9 +590,7 @@ def main():
     versions = Counter()
     for f in sorted((root / "extracted").glob("*.json")):
         data = load_json(f, None)
-        version = (data or {}).get("prompt_version")
-        versions[version] += 1
-        version = version if isinstance(version, int) else 1
+        versions[(data or {}).get("prompt_version")] += 1
         vid = (data or {}).get("video_id") or f.stem
         if vid != f.stem:
             problems["video_id differs from file name (file name used)"].append(f.name)
@@ -643,7 +604,7 @@ def main():
 
         seen = {}  # slug -> index in mentions
         for raw in (data or {}).get("entries", []):
-            entry, found = read_entry(raw, version, stamps, ep["duration"])
+            entry, found = read_entry(raw, stamps, ep["duration"])
             where = f"{vid} {raw.get('timestamp')} {clean_str(raw.get('term'))!r}"
             for kind, detail in found:
                 problems[kind].append(f"{where} {detail}".rstrip())
@@ -696,20 +657,18 @@ def main():
     all_mentions = [(e, m) for e in entries for m in e["mentions"]]
     low = [(e, m) for e, m in all_mentions if m["confidence"] == "low" and not m.get("verified")]
     verified = sum(1 for _, m in all_mentions if m.get("verified"))
-    types = Counter(e["type"] for e in entries)
     roles = Counter(m["role"] for _, m in all_mentions)
     links = [link for _, m in all_mentions for link in m["links"]]
-    link_types = Counter(link["type"] or "untyped (old format)" for link in links)
+    link_types = Counter(link["type"] for link in links)
 
     def counts(counter, label=str):
         return ", ".join(f"{label(k)} {v}" for k, v in counter.most_common())
 
-    print(f"Files:     {sum(versions.values())}  "
-          f"({counts(versions, lambda v: 'old format' if v is None else f'prompt_version {v}')})")
+    print(f"Files:     {sum(versions.values())}  ({counts(versions, lambda v: f'prompt_version {v}')})")
     print(f"Episodes:  {len(episode_list)}")
-    print(f"Entries:   {len(entries)}  ({counts(types, lambda t: t or 'no type yet')})")
+    print(f"Entries:   {len(entries)}")
     print(f"Mentions:  {len(all_mentions)}  ({verified} approved in QA, {rejected} rejected in QA)")
-    print(f"Roles:     {counts(roles, lambda r: r or 'none (old format)')}")
+    print(f"Roles:     {counts(roles)}")
     print(f"Links:     {len(links)}  ({sum(1 for link in links if link['slug'])} resolve to an entry; "
           f"{counts(link_types)})")
     print(f"Low confidence, not yet reviewed: {len(low)}")
@@ -717,7 +676,7 @@ def main():
         print(f"    {m['episode_id']} {fmt_time(m['t'])}  {e['term']}")
     if len(low) > 15 and not args.verbose:
         print(f"    ... and {len(low) - 15} more (use -v, or review them with qa/review.py)")
-    print(f"Likely duplicates: {len(duplicates)} pairs, {len(conflicts)} field conflicts -> {report.relative_to(root)}")
+    print(f"Likely duplicates: {len(duplicates)} pairs, {len(conflicts)} language conflicts -> {report.relative_to(root)}")
     for kind, items in problems.items():
         print(f"\n{kind}: {len(items)}")
         for item in items[:10]:

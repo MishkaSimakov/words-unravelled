@@ -71,13 +71,11 @@ def all_items():
         except json.JSONDecodeError:
             continue
         vid = f.stem
-        version = data.get("prompt_version")
-        version = version if isinstance(version, int) else 1
         ep = info.get(vid, {})
         stamps = {line["t"] for line in transcript_lines(vid)} or None
         for raw in data.get("entries", []):
             # The same checks as merge.py, so both tools agree on what's wrong with an entry.
-            e, problems = read_entry(raw, version, stamps, ep.get("duration"))
+            e, problems = read_entry(raw, stamps, ep.get("duration"))
             if e is None:
                 continue
             items.append({
@@ -88,7 +86,6 @@ def all_items():
                 "term": e["term"],
                 "original": e["original"],
                 "translation": e["translation"],
-                "type": e["type"],
                 "language": e["language"],
                 "timestamp": raw.get("timestamp"),
                 "role": e["role"],

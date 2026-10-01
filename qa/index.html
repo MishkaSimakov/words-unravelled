@@ -36,7 +36,6 @@
   .episode a { color: inherit; }
   .term { font: 700 2.2rem/1.1 Georgia, serif; margin: 0; overflow-wrap: anywhere; }
   .classes { margin: 6px 0 0; color: var(--muted); }
-  .classes i { color: var(--ink); }
   dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; margin: 16px 0 0; }
   dt { color: var(--muted); font-size: .9rem; }
   dd { margin: 0; }
@@ -84,7 +83,6 @@
       <option value="subject">Subject</option>
       <option value="aside">Aside</option>
       <option value="mention">Mention</option>
-      <option value="none">No role (old format)</option>
     </select>
     <label class="toggle"><input type="checkbox" id="lowOnly" /> Low confidence only</label>
     <label class="toggle"><input type="checkbox" id="autoplay" /> Autoplay</label>
@@ -135,7 +133,7 @@ function visible() {
   const low = $('lowOnly').checked
   const role = $('role').value
   return queue.filter((i) => (!ep || i.video_id === ep) && (!low || i.confidence === 'low' || i.flags.length) &&
-    (!role || (role === 'none' ? !i.role : i.role === role)))
+    (!role || i.role === role))
 }
 
 function renderProgress() {
@@ -167,8 +165,8 @@ function show() {
     <section class="card">
       <p class="episode">${esc(i.date || '')} · <a href="https://www.youtube.com/watch?v=${i.video_id}&t=${Math.max(0, i.t - 3)}s" target="_blank" rel="noopener">${esc(i.episode)}</a> · ${esc(i.timestamp)}</p>
       <h2 class="term">${esc(i.term)}</h2>
-      <p class="classes"><i>${esc(i.type)}</i> · ${i.language ? esc(i.language) : '<span class="null">no language</span>'} ·
-        ${i.role ? `<span class="role role-${esc(i.role)}">${esc(i.role)}</span>` : '<span class="null">no role</span>'}</p>
+      <p class="classes">${i.language ? esc(i.language) : '<span class="null">no language</span>'} ·
+        <span class="role role-${esc(i.role)}">${esc(i.role)}</span></p>
       <dl>
         <dt>Original</dt><dd>${field(i.original)}</dd>
         <dt>Translation</dt><dd>${field(i.translation)}</dd>
