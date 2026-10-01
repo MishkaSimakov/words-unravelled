@@ -11,16 +11,6 @@ const BASE = import.meta.env.BASE_URL // '/' locally, '/<repo>/' on GitHub Pages
 const DEBUG = import.meta.env.DEV
 const main = document.getElementById('main')
 
-// In filter-chip order.
-const TYPES = {
-  word: { one: 'word', many: 'Words' },
-  expression: { one: 'expression', many: 'Expressions' },
-  name: { one: 'name', many: 'Names' },
-  topic: { one: 'topic', many: 'Topics' },
-  // Types from before prompt_version 2; remove once every episode is re-extracted.
-  idiom: { one: 'idiom', many: 'Idioms' },
-  phrase: { one: 'phrase', many: 'Phrases' },
-}
 const SUGGESTION_COUNT = 12
 const PAGE_SIZE = 60
 
@@ -58,9 +48,6 @@ function fmtDate(date) {
     day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
   })
 }
-
-const typeLabel = (type) => TYPES[type]?.one ?? type ?? ''
-const typePlural = (type) => TYPES[type]?.many ?? (type ? type[0].toUpperCase() + type.slice(1) : 'Other')
 
 // Fold one character at a time, so indices in the folded string match the original.
 const fold = (s) =>
@@ -123,20 +110,20 @@ function noteHtml(mention, { links = true, self = null } = {}) {
   return html + esc(note.slice(last))
 }
 
-// Roles in order of importance; `null` (notes extracted before roles existed) counts as a subject.
+// Roles in order of importance.
 const ROLE_RANK = { subject: 0, aside: 1, mention: 2 }
-const roleRank = (m) => ROLE_RANK[m.role] ?? 0
+const roleRank = (m) => ROLE_RANK[m.role]
 
 // Debug only: a mention's role, or the roles of all an entry's mentions ("subject · aside ×2").
-const roleBadge = (role, text = role ?? 'no role') =>
-  DEBUG ? `<span class="role-badge" data-role="${esc(role ?? 'none')}">${esc(text)}</span>` : ''
+const roleBadge = (role, text = role) =>
+  DEBUG ? `<span class="role-badge" data-role="${esc(role)}">${esc(text)}</span>` : ''
 function roleBadges(entry) {
   if (!DEBUG) return ''
   const counts = new Map()
   for (const m of [...entry.mentions].sort((a, b) => roleRank(a) - roleRank(b))) {
     counts.set(m.role, (counts.get(m.role) ?? 0) + 1)
   }
-  return [...counts].map(([role, n]) => roleBadge(role, `${role ?? 'no role'}${n > 1 ? ` ×${n}` : ''}`)).join('')
+  return [...counts].map(([role, n]) => roleBadge(role, `${role}${n > 1 ? ` ×${n}` : ''}`)).join('')
 }
 
 function shuffle(list) {
@@ -298,7 +285,6 @@ function entryItem(entry, query = '') {
         <span class="result-head">
           <span class="hw">${highlight(entry.term, query)}</span>
           <span class="result-class">
-            ${entry.type ? `<span class="pos">${esc(typeLabel(entry.type))}</span>` : ''}
             ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
           </span>
         </span>
@@ -338,23 +324,14 @@ function setTitle(title) {
 
 function home(params) {
   setTitle('')
-  const typeCounts = new Map()
   const langCounts = new Map()
   for (const e of db.entries) {
-    if (e.type) typeCounts.set(e.type, (typeCounts.get(e.type) ?? 0) + 1)
     if (e.language) langCounts.set(e.language, (langCounts.get(e.language) ?? 0) + 1)
   }
-  const types = [...typeCounts.keys()].sort((a, b) => {
-    const order = Object.keys(TYPES)
-    const ia = order.indexOf(a) < 0 ? 99 : order.indexOf(a)
-    const ib = order.indexOf(b) < 0 ? 99 : order.indexOf(b)
-    return ia - ib || String(a).localeCompare(String(b))
-  })
   const languages = [...langCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
 
   const state = {
     q: params.get('q') ?? '',
-    type: params.get('type') ?? '',
     lang: params.get('lang') ?? '',
     all: params.has('all'),
     limit: PAGE_SIZE,
@@ -375,17 +352,10 @@ function home(params) {
       <div class="search-box">
         <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
         <input id="q" name="q" type="search" value="${esc(state.q)}" spellcheck="false"
-          placeholder="Search a word, expression or name…" aria-describedby="result-status" />
+          placeholder="Search the hoard…" aria-describedby="result-status" />
         <kbd class="search-kbd" aria-hidden="true">/</kbd>
       </div>
       <div class="filters">
-        <div class="chips" role="group" aria-label="Type">
-          <button type="button" class="chip" data-type="" aria-pressed="${!state.type}">All</button>
-          ${types
-            .map((t) => `<button type="button" class="chip" data-type="${esc(t)}" aria-pressed="${state.type === t}">
-                ${esc(typePlural(t))} <span class="chip-count">${fmtNumber(typeCounts.get(t))}</span></button>`)
-            .join('')}
-        </div>
         <label class="lang-select">
           <span class="visually-hidden">Language</span>
           <select name="lang">
@@ -409,16 +379,15 @@ function home(params) {
   const syncUrl = () => {
     const p = new URLSearchParams()
     if (state.q) p.set('q', state.q)
-    if (state.type) p.set('type', state.type)
     if (state.lang) p.set('lang', state.lang)
-    if (state.all && !state.q && !state.type && !state.lang) p.set('all', '')
+    if (state.all && !state.q && !state.lang) p.set('all', '')
     const qs = p.toString().replace(/=(&|$)/g, '$1')
     history.replaceState(history.state, '', href(qs ? `?${qs}` : ''))
   }
 
   const update = () => {
     const filtered = (list) =>
-      list.filter((e) => (!state.type || e.type === state.type) && (!state.lang || e.language === state.lang))
+      list.filter((e) => !state.lang || e.language === state.lang)
     const q = state.q.trim()
 
     if (q) {
@@ -430,8 +399,8 @@ function home(params) {
         ? entryList(found.slice(0, state.limit), q) + more(found.length)
         : `<div class="empty"><p class="empty-title">Nothing in the hoard for “${esc(q)}”.</p>
            <p>It may not have come up on the show yet, or the captions misheard it. Try a shorter
-           spelling${state.type || state.lang ? ', or clear the filters' : ''}.</p></div>`
-    } else if (state.type || state.lang || state.all) {
+           spelling${state.lang ? ', or clear the language filter' : ''}.</p></div>`
+    } else if (state.lang || state.all) {
       const found = filtered(db.entries)
       status.textContent = `${plural(found.length, 'entry', 'entries')}, A to Z`
       results.innerHTML = entryList(found.slice(0, state.limit), '', { letters: true }) + more(found.length)
@@ -462,15 +431,6 @@ function home(params) {
     syncUrl()
     update()
   })
-  form.querySelectorAll('[data-type]').forEach((chip) =>
-    chip.addEventListener('click', () => {
-      state.type = chip.dataset.type
-      state.limit = PAGE_SIZE
-      form.querySelectorAll('[data-type]').forEach((c) => c.setAttribute('aria-pressed', String(c === chip)))
-      syncUrl()
-      update()
-    }),
-  )
   results.addEventListener('click', (ev) => {
     if (ev.target.closest('[data-more]')) {
       state.limit += PAGE_SIZE * 4
@@ -566,7 +526,6 @@ function entryPage(slug) {
       <header class="entry-head">
         <h1 class="headword">${esc(entry.term)}</h1>
         <p class="entry-class">
-          ${entry.type ? `<span class="pos">${esc(typeLabel(entry.type))}</span>` : ''}
           ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
         </p>
         ${
@@ -654,7 +613,6 @@ function episodePage(id) {
             <button type="button" class="ts" data-t="${mention.t}" aria-label="Play from ${fmtTime(mention.t)}">${fmtTime(mention.t)}</button>
             <div>
               <a class="hw" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">${esc(entry.term)}</a>
-              ${entry.type ? `<span class="pos">${esc(typeLabel(entry.type))}</span>` : ''}
               ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
               ${roleBadge(mention.role)}
               ${mention.note ? `<p class="note">${noteHtml(mention, { self: entry })}</p>` : ''}
