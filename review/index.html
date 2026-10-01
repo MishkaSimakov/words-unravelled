@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Wordhoard QA</title>
+<title>Wordhoard Review</title>
 <style>
   :root {
     --bg: #f4f1ea; --card: #fffdf8; --ink: #1d1a16; --muted: #6f665a; --rule: #ddd3c2;
@@ -72,7 +72,7 @@
 <body>
 <header>
   <div class="bar">
-    <h1>Wordhoard QA</h1>
+    <h1>Wordhoard Review</h1>
     <div class="progress">
       <div class="progress-track" id="track"></div>
       <div class="progress-text" id="progress">Loading…</div>
@@ -105,9 +105,9 @@ const transcripts = new Map()
 let current = null
 let contextBefore = 20, contextAfter = 80
 
-$('autoplay').checked = store.get('qa-autoplay') === '1'
-$('lowOnly').checked = store.get('qa-low-only') === '1'
-$('role').value = store.get('qa-role') || ''
+$('autoplay').checked = store.get('review-autoplay') === '1'
+$('lowOnly').checked = store.get('review-low-only') === '1'
+$('role').value = store.get('review-role') || ''
 
 async function api(path, body) {
   const res = await fetch(path, body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : {})
@@ -123,7 +123,7 @@ async function init() {
   for (const i of queue) episodes.set(i.video_id, i)
   $('episode').innerHTML = '<option value="">All episodes</option>' +
     [...episodes.values()].map((i) => `<option value="${i.video_id}">${esc(i.date || '')} ${esc(i.episode)}</option>`).join('')
-  $('episode').value = store.get('qa-episode') || ''
+  $('episode').value = store.get('review-episode') || ''
   if ($('episode').selectedIndex < 0) $('episode').value = ''
   show()
 }
@@ -151,7 +151,7 @@ function show() {
   contextBefore = 20; contextAfter = 80
   if (!current) {
     $('main').innerHTML = `<div class="done"><h2>Nothing left to review${$('episode').value || $('lowOnly').checked || $('role').value ? ' in this view' : ''}.</h2>
-      <p>Decisions are saved in <code>data/review.json</code>. Run <code>python3 merge.py</code> to apply them.</p>
+      <p>Decisions are saved in <code>data/review.json</code>. Run <code>python3 data/build.py</code> to apply them.</p>
       <div class="secondary" style="max-width:220px;margin:0 auto"><button onclick="undo()" ${undoStack.length ? '' : 'disabled'}>Undo last<kbd>U</kbd></button></div></div>`
     return
   }
@@ -264,10 +264,10 @@ document.addEventListener('keydown', (ev) => {
   else return
   ev.preventDefault()
 })
-$('episode').addEventListener('change', () => { store.set('qa-episode', $('episode').value); show() })
-$('lowOnly').addEventListener('change', () => { store.set('qa-low-only', $('lowOnly').checked ? '1' : '0'); show() })
-$('role').addEventListener('change', () => { store.set('qa-role', $('role').value); show() })
-$('autoplay').addEventListener('change', () => store.set('qa-autoplay', $('autoplay').checked ? '1' : '0'))
+$('episode').addEventListener('change', () => { store.set('review-episode', $('episode').value); show() })
+$('lowOnly').addEventListener('change', () => { store.set('review-low-only', $('lowOnly').checked ? '1' : '0'); show() })
+$('role').addEventListener('change', () => { store.set('review-role', $('role').value); show() })
+$('autoplay').addEventListener('change', () => store.set('review-autoplay', $('autoplay').checked ? '1' : '0'))
 
 init().catch((err) => { $('main').innerHTML = `<div class="done"><h2>Could not load items</h2><p>${esc(err.message)}</p></div>` })
 </script>

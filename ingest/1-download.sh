@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-# Step 1: download auto-captions (json3) and metadata (.info.json) for Words Unravelled episodes.
+# Step 1: download auto-captions (json3) and metadata (.info.json) for Words Unravelled episodes
+# into 1-youtube/.
 #
-#   ./fetch_subs.sh                 all episodes of the channel not downloaded yet
-#   ./fetch_subs.sh ID [ID ...]     only these video IDs (e.g. for a trial run)
+#   ./1-download.sh                 all episodes of the channel not downloaded yet
+#   ./1-download.sh ID [ID ...]     only these video IDs (e.g. for a trial run)
 #
 # The episode list comes from the channel's "Videos" tab, which doesn't contain Shorts;
 # anything shorter than MIN_MINUTES is skipped as well (trailers, clips).
@@ -11,9 +12,10 @@
 # and on those videos the plain "en" track is a round-trip machine translation.
 # YouTube rate-limits caption downloads (HTTP 429), hence the long sleeps. Safe to re-run.
 set -u
+cd "$(dirname "$0")"
 CHANNEL="https://www.youtube.com/@wordsunravelled/videos"
 MIN_MINUTES=${MIN_MINUTES:-15}
-mkdir -p subs
+mkdir -p 1-youtube
 
 if [[ $# -gt 0 ]]; then
   ids=("$@")
@@ -28,7 +30,7 @@ fi
 
 todo=()
 for id in "${ids[@]}"; do
-  if compgen -G "subs/*\[$id\].info.json" > /dev/null && compgen -G "subs/*\[$id\].en-orig.json3" > /dev/null; then
+  if compgen -G "1-youtube/*\[$id\].info.json" > /dev/null && compgen -G "1-youtube/*\[$id\].en-orig.json3" > /dev/null; then
     continue
   fi
   todo+=("https://www.youtube.com/watch?v=$id")
@@ -38,11 +40,11 @@ echo "${#todo[@]} to download"
 
 yt-dlp --write-auto-subs --sub-langs en-orig --sub-format json3 --write-info-json \
   --skip-download --sleep-subtitles 60 --no-progress \
-  -o "subs/%(title)s [%(id)s].%(ext)s" "${todo[@]}"
+  -o "1-youtube/%(title)s [%(id)s].%(ext)s" "${todo[@]}"
 
 for url in "${todo[@]}"; do
   id=${url##*=}
-  if ! compgen -G "subs/*\[$id\].en-orig.json3" > /dev/null; then
+  if ! compgen -G "1-youtube/*\[$id\].en-orig.json3" > /dev/null; then
     echo "WARNING: no en-orig captions for $id (rate-limited, or no auto-captions). Re-run later." >&2
   fi
 done

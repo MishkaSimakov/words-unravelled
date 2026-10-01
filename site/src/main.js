@@ -87,7 +87,7 @@ const linkTitle = (type, uncertain) => {
 }
 
 /**
- * A mention's note with its links turned into entry links. merge.py gives the note as plain text
+ * A mention's note with its links turned into entry links. data/build.py gives the note as plain text
  * and each link's position in it (`start`, `end`) and resolved `slug`, so notes are never parsed
  * here. Links to things that aren't entries, links back to `self`, and all links when `links` is
  * false (e.g. inside another <a>) stay plain text.
@@ -112,7 +112,7 @@ function noteHtml(mention, { links = true, self = null } = {}) {
 
 // Roles in order of importance.
 const ROLE_RANK = { subject: 0, aside: 1, mention: 2 }
-// A missing or unknown role (merge.py warns about it) ranks last, as in merge.py's role_rank().
+// A missing or unknown role (data/build.py warns about it) ranks last, as in build.py's role_rank().
 const roleRank = (m) => ROLE_RANK[m.role] ?? Object.keys(ROLE_RANK).length
 
 // Debug only: a mention's role, or the roles of all an entry's mentions ("subject · aside ×2").

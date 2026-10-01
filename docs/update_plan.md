@@ -5,6 +5,12 @@
 > and writes `video_id` and `prompt_version` itself. Step 7, the full run over all episodes,
 > has **not** been done yet. "Later: Wiktionary integration" is **not** implemented; it is
 > kept as notes for later. `README.md` describes the current behaviour.
+>
+> The project has since been reorganised; paths here are the old ones: `merge.py` is now
+> `data/build.py`, `reports/duplicates.md` is `data/duplicates.md`, `qa/` is `review/`, and the
+> extraction pipeline is in `ingest/` (`subs/` → `1-youtube/`, `json3_to_text.py` →
+> `2-make-transcripts.py`, `transcripts/` → `2-transcripts/`, `extract_all.sh` and
+> `extract_prompt.md` → `3-extract.sh` and `3-extract-prompt.md`, `extracted/` → `3-entries/`).
 
 # Plan: extraction v2
 

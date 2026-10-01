@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""QA tool: go through the extracted entries one by one and approve or reject each of them.
+"""Review tool: go through the extracted entries one by one and approve or reject each of them.
 
-    python3 qa/review.py              # then open http://localhost:8765
-    python3 qa/review.py --port 9000
-    python3 qa/review.py --root /path/to/project-copy
+    python3 review/review.py              # then open http://localhost:8765
+    python3 review/review.py --port 9000
+    python3 review/review.py --root /path/to/project-copy
 
 The page shows each extracted entry next to the video (starting at its timestamp) and the
 transcript around it. Decisions are saved immediately to data/review.json, keyed by
 "<video_id>/<slug of the extracted term>", and only undecided entries are shown, so you can
 stop at any time and carry on later.
 
-merge.py reads data/review.json: rejected entries are left out of the site, and approved
+data/build.py reads data/review.json: rejected entries are left out of the site, and approved
 ones are marked as verified (no longer counted as low-confidence entries to review).
 Standard library only; the server listens on localhost.
 """
@@ -27,8 +27,8 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT))
-from merge import load_info, parse_timestamp, read_entry, review_key  # noqa: E402
+sys.path.insert(0, str(ROOT / "data"))
+from build import parse_timestamp, read_entry, review_key  # noqa: E402
 
 PAGE = Path(__file__).resolve().parent / "index.html"
 REVIEW = ROOT / "data" / "review.json"
@@ -50,7 +50,7 @@ def save_review(review):
 
 
 def transcript_lines(vid):
-    f = ROOT / "transcripts" / f"{vid}.txt"
+    f = ROOT / "ingest" / "2-transcripts" / f"{vid}.txt"
     if not f.exists():
         return []
     lines = []
@@ -63,26 +63,24 @@ def transcript_lines(vid):
 
 def all_items():
     """Every extracted entry, in episode order (newest first) then by timestamp."""
-    info = load_info(ROOT / "subs")
     items = []
-    for f in sorted((ROOT / "extracted").glob("*.json")):
+    for f in sorted((ROOT / "ingest" / "3-entries").glob("*.json")):
         try:
             data = json.loads(f.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
             continue
         vid = f.stem
-        ep = info.get(vid, {})
         stamps = {line["t"] for line in transcript_lines(vid)} or None
         for raw in data.get("entries", []):
-            # The same checks as merge.py, so both tools agree on what's wrong with an entry.
-            e, problems = read_entry(raw, stamps, ep.get("duration"))
+            # The same checks as data/build.py, so both tools agree on what's wrong with an entry.
+            e, problems = read_entry(raw, stamps, data.get("duration"))
             if e is None:
                 continue
             items.append({
                 "key": review_key(vid, e["term"]),
                 "video_id": vid,
-                "episode": ep.get("title") or vid,
-                "date": ep.get("date"),
+                "episode": data.get("title") or vid,
+                "date": data.get("date"),
                 "term": e["term"],
                 "original": e["original"],
                 "translation": e["translation"],
@@ -175,13 +173,13 @@ def main():
 
     server = ThreadingHTTPServer(("127.0.0.1", args.port), Handler)
     url = f"http://localhost:{args.port}/"
-    print(f"QA tool running at {url}  (decisions are saved to {REVIEW.relative_to(ROOT)}; Ctrl+C to stop)")
+    print(f"Review tool running at {url}  (decisions are saved to {REVIEW.relative_to(ROOT)}; Ctrl+C to stop)")
     if not args.no_browser:
         webbrowser.open(url)
     try:
         server.serve_forever()
     except KeyboardInterrupt:
-        print("\nStopped. Run merge.py to apply the decisions to the site data.")
+        print("\nStopped. Run data/build.py to apply the decisions to the site data.")
 
 
 if __name__ == "__main__":

@@ -1,6 +1,12 @@
 > **Status: the prototype is built; kept for the record.** The audience-side prototype this brief
 > describes was built: it is the site in `site/`. The hosts' side and the later extensions
 > listed below are not implemented. `README.md` describes the current behaviour.
+>
+> The project has since been reorganised; paths here are the old ones: `merge.py` is now
+> `data/build.py`, `reports/duplicates.md` is `data/duplicates.md`, `qa/` is `review/`, and the
+> extraction pipeline is in `ingest/` (`subs/` → `1-youtube/`, `json3_to_text.py` →
+> `2-make-transcripts.py`, `transcripts/` → `2-transcripts/`, `extract_all.sh` and
+> `extract_prompt.md` → `3-extract.sh` and `3-extract-prompt.md`, `extracted/` → `3-entries/`).
 
 # Words Unravelled Word Index: prototype brief
 

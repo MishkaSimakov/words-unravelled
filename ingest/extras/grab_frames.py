@@ -11,7 +11,7 @@ takes frames from a short window around its timestamp and packs them into one co
 Videos are downloaded once, video-only at <=480p, into video/ (about 50-150 MB per episode)
 and kept, so re-running with a different window doesn't download them again.
 
-    python3 grab_frames.py                      every episode in extracted/
+    python3 grab_frames.py                      every episode in ../3-entries/
     python3 grab_frames.py YBIXXAipmZw          only these episodes
     python3 grab_frames.py --all                every entry, not only non-English ones
     python3 grab_frames.py --before 2 --after 10 --step 2 --force
@@ -25,19 +25,20 @@ import subprocess
 import sys
 from pathlib import Path
 
-from merge import fmt_time, parse_timestamp, slugify
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent.parent / "data"))
+from build import fmt_time, parse_timestamp, slugify  # noqa: E402
 
-ROOT = Path(__file__).resolve().parent
-EXTRACTED = ROOT / "extracted"
-VIDEO = ROOT / "video"
-FRAMES = ROOT / "frames"
+ENTRIES = HERE.parent / "3-entries"
+VIDEO = HERE / "video"
+FRAMES = HERE / "frames"
 
 FRAME_WIDTH = 800   # per frame; 2 columns give a 1600 px wide sheet
 COLUMNS = 2
 
 
 def selected_entries(video_id, include_all):
-    entries = json.loads((EXTRACTED / f"{video_id}.json").read_text())["entries"]
+    entries = json.loads((ENTRIES / f"{video_id}.json").read_text())["entries"]
     for e in entries:
         t = parse_timestamp(e.get("timestamp"))
         if t is None:
@@ -92,7 +93,7 @@ def write_index():
              "<style>body{font:15px system-ui;margin:20px;background:#f6f6f6}"
              "figure{margin:0 0 32px}img{max-width:100%;border:1px solid #ccc}"
              "figcaption{margin:6px 0}code{background:#e8e8e8;padding:1px 4px}</style>"]
-    for f in sorted(EXTRACTED.glob("*.json")):
+    for f in sorted(ENTRIES.glob("*.json")):
         video_id = f.stem
         folder = FRAMES / video_id
         if not folder.is_dir():
@@ -115,7 +116,7 @@ def write_index():
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("ids", nargs="*", help="video IDs (default: every episode in extracted/)")
+    ap.add_argument("ids", nargs="*", help="video IDs (default: every episode in ../3-entries/)")
     ap.add_argument("--all", action="store_true", help="include English entries too")
     ap.add_argument("--before", type=int, default=2, help="seconds before the timestamp (default 2)")
     ap.add_argument("--after", type=int, default=8, help="seconds after the timestamp (default 8)")
@@ -123,10 +124,10 @@ def main():
     ap.add_argument("--force", action="store_true", help="rebuild sheets that already exist")
     args = ap.parse_args()
 
-    ids = args.ids or sorted(f.stem for f in EXTRACTED.glob("*.json"))
+    ids = args.ids or sorted(f.stem for f in ENTRIES.glob("*.json"))
     for video_id in ids:
-        if not (EXTRACTED / f"{video_id}.json").exists():
-            print(f"{video_id}: no extracted/{video_id}.json, skipping", file=sys.stderr)
+        if not (ENTRIES / f"{video_id}.json").exists():
+            print(f"{video_id}: no 3-entries/{video_id}.json, skipping", file=sys.stderr)
             continue
         todo = []
         for t, e in selected_entries(video_id, args.all):

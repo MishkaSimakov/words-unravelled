@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Convert YouTube json3 captions (downloaded with yt-dlp) into compact,
-timestamped text that is easy for an LLM to read.
+"""Step 2: convert the YouTube json3 captions in 1-youtube/ into compact, timestamped text in
+2-transcripts/, easy for an LLM to read.
 
 Output format (one file per video, named <video_id>.txt):
 
@@ -14,8 +14,8 @@ Output format (one file per video, named <video_id>.txt):
 or when the current line has run longer than --window seconds.
 
 Usage:
-    python json3_to_text.py subs/ -o transcripts/
-    python json3_to_text.py "Some title [VIDEOID].en-orig.json3" -o transcripts/
+    ./2-make-transcripts.py                                   every file in 1-youtube/
+    ./2-make-transcripts.py "1-youtube/Some title [VIDEOID].en-orig.json3"
 
 Download captions with --sub-langs en-orig: on videos with auto-dubbed audio tracks the
 plain "en" track is a round-trip machine translation, not what the hosts said.
@@ -26,6 +26,7 @@ import re
 import sys
 from pathlib import Path
 
+HERE = Path(__file__).resolve().parent
 TAG = re.compile(r"\[[A-Za-z _]{1,20}\]")          # [music], [laughter], [Applause]...
 VIDEO_ID = re.compile(r"\[([A-Za-z0-9_-]{11})\]")  # yt-dlp's default "Title [ID].en.json3"
 INVISIBLE = re.compile(r"[\u200b\u200c\u200d\u2060\ufeff]")  # zero-width chars, BOM
@@ -107,8 +108,9 @@ def collect(inputs):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("inputs", nargs="+", type=Path, help="json3 files or directories containing them")
-    p.add_argument("-o", "--out-dir", type=Path, default=Path("transcripts"))
+    p.add_argument("inputs", nargs="*", type=Path, default=[HERE / "1-youtube"],
+                   help="json3 files or directories containing them (default: 1-youtube/)")
+    p.add_argument("-o", "--out-dir", type=Path, default=HERE / "2-transcripts")
     p.add_argument("--window", type=float, default=8.0, help="max seconds per line (default: 8)")
     args = p.parse_args()
 
