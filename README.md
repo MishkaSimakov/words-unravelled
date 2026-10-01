@@ -145,13 +145,15 @@ mentions show an "Unverified" label until they are approved.
 ```sh
 cd site
 npm install
-npm run dev        # http://localhost:5173, reads ../data live
+npm run dev        # http://localhost:5173, reads ../data live, shows debug details
 npm run build      # -> site/dist (data copied into dist/data, index.html copied to 404.html)
 npm run preview
 ```
 
 - Pages: home (search, filters, suggestions), `/entry/<slug>`, `/episode/<id>`,
   `/episodes`, `/about`.
+- `npm run dev` also shows debug details: each mention's role (subject / aside / mention) as a
+  small badge on result cards, entry pages and episode timelines. `npm run build` leaves them out.
 - Search is client-side with Fuse.js over `term`, `original` and `translation`. It ignores
   accents and ranks exact and prefix matches first; within each of those tiers, entries that are
   only ever pointed to (role `mention`) come last.

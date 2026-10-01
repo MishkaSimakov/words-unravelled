@@ -7,6 +7,8 @@ import './style.css'
 
 const SITE = 'Wordhoard'
 const BASE = import.meta.env.BASE_URL // '/' locally, '/<repo>/' on GitHub Pages
+// Extra information for checking the data, shown by `npm run dev` only; `npm run build` drops it.
+const DEBUG = import.meta.env.DEV
 const main = document.getElementById('main')
 
 // In filter-chip order.
@@ -155,6 +157,18 @@ function noteHtml(mention, { links = true, self = null } = {}) {
 // Roles in order of importance; `null` (notes extracted before roles existed) counts as a subject.
 const ROLE_RANK = { subject: 0, aside: 1, mention: 2 }
 const roleRank = (m) => ROLE_RANK[m.role] ?? 0
+
+// Debug only: a mention's role, or the roles of all an entry's mentions ("subject · aside ×2").
+const roleBadge = (role, text = role ?? 'no role') =>
+  DEBUG ? `<span class="role-badge" data-role="${esc(role ?? 'none')}">${esc(text)}</span>` : ''
+function roleBadges(entry) {
+  if (!DEBUG) return ''
+  const counts = new Map()
+  for (const m of [...entry.mentions].sort((a, b) => roleRank(a) - roleRank(b))) {
+    counts.set(m.role, (counts.get(m.role) ?? 0) + 1)
+  }
+  return [...counts].map(([role, n]) => roleBadge(role, `${role ?? 'no role'}${n > 1 ? ` ×${n}` : ''}`)).join('')
+}
 
 function shuffle(list) {
   const a = [...list]
@@ -319,7 +333,7 @@ function entryItem(entry, query = '') {
         </span>
         ${gloss.length ? `<span class="gloss">${gloss.join(' · ')}</span>` : ''}
         ${mention?.note ? `<span class="result-note">${noteHtml(mention, { links: false })}</span>` : ''}
-        <span class="result-count">${plural(entry.episodeCount, 'episode')}</span>
+        <span class="result-count">${plural(entry.episodeCount, 'episode')} ${roleBadges(entry)}</span>
       </a>
     </li>`
 }
@@ -627,6 +641,7 @@ function mentionItem(m, entry) {
         <p class="meta">
           ${ep.date ? `<time datetime="${ep.date}">${fmtDate(ep.date)}</time> · ` : ''}
           at <a href="${youtubeUrl(ep.id, Math.max(0, m.t - LEAD_IN))}" target="_blank" rel="noopener">${fmtTime(m.t)} on YouTube</a>
+          ${roleBadge(m.role)}
         </p>
         ${m.note ? `<p class="note">${noteHtml(m, { self: entry })}</p>` : ''}
         ${
@@ -668,6 +683,7 @@ function episodePage(id) {
               <a class="hw" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">${esc(entry.term)}</a>
               ${entry.type ? `<span class="pos">${esc(typeLabel(entry.type))}</span>` : ''}
               ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
+              ${roleBadge(mention.role)}
               ${mention.note ? `<p class="note">${noteHtml(mention, { self: entry })}</p>` : ''}
               ${entry.episodeCount > 1 ? `<p class="also">Also in ${plural(entry.episodeCount - 1, 'other episode')}</p>` : ''}
             </div>
