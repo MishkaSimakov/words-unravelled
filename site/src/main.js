@@ -26,6 +26,17 @@ const db = {
   random: [],
 }
 
+// Categories in display order (data/build.py's CATEGORIES). `label` tags an entry, `title` is its
+// chip, and `noun` names a count of them in running text ("1,950 names"), with `one` its singular.
+const CATEGORIES = [
+  { id: 'word', label: 'word', title: 'Words', noun: 'words', one: 'word' },
+  { id: 'name', label: 'name', title: 'Names', noun: 'names', one: 'name' },
+  { id: 'expression', label: 'expression', title: 'Expressions', noun: 'expressions', one: 'expression' },
+  { id: 'about-language', label: 'about language', title: 'About language', noun: 'entries about language', one: 'entry about language' },
+  { id: 'word-part', label: 'word part', title: 'Word parts', noun: 'word parts', one: 'word part' },
+]
+const categoryById = new Map(CATEGORIES.map((c) => [c.id, c]))
+
 // ---------------------------------------------------------------------------
 // Helpers
 
@@ -52,6 +63,18 @@ function fmtDate(date) {
 // Fold one character at a time, so indices in the folded string match the original.
 const fold = (s) =>
   [...(s ?? '')].map((c) => c.normalize('NFD')[0].toLowerCase()).join('')
+
+// Letters that don't fold to a-z, spelt out as data/build.py's slugs spell them.
+const UNFOLDABLE = { ß: 'ss', æ: 'ae', œ: 'oe', ø: 'o', ł: 'l', đ: 'd', ð: 'd', þ: 'th', ı: 'i' }
+// How an entry files in the A to Z: folded, with those letters spelt out and anything before the
+// first letter or digit dropped, so "-able" files next to "able" and "ælf" under A.
+const fileAs = (term) =>
+  fold(term).replace(/[ßæœøłđðþı]/g, (c) => UNFOLDABLE[c]).replace(/^[^\p{L}\p{N}]+/u, '')
+// The letter heading an entry goes under: A to Z, or # for digits and other scripts.
+const fileLetter = (filed) => {
+  const c = filed[0]?.toUpperCase() ?? ''
+  return /[A-Z]/.test(c) ? c : '#'
+}
 
 // Original form and literal translation, minus any that merely restate the headword
 // ("raining frogs" / "it's raining frogs" say the same thing twice).
@@ -113,6 +136,15 @@ function noteHtml(mention, { links = true, self = null } = {}) {
     last = link.end
   }
   return html + esc(note.slice(last))
+}
+
+// An entry's category as a small label; on the entry page it links to the category.
+function categoryTag(entry, { link = false } = {}) {
+  const cat = categoryById.get(entry.category)
+  if (!cat) return ''
+  return link
+    ? `<a class="cat" href="${href(`?cat=${cat.id}`)}" title="Browse all ${cat.noun}">${esc(cat.label)}</a>`
+    : `<span class="cat">${esc(cat.label)}</span>`
 }
 
 // Roles in order of importance.
@@ -228,11 +260,17 @@ async function load() {
     db.episodeById.set(ep.id, ep)
     db.byEpisode.set(ep.id, [])
   }
-  // Homographs side by side, the one without a gloss first.
+  // A to Z by filing form, # first (digits, other scripts), so that each letter heading is one run.
+  // Then "-able" before "able", and homographs side by side, the one without a gloss first.
+  const compare = (a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' })
+  for (const e of entries) {
+    e.fileAs = fileAs(e.term)
+    e.letter = fileLetter(e.fileAs)
+  }
   db.entries = entries.sort(
     (a, b) =>
-      a.term.localeCompare(b.term, 'en', { sensitivity: 'base' }) ||
-      (a.gloss ?? '').localeCompare(b.gloss ?? '', 'en', { sensitivity: 'base' }),
+      (a.letter === '#') !== (b.letter === '#') ? (a.letter === '#' ? -1 : 1)
+        : compare(a.fileAs, b.fileAs) || compare(a.term, b.term) || compare(a.gloss ?? '', b.gloss ?? ''),
   )
   for (const entry of db.entries) {
     // Episodes that discuss the entry, and all episodes, including those that only point to it
@@ -297,6 +335,7 @@ function entryItem(entry, query = '') {
         <span class="result-head">
           <span class="hw">${nameHtml(entry, query)}</span>
           <span class="result-class">
+            ${categoryTag(entry)}
             ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
           </span>
         </span>
@@ -315,12 +354,10 @@ function entryList(entries, query = '', { letters = false } = {}) {
   let html = ''
   let current = null
   for (const e of entries) {
-    const letter = fold(e.term).replace(/[^a-z0-9]/g, '')[0]?.toUpperCase() ?? '#'
-    const key = /[A-Z]/.test(letter) ? letter : '#'
-    if (key !== current) {
+    if (e.letter !== current) {
       if (current !== null) html += '</ol>'
-      html += `<h3 class="letter">${key}</h3><ol class="results">`
-      current = key
+      html += `<h3 class="letter">${e.letter}</h3><ol class="results">`
+      current = e.letter
     }
     html += entryItem(e)
   }
@@ -345,6 +382,7 @@ function home(params) {
   const state = {
     q: params.get('q') ?? '',
     lang: params.get('lang') ?? '',
+    cat: categoryById.has(params.get('cat')) ? params.get('cat') : '',
     all: params.has('all'),
     limit: PAGE_SIZE,
   }
@@ -368,6 +406,12 @@ function home(params) {
         <kbd class="search-kbd" aria-hidden="true">/</kbd>
       </div>
       <div class="filters">
+        <div class="chips" role="group" aria-label="Kind of entry">
+          ${[{ id: '', title: 'All' }, ...CATEGORIES]
+            .map((c) => `<button type="button" class="chip" data-cat="${c.id}" aria-pressed="${c.id === state.cat}">
+                ${esc(c.title)} <span class="chip-count"></span></button>`)
+            .join('')}
+        </div>
         <label class="lang-select">
           <span class="visually-hidden">Language</span>
           <select name="lang">
@@ -387,34 +431,45 @@ function home(params) {
   const select = form.querySelector('select')
   const results = main.querySelector('#results')
   const status = main.querySelector('#result-status')
+  const chipRow = form.querySelector('.chips')
+  const chips = [...chipRow.children]
 
   const syncUrl = () => {
     const p = new URLSearchParams()
     if (state.q) p.set('q', state.q)
     if (state.lang) p.set('lang', state.lang)
-    if (state.all && !state.q && !state.lang) p.set('all', '')
+    if (state.cat) p.set('cat', state.cat)
+    if (state.all && !state.q && !state.lang && !state.cat) p.set('all', '')
     const qs = p.toString().replace(/=(&|$)/g, '$1')
     history.replaceState(history.state, '', href(qs ? `?${qs}` : ''))
   }
 
   const update = () => {
-    const filtered = (list) =>
-      list.filter((e) => !state.lang || e.language === state.lang)
     const q = state.q.trim()
+    // The chips count what the search and language filter leave, so they show where matches are.
+    const base = (q ? search(q) : db.entries).filter((e) => !state.lang || e.language === state.lang)
+    const counts = new Map()
+    for (const e of base) counts.set(e.category, (counts.get(e.category) ?? 0) + 1)
+    for (const chip of chips) {
+      const n = chip.dataset.cat ? (counts.get(chip.dataset.cat) ?? 0) : base.length
+      chip.setAttribute('aria-pressed', String(chip.dataset.cat === state.cat))
+      chip.classList.toggle('is-empty', n === 0)
+      chip.querySelector('.chip-count').textContent = fmtNumber(n)
+    }
+    const cat = categoryById.get(state.cat)
+    const found = cat ? base.filter((e) => e.category === cat.id) : base
 
     if (q) {
-      const found = filtered(search(q))
       status.textContent = found.length
-        ? `${plural(found.length, 'match', 'matches')} for “${q}”`
+        ? `${plural(found.length, 'match', 'matches')} for “${q}”${cat ? ` among ${cat.noun}` : ''}`
         : ''
       results.innerHTML = found.length
         ? entryList(found.slice(0, state.limit), q) + more(found.length)
-        : `<div class="empty"><p class="empty-title">Nothing in the hoard for “${esc(q)}”.</p>
+        : `<div class="empty"><p class="empty-title">Nothing in the hoard for “${esc(q)}”${cat ? ` among ${esc(cat.noun)}` : ''}.</p>
            <p>It may not have come up on the show yet, or the captions misheard it. Try a shorter
-           spelling${state.lang ? ', or clear the language filter' : ''}.</p></div>`
-    } else if (state.lang || state.all) {
-      const found = filtered(db.entries)
-      status.textContent = `${plural(found.length, 'entry', 'entries')}, A to Z`
+           spelling${state.lang || cat ? ', or clear the filters' : ''}.</p></div>`
+    } else if (state.lang || cat || state.all) {
+      status.textContent = `${cat ? plural(found.length, cat.one, cat.noun) : plural(found.length, 'entry', 'entries')}, A to Z`
       results.innerHTML = entryList(found.slice(0, state.limit), '', { letters: true }) + more(found.length)
     } else {
       status.textContent = ''
@@ -436,6 +491,27 @@ function home(params) {
   form.addEventListener('submit', (ev) => {
     ev.preventDefault()
     results.querySelector('a.result')?.click()
+  })
+  // On narrow screens the chip row scrolls sideways: fade its edge while more chips are hidden, and
+  // bring the selected chip into view (a link to ?cat=word-part selects the last one).
+  const fadeChips = () =>
+    chipRow.classList.toggle('has-more', chipRow.scrollLeft + chipRow.clientWidth < chipRow.scrollWidth - 1)
+  chipRow.addEventListener('scroll', fadeChips, { passive: true })
+  new ResizeObserver(fadeChips).observe(chipRow)
+  document.fonts.ready.then(() => {
+    const row = chipRow.getBoundingClientRect()
+    const pressed = chips.find((c) => c.dataset.cat === state.cat).getBoundingClientRect()
+    if (pressed.right > row.right) chipRow.scrollLeft += pressed.left - row.left - 24
+  })
+
+  chipRow.addEventListener('click', (ev) => {
+    const chip = ev.target.closest('.chip')
+    if (!chip) return
+    // Pressing the selected category again goes back to all of them.
+    state.cat = chip.dataset.cat === state.cat ? '' : chip.dataset.cat
+    state.limit = PAGE_SIZE
+    syncUrl()
+    update()
   })
   select.addEventListener('change', () => {
     state.lang = select.value
@@ -538,6 +614,7 @@ function entryPage(slug) {
       <header class="entry-head">
         <h1 class="headword">${nameHtml(entry)}</h1>
         <p class="entry-class">
+          ${categoryTag(entry, { link: true })}
           ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
         </p>
         ${
@@ -625,6 +702,7 @@ function episodePage(id) {
             <button type="button" class="ts" data-t="${mention.t}" aria-label="Play from ${fmtTime(mention.t)}">${fmtTime(mention.t)}</button>
             <div>
               <a class="hw" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">${nameHtml(entry)}</a>
+              ${categoryTag(entry)}
               ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
               ${roleBadge(mention.role)}
               ${mention.note ? `<p class="note">${noteHtml(mention, { self: entry })}</p>` : ''}

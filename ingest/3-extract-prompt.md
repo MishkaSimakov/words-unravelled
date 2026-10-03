@@ -68,6 +68,36 @@ not a topic: its items are asides.
 - A taxon written as such (*Monodon monoceros*, *Mysticeti*) is its own entry, separate from
   the common name (*narwhal*) when the hosts discuss both.
 
+### Category
+
+`category` says what kind of thing the entry is. Go down this list and stop at the first
+rule that fits:
+
+1. `word-part`: the term starts or ends with a hyphen (*-chester*, *be-*, *-nym*), is a
+   letter of an alphabet (*the letter Q*, *thorn*), or is an element of words or place
+   names discussed as an element rather than as a word (*aber*, *llan*).
+2. `name`: it names one specific thing: a person, place, organisation, brand, band, book,
+   film, character, god, ship or event (*Berlin*, *IKEA*, *Daft Punk*, *Minotaur*, *Albert*,
+   *Al Capone*). These are not names: days and months, peoples and nationalities, species
+   and breeds, geological periods, languages and scripts, and names used as common words
+   (*Tuesday*, *Vikings*, *Triassic*, *a Judas*).
+3. `about-language`: a term for describing language: grammar, rhetoric, sounds, spelling,
+   punctuation, word formation, kinds of words and sayings (*calque*, *eggcorn*, *metonymy*,
+   *schwa*, *Oxford comma*, *spoonerism*); or the name of a language, dialect, variety or
+   script (*Polari*, *Old English*, *cuneiform*).
+4. `expression`: several words that are said together rather than naming a thing: idioms,
+   sayings, proverbs, catchphrases, quotations, greetings, slang phrases, rhyming slang and
+   foreign sayings (*spill the beans*, *mad as a box of frogs*, *apples and pears*,
+   *raining female trolls*). A multi-word term that names a thing is a `word`
+   (*killer whale*, *dead drop*, *epipelagic zone*).
+5. `word`: everything else: words in any language, compounds and multi-word terms for things,
+   slang words, abbreviations and codes (*mortgage*, *Gift* in German, *swive*, *bladdered*).
+
+Sort by the sense the hosts discuss. *Covent Garden* discussed as rhyming slang for a
+farthing is an `expression`. A word that comes from a name is a `word` (*sandwich*,
+*leotard*), and the person it comes from (*Jules Léotard*) is a `name`. A name whose origin
+the hosts explain is still a `name` (*Montana*).
+
 ### Fields
 
 - `term`: the entry in the full form the hosts use for it. Don't shorten it (*humpback
@@ -96,6 +126,8 @@ not a topic: its items are asides.
   English name, even though it comes from Spanish. `null` for a named thing whose name the
   hosts don't discuss (a person, place or work they only talk about). Every other entry has
   a language (the name *Vulgar Latin* is English).
+- `category`: `"word"`, `"name"`, `"expression"`, `"about-language"` or `"word-part"` (see
+  above).
 - `timestamp`: see Rules.
 - `role`: `"subject"`, `"aside"` or `"mention"` (see above).
 - `note`: see Rules. May contain links.
@@ -178,6 +210,7 @@ other files.
       "original": null,
       "translation": null,
       "language": "English",
+      "category": "word",
       "timestamp": "00:12:40",
       "role": "subject",
       "note": "From French desservir, to clear the table, because it came after the table was cleared; unrelated to [[unrelated:desert]].",
@@ -188,6 +221,7 @@ other files.
       "original": "Kummerspeck",
       "translation": "grief bacon",
       "language": "German",
+      "category": "word",
       "timestamp": "00:31:05",
       "role": "aside",
       "note": "Weight put on by comfort eating, one of the German compounds the hosts compare with [[see:hangry]].",
@@ -198,6 +232,7 @@ other files.
       "original": null,
       "translation": null,
       "language": "English",
+      "category": "word",
       "timestamp": "00:24:17",
       "role": "subject",
       "note": "Named after [[from:Jules Léotard]], the French acrobat who popularised the one-piece garment in the 1860s.",

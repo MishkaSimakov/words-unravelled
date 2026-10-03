@@ -271,6 +271,15 @@ main.wrap {
   color: var(--rubric);
 }
 
+/* An entry's category, set like a dictionary's part-of-speech label: italic, beside the language. */
+.cat {
+  font-style: italic;
+  color: var(--ink-soft);
+}
+a.cat {
+  text-decoration-line: underline;
+}
+
 .meta {
   color: var(--muted);
   font-size: 0.92rem;
@@ -461,6 +470,58 @@ main.wrap {
   gap: 10px 14px;
   margin-top: 12px;
 }
+/* Category chips: one row that scrolls sideways when it doesn't fit, so the sticky search bar
+   stays short on phones. */
+.chips {
+  display: flex;
+  gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 2px;
+  margin: -2px;
+}
+.chips::-webkit-scrollbar {
+  display: none;
+}
+.chips.has-more {
+  mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent);
+}
+.chip {
+  flex: none;
+  font-size: 0.95rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 4px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+.chip:hover {
+  border-color: var(--ink);
+}
+.chip-count {
+  font-size: 0.8em;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  margin-left: 2px;
+}
+.chip[aria-pressed='true'] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.chip[aria-pressed='true'] .chip-count {
+  color: inherit;
+  opacity: 0.75;
+}
+.chip.is-empty:not([aria-pressed='true']) {
+  color: var(--muted);
+  border-style: dashed;
+}
+
 .lang-select select {
   font: inherit;
   font-size: 0.95rem;
@@ -586,6 +647,7 @@ main.wrap {
 .browse-all {
   margin-top: 36px;
 }
+
 .link-button {
   border: 0;
   background: none;
@@ -880,6 +942,9 @@ main.wrap {
 }
 .timeline .hw {
   text-decoration: none;
+  margin-right: 6px;
+}
+.timeline .cat {
   margin-right: 6px;
 }
 .timeline .note {
