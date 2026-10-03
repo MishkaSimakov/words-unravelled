@@ -9,6 +9,8 @@ const COLORED_CATEGORIES = ['expression', 'name', 'about-language']
 const DEFAULTS = {
   orphans: false,
   asides: true,
+  seeLinks: true,
+  unrelatedLinks: true,
   colorByCategory: true,
   textFade: 2.2, // zoom level at which labels start to fade in
   nodeSize: 1,
@@ -19,7 +21,13 @@ const DEFAULTS = {
   linkDistance: 30,
 }
 
-/** Nodes and undirected, de-duplicated links from the links data/build.py resolved in mention notes. */
+// Link types that can be switched off, and the setting that switches each one.
+const LINK_TYPE_SETTINGS = { see: 'seeLinks', unrelated: 'unrelatedLinks' }
+
+/**
+ * Nodes and undirected, de-duplicated links from the links data/build.py resolved in mention notes.
+ * A link keeps every type it was given between its two entries.
+ */
 function buildGraph({ db, nameText }) {
   const nodes = db.entries.map((entry) => ({
     id: entry.slug,
@@ -29,20 +37,24 @@ function buildGraph({ db, nameText }) {
     // Only ever an aside (or passing mention), never the subject of a mention.
     aside: !entry.mentions.some((m) => m.role === 'subject'),
     neighbors: new Set(),
+    shownNeighbors: new Set(), // neighbours over the links currently drawn
     links: [],
   }))
   const byId = new Map(nodes.map((n) => [n.id, n]))
   const links = []
-  const seen = new Set()
+  const byKey = new Map()
   for (const node of nodes) {
     for (const mention of node.entry.mentions) {
-      for (const { slug } of mention.links ?? []) {
+      for (const { slug, type } of mention.links ?? []) {
         const other = byId.get(slug)
         if (!other || other === node) continue
         const key = [node.id, other.id].sort().join('\n')
-        if (seen.has(key)) continue
-        seen.add(key)
-        const link = { source: node, target: other }
+        if (byKey.has(key)) {
+          byKey.get(key).types.add(type)
+          continue
+        }
+        const link = { source: node, target: other, types: new Set([type]) }
+        byKey.set(key, link)
         links.push(link)
         node.neighbors.add(other)
         other.neighbors.add(node)
@@ -116,6 +128,10 @@ export function mountGraph(root, h) {
           <span class="chip-count">${graph.nodes.filter((n) => n.aside).length}</span></label>
         <label class="graph-switch"><input type="checkbox" data-setting="orphans" /> Orphans
           <span class="chip-count">${graph.nodes.length - linkedCount}</span></label>
+        <label class="graph-switch" title="“See also” links"><input type="checkbox" data-setting="seeLinks" checked /> See links
+          <span class="chip-count">${graph.links.filter((l) => l.types.has('see')).length}</span></label>
+        <label class="graph-switch"><input type="checkbox" data-setting="unrelatedLinks" checked /> Unrelated links
+          <span class="chip-count">${graph.links.filter((l) => l.types.has('unrelated')).length}</span></label>
       </details>
       <details open>
         <summary>Display</summary>
@@ -193,13 +209,13 @@ export function mountGraph(root, h) {
   /** 1 for highlighted nodes, a faint value for the rest while something is focused. */
   const emphasis = (node) => {
     const f = focus()
-    if (f) return node === f || f.neighbors.has(node) ? 1 : 0.12
+    if (f) return node === f || f.shownNeighbors.has(node) ? 1 : 0.12
     if (matches) return matches.has(node) ? 1 : 0.12
     return 1
   }
   const isHighlighted = (node) => {
     const f = focus()
-    if (f) return node === f || f.neighbors.has(node)
+    if (f) return node === f || f.shownNeighbors.has(node)
     return !!matches && matches.size <= 60 && matches.has(node)
   }
   const baseRadius = (node) => settings.nodeSize * (2 + Math.sqrt(node.deg) * 1.3)
@@ -209,14 +225,19 @@ export function mountGraph(root, h) {
   const LABEL_SIZE = 3.6
 
   const shown = (n) => !hiddenCategories.has(n.category) && (settings.asides || !n.aside)
+  // A link is drawn while any of its types is switched on.
+  const linkShown = (l) => [...l.types].some((t) => settings[LINK_TYPE_SETTINGS[t]] ?? true)
   const visibleData = () => {
     const filtered = new Set(graph.nodes.filter(shown))
-    // Orphans are judged on what's left, so hiding asides doesn't leave their neighbours floating.
-    const nodes = settings.orphans
-      ? [...filtered]
-      : [...filtered].filter((n) => [...n.neighbors].some((o) => filtered.has(o)))
-    const ids = new Set(nodes)
-    return { nodes, links: graph.links.filter((l) => ids.has(l.source) && ids.has(l.target)) }
+    const links = graph.links.filter((l) => filtered.has(l.source) && filtered.has(l.target) && linkShown(l))
+    for (const n of graph.nodes) n.shownNeighbors.clear()
+    for (const l of links) {
+      l.source.shownNeighbors.add(l.target)
+      l.target.shownNeighbors.add(l.source)
+    }
+    // Orphans are judged on what's left, so hiding asides or links doesn't leave entries floating.
+    const nodes = [...filtered].filter((n) => settings.orphans || n.shownNeighbors.size)
+    return { nodes, links }
   }
 
   // ---- animation ----------------------------------------------------------------------------
@@ -530,7 +551,7 @@ export function mountGraph(root, h) {
     const key = el.dataset.setting
     if (!key) return
     settings[key] = el.type === 'checkbox' ? el.checked : Number(el.value)
-    if (key === 'orphans' || key === 'asides') refilter()
+    if (['orphans', 'asides', 'seeLinks', 'unrelatedLinks'].includes(key)) refilter()
     if (key === 'colorByCategory') readColors()
     if (FORCE_KEYS.includes(key)) applyForces()
   })
