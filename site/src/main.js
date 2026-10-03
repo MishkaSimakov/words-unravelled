@@ -64,6 +64,18 @@ function fmtDate(date) {
 const fold = (s) =>
   [...(s ?? '')].map((c) => c.normalize('NFD')[0].toLowerCase()).join('')
 
+// Letters that don't fold to a-z, spelt out as data/build.py's slugs spell them.
+const UNFOLDABLE = { ß: 'ss', æ: 'ae', œ: 'oe', ø: 'o', ł: 'l', đ: 'd', ð: 'd', þ: 'th', ı: 'i' }
+// How an entry files in the A to Z: folded, with those letters spelt out and anything before the
+// first letter or digit dropped, so "-able" files next to "able" and "ælf" under A.
+const fileAs = (term) =>
+  fold(term).replace(/[ßæœøłđðþı]/g, (c) => UNFOLDABLE[c]).replace(/^[^\p{L}\p{N}]+/u, '')
+// The letter heading an entry goes under: A to Z, or # for digits and other scripts.
+const fileLetter = (filed) => {
+  const c = filed[0]?.toUpperCase() ?? ''
+  return /[A-Z]/.test(c) ? c : '#'
+}
+
 // Original form and literal translation, minus any that merely restate the headword
 // ("raining frogs" / "it's raining frogs" say the same thing twice).
 const bare = (s) =>
@@ -248,11 +260,17 @@ async function load() {
     db.episodeById.set(ep.id, ep)
     db.byEpisode.set(ep.id, [])
   }
-  // Homographs side by side, the one without a gloss first.
+  // A to Z by filing form, # first (digits, other scripts), so that each letter heading is one run.
+  // Then "-able" before "able", and homographs side by side, the one without a gloss first.
+  const compare = (a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' })
+  for (const e of entries) {
+    e.fileAs = fileAs(e.term)
+    e.letter = fileLetter(e.fileAs)
+  }
   db.entries = entries.sort(
     (a, b) =>
-      a.term.localeCompare(b.term, 'en', { sensitivity: 'base' }) ||
-      (a.gloss ?? '').localeCompare(b.gloss ?? '', 'en', { sensitivity: 'base' }),
+      (a.letter === '#') !== (b.letter === '#') ? (a.letter === '#' ? -1 : 1)
+        : compare(a.fileAs, b.fileAs) || compare(a.term, b.term) || compare(a.gloss ?? '', b.gloss ?? ''),
   )
   for (const entry of db.entries) {
     // Episodes that discuss the entry, and all episodes, including those that only point to it
@@ -336,12 +354,10 @@ function entryList(entries, query = '', { letters = false } = {}) {
   let html = ''
   let current = null
   for (const e of entries) {
-    const letter = fold(e.term).replace(/[^a-z0-9]/g, '')[0]?.toUpperCase() ?? '#'
-    const key = /[A-Z]/.test(letter) ? letter : '#'
-    if (key !== current) {
+    if (e.letter !== current) {
       if (current !== null) html += '</ol>'
-      html += `<h3 class="letter">${key}</h3><ol class="results">`
-      current = key
+      html += `<h3 class="letter">${e.letter}</h3><ol class="results">`
+      current = e.letter
     }
     html += entryItem(e)
   }

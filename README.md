@@ -175,6 +175,10 @@ npm run preview
   the entries the current search and language filter leave. On narrow screens the chips scroll
   sideways. Result cards, entry pages and episode timelines show each entry's category in
   lowercase italics beside its language; on the entry page it links to that category.
+- Browsing lists entries A to Z under letter headings. An entry files under its term with accents
+  folded, letters like *æ* and *þ* spelt out (*ae*, *th*) and leading punctuation ignored, so
+  *-ness* sits next to *ness* and *ælf* under A; digits and other scripts come first, under #.
+  The entry page's previous and next links follow the same order.
 - `npm run dev` also shows debug details: each mention's role (subject / aside / mention) as a
   small badge on result cards, entry pages and episode timelines. `npm run build` leaves them out.
 - Search is client-side with Fuse.js over `term`, `gloss`, `original` and `translation`. It
