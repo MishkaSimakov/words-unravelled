@@ -27,7 +27,7 @@ function siteData() {
           res.end(readFileSync(DATA_DIR + file))
         } catch {
           res.statusCode = 404
-          res.end(`Missing data/${file}: run merge.py first.`)
+          res.end(`Missing data/${file}: run python3 data/build.py first.`)
         }
       })
     },

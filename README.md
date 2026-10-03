@@ -1,64 +1,123 @@
 # Wordhoard: a Words Unravelled word index (prototype)
 
-An unofficial fan project: a searchable index of the words, idioms, phrases and names
+An unofficial fan project: a searchable index of the words, expressions and named things
 discussed on the *Words Unravelled* podcast (Rob Watts and Jess Zafarris), with a link to
 the moment each one comes up. This prototype covers the **audience side** only. See
-`prototype_brief.md` for the background.
+`docs/prototype_brief.md` for the background.
 
 ```
-subs/          raw captions (.json3) and metadata (.info.json) from yt-dlp
-transcripts/   compact timestamped text, one file per episode (<video_id>.txt)
-extracted/     per-episode JSON produced by Claude (<video_id>.json)
-data/          site data (episodes.json, entries.json), overrides.json, review.json
-reports/       duplicates.md, written by merge.py for manual review
-qa/            the QA tool (approve / reject extracted entries)
-site/          the website (Vite, vanilla JS, Fuse.js)
+data/      the dataset the site shows, the manual edits to it, and build.py, which builds it
+ingest/    produces entries from YouTube episodes with Claude: one way to feed data/
+review/    a tool to approve or reject entries next to the video
+site/      the website (Vite, vanilla JS, Fuse.js)
+docs/      plans and briefs, kept for the record
 ```
 
-Requirements: Python 3.9+, [yt-dlp](https://github.com/yt-dlp/yt-dlp), Node 20+, and the
-`claude` CLI for extraction.
+How they fit together:
 
-## Pipeline
+```
+ingest/3-entries/<video_id>.json ─┐
+data/overrides.json (by hand) ────┼─> data/build.py ─> data/entries.json, episodes.json ─> site/
+data/review.json (review/) ───────┘                    data/duplicates.md (to check by hand)
+```
+
+Requirements: Python 3.9+, Node 20+, and for `ingest/`: [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+and the `claude` CLI.
 
 ```sh
-./fetch_subs.sh                         # 1. captions + metadata (all episodes not downloaded yet)
-./fetch_subs.sh YBIXXAipmZw JlgQIDxufh0 #    ...or only some episodes
-python3 json3_to_text.py subs -o transcripts   # 2. captions -> timestamped text
-./extract_all.sh                        # 3. Claude extracts entries (resumable)
-python3 merge.py                        # 4. merge into data/*.json, print a summary
+ingest/1-download.sh          # see ingest/README.md for the steps
+ingest/2-make-transcripts.py
+ingest/3-extract.sh
+python3 data/build.py         # build data/*.json, print a summary
+cd site && npm run dev        # http://localhost:5173
 ```
 
-**Use the `en-orig` caption track.** Most episodes have auto-dubbed audio in other
-languages. On those videos YouTube's plain `en` auto-caption track is a round-trip machine
-translation, not what the hosts said. For example, "Sod's law" becomes "the law of
-meanness", and Jess's book titles get garbled. `fetch_subs.sh` downloads `en-orig`, and
-`json3_to_text.py` prefers it when both tracks exist.
+## Data
 
-Downloads sleep 60 s between caption files because YouTube rate-limits them (HTTP 429), so
-the full catalogue (about 100 episodes) takes about two hours. Every step skips work that's
-already done, so you can stop and re-run any of them.
-
-### merge.py
-
-Reads `subs/*.info.json` and `extracted/*.json` and writes:
+`data/build.py` reads the entry files in `ingest/3-entries/` (`--entries <dir>` for another
+folder), `data/overrides.json` and `data/review.json`, and writes:
 
 - `data/episodes.json`: `[{ id, title, date, duration }]`, newest first
-- `data/entries.json`: `[{ slug, term, original, translation, type, language, mentions: [{ episode_id, t, note, confidence, verified? }] }]`
+- `data/entries.json`: `[{ slug, term, gloss?, original, translation, language, category,
+  mentions: [...] }]`, where each mention is
 
-Mentions are grouped by slug: the term lowercased, with invisible characters removed,
-diacritics folded and spaces turned into hyphens (`Björk` → `bjork`). If mentions disagree
-on a field, the majority wins. Nothing else is merged automatically. Likely duplicates
-(plural/singular, spelling variants, "to kick the bucket" vs "kick the bucket", one entry's
-term being another's original form) go to `reports/duplicates.md`, each with a ready-to-paste
-override.
+  ```json
+  {"episode_id": "m9AaobtBMtA", "t": 978, "role": "subject",
+   "note": "A doublet of cartouche; …",
+   "links": [{"type": "same-root", "uncertain": false, "target": "cartouche", "slug": "cartouche",
+              "start": 13, "end": 22}],
+   "confidence": "high", "verified": true}
+  ```
+- `data/duplicates.md`: likely duplicates, for manual review
 
-The summary also flags:
+**Entry files** are the boundary between whatever produces entries and the dataset. One file per
+episode, `<video_id>.json`:
 
-- low-confidence mentions not yet approved in QA
-- timestamps that don't appear in the transcript (possibly invented)
-- **new types** outside word/idiom/phrase/name. These are kept as they are, never remapped.
-- episodes downloaded but not extracted yet
+```json
+{"video_id": "m9AaobtBMtA", "prompt_version": 5,
+ "title": "Ancient writing systems and how they work", "date": "2026-09-30", "duration": 2623,
+ "entries": [{"term": "cartridge", "original": null, "translation": null, "language": "English",
+              "category": "word", "timestamp": "00:16:18", "role": "subject",
+              "note": "A doublet of [[same-root:cartouche]]; …", "confidence": "high"}]}
+```
+
+**Category** says what kind of thing an entry is: `word`, `name`, `expression`,
+`about-language` (terms for describing language, and names of languages and scripts) or
+`word-part` (*-chester*, *aber*, letters). The rules are in `ingest/3-extract-prompt.md`. It
+belongs to the entry, so like the other entry fields it is voted on across mentions.
+
+**Gloss** tells apart different words with the same spelling. It is absent or `null` unless
+another word has the same spelling, and is a short label like a Wikipedia disambiguation
+suffix: a language for a false friend (*Gift (German)*), a meaning for a homonym
+(*meal (flour)*, *school (fish)*), or a kind for a name (*Phoenix (city)*). Usually one word per
+spelling (typically the common English one) has no gloss. In `entries.json`, `gloss` is only
+present on entries that have one.
+
+**Role** belongs to the mention: `subject` (discussed for its own sake), `aside` (only to make a
+point about another entry) or `mention` (the hosts only point to where it was discussed).
+
+**Links.** Notes in entry files mark connections as `[[type:target]]trail`, with types `from`,
+`gave`, `same-root`, `equivalent`, `unrelated` and `see`, and `?` after the type for an uncertain
+relation (`[[from?:shesep ankh]]`). Letters straight after `]]` are part of the link text:
+`[[see:ounce]]s` reads "ounces". A link to a glossed entry gives the gloss in brackets,
+`[[same-root:meal (flour)]]`, and reads "meal". In `entries.json` the note is plain text, with
+each link replaced by its text; `links` lists the links in order, with `start` and `end` giving
+the position of the link text in the note, in UTF-16 code units (how JavaScript indexes
+strings), so the site never parses notes. `slug` is the entry the target resolves to after
+overrides, or `null` if it isn't an entry: a target with a gloss resolves to the entry with that
+slug; any other target to an entry in the same episode first, then any entry by term, then by
+original form. A target without a gloss means the word without one: `[[see:gift]]` is *gift*,
+not *Gift (German)*, unless there is no plain *gift*. A link never resolves to the entry its
+note belongs to.
+
+Mentions are grouped by slug: the term, followed by the gloss if there is one, lowercased, with
+invisible characters removed, diacritics folded and spaces turned into hyphens (`Björk` →
+`bjork`, *Gift (German)* → `gift-german`). If mentions disagree on a field, the majority wins.
+Nothing else is merged automatically. Likely duplicates (plural/singular, spelling variants,
+"to kick the bucket" vs "kick the bucket", one expression contained in another, one entry's
+term being another's original form; never two entries with the same term and different
+glosses) go to `data/duplicates.md`, each with a ready-to-paste override, along with mentions
+that disagree on language or category.
+
+The summary shows how many files there are at each `prompt_version`, and counts of roles and
+links. It also flags:
+
+- low-confidence mentions not yet approved in the review tool
+- timestamps after the end of the video
+- missing roles, and roles other than subject/aside/mention
+- missing categories, and unknown ones (dropped)
+- malformed links in notes (`[[x]]`, `[[x|y]]`, `[[see: ]]`) and unknown link types
+- the same entry twice in one episode, including after overrides (the mention with the highest
+  role is kept); for two different words with one spelling, a gloss is missing
+- links that reach a glossed entry without naming its gloss (they may point at the wrong
+  homograph), and links whose gloss names no entry
+- episodes without a title (the video ID is used) or a date (listed last)
 - overrides that no longer match anything
+
+Timestamps that aren't in the transcript are reported by `ingest/3-extract.sh` and flagged in
+the review tool, which both have the transcript.
+
+Tests: `python3 -m unittest discover data/test`.
 
 ### Manual fixes: data/overrides.json
 
@@ -77,25 +136,26 @@ A list of operations, applied in order on every run:
 ]
 ```
 
-- `rename` rebuilds the slug from the new term, or uses `new_slug` if given. With
-  `episode_id` it applies to one mention only, which lets you split an entry.
+- `rename` rebuilds the slug from the new term and the mention's gloss, or uses `new_slug` if
+  given. With `episode_id` it applies to one mention only, which lets you split an entry.
 - `set` changes entry fields but keeps the slug.
 - `distinct` only hides a pair from the duplicates report.
 
-## QA tool
+## Review tool
 
 ```sh
-python3 qa/review.py        # opens http://localhost:8765
+python3 review/review.py        # opens http://localhost:8765
 ```
 
-Shows one extracted entry at a time, next to the video (starting 3 s before the timestamp)
-and the transcript around it. Controls:
+Shows one entry from `ingest/3-entries/` at a time, next to the video (starting 3 s before the
+timestamp) and the transcript around it, with the same checks as `data/build.py` plus
+timestamps missing from the transcript. Controls:
 
 - **A** approve, **R** reject, **S** skip, **U** undo, **C** add a comment
-- filter by episode, or show only low-confidence and flagged entries
+- filter by episode or role, or show only low-confidence and flagged entries
 
 Decisions are saved at once to `data/review.json`, keyed by `<video_id>/<slug of the
-extracted term>`. Only undecided entries are shown. On the next `merge.py` run, rejected
+extracted term and gloss>`. Only undecided entries are shown. On the next `data/build.py` run, rejected
 mentions are dropped and approved ones are marked `verified`. On the site, low-confidence
 mentions show an "Unverified" label until they are approved.
 
@@ -104,15 +164,30 @@ mentions show an "Unverified" label until they are approved.
 ```sh
 cd site
 npm install
-npm run dev        # http://localhost:5173, reads ../data live
+npm run dev        # http://localhost:5173, reads ../data live, shows debug details
 npm run build      # -> site/dist (data copied into dist/data, index.html copied to 404.html)
 npm run preview
 ```
 
-- Pages: home (search, filters, suggestions), `/entry/<slug>`, `/episode/<id>`,
-  `/episodes`, `/about`.
-- Search is client-side with Fuse.js over `term`, `original` and `translation`. It ignores
-  accents and ranks exact and prefix matches first.
+- Pages: home (search, category chips, language filter, suggestions), `/entry/<slug>`,
+  `/episode/<id>`, `/episodes`, `/about`.
+- Categories: chips under the search box filter by category (`?cat=name`), and each chip counts
+  the entries the current search and language filter leave. On narrow screens the chips scroll
+  sideways. Result cards, entry pages and episode timelines show each entry's category in
+  lowercase italics beside its language; on the entry page it links to that category.
+- Browsing lists entries A to Z under letter headings. An entry files under its term with accents
+  folded, letters like *æ* and *þ* spelt out (*ae*, *th*) and leading punctuation ignored, so
+  *-ness* sits next to *ness* and *ælf* under A; digits and other scripts come first, under #.
+  The entry page's previous and next links follow the same order.
+- `npm run dev` also shows debug details: each mention's role (subject / aside / mention) as a
+  small badge on result cards, entry pages and episode timelines. `npm run build` leaves them out.
+- Search is client-side with Fuse.js over `term`, `gloss`, `original` and `translation`. It
+  ignores accents and ranks exact and prefix matches first; within each of those tiers, entries
+  that are only ever pointed to (role `mention`) come last.
+- A glossed entry is shown as its term with the gloss muted after it, *meal (flour)*, wherever
+  its name appears; note links show only the term, with the full name in the tooltip.
+- Entry pages list the episodes that discuss the entry (`subject`, then `aside`), and put
+  episodes that only point to it under "Also mentioned in".
 - Query and filters are kept in the URL, so searches can be shared and the back button works.
 - YouTube players are thumbnails until clicked. They then load a `youtube-nocookie.com`
   embed at `t - 3` seconds.

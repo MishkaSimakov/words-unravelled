@@ -265,20 +265,61 @@ main.wrap {
   font-size: 0.95rem;
 }
 
-.pos {
-  font-style: italic;
-  color: var(--ink-soft);
-}
 .lang {
   font-variant-caps: all-small-caps;
   letter-spacing: 0.06em;
   color: var(--rubric);
 }
 
+/* An entry's category, set like a dictionary's part-of-speech label: italic, beside the language. */
+.cat {
+  font-style: italic;
+  color: var(--ink-soft);
+}
+a.cat {
+  text-decoration-line: underline;
+}
+
 .meta {
   color: var(--muted);
   font-size: 0.92rem;
   margin: 0;
+}
+
+/* Words too long for their box (lopadotemacho…): in a link, cut with an ellipsis, since the page
+   it opens shows the word in full; in plain text, break the word onto the next line.
+   Text still wraps at spaces either way. Line-clamped boxes break the word and let the clamp cut. */
+.result .hw,
+.result-forms,
+.adjacent-term,
+.note {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.timeline .hw,
+.mention-episode,
+.section-sub a {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+/* A note breaks its plain words but not its links' words, so a long link overflows its line and
+   the note cuts it (an inline-block link would leave the punctuation after it on a line of its own). */
+.note-link {
+  overflow-wrap: normal;
+}
+.headword,
+.forms dd,
+.episode-title,
+.note,
+.result-note,
+.episode-list-title,
+.result-status,
+.empty-title,
+.prose {
+  overflow-wrap: anywhere;
 }
 
 .page-head {
@@ -432,41 +473,58 @@ main.wrap {
   gap: 10px 14px;
   margin-top: 12px;
 }
+/* Category chips: one row that scrolls sideways when it doesn't fit, so the sticky search bar
+   stays short on phones. */
 .chips {
   display: flex;
   gap: 6px;
+  min-width: 0;
+  max-width: 100%;
   overflow-x: auto;
   scrollbar-width: none;
-  max-width: 100%;
   padding: 2px;
+  margin: -2px;
 }
 .chips::-webkit-scrollbar {
   display: none;
 }
+.chips.has-more {
+  mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent);
+}
 .chip {
   flex: none;
-  border: 1px solid var(--rule);
-  background: transparent;
-  border-radius: 999px;
-  padding: 4px 13px;
-  cursor: pointer;
   font-size: 0.95rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 4px 12px;
+  cursor: pointer;
   white-space: nowrap;
-  transition: background-color 0.15s, border-color 0.15s;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
 }
 .chip:hover {
-  border-color: var(--ink-soft);
+  border-color: var(--ink);
+}
+.chip-count {
+  font-size: 0.8em;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  margin-left: 2px;
 }
 .chip[aria-pressed='true'] {
   background: var(--ink);
   border-color: var(--ink);
   color: var(--paper);
 }
-.chip-count {
-  font-size: 0.8rem;
-  opacity: 0.7;
-  font-variant-numeric: tabular-nums;
+.chip[aria-pressed='true'] .chip-count {
+  color: inherit;
+  opacity: 0.75;
 }
+.chip.is-empty:not([aria-pressed='true']) {
+  color: var(--muted);
+  border-style: dashed;
+}
+
 .lang-select select {
   font: inherit;
   font-size: 0.95rem;
@@ -537,7 +595,14 @@ main.wrap {
   line-height: 1.25;
   transition: color 0.12s;
 }
-.gloss {
+/* The gloss after a homograph's term: "meal (flour)". */
+.hw-gloss {
+  font-weight: 400;
+  font-size: 0.8em;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+.result-forms {
   font-size: 0.95rem;
   color: var(--ink-soft);
 }
@@ -585,6 +650,7 @@ main.wrap {
 .browse-all {
   margin-top: 36px;
 }
+
 .link-button {
   border: 0;
   background: none;
@@ -619,7 +685,6 @@ main.wrap {
   line-height: 1.02;
   letter-spacing: -0.02em;
   margin: 0;
-  overflow-wrap: anywhere;
 }
 .entry-class {
   display: flex;
@@ -679,8 +744,19 @@ main.wrap {
   margin-top: 4px;
 }
 .note {
-  margin: 10px 0 0;
+  /* The padding keeps the focus outlines of its links clear of the overflow clip. */
+  margin: 10px -4px 0;
+  padding: 0 4px;
   font-size: 1.05rem;
+}
+/* Typed links in notes: "unrelated" is muted, uncertain relations get a dotted underline. */
+.note-link[data-type='unrelated'] {
+  color: var(--muted);
+  text-decoration-color: color-mix(in srgb, var(--muted) 55%, transparent);
+}
+.note-link[data-uncertain] {
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1.5px;
 }
 .flag {
   display: inline-block;
@@ -693,6 +769,32 @@ main.wrap {
 }
 .flag-inline {
   margin: 0;
+}
+
+/* Debug only (npm run dev): the role of a mention. Solid, dashed and dotted, from subject to mention. */
+.role-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 7px;
+  border: 1px solid var(--muted);
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-variant-caps: normal;
+  letter-spacing: 0;
+  line-height: 1.5;
+  color: var(--muted);
+  vertical-align: 1px;
+}
+.role-badge[data-role='subject'] {
+  border-color: var(--rubric);
+  color: var(--rubric);
+}
+.role-badge[data-role='aside'] {
+  border-style: dashed;
+}
+.role-badge[data-role='mention'] {
+  border-style: dotted;
 }
 
 .adjacent {
@@ -716,7 +818,7 @@ main.wrap {
   text-align: right;
   margin-left: auto;
 }
-.adjacent span {
+.adjacent-label {
   font-family: var(--serif-text);
   font-weight: 400;
   font-size: 0.8rem;
@@ -843,6 +945,9 @@ main.wrap {
 }
 .timeline .hw {
   text-decoration: none;
+  margin-right: 6px;
+}
+.timeline .cat {
   margin-right: 6px;
 }
 .timeline .note {
