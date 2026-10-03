@@ -24,20 +24,18 @@ const db = {
   latest: null,
   fuse: null,
   random: [],
-  samples: new Map(), // category id -> a few of its entries, for the home page shelf
 }
 
-// Categories in display order (data/build.py's CATEGORIES). `noun` names a count of them in
-// running text ("1,950 names"); `one` is its singular.
+// Categories in display order (data/build.py's CATEGORIES). `label` tags an entry, `title` is its
+// chip, and `noun` names a count of them in running text ("1,950 names"), with `one` its singular.
 const CATEGORIES = [
-  { id: 'word', label: 'Word', title: 'Words', noun: 'words', one: 'word' },
-  { id: 'name', label: 'Name', title: 'Names', noun: 'names', one: 'name' },
-  { id: 'expression', label: 'Expression', title: 'Expressions', noun: 'expressions', one: 'expression' },
-  { id: 'about-language', label: 'About language', title: 'About language', noun: 'entries about language', one: 'entry about language' },
-  { id: 'word-part', label: 'Word part', title: 'Word parts', noun: 'word parts', one: 'word part' },
+  { id: 'word', label: 'word', title: 'Words', noun: 'words', one: 'word' },
+  { id: 'name', label: 'name', title: 'Names', noun: 'names', one: 'name' },
+  { id: 'expression', label: 'expression', title: 'Expressions', noun: 'expressions', one: 'expression' },
+  { id: 'about-language', label: 'about language', title: 'About language', noun: 'entries about language', one: 'entry about language' },
+  { id: 'word-part', label: 'word part', title: 'Word parts', noun: 'word parts', one: 'word part' },
 ]
 const categoryById = new Map(CATEGORIES.map((c) => [c.id, c]))
-const SAMPLE_COUNT = 3
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -128,11 +126,10 @@ function noteHtml(mention, { links = true, self = null } = {}) {
   return html + esc(note.slice(last))
 }
 
-// An entry's category as a small label. Words, most of the index, go unlabelled in lists unless
-// `always` is set (the entry page).
-function categoryTag(entry, { always = false, link = false } = {}) {
+// An entry's category as a small label; on the entry page it links to the category.
+function categoryTag(entry, { link = false } = {}) {
   const cat = categoryById.get(entry.category)
-  if (!cat || (cat.id === 'word' && !always)) return ''
+  if (!cat) return ''
   return link
     ? `<a class="cat" href="${href(`?cat=${cat.id}`)}" title="Browse all ${cat.noun}">${esc(cat.label)}</a>`
     : `<span class="cat">${esc(cat.label)}</span>`
@@ -288,11 +285,6 @@ async function load() {
     includeScore: true,
   })
   db.random = shuffle(db.entries).slice(0, SUGGESTION_COUNT)
-  // Shelf samples: entries the hosts discuss, with names short enough to sit on one line.
-  for (const cat of CATEGORIES) {
-    const pool = db.entries.filter((e) => e.category === cat.id && !e.mentionOnly && e.term.length <= 22)
-    db.samples.set(cat.id, shuffle(pool).slice(0, SAMPLE_COUNT))
-  }
 }
 
 function search(query) {
@@ -485,7 +477,7 @@ function home(params) {
     results.querySelector('a.result')?.click()
   })
   // On narrow screens the chip row scrolls sideways: fade its edge while more chips are hidden, and
-  // bring the selected chip into view (it may be the last one, chosen from the shelf).
+  // bring the selected chip into view (a link to ?cat=word-part selects the last one).
   const fadeChips = () =>
     chipRow.classList.toggle('has-more', chipRow.scrollLeft + chipRow.clientWidth < chipRow.scrollWidth - 1)
   chipRow.addEventListener('scroll', fadeChips, { passive: true })
@@ -551,23 +543,7 @@ function suggestions() {
   const latest = db.latest ? (db.byEpisode.get(db.latest.id) ?? []) : []
   const latestPick = latest.filter((_, i) => i % Math.max(1, Math.floor(latest.length / SUGGESTION_COUNT)) === 0)
 
-  let html = `
-    <section class="suggest">
-      <h2 class="section-title"><span>Browse by kind</span></h2>
-      <ul class="shelf">
-        ${CATEGORIES.map((cat) => {
-          const n = db.entries.filter((e) => e.category === cat.id).length
-          const samples = db.samples.get(cat.id) ?? []
-          return n
-            ? `<li><a class="shelf-item" href="${href(`?cat=${cat.id}`)}">
-                <span class="shelf-title">${esc(cat.title)}</span>
-                <span class="shelf-count">${plural(n, 'entry', 'entries')}</span>
-                <span class="shelf-samples">${samples.map((e) => `<i>${esc(e.term)}</i>`).join(', ')}</span>
-              </a></li>`
-            : ''
-        }).join('')}
-      </ul>
-    </section>`
+  let html = ''
   if (recurring.length) {
     html += `
       <section class="suggest">
@@ -622,7 +598,7 @@ function entryPage(slug) {
       <header class="entry-head">
         <h1 class="headword">${nameHtml(entry)}</h1>
         <p class="entry-class">
-          ${categoryTag(entry, { always: true, link: true })}
+          ${categoryTag(entry, { link: true })}
           ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
         </p>
         ${

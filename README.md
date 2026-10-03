@@ -173,9 +173,8 @@ npm run preview
   `/episode/<id>`, `/episodes`, `/about`.
 - Categories: chips under the search box filter by category (`?cat=name`), and each chip counts
   the entries the current search and language filter leave. On narrow screens the chips scroll
-  sideways. The home page opens with "Browse by kind": a card per category with a few random
-  discussed entries. Result cards and episode timelines label every category but `word` (most
-  entries); the entry page labels all of them, linking to that category.
+  sideways. Result cards, entry pages and episode timelines show each entry's category in
+  lowercase italics beside its language; on the entry page it links to that category.
 - `npm run dev` also shows debug details: each mention's role (subject / aside / mention) as a
   small badge on result cards, entry pages and episode timelines. `npm run build` leaves them out.
 - Search is client-side with Fuse.js over `term`, `gloss`, `original` and `translation`. It
