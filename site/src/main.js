@@ -1,7 +1,8 @@
-import Fuse from 'fuse.js'
 import { fileAs, fileLetter, fold } from '../../toolkit/src/model/slugs.js'
-import { parseNote } from '../../toolkit/src/model/links.js'
-import { linkIndex, resolveLink } from '../../toolkit/src/query/links.js'
+import { entryName } from '../../toolkit/src/model/schema.js'
+import { backlinks, buildIndex, entry as entryBySlug, episode as episodeById, episodeMentions, noteParts } from '../../toolkit/src/query/index.js'
+import { episodeCounts } from '../../toolkit/src/query/entries.js'
+import { search as searchIndex } from '../../toolkit/src/query/search.js'
 import '@fontsource-variable/fraunces/opsz.css'
 import '@fontsource-variable/fraunces/opsz-italic.css'
 import '@fontsource-variable/source-serif-4/opsz.css'
@@ -19,13 +20,9 @@ const PAGE_SIZE = 60
 
 const db = {
   episodes: [],
-  entries: [],
-  bySlug: new Map(),
-  linkedFrom: new Map(), // slug -> entries whose notes link to it
-  episodeById: new Map(),
-  byEpisode: new Map(), // episode id -> [{ entry, mention }] in timestamp order
+  entries: [], // A to Z
+  index: null, // the toolkit's lookups (query/index.js)
   latest: null,
-  fuse: null,
   random: [],
 }
 
@@ -88,7 +85,7 @@ function highlight(text, query) {
 }
 
 // An entry's name: the term, plus the gloss that tells it apart from homographs ("meal (flour)").
-const nameText = (entry) => (entry.gloss ? `${entry.term} (${entry.gloss})` : entry.term)
+const nameText = entryName
 const nameHtml = (entry, query = '') =>
   highlight(entry.term, query) + (entry.gloss ? ` <span class="hw-gloss">(${esc(entry.gloss)})</span>` : '')
 
@@ -107,10 +104,10 @@ const linkTitle = (type, uncertain) => {
  * is false (e.g. inside another <a>) stay plain text.
  */
 function noteHtml(mention, { links = true, self = null } = {}) {
-  return mention.parts
+  return noteParts(db.index, mention)
     .map((part) => {
       if (typeof part === 'string') return esc(part)
-      const entry = links && part.slug ? db.bySlug.get(part.slug) : null
+      const entry = links && part.slug ? entryBySlug(db.index, part.slug) : null
       return entry && entry !== self
         ? `<a class="note-link" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}"` +
             ` data-type="${esc(part.type)}"${part.uncertain ? ' data-uncertain' : ''}` +
@@ -238,10 +235,6 @@ async function load() {
 
   db.episodes = [...episodes].sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''))
   db.latest = db.episodes[0] ?? null
-  for (const ep of db.episodes) {
-    db.episodeById.set(ep.id, ep)
-    db.byEpisode.set(ep.id, [])
-  }
   // A to Z by filing form, # first (digits, other scripts), so that each letter heading is one run.
   // Then "-able" before "able", and homographs side by side, the one without a gloss first.
   // One collator for the whole sort: localeCompare() with options builds a new one on every call.
@@ -258,57 +251,17 @@ async function load() {
   for (const entry of db.entries) {
     // Episodes that discuss the entry, and all episodes, including those that only point to it
     // ("as we discussed in..."): the entry page lists the first under "Discussed in".
-    entry.episodeCount = new Set(entry.mentions.filter((m) => m.role !== 'mention').map((m) => m.episode_id)).size
-    entry.allEpisodeCount = new Set(entry.mentions.map((m) => m.episode_id)).size
-    entry.mentionOnly = entry.episodeCount === 0
-    db.bySlug.set(entry.slug, entry)
-    for (const mention of entry.mentions) db.byEpisode.get(mention.episode_id)?.push({ entry, mention })
+    const counts = episodeCounts(entry)
+    entry.episodeCount = counts.discussed
+    entry.allEpisodeCount = counts.all
+    entry.mentionOnly = counts.discussed === 0
   }
-  for (const list of db.byEpisode.values()) list.sort((a, b) => a.mention.t - b.mention.t)
-  // Notes keep their link markup: parse each one, resolve its links, and collect the backlinks.
-  const links = linkIndex(db.entries)
-  for (const entry of db.entries) {
-    for (const mention of entry.mentions) {
-      mention.parts = parseNote(mention.note)
-      for (const part of mention.parts) {
-        if (typeof part === 'string') continue
-        part.slug = resolveLink(links, part.target, entry.slug)
-        if (!part.slug) continue
-        if (!db.linkedFrom.has(part.slug)) db.linkedFrom.set(part.slug, new Set())
-        db.linkedFrom.get(part.slug).add(entry)
-      }
-    }
-  }
-
-  db.fuse = new Fuse(db.entries, {
-    keys: [
-      { name: 'term', weight: 3 },
-      { name: 'gloss', weight: 0.5 },
-      { name: 'original', weight: 1.5 },
-      { name: 'translation', weight: 1 },
-    ],
-    threshold: 0.34,
-    ignoreLocation: true,
-    ignoreDiacritics: true,
-    includeScore: true,
-  })
+  // Built from the A-to-Z list, so lists in the index (backlinks, search ties) are A to Z too.
+  db.index = buildIndex({ entries: db.entries, episodes: db.episodes })
   db.random = shuffle(db.entries).slice(0, SUGGESTION_COUNT)
 }
 
-function search(query) {
-  const q = fold(query.trim())
-  // Fuse ranks by fuzziness only; put exact and prefix matches of the term first, and within
-  // each tier, entries that are only ever mentioned after those that are discussed.
-  const tier = (e) => {
-    const t = fold(e.term)
-    return t === q ? 0 : t.startsWith(q) ? 1 : 2
-  }
-  return db.fuse
-    .search(query.trim())
-    .map((r) => ({ entry: r.item, score: r.score, tier: tier(r.item) }))
-    .sort((a, b) => a.tier - b.tier || a.entry.mentionOnly - b.entry.mentionOnly || a.score - b.score)
-    .map((r) => r.entry)
-}
+const search = (query) => searchIndex(db.index, query)
 
 // ---------------------------------------------------------------------------
 // Shared fragments
@@ -546,7 +499,7 @@ function suggestions() {
     .filter((e) => e.episodeCount > 1)
     .sort((a, b) => b.episodeCount - a.episodeCount || a.term.localeCompare(b.term))
     .slice(0, SUGGESTION_COUNT)
-  const latest = db.latest ? (db.byEpisode.get(db.latest.id) ?? []) : []
+  const latest = db.latest ? episodeMentions(db.index, db.latest.id) : []
   const latestPick = latest.filter((_, i) => i % Math.max(1, Math.floor(latest.length / SUGGESTION_COUNT)) === 0)
 
   let html = ''
@@ -582,7 +535,7 @@ function suggestions() {
 // Entry page
 
 function entryPage(slug) {
-  const entry = db.bySlug.get(slug)
+  const entry = entryBySlug(db.index, slug)
   if (!entry) return notFound(`There is no entry called “${slug}”.`, slug.replace(/-/g, ' '))
   setTitle(nameText(entry))
 
@@ -591,12 +544,12 @@ function entryPage(slug) {
   const next = db.entries[i + 1]
   const { original, translation } = forms(entry)
   // Subjects, then asides, newest first; episodes that only point to the entry go last.
-  const date = (m) => db.episodeById.get(m.episode_id)?.date ?? ''
+  const date = (m) => episodeById(db.index, m.episode_id)?.date ?? ''
   const mentions = [...entry.mentions].sort((a, b) => roleRank(a) - roleRank(b) || date(b).localeCompare(date(a)))
   const discussed = mentions.filter((m) => m.role !== 'mention')
   const pointers = mentions.filter((m) => m.role === 'mention')
   const count = (list) => new Set(list.map((m) => m.episode_id)).size
-  const linkedFrom = [...(db.linkedFrom.get(entry.slug) ?? [])].sort((a, b) => db.entries.indexOf(a) - db.entries.indexOf(b))
+  const linkedFrom = backlinks(db.index, entry.slug)
 
   main.innerHTML = `
     <nav class="crumbs"><a href="${href()}">← Search the hoard</a></nav>
@@ -643,7 +596,7 @@ function entryPage(slug) {
 }
 
 function mentionItem(m, entry) {
-  const ep = db.episodeById.get(m.episode_id) ?? { id: m.episode_id, title: 'Unknown episode' }
+  const ep = episodeById(db.index, m.episode_id) ?? { id: m.episode_id, title: 'Unknown episode' }
   return `
     <li class="mention">
       ${player(ep.id, m.t, `Play from ${fmtTime(Math.max(0, m.t - LEAD_IN))}`)}
@@ -668,10 +621,10 @@ function mentionItem(m, entry) {
 // Episode pages
 
 function episodePage(id) {
-  const ep = db.episodeById.get(id)
+  const ep = episodeById(db.index, id)
   if (!ep) return notFound('There is no episode with that ID in the index.')
   setTitle(ep.title)
-  const items = db.byEpisode.get(id) ?? []
+  const items = episodeMentions(db.index, id)
 
   main.innerHTML = `
     <nav class="crumbs"><a href="${href('episodes')}">← All episodes</a></nav>
@@ -787,7 +740,7 @@ function episodesPage() {
           </span>
           <span class="episode-list-text">
             <span class="episode-list-title">${esc(ep.title)}</span>
-            <span class="meta">${fmtDate(ep.date)} · ${plural(db.byEpisode.get(ep.id)?.length ?? 0, 'entry', 'entries')}</span>
+            <span class="meta">${fmtDate(ep.date)} · ${plural(episodeMentions(db.index, ep.id).length, 'entry', 'entries')}</span>
           </span>
         </a></li>`,
         )

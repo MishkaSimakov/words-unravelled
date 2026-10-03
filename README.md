@@ -7,7 +7,7 @@ the moment each one comes up. This prototype covers the **audience side** only. 
 
 ```
 data/      the dataset: entries.json and episodes.json, edited by hand and read by the site as is
-toolkit/   shared JS for reading the data: slugs, link markup, link resolution
+toolkit/   shared JS for the data: slugs, link markup, link resolution, search
 ingest/    downloads episodes' captions and turns them into transcripts
 site/      the website (Vite, vanilla JS, Fuse.js)
 docs/      plans and briefs, kept for the record
@@ -81,22 +81,30 @@ So a target without a gloss means the word without one: `[[see:gift]]` never rea
 ## Toolkit
 
 `toolkit/` holds the code that reads the data, shared by the site and, later, the tools that
-edit it (issues #12 and #13). It is plain ES modules with no dependencies and no browser or
-Node globals, so the site imports it directly (Vite's `server.fs.allow` includes it).
+edit it (issue #13). It is plain ES modules with no browser or Node globals, so the site
+imports it directly (Vite's `server.fs.allow` includes it). Its one dependency is Fuse.js, for
+search; run `npm install` in `toolkit/` before building the site.
 
 ```
-toolkit/src/model/slugs.js   slugify, entrySlug, the A-to-Z filing form
-toolkit/src/model/links.js   link types and parseNote
-toolkit/src/query/links.js   linkIndex and resolveLink
-toolkit/test/                node --test; data.test.js checks the real data/entries.json
+toolkit/src/model/slugs.js       slugify, entrySlug, the A-to-Z filing form
+toolkit/src/model/links.js       link types; parse, format and rewrite link markup
+toolkit/src/model/schema.js      categories, roles, field order, entryName
+toolkit/src/model/transcript.js  the times transcript lines start at
+toolkit/src/query/links.js       linkIndex and resolveLink
+toolkit/src/query/index.js       buildIndex and its lookups: entry, episode, episodeMentions,
+                                 noteParts (resolved links), backlinks, homographs
+toolkit/src/query/search.js      search, as on the site
+toolkit/src/query/plain.js       plainMentions: notes that name an entry without linking to it
+toolkit/src/query/entries.js     episodeCounts
+toolkit/test/                    node --test; data.test.js checks the real data/entries.json
 ```
 
-Tests: `cd toolkit && npm test`.
+Tests: `cd toolkit && npm install && npm test`.
 
 ## Website
 
 ```sh
-cd site
+cd toolkit && npm install && cd ../site
 npm install
 npm run dev        # http://localhost:5173, reads ../data live, shows debug details
 npm run build      # -> site/dist (data copied into dist/data, index.html copied to 404.html)

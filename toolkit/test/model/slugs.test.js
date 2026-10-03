@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { entrySlug, fileAs, fileLetter, fold, slugify } from '../../src/model/slugs.js'
+import { entrySlug, fileAs, fileLetter, fold, slugify, slugText } from '../../src/model/slugs.js'
 
 test('slugify lowercases and turns spaces and punctuation into single hyphens', () => {
   assert.equal(slugify('Break a Leg!'), 'break-a-leg')
@@ -34,6 +34,12 @@ test('slugify of nothing is "entry"', () => {
   assert.equal(slugify(''), 'entry')
   assert.equal(slugify('…'), 'entry')
   assert.equal(slugify(null), 'entry')
+})
+
+test('slugText is slugify without the fallback', () => {
+  assert.equal(slugText('Break a Leg!'), 'break-a-leg')
+  assert.equal(slugText('…'), '')
+  assert.equal(slugText(null), '')
 })
 
 test('entrySlug adds the gloss when there is one', () => {

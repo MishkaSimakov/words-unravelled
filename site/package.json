@@ -10,8 +10,7 @@
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.3.0",
-    "@fontsource-variable/source-serif-4": "^5.3.0",
-    "fuse.js": "^7.5.0"
+    "@fontsource-variable/source-serif-4": "^5.3.0"
   },
   "devDependencies": {
     "vite": "^8.3.0"
