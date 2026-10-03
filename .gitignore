@@ -1,8 +1,6 @@
-# Ingest downloads and intermediate files: large, and transcripts are not to be published.
+# Ingest downloads and transcripts: large, and transcripts are not to be published.
 ingest/1-youtube/
 ingest/2-transcripts/
-ingest/3-entries/*.tmp
-ingest/3-entries/*.part
 
 # Downloaded videos and frames taken from them (ingest/extras/grab_frames.py)
 ingest/extras/video/

@@ -1,10 +1,13 @@
-import { defineConfig } from 'vite'
+import { defineConfig, searchForWorkspaceRoot } from 'vite'
 import { copyFileSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
-// The site reads the pipeline output from ../data at runtime (fetch), so the data can be
-// rebuilt without touching the code. In dev it is served from there; on build it is copied.
+// The site reads the dataset from ../data at runtime (fetch), so the data can be edited without
+// touching the code. In dev it is served from there, so an edit shows up on reload; on build it
+// is copied.
 const DATA_DIR = fileURLToPath(new URL('../data/', import.meta.url))
+// The shared data toolkit, imported from outside the site's own folder.
+const TOOLKIT_DIR = fileURLToPath(new URL('../toolkit/', import.meta.url))
 const DATA_FILES = ['episodes.json', 'entries.json']
 
 function siteData() {
@@ -27,7 +30,7 @@ function siteData() {
           res.end(readFileSync(DATA_DIR + file))
         } catch {
           res.statusCode = 404
-          res.end(`Missing data/${file}: run python3 data/build.py first.`)
+          res.end(`Missing data/${file}.`)
         }
       })
     },
@@ -48,4 +51,5 @@ export default defineConfig({
   // For a GitHub Pages project site, build with BASE_PATH=/<repo-name>/
   base: process.env.BASE_PATH || '/',
   plugins: [siteData()],
+  server: { fs: { allow: [searchForWorkspaceRoot(process.cwd()), TOOLKIT_DIR] } },
 })
