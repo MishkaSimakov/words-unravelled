@@ -493,7 +493,15 @@ export function mountGraph(root, h) {
   card.addEventListener('click', (ev) => {
     if (ev.target.closest('[data-close]')) return select(null)
     const btn = ev.target.closest('[data-node]')
-    if (btn) select(graph.byId.get(btn.dataset.node), { center: true })
+    if (btn) return select(graph.byId.get(btn.dataset.node), { center: true })
+    // Links in the note go to that entry's node, not its page (modifier clicks still open the page).
+    const link = ev.target.closest('a.note-link')
+    if (!link || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return
+    const node = graph.byId.get(decodeURIComponent(new URL(link.href).pathname.split('/').pop()))
+    if (!node) return
+    ev.preventDefault()
+    ev.stopPropagation() // keep the site's router from navigating to the entry page
+    select(node, { center: true })
   })
 
   // ---- search -------------------------------------------------------------------------------
