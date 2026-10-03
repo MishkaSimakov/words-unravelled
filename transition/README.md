@@ -23,6 +23,21 @@ python3 data/build.py                       # "same entry twice in one episode" 
 
 It then prints the glosses used per slug, so variants that differ only in case stand out.
 
+## 2. Links into glossed entries
+
+```sh
+python3 transition/links.py export          # -> work/links-auto.txt (script), work/links-todo.txt (agent)
+# run an agent with transition/links-prompt.md -> transition/work/links-answers.txt
+python3 transition/links.py apply transition/work/links-auto.txt transition/work/links-answers.txt
+python3 transition/diff.py
+python3 data/build.py                       # "link to a glossed entry without its gloss" should be gone
+```
+
+`export` takes every link without a gloss whose target is spelled like a glossed entry. If the
+episode has exactly one candidate, the script answers; the rest go to the agent. An answer is a
+candidate's `term (gloss)`, or `-` to leave the link as it is. `apply` adds the gloss inside the
+link, keeping the target's spelling: `[[see:Battle]]` → `[[see:Battle (town)]]`.
+
 ## Review
 
 Entry files are one line of JSON each, so `git diff` doesn't help. `transition/diff.py` compares

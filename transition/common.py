@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parent.parent
 ENTRIES = ROOT / "ingest" / "3-entries"
 WORK = Path(__file__).resolve().parent / "work"
 sys.path.insert(0, str(ROOT / "data"))
-from build import ANY_LINK, entry_slug, render_note, slugify  # noqa: E402,F401
+from build import ANY_LINK, GLOSS, TYPED_LINK, entry_slug, render_note, slugify  # noqa: E402,F401
 
 # The 80 slugs that issue #4 sorted by hand as different words merged into one entry.
 AMBIGUOUS = sorted(set("""
