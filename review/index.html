@@ -35,6 +35,7 @@
   .episode { font-size: .9rem; color: var(--muted); margin: 0 0 8px; }
   .episode a { color: inherit; }
   .term { font: 700 2.2rem/1.1 Georgia, serif; margin: 0; overflow-wrap: anywhere; }
+  .term .gloss { font-weight: 400; color: var(--muted); }
   .classes { margin: 6px 0 0; color: var(--muted); }
   dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; margin: 16px 0 0; }
   dt { color: var(--muted); font-size: .9rem; }
@@ -164,7 +165,7 @@ function show() {
   $('main').innerHTML = `
     <section class="card">
       <p class="episode">${esc(i.date || '')} · <a href="https://www.youtube.com/watch?v=${i.video_id}&t=${Math.max(0, i.t - 3)}s" target="_blank" rel="noopener">${esc(i.episode)}</a> · ${esc(i.timestamp)}</p>
-      <h2 class="term">${esc(i.term)}</h2>
+      <h2 class="term">${esc(i.term)}${i.gloss ? ` <span class="gloss">(${esc(i.gloss)})</span>` : ''}</h2>
       <p class="classes">${i.language ? esc(i.language) : '<span class="null">no language</span>'} ·
         <span class="role role-${esc(i.role)}">${esc(i.role)}</span></p>
       <dl>

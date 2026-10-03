@@ -150,7 +150,7 @@ timestamps missing from the transcript. Controls:
 - filter by episode or role, or show only low-confidence and flagged entries
 
 Decisions are saved at once to `data/review.json`, keyed by `<video_id>/<slug of the
-extracted term>`. Only undecided entries are shown. On the next `data/build.py` run, rejected
+extracted term and gloss>`. Only undecided entries are shown. On the next `data/build.py` run, rejected
 mentions are dropped and approved ones are marked `verified`. On the site, low-confidence
 mentions show an "Unverified" label until they are approved.
 
