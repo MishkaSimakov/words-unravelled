@@ -15,15 +15,16 @@ docs/      plans and briefs, kept for the record
 
 `data/*.json` are the source of truth. There is no build step: the site reads them as they are,
 so a fix made by hand shows up when the page is reloaded. New episodes will be added by an
-extraction agent (issue #13); until then they can't be ingested. Nothing checks the data for
-duplicates or broken links yet (issue #12).
+extraction agent (issue #13); until then they can't be ingested. After editing the data by
+hand, run `cd toolkit && npm run check` (see **Checks** below).
 
 Requirements: Node 20+, and for `ingest/`: Python 3.9+ and
 [yt-dlp](https://github.com/yt-dlp/yt-dlp).
 
 ```sh
 cd site && npm run dev        # http://localhost:5173
-cd toolkit && npm test        # the toolkit's tests, including checks on data/entries.json
+cd toolkit && npm run check   # problems in data/: errors and warnings
+cd toolkit && npm test        # the toolkit's tests, including a check that data/ has no errors
 ```
 
 ## Data
@@ -96,8 +97,46 @@ toolkit/src/query/index.js       buildIndex and its lookups: entry, episode, epi
 toolkit/src/query/search.js      search, as on the site
 toolkit/src/query/plain.js       plainMentions: notes that name an entry without linking to it
 toolkit/src/query/entries.js     episodeCounts
-toolkit/test/                    node --test; data.test.js checks the real data/entries.json
+toolkit/src/checks/              problems() and introduced(); codes.js lists every problem code
+toolkit/src/io/files.js          Node only: load and save the data files
+toolkit/cli/check.js             npm run check
+toolkit/test/                    node --test, mirroring src/; fixtures/data.js is a small dataset
 ```
+
+### Checks
+
+`problems(data, { warnings, transcripts })` returns every problem in the data as
+`{ level, code, message, slugs, mention?, episode?, detail? }`. `checks/codes.js` lists each
+code with its level and meaning.
+
+- **Errors** make the data invalid:
+  - fields of the wrong type, and unknown categories, roles and confidences;
+  - an entry without mentions, two mentions of one entry in one episode, a mention of an
+    unknown episode or after its end;
+  - a slug that isn't the slug of its term and gloss, or that two entries share;
+  - malformed links, unknown link types, a target that several original forms match, and an
+    unglossed target when only glossed entries have that term.
+
+  Given transcripts (`{ episode id: text }`), it also reports timestamps that start no
+  transcript line. `check` doesn't pass them, since hand-corrected timestamps needn't match a
+  line.
+- **Warnings** are only reported:
+  - likely duplicates (article or "to", spacing or hyphen variants, plurals, spelling variants,
+    an expression inside another, a term that is another entry's original form);
+  - link targets that resolve to nothing but are close to an entry, a link to its own entry
+    included;
+  - notes that start as if next to other entries ("Another…", "Also…", "One of the…", "The
+    same…").
+
+  Duplicate detection compares every pair of entries, so `warnings: false` skips the warnings
+  when only errors matter.
+
+A problem's identity is its code, slugs, mention, episode and detail, not its wording.
+`introduced(before, after)` returns the problems of `after` that `before` doesn't have, so a
+tool can show what one change caused without the hundreds of known warnings.
+
+`npm run check` prints every problem grouped by code and exits with 1 if there are errors. The
+Pages workflow runs it before building, so a deploy fails on data with errors.
 
 Tests: `cd toolkit && npm install && npm test`.
 

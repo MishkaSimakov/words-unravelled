@@ -34,11 +34,14 @@ export function parseNote(note) {
     }
     const trail = note.slice(last).match(TRAIL)[0]
     last += trail.length
-    parts.push({ type: typed[1], uncertain: Boolean(typed[2]), target, text: target.replace(GLOSS, '') + trail })
+    parts.push({ type: typed[1], uncertain: Boolean(typed[2]), target, text: targetTerm(target) + trail })
   }
   add(note?.slice(last))
   return parts
 }
+
+/** A target without its " (gloss)": the entry's term, as the link shows it. */
+export const targetTerm = (target) => target.replace(GLOSS, '')
 
 /** The markup of a link: [[type:target]], or [[type?:target]] when uncertain. */
 export const formatLink = ({ type, uncertain = false, target }) => `[[${type}${uncertain ? '?' : ''}:${target}]]`

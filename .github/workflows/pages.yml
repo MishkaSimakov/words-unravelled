@@ -1,4 +1,4 @@
-# Builds the site from the committed data/*.json and publishes it to GitHub Pages.
+# Checks the committed data/*.json, builds the site from it and publishes it to GitHub Pages.
 # In the repository settings, set Pages -> Source to "GitHub Actions".
 name: Deploy site
 
@@ -32,6 +32,8 @@ jobs:
             site/package-lock.json
             toolkit/package-lock.json
       - run: npm ci
+        working-directory: toolkit
+      - run: npm run check # fails the deploy if the data has errors
         working-directory: toolkit
       - run: npm ci
         working-directory: site

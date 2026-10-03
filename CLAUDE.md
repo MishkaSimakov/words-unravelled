@@ -24,6 +24,8 @@ For the ingest pipeline (download, transcripts) see `ingest/README.md`.
   committed data).
 - An entry's slug must stay the slug of its term and gloss; renaming or glossing an entry means
   rewriting the links that name it.
+- After editing the data, run `cd toolkit && npm run check`: errors must be fixed (the Pages
+  workflow fails on them), warnings are only for review.
 - Captions and transcripts (`ingest/1-youtube/`, `ingest/2-transcripts/`) must never be committed.
 
 ## No backward compatibility
