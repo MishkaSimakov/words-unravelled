@@ -558,8 +558,8 @@ function entryPage(slug) {
       }
 
       <nav class="adjacent" aria-label="Neighbouring entries">
-        ${prev ? `<a rel="prev" href="${href(`entry/${encodeURIComponent(prev.slug)}`)}"><span>Previous entry</span>${esc(prev.term)}</a>` : '<span></span>'}
-        ${next ? `<a rel="next" href="${href(`entry/${encodeURIComponent(next.slug)}`)}"><span>Next entry</span>${esc(next.term)}</a>` : '<span></span>'}
+        ${prev ? `<a rel="prev" href="${href(`entry/${encodeURIComponent(prev.slug)}`)}"><span class="adjacent-label">Previous entry</span><span class="adjacent-term">${esc(prev.term)}</span></a>` : '<span></span>'}
+        ${next ? `<a rel="next" href="${href(`entry/${encodeURIComponent(next.slug)}`)}"><span class="adjacent-label">Next entry</span><span class="adjacent-term">${esc(next.term)}</span></a>` : '<span></span>'}
       </nav>
     </article>`
 }
