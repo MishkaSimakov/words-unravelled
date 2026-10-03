@@ -37,8 +37,8 @@ in it, in UTF-16 code units (how JavaScript indexes strings), so the site never 
 "links" lists a note's links in the order they appear; "slug" is the entry the target resolves to
 (null if it isn't an entry), looked up after overrides: a target with a gloss is the slug of
 the entry it names; other targets are looked up first among the entries mentioned in the same
-episode, then any entry by term, then by original form. A link never resolves to the entry its
-note belongs to.
+episode, then any entry by term, then by original form, and reach a glossed entry only if no
+entry has the target's own slug. A link never resolves to the entry its note belongs to.
 
 Overrides (data/overrides.json) are a list of operations applied in order:
 
@@ -395,7 +395,9 @@ def resolve_links(entries, mentions):
     A target with a gloss ("meal (flour)") resolves to the entry with that slug (meal-flour) or to
     nothing. Other targets are looked up by term and original form, the mention's as extracted
     as well as the entry's current ones, so links still resolve after an entry is renamed or
-    merged into another. A link never resolves to its own entry.
+    merged into another. A target without a gloss names the word without one ("gift", not
+    "Gift (German)"); only when there is no such entry can it reach a glossed one. A link never
+    resolves to its own entry.
 
     Returns (problem, mention, link) for links whose gloss names no entry, and for links that
     reached a glossed entry without naming its gloss (they may point at the wrong homograph).
@@ -422,6 +424,8 @@ def resolve_links(entries, mentions):
 
     def pick(slugs, target, own):
         slugs = (slugs or set()) - {own}
+        if target in by_slug:
+            slugs = {s for s in slugs if not by_slug[s].get("gloss")}
         if not slugs:
             return None
         if target in slugs:

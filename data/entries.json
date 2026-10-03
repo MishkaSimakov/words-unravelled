@@ -23459,7 +23459,7 @@
       "type": "unrelated",
       "uncertain": false,
       "target": "Bad",
-      "slug": "bad-german",
+      "slug": null,
       "start": 22,
       "end": 25
      },
@@ -28619,7 +28619,7 @@
       "type": "from",
       "uncertain": false,
       "target": "long",
-      "slug": "long-chinese",
+      "slug": "long",
       "start": 24,
       "end": 28
      }
@@ -32732,7 +32732,7 @@
       "type": "from",
       "uncertain": false,
       "target": "-ing",
-      "slug": "ing-noun-suffix",
+      "slug": "ing",
       "start": 99,
       "end": 103
      },
@@ -49199,7 +49199,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Punch",
-      "slug": "punch-magazine",
+      "slug": "punch",
       "start": 88,
       "end": 93
      },
@@ -49467,7 +49467,7 @@
       "type": "see",
       "uncertain": false,
       "target": "casino",
-      "slug": "casino-italian",
+      "slug": null,
       "start": 67,
       "end": 73
      }
@@ -53968,7 +53968,7 @@
       "type": "from",
       "uncertain": false,
       "target": "chef",
-      "slug": "chef-french",
+      "slug": null,
       "start": 43,
       "end": 47
      }
@@ -55943,7 +55943,7 @@
       "type": "from",
       "uncertain": false,
       "target": "long",
-      "slug": "long-chinese",
+      "slug": "long",
       "start": 61,
       "end": 65
      }
@@ -57240,7 +57240,7 @@
       "type": "unrelated",
       "uncertain": false,
       "target": "clam",
-      "slug": "clam-latin",
+      "slug": "clam",
       "start": 125,
       "end": 129
      }
@@ -57419,7 +57419,7 @@
       "type": "see",
       "uncertain": false,
       "target": "clam",
-      "slug": "clam-latin",
+      "slug": "clam",
       "start": 73,
       "end": 77
      },
@@ -60608,7 +60608,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Cold Turkey",
-      "slug": "cold-turkey-song",
+      "slug": null,
       "start": 122,
       "end": 133
      }
@@ -76130,7 +76130,7 @@
       "type": "same-root",
       "uncertain": false,
       "target": "dîner",
-      "slug": "diner-french",
+      "slug": "diner",
       "start": 121,
       "end": 126
      }
@@ -78896,7 +78896,7 @@
       "type": "from",
       "uncertain": false,
       "target": "dick",
-      "slug": "dick-german",
+      "slug": "dick",
       "start": 51,
       "end": 55
      }
@@ -88453,7 +88453,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Narcissus",
-      "slug": "narcissus-myth",
+      "slug": "narcissus",
       "start": 64,
       "end": 73
      },
@@ -88564,7 +88564,7 @@
       "type": "see",
       "uncertain": false,
       "target": "écu",
-      "slug": "ecu-french",
+      "slug": null,
       "start": 124,
       "end": 127
      }
@@ -98584,7 +98584,7 @@
       "type": "gave",
       "uncertain": false,
       "target": "fare",
-      "slug": "fare-italian",
+      "slug": "fare",
       "start": 100,
       "end": 104
      }
@@ -99987,7 +99987,7 @@
       "type": "see",
       "uncertain": false,
       "target": "fast",
-      "slug": "fast-german",
+      "slug": null,
       "start": 133,
       "end": 137
      }
@@ -116021,7 +116021,7 @@
       "type": "same-root",
       "uncertain": false,
       "target": "Gift",
-      "slug": "gift-german",
+      "slug": null,
       "start": 84,
       "end": 88
      }
@@ -122122,7 +122122,7 @@
       "type": "same-root",
       "uncertain": false,
       "target": "groß",
-      "slug": "gross-german",
+      "slug": null,
       "start": 141,
       "end": 145
      },
@@ -122660,7 +122660,7 @@
       "type": "from",
       "uncertain": false,
       "target": "long",
-      "slug": "long-chinese",
+      "slug": "long",
       "start": 57,
       "end": 61
      }
@@ -124195,7 +124195,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Dick",
-      "slug": "dick-name",
+      "slug": "dick",
       "start": 84,
       "end": 88
      }
@@ -124845,7 +124845,7 @@
       "type": "from",
       "uncertain": false,
       "target": "Hackney",
-      "slug": "hackney-place",
+      "slug": null,
       "start": 96,
       "end": 103
      }
@@ -125755,7 +125755,7 @@
       "type": "see",
       "uncertain": false,
       "target": "-er",
-      "slug": "er-german",
+      "slug": "er",
       "start": 56,
       "end": 59
      }
@@ -130526,7 +130526,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Heorot",
-      "slug": "heorot-hall",
+      "slug": null,
       "start": 79,
       "end": 85
      }
@@ -131433,7 +131433,7 @@
       "type": "see",
       "uncertain": false,
       "target": "-ing",
-      "slug": "ing-noun-suffix",
+      "slug": "ing",
       "start": 74,
       "end": 78
      }
@@ -133783,7 +133783,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Phoenix",
-      "slug": "phoenix-city",
+      "slug": "phoenix",
       "start": 119,
       "end": 126
      }
@@ -136287,7 +136287,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Hostel",
-      "slug": "hostel-film",
+      "slug": null,
       "start": 106,
       "end": 112
      }
@@ -146017,7 +146017,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Phoenix",
-      "slug": "phoenix-city",
+      "slug": "phoenix",
       "start": 100,
       "end": 107
      }
@@ -161146,7 +161146,7 @@
       "type": "see",
       "uncertain": false,
       "target": "lego",
-      "slug": "lego-latin",
+      "slug": null,
       "start": 134,
       "end": 138
      }
@@ -164347,7 +164347,7 @@
       "type": "see",
       "uncertain": false,
       "target": "-ing",
-      "slug": "ing-noun-suffix",
+      "slug": "ing",
       "start": 46,
       "end": 50
      }
@@ -165893,7 +165893,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Ness",
-      "slug": "ness-headland",
+      "slug": "ness",
       "start": 108,
       "end": 112
      }
@@ -167084,7 +167084,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Lore",
-      "slug": "lore-podcast",
+      "slug": null,
       "start": 125,
       "end": 129
      }
@@ -170340,7 +170340,7 @@
       "type": "same-root",
       "uncertain": false,
       "target": "magazine",
-      "slug": "magazine-french",
+      "slug": null,
       "start": 155,
       "end": 163
      }
@@ -173543,7 +173543,7 @@
       "type": "same-root",
       "uncertain": false,
       "target": "Mark",
-      "slug": "mark-currency",
+      "slug": null,
       "start": 40,
       "end": 44
      }
@@ -175793,7 +175793,7 @@
       "type": "from",
       "uncertain": false,
       "target": "long",
-      "slug": "long-chinese",
+      "slug": "long",
       "start": 60,
       "end": 64
      }
@@ -184019,7 +184019,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Dracula",
-      "slug": "dracula-orchid",
+      "slug": "dracula",
       "start": 34,
       "end": 41
      }
@@ -190594,7 +190594,7 @@
       "type": "from",
       "uncertain": false,
       "target": "Narcissus",
-      "slug": "narcissus-myth",
+      "slug": "narcissus",
       "start": 30,
       "end": 39
      },
@@ -190636,7 +190636,7 @@
       "type": "from",
       "uncertain": false,
       "target": "Narcissus",
-      "slug": "narcissus-myth",
+      "slug": null,
       "start": 35,
       "end": 44
      },
@@ -192135,7 +192135,7 @@
       "type": "same-root",
       "uncertain": true,
       "target": "Ness",
-      "slug": "ness-river",
+      "slug": "ness",
       "start": 65,
       "end": 69
      }
@@ -192162,7 +192162,7 @@
       "type": "same-root",
       "uncertain": true,
       "target": "ness",
-      "slug": "ness-headland",
+      "slug": "ness",
       "start": 90,
       "end": 94
      }
@@ -211609,7 +211609,7 @@
       "type": "same-root",
       "uncertain": false,
       "target": "péter",
-      "slug": "peter-french",
+      "slug": "peter",
       "start": 94,
       "end": 99
      }
@@ -212152,7 +212152,7 @@
       "type": "same-root",
       "uncertain": false,
       "target": "pétulant",
-      "slug": "petulant-french",
+      "slug": null,
       "start": 115,
       "end": 123
      }
@@ -213305,7 +213305,7 @@
       "type": "same-root",
       "uncertain": true,
       "target": "phoenix",
-      "slug": "phoenix-greek",
+      "slug": "phoenix",
       "start": 119,
       "end": 126
      }
@@ -240082,7 +240082,7 @@
       "type": "unrelated",
       "uncertain": false,
       "target": "Ruth",
-      "slug": "ruth-name",
+      "slug": null,
       "start": 130,
       "end": 134
      }
@@ -244967,7 +244967,7 @@
       "type": "unrelated",
       "uncertain": false,
       "target": "school",
-      "slug": "school-fish",
+      "slug": null,
       "start": 116,
       "end": 122
      }
@@ -248292,7 +248292,7 @@
       "type": "from",
       "uncertain": false,
       "target": "sensible",
-      "slug": "sensible-french",
+      "slug": null,
       "start": 12,
       "end": 20
      }
@@ -256223,7 +256223,7 @@
       "type": "from",
       "uncertain": false,
       "target": "slut",
-      "slug": "slut-swedish",
+      "slug": "slut",
       "start": 35,
       "end": 39
      }
@@ -261431,7 +261431,7 @@
       "type": "from",
       "uncertain": false,
       "target": "Dick",
-      "slug": "dick-name",
+      "slug": "dick",
       "start": 11,
       "end": 15
      }
@@ -278437,7 +278437,7 @@
       "type": "same-root",
       "uncertain": false,
       "target": "dick",
-      "slug": "dick-german",
+      "slug": "dick",
       "start": 21,
       "end": 25
      }
@@ -279615,7 +279615,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Three Dog Night",
-      "slug": "three-dog-night-band",
+      "slug": null,
       "start": 143,
       "end": 158
      }
@@ -280576,7 +280576,7 @@
       "type": "see",
       "uncertain": false,
       "target": "tag",
-      "slug": "tag-game",
+      "slug": "tag",
       "start": 22,
       "end": 25
      }
@@ -284119,7 +284119,7 @@
       "type": "see",
       "uncertain": false,
       "target": "tag",
-      "slug": "tag-game",
+      "slug": "tag",
       "start": 42,
       "end": 45
      }
@@ -295427,7 +295427,7 @@
       "type": "see",
       "uncertain": false,
       "target": "-ing",
-      "slug": "ing-noun-suffix",
+      "slug": "ing",
       "start": 27,
       "end": 31
      }
@@ -298079,7 +298079,7 @@
       "type": "see",
       "uncertain": false,
       "target": "WAP",
-      "slug": "wap-song",
+      "slug": null,
       "start": 117,
       "end": 120
      }

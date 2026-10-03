@@ -105,6 +105,15 @@ class BuildTest(unittest.TestCase):
         self.assertEqual(m["links"][0]["slug"], "meal-repast")
         self.assertIn("link to a glossed entry without its gloss: 1", out)
 
+    def test_link_without_a_gloss_means_the_plain_word(self):
+        self.episode("aaaaaaaaaaa", [entry("Phoenix", "00:00:10", gloss="city"),
+                                     entry("Arizona", "00:00:20", note="Capital: [[see:Phoenix]].")])
+        self.episode("bbbbbbbbbbb", [entry("phoenix", "00:00:10")])
+        out = self.build()
+        arizona = next(e for e in self.built("entries.json") if e["slug"] == "arizona")
+        self.assertEqual(arizona["mentions"][0]["links"][0]["slug"], "phoenix")
+        self.assertNotIn("without its gloss", out)
+
     def test_link_to_a_missing_gloss(self):
         self.episode("aaaaaaaaaaa", [entry("meal", "00:00:10"), entry("flour", "00:00:30", note="[[see:meal (bran)]]")])
         out = self.build()

@@ -84,7 +84,9 @@ the position of the link text in the note, in UTF-16 code units (how JavaScript 
 strings), so the site never parses notes. `slug` is the entry the target resolves to after
 overrides, or `null` if it isn't an entry: a target with a gloss resolves to the entry with that
 slug; any other target to an entry in the same episode first, then any entry by term, then by
-original form. A link never resolves to the entry its note belongs to.
+original form. A target without a gloss means the word without one: `[[see:gift]]` is *gift*,
+not *Gift (German)*, unless there is no plain *gift*. A link never resolves to the entry its
+note belongs to.
 
 Mentions are grouped by slug: the term, followed by the gloss if there is one, lowercased, with
 invisible characters removed, diacritics folded and spaces turned into hyphens (`Björk` →
