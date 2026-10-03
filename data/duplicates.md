@@ -4869,11 +4869,14 @@ These mentions were grouped under one slug but give different values.
 The majority value is used; fix it with a `set` override, or split the entry
 with a `rename` override limited to one `episode_id` if they are different words.
 
+- `al` category: word ×1, word-part ×1
 - `al-khwarizmi` language: English ×1, Arabic ×1
 - `albert` language: English ×1, German ×1
 - `alcatraz` language: Portuguese ×1, Spanish ×1
 - `ananas` language: French ×1, English ×1
+- `apricot` category: word ×1, name ×1
 - `at` language: Old Norse ×1, English ×1
+- `bear` category: word ×2, name ×1
 - `bildungsroman` language: German ×1, English ×1
 - `bone-locker` language: Old English ×1, English ×1
 - `brachiosaurus` language: Latin ×1, English ×1
@@ -4881,48 +4884,80 @@ with a `rename` override limited to one `episode_id` if they are different words
 - `brontosaurus` language: English ×1, Latin ×1
 - `butter-witch` language: Dutch ×1, English ×1
 - `calzone` language: English ×1, Italian ×1
+- `cant` category: about-language ×3, word ×2
 - `champagne` language: English ×1, French ×1
 - `chevalier` language: English ×1, French ×1
 - `chiaroscuro` language: English ×1, Italian ×1
+- `comet` category: word ×2, name ×1
 - `cumulus` language: Latin ×2, English ×1
+- `delirium` category: name ×1, word ×1
+- `deutsch` category: word ×1, about-language ×1
+- `dutch` category: word ×1, about-language ×1
+- `earth` category: name ×1, word ×1
 - `eau-de-vie` language: French ×1, English ×1
 - `elf` language: English ×1, Old English ×1
 - `emoji` language: English ×2, Japanese ×1
 - `ey` language: English ×2, Old Norse ×1
 - `flamenco` language: Spanish ×1, English ×1
+- `frank` category: word ×1, name ×1
 - `frankfurter` language: German ×1, English ×1
+- `galaxy` category: word ×1, name ×1
 - `glas` language: Celtic ×1, Scottish Gaelic ×1
 - `glockenspiel` language: English ×1, German ×1
+- `grammar` category: word ×2, about-language ×1
+- `guinea` category: name ×1, word ×1
 - `hamish` language: Scottish Gaelic ×1, English ×1
+- `henry-viii` category: name ×3, word ×1
 - `him` language: English ×1, Old English ×1
+- `homonym` category: about-language ×1, word ×1
+- `humble` category: word ×1, name ×1
 - `hyundai` language: Korean ×1, English ×1
 - `ing-noun-suffix` language: Old English ×1, English ×1
+- `jack` category: word ×2, name ×2
+- `knickerbocker` category: word ×1, name ×1
 - `kynosarges` language: Greek ×2, English ×1
 - `libido` language: Latin ×1, English ×1
 - `maestro` language: English ×1, French ×1
+- `major` category: word ×1, name ×1
+- `mercury` category: name ×2, word ×1
+- `minuscule` category: about-language ×1, word ×1
 - `monoceros` language: English ×1, Greek ×1
+- `moot-point` category: expression ×1, word ×1
+- `mute-point` category: expression ×1, word ×1
+- `nautilus` category: name ×1, word ×1
 - `oculus` language: Latin ×1, English ×1
 - `oviraptor` language: English ×1, Latin ×1
+- `period` category: word ×1, about-language ×1
 - `piece` language: English ×1, French ×1
+- `pilcrow` category: about-language ×1, word ×1
+- `placebo` category: word ×2, name ×1
 - `poltergeist` language: English ×2, German ×1
 - `presto` language: Italian ×1, English ×1
 - `pteranodon` language: Latin ×1, English ×1
 - `pudenda` language: Latin ×1, English ×1
 - `re` language: English ×1, Latin ×1
+- `rob` category: word ×1, name ×1
+- `roger` category: word ×1, name ×1
+- `s` category: about-language ×1, word-part ×1
+- `scarlet` category: word ×1, name ×1
 - `schadenfreude` language: English ×2, German ×1
 - `schnitzel` language: German ×1, English ×1
 - `seamus` language: Irish ×1, English ×1
 - `sinister` language: Latin ×1, English ×1
 - `sling-the-jaw` language: English ×1, Norwegian ×1
 - `staircase-wit` language: French ×1, English ×1
+- `starfish` category: name ×1, word ×1
 - `sub` language: English ×1, Latin ×1
 - `tennis` language: French ×1, English ×1
+- `terra` category: word ×2, name ×1
 - `treewright` language: Old English ×1, English ×1
 - `triceratops` language: Latin ×1, English ×1
 - `umlaut` language: German ×1, English ×1
 - `velociraptor` language: English ×1, Latin ×1
+- `verse` category: word-part ×1, word ×1
 - `wanderlust` language: German ×1, English ×1
 - `wanderwort` language: English ×2, German ×1
+- `wanderwort` category: word ×1, about-language ×1
 - `wiener` language: German ×1, English ×1
 - `yellow-red` language: Old English ×1, English ×1
 - `zoo` language: English ×2, German ×1
