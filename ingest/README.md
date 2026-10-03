@@ -50,18 +50,6 @@ re-run it after the reset. Ctrl-C stops everything at once and discards unfinish
 Tests: `python3 -m unittest discover ingest/test`. They run the script in a temporary folder
 with a mock `claude` (`test/mocks/`), so they use no Claude usage.
 
-## Temporary: categorize.py
-
-Entries extracted before the prompt had a `category` get one from `categorize.py`: one
-`claude -p` call per episode, with `categorize-prompt.md` and the "Category" rules from
-`3-extract-prompt.md`. Claude answers `17. term -> category` for each numbered entry; an answer
-with a missing, repeated or unknown number, an unknown category, or a term that doesn't match
-its number is rejected and the file left unchanged. Accepted answers are written into the entry
-files with the current `PROMPT_VERSION`, so `3-extract.sh` doesn't extract them again. It skips
-episodes whose entries all have a category; `-j N` sets the number of parallel calls (5),
-`--model` (Sonnet by default) and `--effort` pick the model, and `--out <dir>` writes copies elsewhere. Like
-`3-extract.sh`, it uses real Claude usage.
-
 ## Extras
 
 `extras/grab_frames.py` takes video frames around each entry's timestamp and packs them into
