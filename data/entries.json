@@ -23365,7 +23365,7 @@
       "type": "unrelated",
       "uncertain": false,
       "target": "bad",
-      "slug": "bad",
+      "slug": null,
       "start": 130,
       "end": 133
      }
@@ -43153,7 +43153,7 @@
       "type": "from",
       "uncertain": false,
       "target": "Burgundy",
-      "slug": "burgundy",
+      "slug": null,
       "start": 30,
       "end": 38
      }
@@ -45538,7 +45538,7 @@
       "type": "from",
       "uncertain": false,
       "target": "al-Qahira",
-      "slug": "cairo",
+      "slug": null,
       "start": 12,
       "end": 21
      }
@@ -49202,7 +49202,7 @@
       "type": "see",
       "uncertain": false,
       "target": "casino",
-      "slug": "casino",
+      "slug": null,
       "start": 67,
       "end": 73
      }
@@ -53649,7 +53649,7 @@
       "type": "from",
       "uncertain": false,
       "target": "chef",
-      "slug": "chef",
+      "slug": null,
       "start": 43,
       "end": 47
      }
@@ -55835,7 +55835,7 @@
       "type": "from",
       "uncertain": false,
       "target": "chupacabras",
-      "slug": "chupacabra",
+      "slug": null,
       "start": 74,
       "end": 85
      }
@@ -60172,7 +60172,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Cold Turkey",
-      "slug": "cold-turkey",
+      "slug": null,
       "start": 122,
       "end": 133
      }
@@ -87957,7 +87957,7 @@
       "type": "see",
       "uncertain": false,
       "target": "écu",
-      "slug": "ecu",
+      "slug": null,
       "start": 124,
       "end": 127
      }
@@ -115284,7 +115284,7 @@
       "type": "same-root",
       "uncertain": false,
       "target": "gift",
-      "slug": "gift",
+      "slug": null,
       "start": 51,
       "end": 55
      }
@@ -121277,7 +121277,7 @@
       "type": "same-root",
       "uncertain": false,
       "target": "groß",
-      "slug": "gross",
+      "slug": null,
       "start": 141,
       "end": 145
      },
@@ -123946,7 +123946,7 @@
       "type": "from",
       "uncertain": false,
       "target": "Hackney",
-      "slug": "hackney",
+      "slug": null,
       "start": 96,
       "end": 103
      }
@@ -129574,7 +129574,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Heorot",
-      "slug": "heorot",
+      "slug": null,
       "start": 79,
       "end": 85
      }
@@ -135281,7 +135281,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Hostel",
-      "slug": "hostel",
+      "slug": null,
       "start": 106,
       "end": 112
      }
@@ -160056,7 +160056,7 @@
       "type": "see",
       "uncertain": false,
       "target": "lego",
-      "slug": "lego",
+      "slug": null,
       "start": 134,
       "end": 138
      }
@@ -165930,7 +165930,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Lore",
-      "slug": "lore",
+      "slug": null,
       "start": 125,
       "end": 129
      }
@@ -169168,7 +169168,7 @@
       "type": "same-root",
       "uncertain": false,
       "target": "magazine",
-      "slug": "magazine",
+      "slug": null,
       "start": 155,
       "end": 163
      }
@@ -169220,7 +169220,7 @@
       "type": "from",
       "uncertain": false,
       "target": "Magenta",
-      "slug": "magenta",
+      "slug": null,
       "start": 12,
       "end": 19
      }
@@ -172352,7 +172352,7 @@
       "type": "same-root",
       "uncertain": false,
       "target": "mark",
-      "slug": "mark",
+      "slug": null,
       "start": 92,
       "end": 96
      }
@@ -175634,7 +175634,7 @@
       "type": "from",
       "uncertain": false,
       "target": "Mercury",
-      "slug": "mercury",
+      "slug": null,
       "start": 26,
       "end": 33
      },
@@ -189284,7 +189284,7 @@
       "type": "from",
       "uncertain": false,
       "target": "Narcissus",
-      "slug": "narcissus",
+      "slug": null,
       "start": 35,
       "end": 44
      },
@@ -190738,7 +190738,7 @@
       "type": "same-root",
       "uncertain": true,
       "target": "ness",
-      "slug": "ness",
+      "slug": null,
       "start": 90,
       "end": 94
      }
@@ -197978,7 +197978,7 @@
       "type": "unrelated",
       "uncertain": false,
       "target": "Öl",
-      "slug": "ol",
+      "slug": null,
       "start": 57,
       "end": 59
      }
@@ -210597,7 +210597,7 @@
       "type": "same-root",
       "uncertain": false,
       "target": "pétulant",
-      "slug": "petulant",
+      "slug": null,
       "start": 115,
       "end": 123
      }
@@ -220399,7 +220399,7 @@
       "type": "same-root",
       "uncertain": false,
       "target": "pregnant",
-      "slug": "pregnant",
+      "slug": null,
       "start": 78,
       "end": 86
      }
@@ -238296,7 +238296,7 @@
       "type": "unrelated",
       "uncertain": false,
       "target": "Ruth",
-      "slug": "ruth",
+      "slug": null,
       "start": 130,
       "end": 134
      }
@@ -243145,7 +243145,7 @@
       "type": "unrelated",
       "uncertain": false,
       "target": "school",
-      "slug": "school",
+      "slug": null,
       "start": 102,
       "end": 108
      }
@@ -246435,7 +246435,7 @@
       "type": "gave",
       "uncertain": false,
       "target": "sensible",
-      "slug": "sensible",
+      "slug": null,
       "start": 48,
       "end": 56
      },
@@ -277639,7 +277639,7 @@
       "type": "see",
       "uncertain": false,
       "target": "Three Dog Night",
-      "slug": "three-dog-night",
+      "slug": null,
       "start": 143,
       "end": 158
      }
@@ -291384,7 +291384,7 @@
       "type": "same-root",
       "uncertain": false,
       "target": "vaso",
-      "slug": "vaso",
+      "slug": null,
       "start": 50,
       "end": 54
      }
@@ -296076,7 +296076,7 @@
       "type": "see",
       "uncertain": false,
       "target": "WAP",
-      "slug": "wap",
+      "slug": null,
       "start": 117,
       "end": 120
      }
