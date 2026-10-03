@@ -277,6 +277,42 @@ main.wrap {
   margin: 0;
 }
 
+/* Words too long for their box (lopadotemacho…): in a link, cut with an ellipsis, since the page
+   it opens shows the word in full; in plain text, break the word onto the next line.
+   Text still wraps at spaces either way. Line-clamped boxes break the word and let the clamp cut. */
+.result .hw,
+.gloss,
+.adjacent-term,
+.note {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.timeline .hw,
+.mention-episode,
+.section-sub a {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+/* A note breaks its plain words but not its links' words, so a long link overflows its line and
+   the note cuts it (an inline-block link would leave the punctuation after it on a line of its own). */
+.note-link {
+  overflow-wrap: normal;
+}
+.headword,
+.forms dd,
+.episode-title,
+.note,
+.result-note,
+.episode-list-title,
+.result-status,
+.empty-title,
+.prose {
+  overflow-wrap: anywhere;
+}
+
 .page-head {
   margin: 40px 0 24px;
 }
@@ -577,7 +613,6 @@ main.wrap {
   line-height: 1.02;
   letter-spacing: -0.02em;
   margin: 0;
-  overflow-wrap: anywhere;
 }
 .entry-class {
   display: flex;
@@ -637,7 +672,9 @@ main.wrap {
   margin-top: 4px;
 }
 .note {
-  margin: 10px 0 0;
+  /* The padding keeps the focus outlines of its links clear of the overflow clip. */
+  margin: 10px -4px 0;
+  padding: 0 4px;
   font-size: 1.05rem;
 }
 /* Typed links in notes: "unrelated" is muted, uncertain relations get a dotted underline. */
@@ -709,7 +746,7 @@ main.wrap {
   text-align: right;
   margin-left: auto;
 }
-.adjacent span {
+.adjacent-label {
   font-family: var(--serif-text);
   font-weight: 400;
   font-size: 0.8rem;
