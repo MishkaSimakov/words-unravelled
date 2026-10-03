@@ -141,7 +141,9 @@ A problem's identity is its code, slugs, mention, episode and detail, not its wo
 `introduced(before, after)` returns the problems of `after` that `before` doesn't have, so a
 tool can show what one change caused without the hundreds of known warnings.
 
-`npm run check` prints every problem grouped by code and exits with 1 if there are errors. The
+`npm run check` prints every problem grouped by code and exits with 1 if there are errors.
+Each line starts with its code in brackets, so `npm run check | grep '\[note-context\]'` lists
+one kind. The
 Pages workflow runs it before building, so a deploy fails on data with errors.
 
 ### Edits

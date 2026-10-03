@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Checks the dataset and prints every problem, grouped by code. Exits with 1 if there are errors.
+// Checks the dataset and prints every problem, grouped by code, each line starting with its code
+// in brackets. Exits with 1 if there are errors.
 //   node cli/check.js [data-dir]     (default: the repository's data/)
 
 import { fileURLToPath } from 'node:url'
@@ -17,7 +18,8 @@ for (const p of found) {
 }
 for (const [code, list] of byCode) {
   console.log(`\n${CODES[code].level === 'error' ? 'ERROR' : 'warning'} ${code} (${list.length}): ${CODES[code].about}`)
-  for (const p of list) console.log(`  ${p.message}`)
+  // Each line starts with its code, so `npm run check | grep '\[note-context\]'` lists one kind.
+  for (const p of list) console.log(`  [${code}] ${p.message}`)
 }
 const count = (level) => found.filter((p) => p.level === level).length
 const [errors, warnings] = [count('error'), count('warning')]
