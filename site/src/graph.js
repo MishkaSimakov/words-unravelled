@@ -8,6 +8,7 @@ const COLORED_CATEGORIES = ['expression', 'name', 'about-language']
 
 const DEFAULTS = {
   orphans: false,
+  asides: true,
   colorByCategory: true,
   textFade: 2.2, // zoom level at which labels start to fade in
   nodeSize: 1,
@@ -25,6 +26,8 @@ function buildGraph({ db, nameText }) {
     entry,
     term: nameText(entry),
     category: entry.category,
+    // Only ever an aside (or passing mention), never the subject of a mention.
+    aside: !entry.mentions.some((m) => m.role === 'subject'),
     neighbors: new Set(),
     links: [],
   }))
@@ -108,6 +111,9 @@ export function mountGraph(root, h) {
             )
             .join('')}
         </div>
+        <label class="graph-switch" title="Entries that only come up in passing, never as the subject">
+          <input type="checkbox" data-setting="asides" checked /> Asides
+          <span class="chip-count">${graph.nodes.filter((n) => n.aside).length}</span></label>
         <label class="graph-switch"><input type="checkbox" data-setting="orphans" /> Orphans
           <span class="chip-count">${graph.nodes.length - linkedCount}</span></label>
       </details>
@@ -202,8 +208,13 @@ export function mountGraph(root, h) {
   const FONT = getComputedStyle(document.body).fontFamily
   const LABEL_SIZE = 3.6
 
+  const shown = (n) => !hiddenCategories.has(n.category) && (settings.asides || !n.aside)
   const visibleData = () => {
-    const nodes = graph.nodes.filter((n) => !hiddenCategories.has(n.category) && (settings.orphans || n.deg))
+    const filtered = new Set(graph.nodes.filter(shown))
+    // Orphans are judged on what's left, so hiding asides doesn't leave their neighbours floating.
+    const nodes = settings.orphans
+      ? [...filtered]
+      : [...filtered].filter((n) => [...n.neighbors].some((o) => filtered.has(o)))
     const ids = new Set(nodes)
     return { nodes, links: graph.links.filter((l) => ids.has(l.source) && ids.has(l.target)) }
   }
@@ -411,11 +422,16 @@ export function mountGraph(root, h) {
     if (!fg.graphData().nodes.includes(node)) {
       hiddenCategories.delete(node.category)
       root.querySelector(`[data-category="${CSS.escape(node.category)}"]`).checked = true
-      if (!node.deg) {
-        settings.orphans = true
-        root.querySelector('[data-setting="orphans"]').checked = true
+      if (node.aside) {
+        settings.asides = true
+        root.querySelector('[data-setting="asides"]').checked = true
       }
       fg.graphData(visibleData())
+      if (!fg.graphData().nodes.includes(node)) {
+        settings.orphans = true
+        root.querySelector('[data-setting="orphans"]').checked = true
+        fg.graphData(visibleData())
+      }
     }
     const { entry } = node
     const { original, translation } = forms(entry)
@@ -499,23 +515,22 @@ export function mountGraph(root, h) {
   setPanel(matchMedia('(min-width: 900px)').matches)
 
   const FORCE_KEYS = ['center', 'repel', 'linkForce', 'linkDistance']
+  const refilter = () => {
+    fg.graphData(visibleData())
+    if (selected && !fg.graphData().nodes.includes(selected)) select(null)
+    runSearch()
+  }
   panel.addEventListener('input', (ev) => {
     const el = ev.target
     if (el.dataset.category) {
       el.checked ? hiddenCategories.delete(el.dataset.category) : hiddenCategories.add(el.dataset.category)
-      if (selected && hiddenCategories.has(selected.category)) select(null)
-      fg.graphData(visibleData())
-      runSearch()
+      refilter()
       return
     }
     const key = el.dataset.setting
     if (!key) return
     settings[key] = el.type === 'checkbox' ? el.checked : Number(el.value)
-    if (key === 'orphans') {
-      if (selected && !selected.deg && !settings.orphans) select(null)
-      fg.graphData(visibleData())
-      runSearch()
-    }
+    if (key === 'orphans' || key === 'asides') refilter()
     if (key === 'colorByCategory') readColors()
     if (FORCE_KEYS.includes(key)) applyForces()
   })
