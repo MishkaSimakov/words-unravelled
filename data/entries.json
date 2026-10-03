@@ -58795,8 +58795,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Murder",
-      "slug": "murder",
+      "target": "Murder (game)",
+      "slug": "murder-game",
       "start": 120,
       "end": 126
      }
@@ -187943,23 +187943,6 @@
   "language": "English",
   "mentions": [
    {
-    "episode_id": "vBa8CIltJ24",
-    "t": 1247,
-    "role": "aside",
-    "note": "A parlour game played to pass the evenings, which inspired the inventor of Cluedo.",
-    "links": [
-     {
-      "type": "see",
-      "uncertain": false,
-      "target": "Cluedo",
-      "slug": "cluedo",
-      "start": 75,
-      "end": 81
-     }
-    ],
-    "confidence": "high"
-   },
-   {
     "episode_id": "ZqBYXlunxds",
     "t": 2141,
     "role": "aside",
@@ -188005,6 +187988,33 @@
       "slug": "mord",
       "start": 104,
       "end": 108
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "murder-game",
+  "term": "Murder",
+  "gloss": "game",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "mentions": [
+   {
+    "episode_id": "vBa8CIltJ24",
+    "t": 1247,
+    "role": "aside",
+    "note": "A parlour game played to pass the evenings, which inspired the inventor of Cluedo.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "Cluedo",
+      "slug": "cluedo",
+      "start": 75,
+      "end": 81
      }
     ],
     "confidence": "high"
