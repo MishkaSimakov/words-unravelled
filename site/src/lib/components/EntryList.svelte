@@ -17,13 +17,13 @@
 
 {#if !letters}
   <ol class="results">
-    {#each entries as entry (entry.slug)}<EntryItem {entry} {query} />{/each}
+    {#each entries as entry}<EntryItem {entry} {query} />{/each}
   </ol>
 {:else}
-  {#each groups as group (group.letter)}
+  {#each groups as group}
     <h3 class="letter">{group.letter}</h3>
     <ol class="results">
-      {#each group.entries as entry (entry.slug)}<EntryItem {entry} />{/each}
+      {#each group.entries as entry}<EntryItem {entry} />{/each}
     </ol>
   {/each}
 {/if}

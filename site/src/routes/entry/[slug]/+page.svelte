@@ -55,13 +55,13 @@
         <span>Discussed in {plural(count(discussed), 'episode')}</span>
       </h2>
       <ol class="mentions">
-        {#each discussed as mention (mention.episode_id)}<Mention {mention} {entry} />{/each}
+        {#each discussed as mention}<Mention {mention} {entry} />{/each}
       </ol>
     {/if}
     {#if pointers.length}
       <h2 class="section-title"><span>Also mentioned in</span></h2>
       <ol class="mentions">
-        {#each pointers as mention (mention.episode_id)}<Mention {mention} {entry} />{/each}
+        {#each pointers as mention}<Mention {mention} {entry} />{/each}
       </ol>
     {/if}
     {#if linkedFrom.length}

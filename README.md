@@ -212,8 +212,8 @@ it has loaded.
 site/src/app.html            the page shell
 site/src/app.css             colours, fonts, base styles and the classes several pages share
 site/src/routes/             pages: home (+page.svelte), entry/[slug], episode/[id], episodes,
-                             about, and +error (unknown paths); +layout.svelte is the header,
-                             footer, loading state and the / shortcut
+                             about, [...path] (unknown paths) and +error; +layout.svelte is the
+                             header, footer, loading state and the / shortcut
 site/src/lib/components/     EntryItem, EntryList, EntryName, Note, CategoryTag, Mention, Player…
 site/src/lib/db.js           loading, sorting and indexing the data; search
 site/src/lib/entries.js      categories, display forms, role order, link titles

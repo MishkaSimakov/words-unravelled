@@ -39,8 +39,8 @@ Superseded plans go in `docs/` with a status header at the top.
 
 ## Code
 
-- The site is Svelte 5 with SvelteKit (adapter-static, a single-page app). Components only render:
-  data logic stays in `toolkit/`.
+- The site is Svelte 5 with SvelteKit (adapter-static, a single-page app). Data logic (slugs,
+  links, search, indexes) stays in `toolkit/`, shared with the checks and the tools that edit data.
 - Slugs, link parsing and link resolution live in `toolkit/` only; the site imports them.
 - Tests: `cd toolkit && npm test`.
 - READMEs describe current behaviour. Update them in the same change as the code.

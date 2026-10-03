@@ -12,11 +12,13 @@
   let el
   let mode = $state('cover') // then 'embed' or 'api'
   let embedStart = $state(0)
+  let embeds = $state(0) // counts embed() calls, so that each one reloads the embed
   let yt = null // YT.Player once started
   let starting = null // resolves to the YT.Player, or to null if the API is blocked
 
   const embed = (t) => {
     embedStart = t
+    embeds += 1
     mode = 'embed'
   }
 
@@ -31,6 +33,7 @@
     }
     mode = 'api'
     await tick()
+    if (!el) return null // the page was left while the API loaded
     // The API replaces this element with its iframe.
     const host = document.createElement('div')
     el.append(host)
@@ -71,12 +74,14 @@
       <span class="player-play"><span class="play-icon" aria-hidden="true"></span>{label}</span>
     </button>
   {:else if mode === 'embed'}
-    <iframe
-      src={embedUrl(videoId, embedStart)}
-      title="YouTube video player"
-      allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-      allowfullscreen
-    ></iframe>
+    {#key embeds}
+      <iframe
+        src={embedUrl(videoId, embedStart)}
+        title="YouTube video player"
+        allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+        allowfullscreen
+      ></iframe>
+    {/key}
   {/if}
 </div>
 

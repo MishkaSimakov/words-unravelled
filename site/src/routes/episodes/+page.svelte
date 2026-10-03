@@ -12,7 +12,7 @@
   <h1 class="page-title">Episodes</h1>
 </header>
 <ol class="episode-list">
-  {#each db.episodes as ep (ep.id)}
+  {#each db.episodes as ep}
     <li>
       <a href={episodeHref(ep.id)}>
         <span class="episode-list-thumb">

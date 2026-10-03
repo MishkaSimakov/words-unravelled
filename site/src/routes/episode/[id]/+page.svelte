@@ -84,7 +84,7 @@
       <p class="hint">Click a timestamp to jump there. The list follows along as you watch.</p>
     </div>
     <ol class="timeline">
-      {#each items as { entry, mention }, i (entry.slug)}
+      {#each items as { entry, mention }, i}
         <li class:is-current={times[i] === current} bind:this={rows[i]}>
           <button
             type="button"
