@@ -1,7 +1,8 @@
 import { fileAs, fileLetter, fold } from '../../toolkit/src/model/slugs.js'
 import { entryName } from '../../toolkit/src/model/schema.js'
-import { backlinks, buildIndex, entry as entryBySlug, episode as episodeById, episodeMentions, noteParts } from '../../toolkit/src/query/index.js'
-import { episodeCounts } from '../../toolkit/src/query/entries.js'
+import {
+  backlinks, buildIndex, entry as entryBySlug, episode as episodeById, episodeCounts, episodeMentions, noteParts,
+} from '../../toolkit/src/query/index.js'
 import { search as searchIndex } from '../../toolkit/src/query/search.js'
 import '@fontsource-variable/fraunces/opsz.css'
 import '@fontsource-variable/fraunces/opsz-italic.css'
@@ -86,6 +87,10 @@ function highlight(text, query) {
 
 // An entry's name: the term, plus the gloss that tells it apart from homographs ("meal (flour)").
 const nameText = entryName
+
+// Episodes that discuss the entry (`discussed`), and all episodes, including those that only
+// point to it ("as we discussed in..."): the entry page lists the first under "Discussed in".
+const episodesOf = (entry) => episodeCounts(db.index, entry)
 const nameHtml = (entry, query = '') =>
   highlight(entry.term, query) + (entry.gloss ? ` <span class="hw-gloss">(${esc(entry.gloss)})</span>` : '')
 
@@ -99,8 +104,8 @@ const linkTitle = (type, uncertain) => {
 }
 
 /**
- * A mention's note with its links turned into entry links, from the parts load() parsed and
- * resolved. Links to things that aren't entries, links back to `self`, and all links when `links`
+ * A mention's note with its links turned into entry links, from the parsed and resolved parts
+ * the toolkit's index keeps. Links to things that aren't entries, links back to `self`, and all links when `links`
  * is false (e.g. inside another <a>) stay plain text.
  */
 function noteHtml(mention, { links = true, self = null } = {}) {
@@ -248,14 +253,6 @@ async function load() {
       (a.letter === '#') !== (b.letter === '#') ? (a.letter === '#' ? -1 : 1)
         : compare(a.fileAs, b.fileAs) || compare(a.term, b.term) || compare(a.gloss ?? '', b.gloss ?? ''),
   )
-  for (const entry of db.entries) {
-    // Episodes that discuss the entry, and all episodes, including those that only point to it
-    // ("as we discussed in..."): the entry page lists the first under "Discussed in".
-    const counts = episodeCounts(entry)
-    entry.episodeCount = counts.discussed
-    entry.allEpisodeCount = counts.all
-    entry.mentionOnly = counts.discussed === 0
-  }
   // Built from the A-to-Z list, so lists in the index (backlinks, search ties) are A to Z too.
   db.index = buildIndex({ entries: db.entries, episodes: db.episodes })
   db.random = shuffle(db.entries).slice(0, SUGGESTION_COUNT)
@@ -272,6 +269,7 @@ function entryItem(entry, query = '') {
   if (original) extra.push(`<i>${highlight(original, query)}</i>`)
   if (translation) extra.push(`‘${highlight(translation, query)}’`)
   const mention = [...entry.mentions].sort((a, b) => roleRank(a) - roleRank(b))[0]
+  const { discussed, all } = episodesOf(entry)
   return `
     <li>
       <a class="result" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">
@@ -285,7 +283,7 @@ function entryItem(entry, query = '') {
         ${extra.length ? `<span class="result-forms">${extra.join(' · ')}</span>` : ''}
         ${mention?.note ? `<span class="result-note">${noteHtml(mention, { links: false })}</span>` : ''}
         <span class="result-count">${
-          entry.mentionOnly ? `Mentioned in ${plural(entry.allEpisodeCount, 'episode')}` : plural(entry.episodeCount, 'episode')
+          discussed ? plural(discussed, 'episode') : `Mentioned in ${plural(all, 'episode')}`
         } ${roleBadges(entry)}</span>
       </a>
     </li>`
@@ -496,8 +494,8 @@ function home(params) {
 
 function suggestions() {
   const recurring = db.entries
-    .filter((e) => e.episodeCount > 1)
-    .sort((a, b) => b.episodeCount - a.episodeCount || a.term.localeCompare(b.term))
+    .filter((e) => episodesOf(e).discussed > 1)
+    .sort((a, b) => episodesOf(b).discussed - episodesOf(a).discussed || a.term.localeCompare(b.term))
     .slice(0, SUGGESTION_COUNT)
   const latest = db.latest ? episodeMentions(db.index, db.latest.id) : []
   const latestPick = latest.filter((_, i) => i % Math.max(1, Math.floor(latest.length / SUGGESTION_COUNT)) === 0)
@@ -649,7 +647,7 @@ function episodePage(id) {
               ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
               ${roleBadge(mention.role)}
               ${mention.note ? `<p class="note">${noteHtml(mention, { self: entry })}</p>` : ''}
-              ${entry.allEpisodeCount > 1 ? `<p class="also">Also in ${plural(entry.allEpisodeCount - 1, 'other episode')}</p>` : ''}
+              ${episodesOf(entry).all > 1 ? `<p class="also">Also in ${plural(episodesOf(entry).all - 1, 'other episode')}</p>` : ''}
             </div>
           </li>`,
           )

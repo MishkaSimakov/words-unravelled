@@ -39,6 +39,8 @@ const ROWS = [
   ['field-not-settable', 'a mention item with slug and entry', (d) => addMention(d, 'ep-a', { ...newItem, slug: 'gift' })],
   ['field-not-settable', 'a new entry', (d) => replaceEpisodeMentions(d, 'ep-a', [{ ...newItem, entry: { ...newItem.entry, slug: 'pound' } }])],
   ['merge-self', 'mergeEntries', (d) => mergeEntries(d, 'gift', 'gift')],
+  // inch links [[from:uncia]], which resolves to ounce by its original form.
+  ['link-taken', 'renameEntry', (d) => renameEntry(d, 'acrobat', 'uncia')],
 ]
 
 for (const [code, edit, fn] of ROWS) {

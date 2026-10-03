@@ -2,26 +2,23 @@
 
 import { parseNote } from '../model/links.js'
 import { slugify } from '../model/slugs.js'
+import { addTo } from './groups.js'
 import { linkIndex, resolveLink } from './links.js'
 import { searchEngine } from './search.js'
 
-const push = (map, key, value) => {
-  if (!map.has(key)) map.set(key, [])
-  map.get(key).push(value)
-}
-
 /**
  * The indexes over `data` ({ entries, episodes }). Lists keep the order of data.entries. The data
- * isn't changed: parsed notes are kept in the index, by mention.
+ * isn't changed: parsed notes and counts are kept in the index.
  */
 export function buildIndex(data) {
   const links = linkIndex(data.entries)
   const byEpisode = new Map(data.episodes.map((ep) => [ep.id, []]))
-  const byTerm = new Map() // slug of a term -> entries spelt that way
+  const counts = new Map() // entry -> { discussed, all }
   const notes = new Map() // mention -> note parts, links with the slug they resolve to (or null)
   const linkedFrom = new Map() // slug -> entries whose notes link to it
   for (const entry of data.entries) {
-    push(byTerm, slugify(entry.term), entry)
+    const episodes = (mentions) => new Set(mentions.map((m) => m.episode_id)).size
+    counts.set(entry, { discussed: episodes(entry.mentions.filter((m) => m.role !== 'mention')), all: episodes(entry.mentions) })
     for (const mention of entry.mentions) {
       byEpisode.get(mention.episode_id)?.push({ entry, mention })
       const parts = parseNote(mention.note).map((part) =>
@@ -30,8 +27,7 @@ export function buildIndex(data) {
       notes.set(mention, parts)
       for (const part of parts) {
         if (typeof part === 'string' || !part.slug) continue
-        const from = linkedFrom.get(part.slug)
-        if (from?.at(-1) !== entry) push(linkedFrom, part.slug, entry)
+        if (linkedFrom.get(part.slug)?.at(-1) !== entry) addTo(linkedFrom, part.slug, entry)
       }
     }
   }
@@ -41,7 +37,7 @@ export function buildIndex(data) {
     links,
     episodeById: new Map(data.episodes.map((ep) => [ep.id, ep])),
     byEpisode,
-    byTerm,
+    counts,
     notes,
     linkedFrom,
     fuse: searchEngine(data.entries),
@@ -58,6 +54,12 @@ export const episode = (index, id) => index.episodeById.get(id) ?? null
 export const episodeMentions = (index, id) => index.byEpisode.get(id) ?? []
 
 /**
+ * How many episodes an entry appears in: `discussed` counts those that discuss it (role subject
+ * or aside), `all` also those that only point to it ("as we discussed in...").
+ */
+export const episodeCounts = (index, entry) => index.counts.get(entry)
+
+/**
  * A mention's note as parts: strings, and links as { type, uncertain, target, text, slug }, where
  * slug is the entry the link resolves to, or null.
  */
@@ -67,4 +69,4 @@ export const noteParts = (index, mention) => index.notes.get(mention) ?? []
 export const backlinks = (index, slug) => index.linkedFrom.get(slug) ?? []
 
 /** The entries spelt like `spelling`, glossed or not ("meal" -> meal (flour), meal (repast)). */
-export const homographs = (index, spelling) => index.byTerm.get(slugify(spelling)) ?? []
+export const homographs = (index, spelling) => index.links.byTerm.get(slugify(spelling)) ?? []

@@ -46,6 +46,15 @@ test('a value that cannot be saved leaves both files as they were', (t) => {
   assert.deepEqual(readdirSync(dir).sort(), Object.values(FILES).sort())
 })
 
+test('data without both lists is refused before anything is written', (t) => {
+  const dir = tempDir(t)
+  saveData(dir, small())
+  const before = bytes(dir)
+  assert.throws(() => saveData(dir, { entries: small().entries }), /data.episodes must be an array/)
+  assert.throws(() => saveData(dir, { entries: {}, episodes: [] }), /data.entries must be an array/)
+  assert.deepEqual(bytes(dir), before)
+})
+
 test('a failed write leaves the old file intact and no temporary file', (t) => {
   const dir = tempDir(t)
   const path = join(dir, 'entries.json')

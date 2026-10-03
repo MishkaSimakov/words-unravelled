@@ -93,10 +93,10 @@ toolkit/src/model/schema.js      categories, roles, field order, entryName
 toolkit/src/model/transcript.js  the times transcript lines start at
 toolkit/src/query/links.js       linkIndex and resolveLink
 toolkit/src/query/index.js       buildIndex and its lookups: entry, episode, episodeMentions,
-                                 noteParts (resolved links), backlinks, homographs
+                                 episodeCounts, noteParts (resolved links), backlinks, homographs
 toolkit/src/query/search.js      search, as on the site
 toolkit/src/query/plain.js       plainMentions: notes that name an entry without linking to it
-toolkit/src/query/entries.js     episodeCounts
+toolkit/src/query/groups.js      groupBy, the grouping the indexes and checks share
 toolkit/src/checks/              problems() and introduced(); codes.js lists every problem code;
                                  invariants.js: dataChanges and linkResolutions
 toolkit/src/edit/                edits: episodes, mentions, entries, names (gloss, rename), merges
@@ -139,7 +139,8 @@ code with its level and meaning.
 
 A problem's identity is its code, slugs, mention, episode and detail, not its wording.
 `introduced(before, after)` returns the problems of `after` that `before` doesn't have, so a
-tool can show what one change caused without the hundreds of known warnings.
+tool can show what one change caused without the hundreds of known warnings. It counts keys, so
+a second copy of a known problem (a second identical bad link in one note) is new.
 
 `npm run check` prints every problem grouped by code and exits with 1 if there are errors.
 Each line starts with its code in brackets, so `npm run check | grep '\[note-context\]'` lists
@@ -163,9 +164,15 @@ warnings.
 | `editMention(data, slug, id, fields)` | sets a mention's `t`, `role`, `note` or `confidence` |
 | `deleteMention(data, slug, id)` | deletes a mention, and the entry if it has no others |
 | `setFields(data, slug, fields)` | sets `original`, `translation`, `language` or `category` |
-| `deleteEntry(data, slug)` | deletes an entry; links to it show as plain text |
+| `deleteEntry(data, slug)` | deletes an entry; links to it show as plain text, unless that leaves a link that needs a gloss or is ambiguous: then it is refused |
 | `setGloss(data, slug, gloss)` | sets or (with null) removes the gloss, so the slug; links that named the entry get the gloss and keep their text (`[[see:meal]]s` → `[[see:meal (flour)]]s`) |
 | `renameEntry(data, slug, term)` | changes the term, so the slug; links that named the entry name the new term |
+
+`setGloss` and `renameEntry` are refused (`link-taken`) if the new slug would take a link that
+resolves to another entry by its original form, since a slug match comes first. Links that
+resolved to nothing may start resolving to the renamed entry. Removing entries the same way
+(`deleteMention`, `replaceEpisodeMentions`) is refused like `deleteEntry` when it would leave a
+link in error.
 | `mergeEntries(data, from, into)` | moves `from`'s mentions to `into` and deletes `from`; links that resolved to `from` name `into`. Refused if both have a mention in one episode |
 
 A mention item is `{ slug, t, role, note, confidence }`, or, for a new entry,
@@ -173,8 +180,9 @@ A mention item is `{ slug, t, role, note, confidence }`, or, for a new entry,
 confidence }`.
 
 `io/files.js` loads the data files and saves them atomically: each file is written to a
-temporary file renamed over the old one, with the same formatting, so a failed save leaves the
-old file whole and a save changes only the bytes of what changed.
+temporary file (`data/*.tmp`, ignored by git) renamed over the old one, with the same
+formatting, so a failed save leaves the old file whole and a save changes only the bytes of what
+changed. Data without both `entries` and `episodes` lists is refused before anything is written.
 
 Every edit test runs the edit on frozen data and checks the invariants in `test/helpers.js`:
 valid data stays valid, the order is kept, only the intended entries change (others may differ

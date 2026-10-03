@@ -12,3 +12,6 @@ __pycache__/
 site/node_modules/
 site/dist/
 toolkit/node_modules/
+
+# Left behind if a save is interrupted (toolkit/src/io/files.js)
+data/*.tmp

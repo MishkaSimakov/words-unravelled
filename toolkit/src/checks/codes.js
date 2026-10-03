@@ -40,6 +40,7 @@ export const CODES = {
   'unknown-mention': { level: 'error', refusal: true, about: 'the entry has no mention in the episode an edit names' },
   'field-not-settable': { level: 'error', refusal: true, about: 'an edit was asked to set a field it does not set' },
   'merge-self': { level: 'error', refusal: true, about: 'an entry was to be merged into itself' },
+  'link-taken': { level: 'error', refusal: true, about: "a new name would take links that resolve to another entry, e.g. by its original form" },
 }
 
 /** The codes problems() can find, i.e. all but the refusals. */

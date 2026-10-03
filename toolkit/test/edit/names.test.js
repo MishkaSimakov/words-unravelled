@@ -72,6 +72,21 @@ test('renameEntry may change only the case, keeping the slug', () => {
   assert.equal(find(after, 'cartouche').mentions[0].note, 'A doublet of [[same-root:Cartridge]]; both from Italian [[from:cartuccia]].')
 })
 
+test('setGloss refuses a slug that would take a link resolved by original form', () => {
+  const d = data([
+    entry('cat', { original: 'felis catus', language: 'Latin' }, mention('ep-a', 1, '')),
+    entry('felis', {}, mention('ep-a', 2, 'Latin for cat.')),
+    entry('tabby', {}, mention('ep-a', 3, 'A kind of [[see:felis catus]].')),
+  ])
+  assertRefused((d) => setGloss(d, 'felis', 'catus'), d, 'link-taken')
+})
+
+test('a new name may take links that resolved to nothing', () => {
+  // break-a-leg links [[equivalent:Hals- und Beinbruch]], which names no entry.
+  const { after } = assertEdit(renameEntry, small(), ['acrobat', 'Hals- und Beinbruch'], { touched: ['acrobat', 'hals-und-beinbruch'] })
+  assert.equal(find(after, 'hals-und-beinbruch').term, 'Hals- und Beinbruch')
+})
+
 test('renameEntry refuses a slug that is taken, and an empty term', () => {
   assertRefused((d) => renameEntry(d, 'bath', 'Bat'), small(), 'slug-duplicate')
   assertRefused((d) => renameEntry(d, 'bath', ''), small(), 'entry-field')

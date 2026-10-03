@@ -28,10 +28,18 @@ export function problems(data, { warnings = true, transcripts = {} } = {}) {
   )
 }
 
-/** The problems of `after` that `before` doesn't have, compared by problemKey(). */
+/**
+ * The problems of `after` that `before` doesn't have, compared by problemKey(). Keys are
+ * counted, so a second copy of a known problem (a second identical bad link in a note) is new.
+ */
 export function introduced(before, after, options) {
-  const known = new Set(problems(before, options).map(problemKey))
-  return problems(after, options).filter((p) => !known.has(problemKey(p)))
+  const known = new Map()
+  for (const p of problems(before, options)) known.set(problemKey(p), (known.get(problemKey(p)) ?? 0) + 1)
+  return problems(after, options).filter((p) => {
+    const n = known.get(problemKey(p)) ?? 0
+    known.set(problemKey(p), n - 1)
+    return n <= 0
+  })
 }
 
 export const errors = (list) => list.filter((p) => p.level === 'error')

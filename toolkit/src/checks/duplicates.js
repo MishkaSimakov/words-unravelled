@@ -2,6 +2,7 @@
 // entries close to a link target that resolves to nothing).
 
 import { fold, slugText } from '../model/slugs.js'
+import { groupBy } from '../query/groups.js'
 import { problem } from './codes.js'
 
 const LEADING = ['to-', 'a-', 'an-', 'the-']
@@ -61,14 +62,8 @@ export function duplicateProblems(entries) {
     found.set(key, problem(code, `${x} and ${y} look like duplicates: ${pairReason[code]}.`, [x, y]))
   }
   const buckets = (keyOf, code) => {
-    const groups = new Map()
-    for (const e of entries) {
-      const key = keyOf(e.slug)
-      if (!groups.has(key)) groups.set(key, [])
-      groups.get(key).push(e.slug)
-    }
-    for (const slugs of groups.values()) {
-      for (let i = 0; i < slugs.length; i++) for (let j = i + 1; j < slugs.length; j++) add(slugs[i], slugs[j], code)
+    for (const group of groupBy(entries, (e) => keyOf(e.slug)).values()) {
+      for (let i = 0; i < group.length; i++) for (let j = i + 1; j < group.length; j++) add(group[i].slug, group[j].slug, code)
     }
   }
 
@@ -76,14 +71,8 @@ export function duplicateProblems(entries) {
   buckets(pluralKey, 'duplicate-plural')
 
   // Spelling variants: a small edit distance, compared within the same first letter.
-  const byLetter = new Map()
-  for (const e of entries) {
-    const key = variantKey(e.slug)
-    if (key.length < 5) continue
-    if (!byLetter.has(key[0])) byLetter.set(key[0], [])
-    byLetter.get(key[0]).push([key, e.slug])
-  }
-  for (const items of byLetter.values()) {
+  const keyed = entries.map((e) => [variantKey(e.slug), e.slug]).filter(([key]) => key.length >= 5)
+  for (const items of groupBy(keyed, ([key]) => key[0]).values()) {
     for (let i = 0; i < items.length; i++) {
       for (let j = i + 1; j < items.length; j++) {
         const [[ka, a], [kb, b]] = [items[i], items[j]]
@@ -105,15 +94,9 @@ export function duplicateProblems(entries) {
   }
 
   // The same thing under two names: one entry's term is another entry's original form.
-  const byOriginal = new Map()
+  const byOriginal = groupBy(entries.filter((e) => slugText(e.original)), (e) => slugText(e.original))
   for (const e of entries) {
-    const key = slugText(e.original)
-    if (!key) continue
-    if (!byOriginal.has(key)) byOriginal.set(key, [])
-    byOriginal.get(key).push(e.slug)
-  }
-  for (const e of entries) {
-    for (const other of byOriginal.get(slugText(e.term)) ?? []) add(e.slug, other, 'duplicate-original')
+    for (const other of byOriginal.get(slugText(e.term)) ?? []) add(e.slug, other.slug, 'duplicate-original')
   }
   return [...found.values()]
 }

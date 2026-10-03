@@ -7,15 +7,12 @@ import { fileURLToPath } from 'node:url'
 import { CODES } from '../src/checks/codes.js'
 import { problems } from '../src/checks/problems.js'
 import { loadData } from '../src/io/files.js'
+import { groupBy } from '../src/query/groups.js'
 
 const dir = process.argv[2] ?? fileURLToPath(new URL('../../data/', import.meta.url))
 const found = problems(loadData(dir))
 
-const byCode = new Map()
-for (const p of found) {
-  if (!byCode.has(p.code)) byCode.set(p.code, [])
-  byCode.get(p.code).push(p)
-}
+const byCode = groupBy(found, (p) => p.code)
 for (const [code, list] of byCode) {
   console.log(`\n${CODES[code].level === 'error' ? 'ERROR' : 'warning'} ${code} (${list.length}): ${CODES[code].about}`)
   // Each line starts with its code, so `npm run check | grep '\[note-context\]'` lists one kind.

@@ -61,6 +61,13 @@ test('introduced lists only what the second version added', () => {
   assert.deepEqual(introduced(after, before), [])
 })
 
+test('introduced counts keys, so a second copy of a known problem is new', () => {
+  const before = data([entry('a', {}, mention('ep-a', 1, 'See [[see]].'))])
+  const after = data([entry('a', {}, mention('ep-a', 1, 'See [[see]] and [[see]].'))])
+  assert.deepEqual(codes(introduced(before, after)), ['link-malformed'])
+  assert.deepEqual(introduced(after, before), [])
+})
+
 test('introduced compares by key, so a reworded problem is not new', () => {
   const before = data([entry('a', {}, mention('ep-a', 1, '[[form:b]]'))])
   const after = data([entry('a', {}, mention('ep-a', 1, 'Now: [[form:b]]'))])

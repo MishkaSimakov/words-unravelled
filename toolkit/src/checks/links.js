@@ -3,6 +3,7 @@
 import { LINK_TYPES, malformedLinks, parseNote, targetTerm } from '../model/links.js'
 import { entryName } from '../model/schema.js'
 import { slugify } from '../model/slugs.js'
+import { addTo } from '../query/groups.js'
 import { linkIndex, resolveLink } from '../query/links.js'
 import { problem } from './codes.js'
 import { pluralKey, spellingLimit, variantKey, withinDistance } from './duplicates.js'
@@ -12,13 +13,7 @@ const names = (entries) => entries.map(entryName).join(', ')
 /** Errors in links, and with `warnings`, targets close to an entry that resolve to nothing. */
 export function linkProblems(entries, { warnings = true } = {}) {
   const index = linkIndex(entries)
-  const byTerm = new Map() // slug of a term -> entries with that term
-  for (const e of entries) {
-    const key = slugify(e.term)
-    if (!byTerm.has(key)) byTerm.set(key, [])
-    byTerm.get(key).push(e)
-  }
-  const close = warnings ? closeEntries(entries, byTerm) : null
+  const close = warnings ? closeEntries(entries, index.byTerm) : null
 
   const found = []
   for (const entry of entries) {
@@ -47,7 +42,7 @@ export function linkProblems(entries, { warnings = true } = {}) {
           add('link-ambiguous', `the link to "${target}" matches the original forms of ${names(originals)}.`, target)
           continue
         }
-        const glossed = (byTerm.get(slug) ?? []).filter((e) => e !== entry && e.gloss)
+        const glossed = (index.byTerm.get(slug) ?? []).filter((e) => e !== entry && e.gloss)
         if (targetTerm(target) === target && glossed.length) {
           add('link-needs-gloss', `the link to "${target}" needs a gloss: ${names(glossed)}.`, target)
           continue
@@ -68,15 +63,11 @@ export function linkProblems(entries, { warnings = true } = {}) {
 function closeEntries(entries, byTerm) {
   const byKey = new Map()
   const byLetter = new Map()
-  const add = (map, key, e) => {
-    if (!map.has(key)) map.set(key, [])
-    if (!map.get(key).includes(e)) map.get(key).push(e)
-  }
   for (const e of entries) {
-    add(byKey, variantKey(e.slug), e)
-    add(byKey, pluralKey(e.slug), e)
     const key = variantKey(e.slug)
-    if (key.length >= 5) add(byLetter, key[0], e)
+    addTo(byKey, key, e)
+    if (pluralKey(e.slug) !== key) addTo(byKey, pluralKey(e.slug), e)
+    if (key.length >= 5) addTo(byLetter, key[0], e)
   }
   return (target) => {
     const sameTerm = byTerm.get(slugify(targetTerm(target)))

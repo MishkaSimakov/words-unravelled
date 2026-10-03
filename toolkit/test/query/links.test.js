@@ -50,3 +50,14 @@ test('a target several original forms match resolves to nothing', () => {
 test('a target that names nothing resolves to nothing', () => {
   assert.equal(resolveLink(index, 'unicorn', 'bat'), null)
 })
+
+test('linkIndex groups entries by the slug of their term, glossed or not, and by original form', () => {
+  const terms = linkIndex([
+    { slug: 'meal-flour', term: 'Meal', gloss: 'flour', original: null },
+    { slug: 'meal-repast', term: 'meal', gloss: 'repast', original: null },
+    { slug: 'gift-german', term: 'Gift', gloss: 'German', original: 'Gift' },
+  ])
+  assert.deepEqual(terms.byTerm.get('meal').map((e) => e.slug), ['meal-flour', 'meal-repast'])
+  assert.deepEqual(terms.byOriginal.get('gift').map((e) => e.slug), ['gift-german'])
+  assert.equal(terms.byOriginal.size, 1)
+})

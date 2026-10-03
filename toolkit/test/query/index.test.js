@@ -1,7 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { backlinks, buildIndex, entry, episode, episodeMentions, homographs, noteParts } from '../../src/query/index.js'
-import { small } from '../fixtures/data.js'
+import { backlinks, buildIndex, entry, episode, episodeCounts, episodeMentions, homographs, noteParts } from '../../src/query/index.js'
+import { data, entry as makeEntry, mention, small } from '../fixtures/data.js'
 
 const slugs = (entries) => entries.map((e) => e.slug)
 
@@ -57,4 +57,14 @@ test('homographs lists every entry spelt the same, glossed or not', () => {
   assert.deepEqual(slugs(homographs(index, 'Meal')), ['meal-flour', 'meal-repast'])
   assert.deepEqual(slugs(homographs(index, 'gift')), ['gift', 'gift-german'])
   assert.deepEqual(homographs(index, 'unicorn'), [])
+})
+
+test('episodeCounts counts episodes, not mentions, and leaves pointers out of discussed', () => {
+  const d = data([
+    makeEntry('cartouche', {}, mention('ep-a', 1, ''), mention('ep-b', 2, '', 'aside'), mention('ep-c', 3, '', 'mention')),
+    makeEntry('bat', {}, mention('ep-c', 3, '', 'mention')),
+  ])
+  const index = buildIndex(d)
+  assert.deepEqual(episodeCounts(index, d.entries[1]), { discussed: 2, all: 3 })
+  assert.deepEqual(episodeCounts(index, d.entries[0]), { discussed: 0, all: 1 })
 })

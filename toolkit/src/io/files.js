@@ -16,7 +16,10 @@ export function loadData(dir) {
   return { entries: read(FILES.entries), episodes: read(FILES.episodes) }
 }
 
-/** Writes `text` to `path` through a temporary file, so the old file stays whole if anything fails. */
+/**
+ * Writes `text` to `path` through a temporary file (`<path>.tmp`, ignored by git), so the old
+ * file stays whole if anything fails.
+ */
 export function writeAtomic(path, text) {
   const tmp = `${path}.tmp`
   try {
@@ -32,6 +35,9 @@ export function writeAtomic(path, text) {
 
 /** Saves { entries, episodes } to the data files in `dir`, skipping a file whose text is unchanged. */
 export function saveData(dir, data) {
+  for (const key of Object.keys(FILES)) {
+    if (!Array.isArray(data?.[key])) throw new TypeError(`saveData: data.${key} must be an array`)
+  }
   // Format both before writing either, so that a value that can't be saved writes nothing.
   const texts = Object.entries(FILES).map(([key, name]) => [join(dir, name), formatJson(data[key])])
   for (const [path, text] of texts) {

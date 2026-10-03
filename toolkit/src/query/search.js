@@ -2,7 +2,6 @@
 
 import Fuse from 'fuse.js'
 import { fold } from '../model/slugs.js'
-import { episodeCounts } from './entries.js'
 
 const OPTIONS = {
   keys: [
@@ -33,7 +32,7 @@ export function search(index, query) {
   }
   return index.fuse
     .search(query.trim())
-    .map((r) => ({ entry: r.item, score: r.score, tier: tier(r.item), mentionOnly: episodeCounts(r.item).discussed === 0 }))
+    .map((r) => ({ entry: r.item, score: r.score, tier: tier(r.item), mentionOnly: index.counts.get(r.item).discussed === 0 }))
     .sort((a, b) => a.tier - b.tier || a.mentionOnly - b.mentionOnly || a.score - b.score)
     .map((r) => r.entry)
 }
