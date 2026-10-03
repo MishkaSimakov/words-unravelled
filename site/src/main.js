@@ -24,7 +24,20 @@ const db = {
   latest: null,
   fuse: null,
   random: [],
+  samples: new Map(), // category id -> a few of its entries, for the home page shelf
 }
+
+// Categories in display order (data/build.py's CATEGORIES). `noun` names a count of them in
+// running text ("1,950 names"); `one` is its singular.
+const CATEGORIES = [
+  { id: 'word', label: 'Word', title: 'Words', noun: 'words', one: 'word' },
+  { id: 'name', label: 'Name', title: 'Names', noun: 'names', one: 'name' },
+  { id: 'expression', label: 'Expression', title: 'Expressions', noun: 'expressions', one: 'expression' },
+  { id: 'about-language', label: 'About language', title: 'About language', noun: 'entries about language', one: 'entry about language' },
+  { id: 'word-part', label: 'Word part', title: 'Word parts', noun: 'word parts', one: 'word part' },
+]
+const categoryById = new Map(CATEGORIES.map((c) => [c.id, c]))
+const SAMPLE_COUNT = 3
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -113,6 +126,16 @@ function noteHtml(mention, { links = true, self = null } = {}) {
     last = link.end
   }
   return html + esc(note.slice(last))
+}
+
+// An entry's category as a small label. Words, most of the index, go unlabelled in lists unless
+// `always` is set (the entry page).
+function categoryTag(entry, { always = false, link = false } = {}) {
+  const cat = categoryById.get(entry.category)
+  if (!cat || (cat.id === 'word' && !always)) return ''
+  return link
+    ? `<a class="cat" href="${href(`?cat=${cat.id}`)}" title="Browse all ${cat.noun}">${esc(cat.label)}</a>`
+    : `<span class="cat">${esc(cat.label)}</span>`
 }
 
 // Roles in order of importance.
@@ -265,6 +288,11 @@ async function load() {
     includeScore: true,
   })
   db.random = shuffle(db.entries).slice(0, SUGGESTION_COUNT)
+  // Shelf samples: entries the hosts discuss, with names short enough to sit on one line.
+  for (const cat of CATEGORIES) {
+    const pool = db.entries.filter((e) => e.category === cat.id && !e.mentionOnly && e.term.length <= 22)
+    db.samples.set(cat.id, shuffle(pool).slice(0, SAMPLE_COUNT))
+  }
 }
 
 function search(query) {
@@ -297,6 +325,7 @@ function entryItem(entry, query = '') {
         <span class="result-head">
           <span class="hw">${nameHtml(entry, query)}</span>
           <span class="result-class">
+            ${categoryTag(entry)}
             ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
           </span>
         </span>
@@ -345,6 +374,7 @@ function home(params) {
   const state = {
     q: params.get('q') ?? '',
     lang: params.get('lang') ?? '',
+    cat: categoryById.has(params.get('cat')) ? params.get('cat') : '',
     all: params.has('all'),
     limit: PAGE_SIZE,
   }
@@ -368,6 +398,12 @@ function home(params) {
         <kbd class="search-kbd" aria-hidden="true">/</kbd>
       </div>
       <div class="filters">
+        <div class="chips" role="group" aria-label="Kind of entry">
+          ${[{ id: '', title: 'All' }, ...CATEGORIES]
+            .map((c) => `<button type="button" class="chip" data-cat="${c.id}" aria-pressed="${c.id === state.cat}">
+                ${esc(c.title)} <span class="chip-count"></span></button>`)
+            .join('')}
+        </div>
         <label class="lang-select">
           <span class="visually-hidden">Language</span>
           <select name="lang">
@@ -387,34 +423,45 @@ function home(params) {
   const select = form.querySelector('select')
   const results = main.querySelector('#results')
   const status = main.querySelector('#result-status')
+  const chipRow = form.querySelector('.chips')
+  const chips = [...chipRow.children]
 
   const syncUrl = () => {
     const p = new URLSearchParams()
     if (state.q) p.set('q', state.q)
     if (state.lang) p.set('lang', state.lang)
-    if (state.all && !state.q && !state.lang) p.set('all', '')
+    if (state.cat) p.set('cat', state.cat)
+    if (state.all && !state.q && !state.lang && !state.cat) p.set('all', '')
     const qs = p.toString().replace(/=(&|$)/g, '$1')
     history.replaceState(history.state, '', href(qs ? `?${qs}` : ''))
   }
 
   const update = () => {
-    const filtered = (list) =>
-      list.filter((e) => !state.lang || e.language === state.lang)
     const q = state.q.trim()
+    // The chips count what the search and language filter leave, so they show where matches are.
+    const base = (q ? search(q) : db.entries).filter((e) => !state.lang || e.language === state.lang)
+    const counts = new Map()
+    for (const e of base) counts.set(e.category, (counts.get(e.category) ?? 0) + 1)
+    for (const chip of chips) {
+      const n = chip.dataset.cat ? (counts.get(chip.dataset.cat) ?? 0) : base.length
+      chip.setAttribute('aria-pressed', String(chip.dataset.cat === state.cat))
+      chip.classList.toggle('is-empty', n === 0)
+      chip.querySelector('.chip-count').textContent = fmtNumber(n)
+    }
+    const cat = categoryById.get(state.cat)
+    const found = cat ? base.filter((e) => e.category === cat.id) : base
 
     if (q) {
-      const found = filtered(search(q))
       status.textContent = found.length
-        ? `${plural(found.length, 'match', 'matches')} for “${q}”`
+        ? `${plural(found.length, 'match', 'matches')} for “${q}”${cat ? ` among ${cat.noun}` : ''}`
         : ''
       results.innerHTML = found.length
         ? entryList(found.slice(0, state.limit), q) + more(found.length)
-        : `<div class="empty"><p class="empty-title">Nothing in the hoard for “${esc(q)}”.</p>
+        : `<div class="empty"><p class="empty-title">Nothing in the hoard for “${esc(q)}”${cat ? ` among ${esc(cat.noun)}` : ''}.</p>
            <p>It may not have come up on the show yet, or the captions misheard it. Try a shorter
-           spelling${state.lang ? ', or clear the language filter' : ''}.</p></div>`
-    } else if (state.lang || state.all) {
-      const found = filtered(db.entries)
-      status.textContent = `${plural(found.length, 'entry', 'entries')}, A to Z`
+           spelling${state.lang || cat ? ', or clear the filters' : ''}.</p></div>`
+    } else if (state.lang || cat || state.all) {
+      status.textContent = `${cat ? plural(found.length, cat.one, cat.noun) : plural(found.length, 'entry', 'entries')}, A to Z`
       results.innerHTML = entryList(found.slice(0, state.limit), '', { letters: true }) + more(found.length)
     } else {
       status.textContent = ''
@@ -436,6 +483,27 @@ function home(params) {
   form.addEventListener('submit', (ev) => {
     ev.preventDefault()
     results.querySelector('a.result')?.click()
+  })
+  // On narrow screens the chip row scrolls sideways: fade its edge while more chips are hidden, and
+  // bring the selected chip into view (it may be the last one, chosen from the shelf).
+  const fadeChips = () =>
+    chipRow.classList.toggle('has-more', chipRow.scrollLeft + chipRow.clientWidth < chipRow.scrollWidth - 1)
+  chipRow.addEventListener('scroll', fadeChips, { passive: true })
+  new ResizeObserver(fadeChips).observe(chipRow)
+  document.fonts.ready.then(() => {
+    const row = chipRow.getBoundingClientRect()
+    const pressed = chips.find((c) => c.dataset.cat === state.cat).getBoundingClientRect()
+    if (pressed.right > row.right) chipRow.scrollLeft += pressed.left - row.left - 24
+  })
+
+  chipRow.addEventListener('click', (ev) => {
+    const chip = ev.target.closest('.chip')
+    if (!chip) return
+    // Pressing the selected category again goes back to all of them.
+    state.cat = chip.dataset.cat === state.cat ? '' : chip.dataset.cat
+    state.limit = PAGE_SIZE
+    syncUrl()
+    update()
   })
   select.addEventListener('change', () => {
     state.lang = select.value
@@ -483,7 +551,23 @@ function suggestions() {
   const latest = db.latest ? (db.byEpisode.get(db.latest.id) ?? []) : []
   const latestPick = latest.filter((_, i) => i % Math.max(1, Math.floor(latest.length / SUGGESTION_COUNT)) === 0)
 
-  let html = ''
+  let html = `
+    <section class="suggest">
+      <h2 class="section-title"><span>Browse by kind</span></h2>
+      <ul class="shelf">
+        ${CATEGORIES.map((cat) => {
+          const n = db.entries.filter((e) => e.category === cat.id).length
+          const samples = db.samples.get(cat.id) ?? []
+          return n
+            ? `<li><a class="shelf-item" href="${href(`?cat=${cat.id}`)}">
+                <span class="shelf-title">${esc(cat.title)}</span>
+                <span class="shelf-count">${plural(n, 'entry', 'entries')}</span>
+                <span class="shelf-samples">${samples.map((e) => `<i>${esc(e.term)}</i>`).join(', ')}</span>
+              </a></li>`
+            : ''
+        }).join('')}
+      </ul>
+    </section>`
   if (recurring.length) {
     html += `
       <section class="suggest">
@@ -538,6 +622,7 @@ function entryPage(slug) {
       <header class="entry-head">
         <h1 class="headword">${nameHtml(entry)}</h1>
         <p class="entry-class">
+          ${categoryTag(entry, { always: true, link: true })}
           ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
         </p>
         ${
@@ -625,6 +710,7 @@ function episodePage(id) {
             <button type="button" class="ts" data-t="${mention.t}" aria-label="Play from ${fmtTime(mention.t)}">${fmtTime(mention.t)}</button>
             <div>
               <a class="hw" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">${nameHtml(entry)}</a>
+              ${categoryTag(entry)}
               ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
               ${roleBadge(mention.role)}
               ${mention.note ? `<p class="note">${noteHtml(mention, { self: entry })}</p>` : ''}
