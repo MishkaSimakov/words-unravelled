@@ -819,7 +819,7 @@ function graphPage() {
     .then(({ mountGraph }) => {
       if (!root.isConnected) return // navigated away while loading
       teardown = mountGraph(root, {
-        db, esc, href, fold, slugify, WIKILINK, noteHtml, forms, typeLabel, typePlural, plural,
+        db, esc, href, fold, noteHtml, nameText, nameHtml, forms, plural, CATEGORIES, categoryById,
       })
     })
     .catch((err) => {

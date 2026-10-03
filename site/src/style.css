@@ -1077,9 +1077,9 @@ a.cat {
   --graph-link-hi: #8a2a1c;
   --graph-accent: #8a2a1c;
   --graph-text: #1e1a15;
-  --graph-type-idiom: #2a78d6;
-  --graph-type-phrase: #eb6834;
-  --graph-type-name: #1baf7a;
+  --graph-cat-expression: #2a78d6;
+  --graph-cat-about-language: #eb6834;
+  --graph-cat-name: #1baf7a;
   --panel-bg: rgba(251, 248, 240, 0.94);
 }
 @media (prefers-color-scheme: dark) {
@@ -1090,9 +1090,9 @@ a.cat {
     --graph-link-hi: #e38a6f;
     --graph-accent: #e38a6f;
     --graph-text: #ece4d2;
-    --graph-type-idiom: #3987e5;
-    --graph-type-phrase: #d95926;
-    --graph-type-name: #199e70;
+    --graph-cat-expression: #3987e5;
+    --graph-cat-about-language: #d95926;
+    --graph-cat-name: #199e70;
     --panel-bg: rgba(29, 26, 20, 0.94);
   }
 }
@@ -1226,12 +1226,12 @@ a.cat {
   color: var(--rubric);
   padding: 4px 0;
 }
-.graph-types {
+.graph-categories {
   display: grid;
   gap: 2px;
   margin: 4px 0 6px;
 }
-.graph-type,
+.graph-category,
 .graph-switch {
   display: flex;
   align-items: center;
@@ -1239,11 +1239,11 @@ a.cat {
   padding: 3px 0;
   cursor: pointer;
 }
-.graph-type .chip-count,
+.graph-category .chip-count,
 .graph-switch .chip-count {
   margin-left: auto;
 }
-.graph-type input,
+.graph-category input,
 .graph-switch input {
   accent-color: var(--rubric);
   margin: 0;

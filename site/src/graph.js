@@ -1,14 +1,14 @@
-// Graph view (prototype): every entry as a node, [[links]] in mention notes as edges, drawn
+// Graph view (prototype): every entry as a node, links in mention notes as edges, drawn
 // Obsidian-style with force-graph. Loaded on demand from main.js, so the rest of the site
 // doesn't pay for the library.
 import ForceGraph from 'force-graph'
 
-// Types that get their own colour; everything else (mostly words) stays the neutral node colour.
-const COLORED_TYPES = ['idiom', 'phrase', 'name']
+// Categories that get their own colour; the rest (mostly words) stay the neutral node colour.
+const COLORED_CATEGORIES = ['expression', 'name', 'about-language']
 
 const DEFAULTS = {
   orphans: false,
-  colorByType: true,
+  colorByCategory: true,
   textFade: 2.2, // zoom level at which labels start to fade in
   nodeSize: 1,
   linkWidth: 1,
@@ -18,13 +18,13 @@ const DEFAULTS = {
   linkDistance: 30,
 }
 
-/** Nodes and undirected, de-duplicated links from the [[wiki links]] in mention notes. */
-function buildGraph({ db, slugify, WIKILINK }) {
+/** Nodes and undirected, de-duplicated links from the links data/build.py resolved in mention notes. */
+function buildGraph({ db, nameText }) {
   const nodes = db.entries.map((entry) => ({
     id: entry.slug,
     entry,
-    term: entry.term,
-    type: entry.type,
+    term: nameText(entry),
+    category: entry.category,
     neighbors: new Set(),
     links: [],
   }))
@@ -33,8 +33,8 @@ function buildGraph({ db, slugify, WIKILINK }) {
   const seen = new Set()
   for (const node of nodes) {
     for (const mention of node.entry.mentions) {
-      for (const m of (mention.note ?? '').matchAll(WIKILINK)) {
-        const other = byId.get(slugify(m[1].trim()))
+      for (const { slug } of mention.links ?? []) {
+        const other = byId.get(slug)
         if (!other || other === node) continue
         const key = [node.id, other.id].sort().join('\n')
         if (seen.has(key)) continue
@@ -70,13 +70,13 @@ function gravity() {
 const clamp = (x, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, x))
 
 export function mountGraph(root, h) {
-  const { db, esc, href, fold, noteHtml, forms, typeLabel, typePlural, plural } = h
+  const { esc, href, fold, noteHtml, nameHtml, forms, plural, CATEGORIES, categoryById } = h
   const graph = buildGraph(h)
   const settings = { ...DEFAULTS }
-  const typeCounts = new Map()
-  for (const n of graph.nodes) typeCounts.set(n.type, (typeCounts.get(n.type) ?? 0) + 1)
-  const types = [...typeCounts.keys()].sort((a, b) => typeCounts.get(b) - typeCounts.get(a))
-  const hiddenTypes = new Set()
+  const categoryCounts = new Map()
+  for (const n of graph.nodes) categoryCounts.set(n.category, (categoryCounts.get(n.category) ?? 0) + 1)
+  const categories = CATEGORIES.filter((c) => categoryCounts.has(c.id))
+  const hiddenCategories = new Set()
   const linkedCount = graph.nodes.filter((n) => n.deg).length
 
   root.innerHTML = `
@@ -97,13 +97,13 @@ export function mountGraph(root, h) {
     <aside class="graph-settings" id="graph-settings" hidden>
       <details open>
         <summary>Filters</summary>
-        <div class="graph-types">
-          ${types
+        <div class="graph-categories">
+          ${categories
             .map(
-              (t) => `<label class="graph-type">
-                <input type="checkbox" data-type="${esc(t)}" checked />
-                <span class="swatch" data-swatch="${esc(t)}"></span>
-                ${esc(typePlural(t))} <span class="chip-count">${typeCounts.get(t)}</span>
+              (c) => `<label class="graph-category">
+                <input type="checkbox" data-category="${esc(c.id)}" checked />
+                <span class="swatch" data-swatch="${esc(c.id)}"></span>
+                ${esc(c.title)} <span class="chip-count">${categoryCounts.get(c.id)}</span>
               </label>`,
             )
             .join('')}
@@ -113,7 +113,7 @@ export function mountGraph(root, h) {
       </details>
       <details open>
         <summary>Display</summary>
-        <label class="graph-switch"><input type="checkbox" data-setting="colorByType" checked /> Colour by type</label>
+        <label class="graph-switch"><input type="checkbox" data-setting="colorByCategory" checked /> Colour by category</label>
         ${slider('textFade', 'Text fade threshold', 0.6, 6, 0.1)}
         ${slider('nodeSize', 'Node size', 0.4, 3, 0.1)}
         ${slider('linkWidth', 'Link thickness', 0.3, 4, 0.1)}
@@ -167,14 +167,14 @@ export function mountGraph(root, h) {
       linkHi: v('--graph-link-hi'),
       accent: v('--graph-accent'),
       text: v('--graph-text'),
-      types: Object.fromEntries(COLORED_TYPES.map((t) => [t, v(`--graph-type-${t}`)])),
+      categories: Object.fromEntries(COLORED_CATEGORIES.map((c) => [c, v(`--graph-cat-${c}`)])),
     }
     root.querySelectorAll('[data-swatch]').forEach((el) => {
-      el.style.background = nodeColor({ type: el.dataset.swatch }, true)
+      el.style.background = nodeColor({ category: el.dataset.swatch }, true)
     })
   }
-  const nodeColor = (node, forceType = false) =>
-    ((settings.colorByType || forceType) && colors.types[node.type]) || colors.node
+  const nodeColor = (node, forceCategory = false) =>
+    ((settings.colorByCategory || forceCategory) && colors.categories[node.category]) || colors.node
 
   // ---- state ------------------------------------------------------------------------------
 
@@ -203,7 +203,7 @@ export function mountGraph(root, h) {
   const LABEL_SIZE = 3.6
 
   const visibleData = () => {
-    const nodes = graph.nodes.filter((n) => !hiddenTypes.has(n.type) && (settings.orphans || n.deg))
+    const nodes = graph.nodes.filter((n) => !hiddenCategories.has(n.category) && (settings.orphans || n.deg))
     const ids = new Set(nodes)
     return { nodes, links: graph.links.filter((l) => ids.has(l.source) && ids.has(l.target)) }
   }
@@ -409,8 +409,8 @@ export function mountGraph(root, h) {
     }
     // A node hidden by the filters is brought back, so a selection always shows up.
     if (!fg.graphData().nodes.includes(node)) {
-      hiddenTypes.delete(node.type)
-      root.querySelector(`[data-type="${CSS.escape(node.type)}"]`).checked = true
+      hiddenCategories.delete(node.category)
+      root.querySelector(`[data-category="${CSS.escape(node.category)}"]`).checked = true
       if (!node.deg) {
         settings.orphans = true
         root.querySelector('[data-setting="orphans"]').checked = true
@@ -419,21 +419,21 @@ export function mountGraph(root, h) {
     }
     const { entry } = node
     const { original, translation } = forms(entry)
-    const note = entry.mentions.find((m) => m.note)?.note
+    const mention = entry.mentions.find((m) => m.note)
     const neighbors = [...node.neighbors].sort((a, b) => a.term.localeCompare(b.term))
     card.innerHTML = `
       <button type="button" class="graph-card-close" data-close aria-label="Close">×</button>
-      <h2 class="graph-card-term">${esc(entry.term)}</h2>
+      <h2 class="graph-card-term">${nameHtml(entry)}</h2>
       <p class="entry-class">
         <span class="swatch" style="background:${nodeColor(node, true)}"></span>
-        <span class="pos">${esc(typeLabel(entry.type))}</span>
+        <span class="cat">${esc(categoryById.get(entry.category)?.label ?? '')}</span>
         ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
         · <span class="meta">${plural(entry.episodeCount, 'episode')}</span>
       </p>
       ${original || translation
         ? `<p class="gloss">${[original && `<i>${esc(original)}</i>`, translation && `‘${esc(translation)}’`].filter(Boolean).join(' · ')}</p>`
         : ''}
-      ${note ? `<p class="note">${noteHtml(note, { self: entry })}</p>` : ''}
+      ${mention ? `<p class="note">${noteHtml(mention, { self: entry })}</p>` : ''}
       ${neighbors.length
         ? `<p class="graph-card-label">Linked entries</p>
            <ul class="graph-card-links">${neighbors
@@ -501,9 +501,9 @@ export function mountGraph(root, h) {
   const FORCE_KEYS = ['center', 'repel', 'linkForce', 'linkDistance']
   panel.addEventListener('input', (ev) => {
     const el = ev.target
-    if (el.dataset.type) {
-      el.checked ? hiddenTypes.delete(el.dataset.type) : hiddenTypes.add(el.dataset.type)
-      if (selected && hiddenTypes.has(selected.type)) select(null)
+    if (el.dataset.category) {
+      el.checked ? hiddenCategories.delete(el.dataset.category) : hiddenCategories.add(el.dataset.category)
+      if (selected && hiddenCategories.has(selected.category)) select(null)
       fg.graphData(visibleData())
       runSearch()
       return
@@ -516,14 +516,14 @@ export function mountGraph(root, h) {
       fg.graphData(visibleData())
       runSearch()
     }
-    if (key === 'colorByType') readColors()
+    if (key === 'colorByCategory') readColors()
     if (FORCE_KEYS.includes(key)) applyForces()
   })
   panel.querySelector('[data-reset]').addEventListener('click', () => {
     Object.assign(settings, DEFAULTS)
-    hiddenTypes.clear()
+    hiddenCategories.clear()
     panel.querySelectorAll('input').forEach((el) => {
-      if (el.dataset.type) el.checked = true
+      if (el.dataset.category) el.checked = true
       else if (el.type === 'checkbox') el.checked = settings[el.dataset.setting]
       else el.value = settings[el.dataset.setting]
     })
