@@ -38,7 +38,7 @@ cd site && npm run dev        # http://localhost:5173
 folder), `data/overrides.json` and `data/review.json`, and writes:
 
 - `data/episodes.json`: `[{ id, title, date, duration }]`, newest first
-- `data/entries.json`: `[{ slug, term, original, translation, language, mentions: [...] }]`,
+- `data/entries.json`: `[{ slug, term, gloss?, original, translation, language, mentions: [...] }]`,
   where each mention is
 
   ```json
@@ -64,26 +64,38 @@ episode, `<video_id>.json`:
 Entries have no kind (word, expression, name...): that will come from a later tagging pass over
 the built entries.
 
+**Gloss** tells apart different words with the same spelling. It is absent or `null` unless
+another word has the same spelling, and is a short label like a Wikipedia disambiguation
+suffix: a language for a false friend (*Gift (German)*), a meaning for a homonym
+(*meal (flour)*, *school (fish)*), or a kind for a name (*Phoenix (city)*). Usually one word per
+spelling (typically the common English one) has no gloss. In `entries.json`, `gloss` is only
+present on entries that have one.
+
 **Role** belongs to the mention: `subject` (discussed for its own sake), `aside` (only to make a
 point about another entry) or `mention` (the hosts only point to where it was discussed).
 
 **Links.** Notes in entry files mark connections as `[[type:target]]trail`, with types `from`,
 `gave`, `same-root`, `equivalent`, `unrelated` and `see`, and `?` after the type for an uncertain
 relation (`[[from?:shesep ankh]]`). Letters straight after `]]` are part of the link text:
-`[[see:ounce]]s` reads "ounces". In `entries.json` the note is plain text, with each link
-replaced by its text; `links` lists the links in order, with `start` and `end` giving the
-position of the link text in the note, in UTF-16 code units (how JavaScript indexes strings),
-so the site never parses notes. `slug` is the entry the target resolves to after overrides (an
-entry in the same episode first, then any entry by term, then by original form), or `null` if
-it isn't an entry.
+`[[see:ounce]]s` reads "ounces". A link to a glossed entry gives the gloss in brackets,
+`[[same-root:meal (flour)]]`, and reads "meal". In `entries.json` the note is plain text, with
+each link replaced by its text; `links` lists the links in order, with `start` and `end` giving
+the position of the link text in the note, in UTF-16 code units (how JavaScript indexes
+strings), so the site never parses notes. `slug` is the entry the target resolves to after
+overrides, or `null` if it isn't an entry: a target with a gloss resolves to the entry with that
+slug; any other target to an entry in the same episode first, then any entry by term, then by
+original form. A target without a gloss means the word without one: `[[see:gift]]` is *gift*,
+not *Gift (German)*, unless there is no plain *gift*. A link never resolves to the entry its
+note belongs to.
 
-Mentions are grouped by slug: the term lowercased, with invisible characters removed,
-diacritics folded and spaces turned into hyphens (`Björk` → `bjork`). If mentions disagree
-on a field, the majority wins. Nothing else is merged automatically. Likely duplicates
-(plural/singular, spelling variants, "to kick the bucket" vs "kick the bucket", one expression
-contained in another, one entry's term being another's original form) go to
-`data/duplicates.md`, each with a ready-to-paste override, along with mentions that disagree
-on language.
+Mentions are grouped by slug: the term, followed by the gloss if there is one, lowercased, with
+invisible characters removed, diacritics folded and spaces turned into hyphens (`Björk` →
+`bjork`, *Gift (German)* → `gift-german`). If mentions disagree on a field, the majority wins.
+Nothing else is merged automatically. Likely duplicates (plural/singular, spelling variants,
+"to kick the bucket" vs "kick the bucket", one expression contained in another, one entry's
+term being another's original form; never two entries with the same term and different
+glosses) go to `data/duplicates.md`, each with a ready-to-paste override, along with mentions
+that disagree on language.
 
 The summary shows how many files there are at each `prompt_version`, and counts of roles and
 links. It also flags:
@@ -93,7 +105,9 @@ links. It also flags:
 - missing roles, and roles other than subject/aside/mention
 - malformed links in notes (`[[x]]`, `[[x|y]]`, `[[see: ]]`) and unknown link types
 - the same entry twice in one episode, including after overrides (the mention with the highest
-  role is kept)
+  role is kept); for two different words with one spelling, a gloss is missing
+- links that reach a glossed entry without naming its gloss (they may point at the wrong
+  homograph), and links whose gloss names no entry
 - episodes without a title (the video ID is used) or a date (listed last)
 - overrides that no longer match anything
 
@@ -119,8 +133,8 @@ A list of operations, applied in order on every run:
 ]
 ```
 
-- `rename` rebuilds the slug from the new term, or uses `new_slug` if given. With
-  `episode_id` it applies to one mention only, which lets you split an entry.
+- `rename` rebuilds the slug from the new term and the mention's gloss, or uses `new_slug` if
+  given. With `episode_id` it applies to one mention only, which lets you split an entry.
 - `set` changes entry fields but keeps the slug.
 - `distinct` only hides a pair from the duplicates report.
 
@@ -138,7 +152,7 @@ timestamps missing from the transcript. Controls:
 - filter by episode or role, or show only low-confidence and flagged entries
 
 Decisions are saved at once to `data/review.json`, keyed by `<video_id>/<slug of the
-extracted term>`. Only undecided entries are shown. On the next `data/build.py` run, rejected
+extracted term and gloss>`. Only undecided entries are shown. On the next `data/build.py` run, rejected
 mentions are dropped and approved ones are marked `verified`. On the site, low-confidence
 mentions show an "Unverified" label until they are approved.
 
@@ -156,9 +170,11 @@ npm run preview
   `/episodes`, `/about`.
 - `npm run dev` also shows debug details: each mention's role (subject / aside / mention) as a
   small badge on result cards, entry pages and episode timelines. `npm run build` leaves them out.
-- Search is client-side with Fuse.js over `term`, `original` and `translation`. It ignores
-  accents and ranks exact and prefix matches first; within each of those tiers, entries that are
-  only ever pointed to (role `mention`) come last.
+- Search is client-side with Fuse.js over `term`, `gloss`, `original` and `translation`. It
+  ignores accents and ranks exact and prefix matches first; within each of those tiers, entries
+  that are only ever pointed to (role `mention`) come last.
+- A glossed entry is shown as its term with the gloss muted after it, *meal (flour)*, wherever
+  its name appears; note links show only the term, with the full name in the tooltip.
 - Entry pages list the episodes that discuss the entry (`subject`, then `aside`), and put
   episodes that only point to it under "Also mentioned in".
 - Query and filters are kept in the URL, so searches can be shared and the back button works.

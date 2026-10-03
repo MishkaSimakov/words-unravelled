@@ -7,8 +7,8 @@
 
 The page shows each extracted entry next to the video (starting at its timestamp) and the
 transcript around it. Decisions are saved immediately to data/review.json, keyed by
-"<video_id>/<slug of the extracted term>", and only undecided entries are shown, so you can
-stop at any time and carry on later.
+"<video_id>/<slug of the extracted term and gloss>", and only undecided entries are shown, so
+you can stop at any time and carry on later.
 
 data/build.py reads data/review.json: rejected entries are left out of the site, and approved
 ones are marked as verified (no longer counted as low-confidence entries to review).
@@ -77,11 +77,12 @@ def all_items():
             if e is None:
                 continue
             items.append({
-                "key": review_key(vid, e["term"]),
+                "key": review_key(vid, e["term"], e["gloss"]),
                 "video_id": vid,
                 "episode": data.get("title") or vid,
                 "date": data.get("date"),
                 "term": e["term"],
+                "gloss": e["gloss"],
                 "original": e["original"],
                 "translation": e["translation"],
                 "language": e["language"],

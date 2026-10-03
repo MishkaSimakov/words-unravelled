@@ -909,106 +909,6 @@
   ]
  },
  {
-  "slug": "a",
-  "term": "a-",
-  "original": "å",
-  "translation": null,
-  "language": "English",
-  "mentions": [
-   {
-    "episode_id": "Sucad437VDA",
-    "t": 470,
-    "role": "subject",
-    "note": "The prefix in askance and awry, rarely used now; Jess thinks it shows Old Norse influence and may relate to ado.",
-    "links": [
-     {
-      "type": "see",
-      "uncertain": false,
-      "target": "askance",
-      "slug": "askance",
-      "start": 14,
-      "end": 21
-     },
-     {
-      "type": "see",
-      "uncertain": false,
-      "target": "awry",
-      "slug": "awry",
-      "start": 26,
-      "end": 30
-     },
-     {
-      "type": "same-root",
-      "uncertain": true,
-      "target": "ado",
-      "slug": "ado",
-      "start": 108,
-      "end": 111
-     }
-    ],
-    "confidence": "high"
-   },
-   {
-    "episode_id": "QPcOx29fVPA",
-    "t": 528,
-    "role": "subject",
-    "note": "A Germanic prefix from Old English meaning in or onto; Jess thinks it survives in so many nautical words because seafaring was central to British culture.",
-    "links": [],
-    "confidence": "high"
-   },
-   {
-    "episode_id": "EqaYS3vWKGY",
-    "t": 152,
-    "role": "subject",
-    "note": "Began as an ox-head picture standing for a glottal stop, from the Semitic word alp; upside-down capital A still hints at the horns.",
-    "links": [
-     {
-      "type": "see",
-      "uncertain": false,
-      "target": "glottal stop",
-      "slug": "glottal-stop",
-      "start": 43,
-      "end": 55
-     },
-     {
-      "type": "from",
-      "uncertain": false,
-      "target": "alp",
-      "slug": "alp",
-      "start": 79,
-      "end": 82
-     }
-    ],
-    "confidence": "high"
-   },
-   {
-    "episode_id": "La3toomR-ow",
-    "t": 1110,
-    "role": "aside",
-    "note": "The particle that forms Norwegian infinitives, cognate with English at, illustrating the origin of ado.",
-    "links": [
-     {
-      "type": "same-root",
-      "uncertain": false,
-      "target": "at",
-      "slug": "at",
-      "start": 68,
-      "end": 70
-     },
-     {
-      "type": "see",
-      "uncertain": false,
-      "target": "ado",
-      "slug": "ado",
-      "start": 99,
-      "end": 102
-     }
-    ],
-    "confidence": "low"
-   }
-  ]
- },
- {
   "slug": "a-a-brill",
   "term": "A. A. Brill",
   "original": null,
@@ -1147,7 +1047,7 @@
     "episode_id": "9A0hAxeFyo4",
     "t": 1347,
     "role": "aside",
-    "note": "Louisa May Alcott's children's story, an early mention of Christmas elves.",
+    "note": "Louisa May Alcott's children's story, an early mention of the Christmas elf.",
     "links": [
      {
       "type": "see",
@@ -1156,6 +1056,14 @@
       "slug": "louisa-may-alcott",
       "start": 0,
       "end": 17
+     },
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "elf",
+      "slug": "elf",
+      "start": 72,
+      "end": 75
      }
     ],
     "confidence": "high"
@@ -1456,6 +1364,41 @@
   ]
  },
  {
+  "slug": "a-letter",
+  "term": "A",
+  "gloss": "letter",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "EqaYS3vWKGY",
+    "t": 152,
+    "role": "subject",
+    "note": "Began as an ox-head picture standing for a glottal stop, from the Semitic word alp; upside-down capital A still hints at the horns.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "glottal stop",
+      "slug": "glottal-stop",
+      "start": 43,
+      "end": 55
+     },
+     {
+      "type": "from",
+      "uncertain": false,
+      "target": "alp",
+      "slug": "alp",
+      "start": 79,
+      "end": 82
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "a-little-bird-told-me",
   "term": "a little bird told me",
   "original": null,
@@ -1611,6 +1554,41 @@
   ]
  },
  {
+  "slug": "a-norwegian",
+  "term": "å",
+  "gloss": "Norwegian",
+  "original": "å",
+  "translation": null,
+  "language": "Norwegian",
+  "mentions": [
+   {
+    "episode_id": "La3toomR-ow",
+    "t": 1110,
+    "role": "aside",
+    "note": "The particle that forms Norwegian infinitives, cognate with English at, illustrating the origin of ado.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "at",
+      "slug": "at",
+      "start": 68,
+      "end": 70
+     },
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "ado",
+      "slug": "ado",
+      "start": 99,
+      "end": 102
+     }
+    ],
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "a-penny-for-your-thoughts",
   "term": "a penny for your thoughts",
   "original": null,
@@ -1684,6 +1662,57 @@
       "end": 107
      }
     ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "a-prefix",
+  "term": "a-",
+  "gloss": "prefix",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "Sucad437VDA",
+    "t": 470,
+    "role": "subject",
+    "note": "The prefix in askance and awry, rarely used now; Jess thinks it shows Old Norse influence and may relate to ado.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "askance",
+      "slug": "askance",
+      "start": 14,
+      "end": 21
+     },
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "awry",
+      "slug": "awry",
+      "start": 26,
+      "end": 30
+     },
+     {
+      "type": "same-root",
+      "uncertain": true,
+      "target": "ado",
+      "slug": "ado",
+      "start": 108,
+      "end": 111
+     }
+    ],
+    "confidence": "high"
+   },
+   {
+    "episode_id": "QPcOx29fVPA",
+    "t": 528,
+    "role": "subject",
+    "note": "A Germanic prefix from Old English meaning in or onto; Jess thinks it survives in so many nautical words because seafaring was central to British culture.",
+    "links": [],
     "confidence": "high"
    }
   ]
@@ -2073,8 +2102,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "a-",
-      "slug": "a",
+      "target": "a- (prefix)",
+      "slug": "a-prefix",
       "start": 60,
       "end": 62
      }
@@ -2772,8 +2801,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "a-",
-      "slug": "a",
+      "target": "a- (prefix)",
+      "slug": "a-prefix",
       "start": 39,
       "end": 41
      }
@@ -4646,8 +4675,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "å",
-      "slug": "a",
+      "target": "å (Norwegian)",
+      "slug": "a-norwegian",
       "start": 127,
       "end": 128
      }
@@ -4696,6 +4725,33 @@
      }
     ],
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "adobe-company",
+  "term": "Adobe",
+  "gloss": "company",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "m9AaobtBMtA",
+    "t": 1610,
+    "role": "aside",
+    "note": "The hosts wonder whether the software company named itself after adobe because you build things with its software.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "adobe",
+      "slug": "adobe",
+      "start": 65,
+      "end": 70
+     }
+    ],
+    "confidence": "low"
    }
   ]
  },
@@ -4835,8 +4891,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "a-",
-      "slug": "a",
+      "target": "a- (prefix)",
+      "slug": "a-prefix",
       "start": 39,
       "end": 41
      }
@@ -6394,8 +6450,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "a-",
-      "slug": "a",
+      "target": "a- (prefix)",
+      "slug": "a-prefix",
       "start": 39,
       "end": 41
      }
@@ -15226,8 +15282,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Orange",
-      "slug": "orange",
+      "target": "Orange (town)",
+      "slug": "orange-town",
       "start": 112,
       "end": 118
      }
@@ -18773,8 +18829,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "a-",
-      "slug": "a",
+      "target": "a- (prefix)",
+      "slug": "a-prefix",
       "start": 39,
       "end": 41
      }
@@ -18825,8 +18881,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "a-",
-      "slug": "a",
+      "target": "a- (prefix)",
+      "slug": "a-prefix",
       "start": 39,
       "end": 41
      }
@@ -18980,8 +19036,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "a-",
-      "slug": "a",
+      "target": "a- (prefix)",
+      "slug": "a-prefix",
       "start": 39,
       "end": 41
      }
@@ -19044,6 +19100,33 @@
       "slug": "quickbeam",
       "start": 108,
       "end": 117
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "aspen-town",
+  "term": "Aspen",
+  "gloss": "town",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "gUlIcVkWj1I",
+    "t": 1029,
+    "role": "aside",
+    "note": "The Colorado place is named after the aspen tree.",
+    "links": [
+     {
+      "type": "from",
+      "uncertain": false,
+      "target": "aspen",
+      "slug": "aspen",
+      "start": 38,
+      "end": 43
      }
     ],
     "confidence": "high"
@@ -20334,8 +20417,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "å",
-      "slug": "a",
+      "target": "å (Norwegian)",
+      "slug": "a-norwegian",
       "start": 47,
       "end": 48
      }
@@ -21965,6 +22048,33 @@
   ]
  },
  {
+  "slug": "avatar-film",
+  "term": "Avatar",
+  "gloss": "film",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "mentions": [
+   {
+    "episode_id": "b8s2uxWrMhQ",
+    "t": 1691,
+    "role": "aside",
+    "note": "Film presumably named for transferring consciousness into blue bodies; Jess dislikes it, and Rob jokes the franchise is a juggernaut.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "juggernaut",
+      "slug": "juggernaut",
+      "start": 122,
+      "end": 132
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "avatar-the-last-airbender",
   "term": "Avatar: The Last Airbender",
   "original": null,
@@ -21980,8 +22090,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Avatar",
-      "slug": "avatar",
+      "target": "Avatar (film)",
+      "slug": "avatar-film",
       "start": 35,
       "end": 41
      }
@@ -23326,7 +23436,7 @@
  {
   "slug": "bad",
   "term": "bad",
-  "original": "Bad",
+  "original": null,
   "translation": null,
   "language": "English",
   "mentions": [
@@ -23349,25 +23459,33 @@
    },
    {
     "episode_id": "XA4d9r6Yu5A",
-    "t": 1527,
+    "t": 1551,
     "role": "subject",
-    "note": "German for bath, as in Danish, Dutch, Norwegian and Swedish; spa towns must meet a standard to bear it; a cognate of bath, unlike bad.",
+    "note": "Unrelated to Germanic Bad; possibly from Old English bæddel, a slur for effeminate men, it became standard around Middle English, Old English using evil.",
     "links": [
-     {
-      "type": "same-root",
-      "uncertain": false,
-      "target": "bath",
-      "slug": "bath",
-      "start": 117,
-      "end": 121
-     },
      {
       "type": "unrelated",
       "uncertain": false,
-      "target": "bad",
-      "slug": "bad",
-      "start": 130,
-      "end": 133
+      "target": "Bad (German)",
+      "slug": "bad-german",
+      "start": 22,
+      "end": 25
+     },
+     {
+      "type": "from",
+      "uncertain": true,
+      "target": "bæddel",
+      "slug": null,
+      "start": 53,
+      "end": 59
+     },
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "evil",
+      "slug": "evil",
+      "start": 148,
+      "end": 152
      }
     ],
     "confidence": "high"
@@ -23428,6 +23546,41 @@
       "slug": "just-asking-questions",
       "start": 13,
       "end": 34
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "bad-german",
+  "term": "Bad",
+  "gloss": "German",
+  "original": "Bad",
+  "translation": null,
+  "language": "German",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 1527,
+    "role": "subject",
+    "note": "German for bath, as in Danish, Dutch, Norwegian and Swedish; spa towns must meet a standard to bear it; a cognate of bath, unlike bad.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "bath",
+      "slug": "bath",
+      "start": 117,
+      "end": 121
+     },
+     {
+      "type": "unrelated",
+      "uncertain": false,
+      "target": "bad",
+      "slug": "bad",
+      "start": 130,
+      "end": 133
      }
     ],
     "confidence": "high"
@@ -26297,8 +26450,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "Bad",
-      "slug": "bad",
+      "target": "Bad (German)",
+      "slug": "bad-german",
       "start": 52,
       "end": 55
      }
@@ -26567,6 +26720,33 @@
       "slug": "tile",
       "start": 29,
       "end": 33
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "battle-town",
+  "term": "Battle",
+  "gloss": "town",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "4CJRYBxDdGg",
+    "t": 283,
+    "role": "subject",
+    "note": "The town where the Battle of Hastings was fought, now simply named after the battle.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "battle",
+      "slug": "battle",
+      "start": 77,
+      "end": 83
      }
     ],
     "confidence": "high"
@@ -26915,7 +27095,34 @@
  },
  {
   "slug": "beamer",
+  "term": "beamer",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 2076,
+    "role": "subject",
+    "note": "British slang for a BMW; the French call the car a BM.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "BM (French)",
+      "slug": "bm-french",
+      "start": 51,
+      "end": 53
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "beamer-german",
   "term": "Beamer",
+  "gloss": "German",
   "original": "Beamer",
   "translation": null,
   "language": "German",
@@ -28419,8 +28626,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "long",
-      "slug": "long",
+      "target": "long (Chinese)",
+      "slug": "long-chinese",
       "start": 24,
       "end": 28
      }
@@ -29758,11 +29965,12 @@
   ]
  },
  {
-  "slug": "berliner",
+  "slug": "berliner-german",
   "term": "Berliner",
+  "gloss": "German",
   "original": "Berliner",
   "translation": null,
-  "language": "English",
+  "language": "German",
   "mentions": [
    {
     "episode_id": "L3Qepv4F5Yc",
@@ -29771,7 +29979,17 @@
     "note": "Name for a jam-filled doughnut across much of Germany but not in Berlin itself; also what Berlin residents call themselves.",
     "links": [],
     "confidence": "high"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "berliner-newspaper",
+  "term": "Berliner",
+  "gloss": "newspaper",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
    {
     "episode_id": "Q_A1OtVd8RA",
     "t": 307,
@@ -32521,8 +32739,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "-ing",
-      "slug": "ing",
+      "target": "-ing (noun suffix)",
+      "slug": "ing-noun-suffix",
       "start": 99,
       "end": 103
      },
@@ -32969,7 +33187,7 @@
  {
   "slug": "bite",
   "term": "bite",
-  "original": "bite",
+  "original": null,
   "translation": null,
   "language": "English",
   "mentions": [
@@ -32989,7 +33207,17 @@
      }
     ],
     "confidence": "high"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "bite-french",
+  "term": "bite",
+  "gloss": "French",
+  "original": "bite",
+  "translation": null,
+  "language": "French",
+  "mentions": [
    {
     "episode_id": "XA4d9r6Yu5A",
     "t": 1068,
@@ -35381,8 +35609,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Nike",
-      "slug": "nike",
+      "target": "Nike (company)",
+      "slug": "nike-company",
       "start": 45,
       "end": 49
      }
@@ -35747,6 +35975,24 @@
  {
   "slug": "bm",
   "term": "BM",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 2095,
+    "role": "subject",
+    "note": "American slang for a bowel movement, which Rob knows from Family Guy.",
+    "links": [],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "bm-french",
+  "term": "BM",
+  "gloss": "French",
   "original": "BM",
   "translation": null,
   "language": "French",
@@ -39541,6 +39787,33 @@
   ]
  },
  {
+  "slug": "brassiere-french",
+  "term": "brassière",
+  "gloss": "French",
+  "original": "brassière",
+  "translation": null,
+  "language": "French",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 1161,
+    "role": "subject",
+    "note": "In French a sports bra or unwired bra; an ordinary bra is a soutien-gorge.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "soutien-gorge",
+      "slug": "soutien-gorge",
+      "start": 60,
+      "end": 73
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "brat",
   "term": "brat",
   "original": null,
@@ -40986,8 +41259,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Berliner",
-      "slug": "berliner",
+      "target": "Berliner (newspaper)",
+      "slug": "berliner-newspaper",
       "start": 139,
       "end": 147
      }
@@ -41003,8 +41276,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Berliner",
-      "slug": "berliner",
+      "target": "Berliner (newspaper)",
+      "slug": "berliner-newspaper",
       "start": 117,
       "end": 125
      }
@@ -43153,7 +43426,7 @@
       "type": "from",
       "uncertain": false,
       "target": "Burgundy",
-      "slug": "burgundy",
+      "slug": null,
       "start": 30,
       "end": 38
      }
@@ -45538,7 +45811,7 @@
       "type": "from",
       "uncertain": false,
       "target": "al-Qahira",
-      "slug": "cairo",
+      "slug": null,
       "start": 12,
       "end": 21
      }
@@ -48933,8 +49206,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Punch",
-      "slug": "punch",
+      "target": "Punch (magazine)",
+      "slug": "punch-magazine",
       "start": 88,
       "end": 93
      },
@@ -49201,10 +49474,37 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "casino",
-      "slug": "casino",
+      "target": "casino (Italian)",
+      "slug": "casino-italian",
       "start": 67,
       "end": 73
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "casino-italian",
+  "term": "casino",
+  "gloss": "Italian",
+  "original": "casino",
+  "translation": null,
+  "language": "Italian",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 249,
+    "role": "subject",
+    "note": "Italian word that can mean a brothel, a mess, a noisy situation or a large amount of something, far broader than English casino.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "casino",
+      "slug": "casino",
+      "start": 121,
+      "end": 127
      }
     ],
     "confidence": "high"
@@ -49549,6 +49849,33 @@
       "slug": "casual",
       "start": 5,
       "end": 11
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "casualty-tv-series",
+  "term": "Casualty",
+  "gloss": "TV series",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "4CJRYBxDdGg",
+    "t": 2391,
+    "role": "aside",
+    "note": "Popular British Saturday-night TV drama, basically a British ER, set in an accident and emergency department, named after casualty.",
+    "links": [
+     {
+      "type": "from",
+      "uncertain": false,
+      "target": "casualty",
+      "slug": "casualty",
+      "start": 122,
+      "end": 130
      }
     ],
     "confidence": "high"
@@ -53648,8 +53975,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "chef",
-      "slug": "chef",
+      "target": "chef (French)",
+      "slug": "chef-french",
       "start": 43,
       "end": 47
      }
@@ -53674,10 +54001,45 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "chef",
-      "slug": "chef",
+      "target": "chef (French)",
+      "slug": "chef-french",
       "start": 56,
       "end": 60
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "chef-french",
+  "term": "chef",
+  "gloss": "French",
+  "original": "chef",
+  "translation": null,
+  "language": "French",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 275,
+    "role": "subject",
+    "note": "French for a boss, so a kitchen's head is a chef de cuisine; English borrowed it earlier as chief.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "chef de cuisine",
+      "slug": "chef-de-cuisine",
+      "start": 44,
+      "end": 59
+     },
+     {
+      "type": "gave",
+      "uncertain": false,
+      "target": "chief",
+      "slug": "chief",
+      "start": 92,
+      "end": 97
      }
     ],
     "confidence": "high"
@@ -54002,6 +54364,33 @@
       "slug": "cester",
       "start": 51,
       "end": 57
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "chester-city",
+  "term": "Chester",
+  "gloss": "city",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "fR7IIZAy4Js",
+    "t": 1816,
+    "role": "subject",
+    "note": "The place that embodies -chester, meaning Roman fort.",
+    "links": [
+     {
+      "type": "from",
+      "uncertain": false,
+      "target": "-chester",
+      "slug": "chester",
+      "start": 24,
+      "end": 32
      }
     ],
     "confidence": "high"
@@ -54417,8 +54806,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "chef",
-      "slug": "chef",
+      "target": "chef (French)",
+      "slug": "chef-french",
       "start": 31,
       "end": 35
      }
@@ -55561,8 +55950,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "long",
-      "slug": "long",
+      "target": "long (Chinese)",
+      "slug": "long-chinese",
       "start": 61,
       "end": 65
      }
@@ -55835,7 +56224,7 @@
       "type": "from",
       "uncertain": false,
       "target": "chupacabras",
-      "slug": "chupacabra",
+      "slug": null,
       "start": 74,
       "end": 85
      }
@@ -56819,6 +57208,59 @@
  {
   "slug": "clam",
   "term": "clam",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "fq4Jc8UCR-g",
+    "t": 1172,
+    "role": "subject",
+    "note": "The mollusc is named from an Old English word meaning grip or grasp; the coincidence with the Latin for secretly came up in an earlier clam episode.",
+    "links": [],
+    "confidence": "high"
+   },
+   {
+    "episode_id": "-54FiJ0PsXo",
+    "t": 2177,
+    "role": "subject",
+    "note": "Literally means to constrict, clinch or pinch, which is what a clam does; discussed in a previous episode.",
+    "links": [],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "clam-interjection",
+  "term": "clam",
+  "gloss": "interjection",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "GW0em6wW15A",
+    "t": 1943,
+    "role": "subject",
+    "note": "In 14th-century English an interjection meaning be quiet, possibly from Latin; the sea creature's name is unrelated to Latin clam.",
+    "links": [
+     {
+      "type": "unrelated",
+      "uncertain": false,
+      "target": "clam (Latin)",
+      "slug": "clam-latin",
+      "start": 125,
+      "end": 129
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "clam-latin",
+  "term": "clam",
+  "gloss": "Latin",
   "original": "clam",
   "translation": "secretly",
   "language": "Latin",
@@ -56863,14 +57305,6 @@
       "end": 130
      }
     ],
-    "confidence": "high"
-   },
-   {
-    "episode_id": "-54FiJ0PsXo",
-    "t": 2177,
-    "role": "subject",
-    "note": "Literally means to constrict, clinch or pinch, which is what a clam does; discussed in a previous episode.",
-    "links": [],
     "confidence": "high"
    }
   ]
@@ -56992,8 +57426,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "clam",
-      "slug": "clam",
+      "target": "clam (Latin)",
+      "slug": "clam-latin",
       "start": 73,
       "end": 77
      },
@@ -57060,8 +57494,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "clam",
-      "slug": "clam",
+      "target": "clam (Latin)",
+      "slug": "clam-latin",
       "start": 66,
       "end": 70
      },
@@ -57473,8 +57907,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Donner",
-      "slug": "donner",
+      "target": "Donner (reindeer)",
+      "slug": "donner-reindeer",
       "start": 113,
       "end": 119
      },
@@ -58361,8 +58795,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Murder",
-      "slug": "murder",
+      "target": "Murder (game)",
+      "slug": "murder-game",
       "start": 120,
       "end": 126
      }
@@ -59841,7 +60275,7 @@
  {
   "slug": "coin",
   "term": "coin",
-  "original": "coin",
+  "original": null,
   "translation": null,
   "language": "English",
   "mentions": [
@@ -59861,7 +60295,17 @@
      }
     ],
     "confidence": "high"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "coin-french",
+  "term": "coin",
+  "gloss": "French",
+  "original": "coin",
+  "translation": null,
+  "language": "French",
+  "mentions": [
    {
     "episode_id": "XA4d9r6Yu5A",
     "t": 1208,
@@ -60171,10 +60615,37 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Cold Turkey",
-      "slug": "cold-turkey",
+      "target": "Cold Turkey (song)",
+      "slug": "cold-turkey-song",
       "start": 122,
       "end": 133
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "cold-turkey-song",
+  "term": "Cold Turkey",
+  "gloss": "song",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "mentions": [
+   {
+    "episode_id": "ca3lz3dXgW8",
+    "t": 1820,
+    "role": "aside",
+    "note": "John Lennon and Yoko Ono's song with the Plastic Ono Band, which helped popularise cold turkey.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "cold turkey",
+      "slug": "cold-turkey",
+      "start": 83,
+      "end": 94
      }
     ],
     "confidence": "high"
@@ -61942,20 +62413,13 @@
   ]
  },
  {
-  "slug": "con",
+  "slug": "con-french",
   "term": "con",
+  "gloss": "French",
   "original": "con",
   "translation": null,
-  "language": "English",
+  "language": "French",
   "mentions": [
-   {
-    "episode_id": "KjQABENyZg0",
-    "t": 2202,
-    "role": "subject",
-    "note": "Can be short for convict or confidence artist; conning means gaining someone's confidence to get something out of them, as discussed before.",
-    "links": [],
-    "confidence": "high"
-   },
    {
     "episode_id": "NqvT3gVz2aw",
     "t": 1787,
@@ -61972,14 +62436,6 @@
      }
     ],
     "confidence": "low"
-   },
-   {
-    "episode_id": "52GtCvS7HCU",
-    "t": 1610,
-    "role": "subject",
-    "note": "One of the high-yield Latin prefixes Jess lists, alongside its variant com-.",
-    "links": [],
-    "confidence": "high"
    }
   ]
  },
@@ -62005,6 +62461,42 @@
       "end": 148
      }
     ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "con-prefix",
+  "term": "con-",
+  "gloss": "prefix",
+  "original": null,
+  "translation": null,
+  "language": "Latin",
+  "mentions": [
+   {
+    "episode_id": "52GtCvS7HCU",
+    "t": 1610,
+    "role": "subject",
+    "note": "One of the high-yield Latin prefixes Jess lists, alongside its variant com-.",
+    "links": [],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "con-swindle",
+  "term": "con",
+  "gloss": "swindle",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "KjQABENyZg0",
+    "t": 2202,
+    "role": "subject",
+    "note": "Can be short for convict or confidence artist; conning means gaining someone's confidence to get something out of them, as discussed before.",
+    "links": [],
     "confidence": "high"
    }
   ]
@@ -63137,8 +63629,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "rum",
-      "slug": "rum",
+      "target": "rum (odd)",
+      "slug": "rum-odd",
       "start": 17,
       "end": 20
      }
@@ -65820,25 +66312,42 @@
   "mentions": [
    {
     "episode_id": "ey38pmqPBnM",
-    "t": 1809,
+    "t": 1835,
     "role": "subject",
-    "note": "The noble title originally meant a companion or attendant, later a governor; from roots meaning 'with' and 'to go', unrelated to counting numbers.",
-    "links": [],
-    "confidence": "high"
+    "note": "From Old French conter, also 'tell a story', from Latin computare, to reckon together; unrelated to the noble title.",
+    "links": [
+     {
+      "type": "from",
+      "uncertain": false,
+      "target": "conter",
+      "slug": null,
+      "start": 16,
+      "end": 22
+     },
+     {
+      "type": "from",
+      "uncertain": false,
+      "target": "computare",
+      "slug": null,
+      "start": 56,
+      "end": 65
+     }
+    ],
+    "confidence": "low"
    },
    {
     "episode_id": "MrsqUCgXGBk",
-    "t": 682,
+    "t": 724,
     "role": "subject",
-    "note": "Norman title England never adopted; from Latin co-, with, plus ire, to go, a Roman title for a provincial governor or attendant; Rob calls it a companion.",
+    "note": "The verb comes from French conter, from the same root as compute; it shares a prefix but not a root with the noble title.",
     "links": [
      {
-      "type": "see",
+      "type": "same-root",
       "uncertain": false,
-      "target": "companion",
-      "slug": "companion",
-      "start": 144,
-      "end": 153
+      "target": "compute",
+      "slug": "compute",
+      "start": 57,
+      "end": 64
      }
     ],
     "confidence": "high"
@@ -65865,6 +66374,41 @@
       "slug": "zeppelin",
       "start": 50,
       "end": 58
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "count-title",
+  "term": "count",
+  "gloss": "title",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "ey38pmqPBnM",
+    "t": 1809,
+    "role": "subject",
+    "note": "The noble title originally meant a companion or attendant, later a governor; from roots meaning 'with' and 'to go', unrelated to counting numbers.",
+    "links": [],
+    "confidence": "high"
+   },
+   {
+    "episode_id": "MrsqUCgXGBk",
+    "t": 682,
+    "role": "subject",
+    "note": "Norman title England never adopted; from Latin co-, with, plus ire, to go, a Roman title for a provincial governor or attendant; Rob calls it a companion.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "companion",
+      "slug": "companion",
+      "start": 144,
+      "end": 153
      }
     ],
     "confidence": "high"
@@ -67542,18 +68086,10 @@
  {
   "slug": "crayon",
   "term": "crayon",
-  "original": "crayon",
+  "original": null,
   "translation": null,
-  "language": "French",
+  "language": "English",
   "mentions": [
-   {
-    "episode_id": "XA4d9r6Yu5A",
-    "t": 1101,
-    "role": "subject",
-    "note": "In French a pencil, not what English calls a crayon.",
-    "links": [],
-    "confidence": "high"
-   },
    {
     "episode_id": "0xi1MatI3pw",
     "t": 2273,
@@ -67569,6 +68105,24 @@
       "end": 81
      }
     ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "crayon-french",
+  "term": "crayon",
+  "gloss": "French",
+  "original": "crayon",
+  "translation": null,
+  "language": "French",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 1101,
+    "role": "subject",
+    "note": "In French a pencil, not what English calls a crayon.",
+    "links": [],
     "confidence": "high"
    }
   ]
@@ -75583,8 +76137,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "dîner",
-      "slug": "diner",
+      "target": "dîner (French)",
+      "slug": "diner-french",
       "start": 121,
       "end": 126
      }
@@ -78170,7 +78724,7 @@
  {
   "slug": "dick",
   "term": "dick",
-  "original": "dick",
+  "original": null,
   "translation": null,
   "language": "English",
   "mentions": [
@@ -78195,40 +78749,6 @@
       "slug": "johnson",
       "start": 132,
       "end": 139
-     }
-    ],
-    "confidence": "high"
-   },
-   {
-    "episode_id": "6Rr6qfIIapY",
-    "t": 663,
-    "role": "aside",
-    "note": "Once a popular name for the everyman, which is why we have spotted dick.",
-    "links": [
-     {
-      "type": "gave",
-      "uncertain": false,
-      "target": "spotted dick",
-      "slug": "spotted-dick",
-      "start": 59,
-      "end": 71
-     }
-    ],
-    "confidence": "high"
-   },
-   {
-    "episode_id": "XA4d9r6Yu5A",
-    "t": 2684,
-    "role": "subject",
-    "note": "German for fat, a relative of English thick, since English th often matches a Germanic d.",
-    "links": [
-     {
-      "type": "same-root",
-      "uncertain": false,
-      "target": "thick",
-      "slug": "thick",
-      "start": 38,
-      "end": 43
      }
     ],
     "confidence": "high"
@@ -78288,6 +78808,60 @@
   ]
  },
  {
+  "slug": "dick-german",
+  "term": "dick",
+  "gloss": "German",
+  "original": "dick",
+  "translation": null,
+  "language": "German",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 2684,
+    "role": "subject",
+    "note": "German for fat, a relative of English thick, since English th often matches a Germanic d.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "thick",
+      "slug": "thick",
+      "start": 38,
+      "end": 43
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "dick-name",
+  "term": "Dick",
+  "gloss": "name",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "6Rr6qfIIapY",
+    "t": 663,
+    "role": "aside",
+    "note": "Once a popular name for the everyman, which is why we have spotted dick.",
+    "links": [
+     {
+      "type": "gave",
+      "uncertain": false,
+      "target": "spotted dick",
+      "slug": "spotted-dick",
+      "start": 59,
+      "end": 71
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "dickass",
   "term": "dickass",
   "original": null,
@@ -78329,8 +78903,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "dick",
-      "slug": "dick",
+      "target": "dick (German)",
+      "slug": "dick-german",
       "start": 51,
       "end": 55
      }
@@ -79569,10 +80143,10 @@
  },
  {
   "slug": "diner",
-  "term": "dîner",
-  "original": "dîner",
+  "term": "diner",
+  "original": null,
   "translation": null,
-  "language": "French",
+  "language": "English",
   "mentions": [
    {
     "episode_id": "o6KlBd7TPFI",
@@ -79581,7 +80155,17 @@
     "note": "Its use for a restaurant, rather than a person who dines, is an Americanism.",
     "links": [],
     "confidence": "high"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "diner-french",
+  "term": "dîner",
+  "gloss": "French",
+  "original": "dîner",
+  "translation": null,
+  "language": "French",
+  "mentions": [
    {
     "episode_id": "cpbX99gYP4M",
     "t": 324,
@@ -82912,86 +83496,10 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "donner",
-      "slug": "donner",
+      "target": "donner (French)",
+      "slug": "donner-french",
       "start": 98,
       "end": 104
-     }
-    ],
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "donner",
-  "term": "Donner",
-  "original": "donner",
-  "translation": "to give",
-  "language": "English",
-  "mentions": [
-   {
-    "episode_id": "9A0hAxeFyo4",
-    "t": 1051,
-    "role": "subject",
-    "note": "German for thunder; originally the Dutch Dunder in the poem, changed by Clement Clarke Moore via an intermediate form.",
-    "links": [
-     {
-      "type": "from",
-      "uncertain": false,
-      "target": "Dunder",
-      "slug": "dunder",
-      "start": 41,
-      "end": 47
-     },
-     {
-      "type": "see",
-      "uncertain": false,
-      "target": "Clement Clarke Moore",
-      "slug": "clement-clarke-moore",
-      "start": 72,
-      "end": 92
-     }
-    ],
-    "confidence": "high"
-   },
-   {
-    "episode_id": "vrZwAuQ6X0c",
-    "t": 403,
-    "role": "subject",
-    "note": "The French verb to give, related to donor and données.",
-    "links": [
-     {
-      "type": "same-root",
-      "uncertain": false,
-      "target": "donor",
-      "slug": "donor",
-      "start": 36,
-      "end": 41
-     },
-     {
-      "type": "same-root",
-      "uncertain": false,
-      "target": "données",
-      "slug": "donnees",
-      "start": 46,
-      "end": 53
-     }
-    ],
-    "confidence": "high"
-   },
-   {
-    "episode_id": "Lad89Mtao0U",
-    "t": 356,
-    "role": "aside",
-    "note": "Example of German d matching English th under the second Germanic consonant shift.",
-    "links": [
-     {
-      "type": "see",
-      "uncertain": false,
-      "target": "second Germanic consonant shift",
-      "slug": "second-germanic-consonant-shift",
-      "start": 50,
-      "end": 81
      }
     ],
     "confidence": "high"
@@ -83025,6 +83533,103 @@
   ]
  },
  {
+  "slug": "donner-french",
+  "term": "donner",
+  "gloss": "French",
+  "original": "donner",
+  "translation": "to give",
+  "language": "French",
+  "mentions": [
+   {
+    "episode_id": "vrZwAuQ6X0c",
+    "t": 403,
+    "role": "subject",
+    "note": "The French verb to give, related to donor and données.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "donor",
+      "slug": "donor",
+      "start": 36,
+      "end": 41
+     },
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "données",
+      "slug": "donnees",
+      "start": 46,
+      "end": 53
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "donner-german",
+  "term": "Donner",
+  "gloss": "German",
+  "original": "Donner",
+  "translation": "thunder",
+  "language": "German",
+  "mentions": [
+   {
+    "episode_id": "Lad89Mtao0U",
+    "t": 356,
+    "role": "aside",
+    "note": "Example of German d matching English th under the second Germanic consonant shift.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "second Germanic consonant shift",
+      "slug": "second-germanic-consonant-shift",
+      "start": 50,
+      "end": 81
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "donner-reindeer",
+  "term": "Donner",
+  "gloss": "reindeer",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "9A0hAxeFyo4",
+    "t": 1051,
+    "role": "subject",
+    "note": "German for thunder; originally the Dutch Dunder in the poem, changed by Clement Clarke Moore via an intermediate form.",
+    "links": [
+     {
+      "type": "from",
+      "uncertain": false,
+      "target": "Dunder",
+      "slug": "dunder",
+      "start": 41,
+      "end": 47
+     },
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "Clement Clarke Moore",
+      "slug": "clement-clarke-moore",
+      "start": 72,
+      "end": 92
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "donor",
   "term": "donor",
   "original": null,
@@ -83048,8 +83653,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "donner",
-      "slug": "donner",
+      "target": "donner (French)",
+      "slug": "donner-french",
       "start": 48,
       "end": 54
      }
@@ -84247,7 +84852,17 @@
      }
     ],
     "confidence": "high"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "dracula-orchid",
+  "term": "Dracula",
+  "gloss": "orchid",
+  "original": null,
+  "translation": null,
+  "language": "Latin",
+  "mentions": [
    {
     "episode_id": "9Z2kjEJAscs",
     "t": 2464,
@@ -86207,8 +86822,8 @@
      {
       "type": "gave",
       "uncertain": false,
-      "target": "Donner",
-      "slug": "donner",
+      "target": "Donner (reindeer)",
+      "slug": "donner-reindeer",
       "start": 73,
       "end": 79
      },
@@ -87811,8 +88426,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Narcissus",
-      "slug": "narcissus",
+      "target": "Narcissus (myth)",
+      "slug": "narcissus-myth",
       "start": 72,
       "end": 81
      }
@@ -87845,8 +88460,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Narcissus",
-      "slug": "narcissus",
+      "target": "Narcissus (myth)",
+      "slug": "narcissus-myth",
       "start": 64,
       "end": 73
      },
@@ -87956,10 +88571,37 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "écu",
-      "slug": "ecu",
+      "target": "écu (French)",
+      "slug": "ecu-french",
       "start": 124,
       "end": 127
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "ecu-french",
+  "term": "écu",
+  "gloss": "French",
+  "original": "écu",
+  "translation": null,
+  "language": "French",
+  "mentions": [
+   {
+    "episode_id": "iUnj_TSLqgw",
+    "t": 1019,
+    "role": "aside",
+    "note": "Old French coin whose name clashed with the proposed ECU.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "ECU",
+      "slug": "ecu",
+      "start": 53,
+      "end": 56
      }
     ],
     "confidence": "high"
@@ -92400,8 +93042,8 @@
      {
       "type": "gave",
       "uncertain": false,
-      "target": "gin",
-      "slug": "gin",
+      "target": "gin (machine)",
+      "slug": "gin-machine",
       "start": 111,
       "end": 114
      }
@@ -93508,7 +94150,17 @@
      }
     ],
     "confidence": "high"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "er-german",
+  "term": "-er",
+  "gloss": "German",
+  "original": null,
+  "translation": null,
+  "language": "German",
+  "mentions": [
    {
     "episode_id": "2Jvlji9GlOw",
     "t": 1163,
@@ -94677,8 +95329,8 @@
  {
   "slug": "est",
   "term": "-est",
-  "original": "est",
-  "translation": "east",
+  "original": null,
+  "translation": null,
   "language": "English",
   "mentions": [
    {
@@ -94688,7 +95340,17 @@
     "note": "A Germanic superlative suffix used on one-syllable adjectives, while words of three or more syllables take 'most'; Rob suggests the 'most' construction is a French habit.",
     "links": [],
     "confidence": "high"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "est-french",
+  "term": "est",
+  "gloss": "French",
+  "original": "est",
+  "translation": "east",
+  "language": "French",
+  "mentions": [
    {
     "episode_id": "0TTPpHUVL3Y",
     "t": 2088,
@@ -97438,8 +98100,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Hackney",
-      "slug": "hackney",
+      "target": "Hackney (place)",
+      "slug": "hackney-place",
       "start": 84,
       "end": 91
      }
@@ -97929,8 +98591,8 @@
      {
       "type": "gave",
       "uncertain": false,
-      "target": "fare",
-      "slug": "fare",
+      "target": "fare (Italian)",
+      "slug": "fare-italian",
       "start": 100,
       "end": 104
      }
@@ -98469,8 +99131,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Gonzo",
-      "slug": "gonzo",
+      "target": "Gonzo (Muppet)",
+      "slug": "gonzo-muppet",
       "start": 46,
       "end": 51
      }
@@ -98790,27 +99452,10 @@
  {
   "slug": "fare",
   "term": "fare",
-  "original": "fare",
+  "original": null,
   "translation": null,
-  "language": "Italian",
+  "language": "English",
   "mentions": [
-   {
-    "episode_id": "iUnj_TSLqgw",
-    "t": 2227,
-    "role": "aside",
-    "note": "Italian verb that comes from facere.",
-    "links": [
-     {
-      "type": "from",
-      "uncertain": false,
-      "target": "facere",
-      "slug": "facere",
-      "start": 29,
-      "end": 35
-     }
-    ],
-    "confidence": "high"
-   },
    {
     "episode_id": "La3toomR-ow",
     "t": 1884,
@@ -98832,6 +99477,33 @@
       "slug": "farewell",
       "start": 84,
       "end": 92
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "fare-italian",
+  "term": "fare",
+  "gloss": "Italian",
+  "original": "fare",
+  "translation": null,
+  "language": "Italian",
+  "mentions": [
+   {
+    "episode_id": "iUnj_TSLqgw",
+    "t": 2227,
+    "role": "aside",
+    "note": "Italian verb that comes from facere.",
+    "links": [
+     {
+      "type": "from",
+      "uncertain": false,
+      "target": "facere",
+      "slug": "facere",
+      "start": 29,
+      "end": 35
      }
     ],
     "confidence": "high"
@@ -99275,7 +99947,7 @@
  {
   "slug": "fast",
   "term": "fast",
-  "original": "fast",
+  "original": null,
   "translation": null,
   "language": "English",
   "mentions": [
@@ -99313,6 +99985,33 @@
     ],
     "confidence": "high"
    },
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 1728,
+    "role": "subject",
+    "note": "Can mean tight or stuck; the speedy sense comes from sticking to an intense pace, a contronym Rob covered in a video; compare German fast.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "fast (German)",
+      "slug": "fast-german",
+      "start": 133,
+      "end": 137
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "fast-german",
+  "term": "fast",
+  "gloss": "German",
+  "original": "fast",
+  "translation": null,
+  "language": "German",
+  "mentions": [
    {
     "episode_id": "XA4d9r6Yu5A",
     "t": 1716,
@@ -99444,8 +100143,54 @@
   ]
  },
  {
-  "slug": "fat",
+  "slug": "fat-cantonese",
   "term": "fat",
+  "gloss": "Cantonese",
+  "original": "fat",
+  "translation": null,
+  "language": "Cantonese",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 2732,
+    "role": "subject",
+    "note": "Cantonese for to show or exhibit, unrelated to the other words spelled fat.",
+    "links": [],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "fat-catalan",
+  "term": "fat",
+  "gloss": "Catalan",
+  "original": "fat",
+  "translation": null,
+  "language": "Catalan",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 2724,
+    "role": "subject",
+    "note": "In Albanian and Catalan, luck, chance, fate or destiny, related to fate.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "fate",
+      "slug": "fate",
+      "start": 67,
+      "end": 71
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "fat-swedish",
+  "term": "fat",
+  "gloss": "Swedish",
   "original": "fat",
   "translation": null,
   "language": "Swedish",
@@ -99485,8 +100230,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "fat",
-      "slug": "fat",
+      "target": "fat (Catalan)",
+      "slug": "fat-catalan",
       "start": 36,
       "end": 39
      }
@@ -108755,8 +109500,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "-lich",
-      "slug": "lich",
+      "target": "-lich (German)",
+      "slug": "lich-german",
       "start": 28,
       "end": 33
      },
@@ -115269,7 +116014,34 @@
  },
  {
   "slug": "gift",
+  "term": "gift",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 601,
+    "role": "subject",
+    "note": "Simply something that has been given, like a present; shares its source with German Gift, poison.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "Gift (German)",
+      "slug": "gift-german",
+      "start": 84,
+      "end": 88
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "gift-german",
   "term": "Gift",
+  "gloss": "German",
   "original": "Gift",
   "translation": null,
   "language": "German",
@@ -115287,6 +116059,33 @@
       "slug": "gift",
       "start": 51,
       "end": 55
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "gift-swedish",
+  "term": "gift",
+  "gloss": "Swedish",
+  "original": "gift",
+  "translation": null,
+  "language": "Swedish",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 582,
+    "role": "subject",
+    "note": "Swedish for poison, like German Gift, and also for married.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "Gift (German)",
+      "slug": "gift-german",
+      "start": 32,
+      "end": 36
      }
     ],
     "confidence": "high"
@@ -115481,17 +116280,17 @@
    },
    {
     "episode_id": "qheviaPndXU",
-    "t": 2581,
-    "role": "subject",
-    "note": "Short for engine, as in a cotton gin; used for machinery since Middle English and Old French, especially war machines and torture devices.",
+    "t": 2608,
+    "role": "aside",
+    "note": "The drink, from a word meaning juniper, is unrelated to the machine gin short for engine, as possibly noted in the alcohol episode.",
     "links": [
      {
-      "type": "from",
+      "type": "unrelated",
       "uncertain": false,
       "target": "engine",
       "slug": "engine",
-      "start": 10,
-      "end": 16
+      "start": 82,
+      "end": 88
      }
     ],
     "confidence": "high"
@@ -115518,6 +116317,33 @@
       "slug": "tonic-and-gin",
       "start": 73,
       "end": 86
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "gin-machine",
+  "term": "gin",
+  "gloss": "machine",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "qheviaPndXU",
+    "t": 2581,
+    "role": "subject",
+    "note": "Short for engine, as in a cotton gin; used for machinery since Middle English and Old French, especially war machines and torture devices.",
+    "links": [
+     {
+      "type": "from",
+      "uncertain": false,
+      "target": "engine",
+      "slug": "engine",
+      "start": 10,
+      "end": 16
      }
     ],
     "confidence": "high"
@@ -116564,8 +117390,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "A",
-      "slug": "a",
+      "target": "A (letter)",
+      "slug": "a-letter",
       "start": 81,
       "end": 82
      }
@@ -116633,8 +117459,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "-lich",
-      "slug": "lich",
+      "target": "-lich (German)",
+      "slug": "lich-german",
       "start": 52,
       "end": 57
      }
@@ -117771,6 +118597,33 @@
       "slug": "gonzo",
       "start": 93,
       "end": 98
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "gonzo-muppet",
+  "term": "Gonzo",
+  "gloss": "Muppet",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "Q_A1OtVd8RA",
+    "t": 2666,
+    "role": "subject",
+    "note": "The Muppet debuted in 1970 but was only named after gonzo journalism got its name, probably intentionally.",
+    "links": [
+     {
+      "type": "from",
+      "uncertain": true,
+      "target": "gonzo journalism",
+      "slug": "gonzo-journalism",
+      "start": 52,
+      "end": 68
      }
     ],
     "confidence": "high"
@@ -121276,8 +122129,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "groß",
-      "slug": "gross",
+      "target": "groß (German)",
+      "slug": "gross-german",
       "start": 141,
       "end": 145
      },
@@ -121288,6 +122141,33 @@
       "slug": "gros",
       "start": 157,
       "end": 161
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "gross-german",
+  "term": "groß",
+  "gloss": "German",
+  "original": "groß",
+  "translation": "big",
+  "language": "German",
+  "mentions": [
+   {
+    "episode_id": "L8QXVs2DNFk",
+    "t": 862,
+    "role": "aside",
+    "note": "The German for big, one of the related words given alongside gross.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "gross",
+      "slug": "gross",
+      "start": 61,
+      "end": 66
      }
     ],
     "confidence": "high"
@@ -121787,8 +122667,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "long",
-      "slug": "long",
+      "target": "long (Chinese)",
+      "slug": "long-chinese",
       "start": 57,
       "end": 61
      }
@@ -123322,8 +124202,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Dick",
-      "slug": "dick",
+      "target": "Dick (name)",
+      "slug": "dick-name",
       "start": 84,
       "end": 88
      }
@@ -123616,6 +124496,33 @@
       "slug": "flamenco",
       "start": 93,
       "end": 101
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "gypsy-musical",
+  "term": "Gypsy",
+  "gloss": "musical",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "mentions": [
+   {
+    "episode_id": "6JYqGa_-UZE",
+    "t": 1316,
+    "role": "aside",
+    "note": "A frequently staged American musical, cited to show how unremarkable gypsy seems in the US.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "gypsy",
+      "slug": "gypsy",
+      "start": 69,
+      "end": 74
      }
     ],
     "confidence": "high"
@@ -123945,10 +124852,45 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "Hackney",
-      "slug": "hackney",
+      "target": "Hackney (place)",
+      "slug": "hackney-place",
       "start": 96,
       "end": 103
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "hackney-place",
+  "term": "Hackney",
+  "gloss": "place",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "kf81cdpXteA",
+    "t": 1476,
+    "role": "subject",
+    "note": "London place name, Old English for perhaps Haca's island or hook island, ending in the island suffix -ey; it gave hackney.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "-ey",
+      "slug": "ey",
+      "start": 101,
+      "end": 104
+     },
+     {
+      "type": "gave",
+      "uncertain": false,
+      "target": "hackney",
+      "slug": "hackney",
+      "start": 114,
+      "end": 121
      }
     ],
     "confidence": "high"
@@ -124820,8 +125762,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "-er",
-      "slug": "er",
+      "target": "-er (German)",
+      "slug": "er-german",
       "start": 56,
       "end": 59
      }
@@ -125195,8 +126137,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Handy",
-      "slug": "handy",
+      "target": "Handy (German)",
+      "slug": "handy-german",
       "start": 72,
       "end": 77
      }
@@ -125233,7 +126175,25 @@
  },
  {
   "slug": "handy",
+  "term": "handy",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 1820,
+    "role": "subject",
+    "note": "Rob says English has only the adjective, then realises there is a crude noun sense, one of his worst moments on the podcast.",
+    "links": [],
+    "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "handy-german",
   "term": "Handy",
+  "gloss": "German",
   "original": "Handy",
   "translation": null,
   "language": "German",
@@ -129573,13 +130533,40 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Heorot",
-      "slug": "heorot",
+      "target": "Heorot (hall)",
+      "slug": "heorot-hall",
       "start": 79,
       "end": 85
      }
     ],
     "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "heorot-hall",
+  "term": "Heorot",
+  "gloss": "hall",
+  "original": null,
+  "translation": null,
+  "language": "Old English",
+  "mentions": [
+   {
+    "episode_id": "0TTPpHUVL3Y",
+    "t": 724,
+    "role": "aside",
+    "note": "The hall in Beowulf, named for the stag (heorot) because royalty was associated with stags.",
+    "links": [
+     {
+      "type": "from",
+      "uncertain": false,
+      "target": "heorot",
+      "slug": "heorot",
+      "start": 41,
+      "end": 47
+     }
+    ],
+    "confidence": "high"
    }
   ]
  },
@@ -130453,8 +131440,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "-ing",
-      "slug": "ing",
+      "target": "-ing (noun suffix)",
+      "slug": "ing-noun-suffix",
       "start": 74,
       "end": 78
      }
@@ -132404,6 +133391,33 @@
   ]
  },
  {
+  "slug": "hobnob-biscuit",
+  "term": "HobNob",
+  "gloss": "biscuit",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "91ZxuC2jLo4",
+    "t": 1772,
+    "role": "aside",
+    "note": "The biscuit, which Rob calls the best biscuit, brought up as what hobnob really means.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "hobnob",
+      "slug": "hobnob",
+      "start": 66,
+      "end": 72
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "hobo",
   "term": "hobo",
   "original": null,
@@ -132776,8 +133790,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Phoenix",
-      "slug": "phoenix",
+      "target": "Phoenix (city)",
+      "slug": "phoenix-city",
       "start": 119,
       "end": 126
      }
@@ -135280,10 +136294,37 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Hostel",
-      "slug": "hostel",
+      "target": "Hostel (film)",
+      "slug": "hostel-film",
       "start": 106,
       "end": 112
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "hostel-film",
+  "term": "Hostel",
+  "gloss": "film",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "IvWUmPs12UU",
+    "t": 2400,
+    "role": "aside",
+    "note": "Horror franchise whose title Jess thinks is a pun on hostile.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "hostile",
+      "slug": "hostile",
+      "start": 53,
+      "end": 60
      }
     ],
     "confidence": "high"
@@ -138553,7 +139594,7 @@
  {
   "slug": "ian",
   "term": "-ian",
-  "original": "Ian",
+  "original": null,
   "translation": null,
   "language": "English",
   "mentions": [
@@ -138573,23 +139614,6 @@
      }
     ],
     "confidence": "high"
-   },
-   {
-    "episode_id": "P7OrRqykwWc",
-    "t": 1231,
-    "role": "subject",
-    "note": "A variant of John.",
-    "links": [
-     {
-      "type": "same-root",
-      "uncertain": false,
-      "target": "John",
-      "slug": "john",
-      "start": 13,
-      "end": 17
-     }
-    ],
-    "confidence": "low"
    }
   ]
  },
@@ -138616,6 +139640,33 @@
      }
     ],
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "ian-name",
+  "term": "Ian",
+  "gloss": "name",
+  "original": "Ian",
+  "translation": null,
+  "language": "Scottish Gaelic",
+  "mentions": [
+   {
+    "episode_id": "P7OrRqykwWc",
+    "t": 1231,
+    "role": "subject",
+    "note": "A variant of John.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "John",
+      "slug": "john",
+      "start": 13,
+      "end": 17
+     }
+    ],
+    "confidence": "low"
    }
   ]
  },
@@ -139760,8 +140811,17 @@
     "episode_id": "6JYqGa_-UZE",
     "t": 1235,
     "role": "subject",
-    "note": "A see:softeners example: at a party you can't just say 'I'm leaving'; you say you're going to head out and leave gradually.",
-    "links": [],
+    "note": "An example of softeners: at a party you can't just say 'I'm leaving'; you say you're going to head out and leave gradually.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "softeners",
+      "slug": "softeners",
+      "start": 14,
+      "end": 23
+     }
+    ],
     "confidence": "high"
    }
   ]
@@ -141546,7 +142606,17 @@
      }
     ],
     "confidence": "high"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "ing-noun-suffix",
+  "term": "-ing",
+  "gloss": "noun suffix",
+  "original": null,
+  "translation": null,
+  "language": "Old English",
+  "mentions": [
    {
     "episode_id": "fR7IIZAy4Js",
     "t": 1123,
@@ -144963,8 +146033,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Phoenix",
-      "slug": "phoenix",
+      "target": "Phoenix (city)",
+      "slug": "phoenix-city",
       "start": 100,
       "end": 107
      }
@@ -149267,7 +150337,7 @@
  {
   "slug": "jolly",
   "term": "jolly",
-  "original": "jolly",
+  "original": null,
   "translation": null,
   "language": "English",
   "mentions": [
@@ -149329,7 +150399,17 @@
      }
     ],
     "confidence": "high"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "jolly-italian",
+  "term": "jolly",
+  "gloss": "Italian",
+  "original": "jolly",
+  "translation": null,
+  "language": "Italian",
+  "mentions": [
    {
     "episode_id": "XA4d9r6Yu5A",
     "t": 2559,
@@ -150270,6 +151350,33 @@
       "slug": null,
       "start": 14,
       "end": 24
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "juggernaut-character",
+  "term": "Juggernaut",
+  "gloss": "character",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "mentions": [
+   {
+    "episode_id": "b8s2uxWrMhQ",
+    "t": 1766,
+    "role": "aside",
+    "note": "X-Men character who can burst through almost anything, named from juggernaut.",
+    "links": [
+     {
+      "type": "from",
+      "uncertain": false,
+      "target": "juggernaut",
+      "slug": "juggernaut",
+      "start": 66,
+      "end": 76
      }
     ],
     "confidence": "high"
@@ -160055,10 +161162,37 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "lego",
-      "slug": "lego",
+      "target": "lego (Latin)",
+      "slug": "lego-latin",
       "start": 134,
       "end": 138
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "lego-latin",
+  "term": "lego",
+  "gloss": "Latin",
+  "original": "lego",
+  "translation": "I read",
+  "language": "Latin",
+  "mentions": [
+   {
+    "episode_id": "7jPjtgg06L0",
+    "t": 374,
+    "role": "subject",
+    "note": "Latin for I read, also interpretable as I assemble or I collect, a serendipitous coincidence with LEGO.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "LEGO",
+      "slug": "lego",
+      "start": 98,
+      "end": 102
      }
     ],
     "confidence": "high"
@@ -161954,32 +163088,24 @@
  },
  {
   "slug": "lich",
-  "term": "-lich",
-  "original": "-lich",
+  "term": "lich",
+  "original": null,
   "translation": null,
-  "language": "German",
+  "language": "English",
   "mentions": [
    {
     "episode_id": "9xorsfTRRHM",
-    "t": 2735,
+    "t": 2775,
     "role": "subject",
-    "note": "German ending, like Dutch -lijk, that is the word like and corresponds to English -ly.",
+    "note": "From an Old English word for a corpse, used for undead in fantasy games; cognate with like, meaning body or form.",
     "links": [
      {
       "type": "same-root",
       "uncertain": false,
       "target": "like",
       "slug": "like",
-      "start": 50,
-      "end": 54
-     },
-     {
-      "type": "same-root",
-      "uncertain": false,
-      "target": "-ly",
-      "slug": "ly",
-      "start": 82,
-      "end": 85
+      "start": 86,
+      "end": 90
      }
     ],
     "confidence": "high"
@@ -162005,6 +163131,41 @@
       "slug": "like",
       "start": 84,
       "end": 88
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "lich-german",
+  "term": "-lich",
+  "gloss": "German",
+  "original": "-lich",
+  "translation": null,
+  "language": "German",
+  "mentions": [
+   {
+    "episode_id": "9xorsfTRRHM",
+    "t": 2735,
+    "role": "subject",
+    "note": "German ending, like Dutch -lijk, that is the word like and corresponds to English -ly.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "like",
+      "slug": "like",
+      "start": 50,
+      "end": 54
+     },
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "-ly",
+      "slug": "ly",
+      "start": 82,
+      "end": 85
      }
     ],
     "confidence": "high"
@@ -162644,8 +163805,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "-lich",
-      "slug": "lich",
+      "target": "-lich (German)",
+      "slug": "lich-german",
       "start": 19,
       "end": 24
      },
@@ -163202,8 +164363,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "-ing",
-      "slug": "ing",
+      "target": "-ing (noun suffix)",
+      "slug": "ing-noun-suffix",
       "start": 46,
       "end": 50
      }
@@ -164748,8 +165909,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Ness",
-      "slug": "ness",
+      "target": "Ness (river)",
+      "slug": "ness-river",
       "start": 108,
       "end": 112
      }
@@ -165180,6 +166341,33 @@
  {
   "slug": "long",
   "term": "long",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "La3toomR-ow",
+    "t": 2247,
+    "role": "aside",
+    "note": "Unrelated to the -ling ending in headlong and sidelong, as is along.",
+    "links": [
+     {
+      "type": "unrelated",
+      "uncertain": false,
+      "target": "-ling",
+      "slug": "ling",
+      "start": 17,
+      "end": 22
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "long-chinese",
+  "term": "long",
+  "gloss": "Chinese",
   "original": "long",
   "translation": "dragon",
   "language": "Chinese",
@@ -165205,23 +166393,6 @@
       "slug": "dragon",
       "start": 133,
       "end": 140
-     }
-    ],
-    "confidence": "high"
-   },
-   {
-    "episode_id": "La3toomR-ow",
-    "t": 2247,
-    "role": "aside",
-    "note": "Unrelated to the -ling ending in headlong and sidelong, as is along.",
-    "links": [
-     {
-      "type": "unrelated",
-      "uncertain": false,
-      "target": "-ling",
-      "slug": "ling",
-      "start": 17,
-      "end": 22
      }
     ],
     "confidence": "high"
@@ -165929,8 +167100,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Lore",
-      "slug": "lore",
+      "target": "Lore (podcast)",
+      "slug": "lore-podcast",
       "start": 125,
       "end": 129
      }
@@ -165952,6 +167123,24 @@
       "end": 124
      }
     ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "lore-podcast",
+  "term": "Lore",
+  "gloss": "podcast",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "mentions": [
+   {
+    "episode_id": "b8s2uxWrMhQ",
+    "t": 1441,
+    "role": "aside",
+    "note": "A podcast about dark historical tales that Jess recommends.",
+    "links": [],
     "confidence": "high"
    }
   ]
@@ -167907,8 +169096,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "-lich",
-      "slug": "lich",
+      "target": "-lich (German)",
+      "slug": "lich-german",
       "start": 77,
       "end": 82
      }
@@ -169167,10 +170356,37 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "magazine",
-      "slug": "magazine",
+      "target": "magazine (French)",
+      "slug": "magazine-french",
       "start": 155,
       "end": 163
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "magazine-french",
+  "term": "magazine",
+  "gloss": "French",
+  "original": "magazine",
+  "translation": null,
+  "language": "French",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 98,
+    "role": "subject",
+    "note": "French for a shop, from the same storehouse word as English magazine.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "magazine",
+      "slug": "magazine",
+      "start": 60,
+      "end": 68
      }
     ],
     "confidence": "high"
@@ -169220,7 +170436,7 @@
       "type": "from",
       "uncertain": false,
       "target": "Magenta",
-      "slug": "magenta",
+      "slug": null,
       "start": 12,
       "end": 19
      }
@@ -172329,7 +173545,34 @@
  },
  {
   "slug": "mark",
+  "term": "mark",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "iUnj_TSLqgw",
+    "t": 2523,
+    "role": "aside",
+    "note": "Directly related to the German currency Mark, whose first coins were cut from marked ingots.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "Mark (currency)",
+      "slug": "mark-currency",
+      "start": 40,
+      "end": 44
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "mark-currency",
   "term": "Mark",
+  "gloss": "currency",
   "original": "Mark",
   "translation": null,
   "language": "German",
@@ -172443,6 +173686,24 @@
       "end": 58
      }
     ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "maroon-insult",
+  "term": "maroon",
+  "gloss": "insult",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "DKCsWcnzWVU",
+    "t": 1889,
+    "role": "aside",
+    "note": "A Bugs Bunny-era insult, saved for a future episode and unrelated to the colour.",
+    "links": [],
     "confidence": "high"
    }
   ]
@@ -173985,15 +175246,15 @@
     "episode_id": "cpbX99gYP4M",
     "t": 712,
     "role": "subject",
-    "note": "Ground grain such as flour, from a root meaning grind and directly related to mill; unrelated to meal meaning a repast, despite the matching spelling.",
+    "note": "A repast, from a Germanic root meaning time, as in German Mal, which makes mealtime tautologous; unrelated to meal meaning flour.",
     "links": [
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "mill",
-      "slug": "mill",
-      "start": 78,
-      "end": 82
+      "target": "Mal",
+      "slug": "mal",
+      "start": 58,
+      "end": 61
      }
     ],
     "confidence": "high"
@@ -174011,6 +175272,33 @@
       "slug": "blackmail",
       "start": 23,
       "end": 32
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "meal-flour",
+  "term": "meal",
+  "gloss": "flour",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "cpbX99gYP4M",
+    "t": 712,
+    "role": "subject",
+    "note": "Ground grain such as flour, from a root meaning grind and directly related to mill; unrelated to meal meaning a repast, despite the matching spelling.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "mill",
+      "slug": "mill",
+      "start": 78,
+      "end": 82
      }
     ],
     "confidence": "high"
@@ -174521,8 +175809,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "long",
-      "slug": "long",
+      "target": "long (Chinese)",
+      "slug": "long-chinese",
       "start": 60,
       "end": 64
      }
@@ -174944,6 +176232,33 @@
       "slug": "gene",
       "start": 115,
       "end": 119
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "meme-french",
+  "term": "même",
+  "gloss": "French",
+  "original": "même",
+  "translation": "same",
+  "language": "French",
+  "mentions": [
+   {
+    "episode_id": "vrZwAuQ6X0c",
+    "t": 1443,
+    "role": "aside",
+    "note": "Dawkins said meme could be thought of as related to this French word, though it isn't.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "meme",
+      "slug": "meme",
+      "start": 13,
+      "end": 17
      }
     ],
     "confidence": "high"
@@ -175634,7 +176949,7 @@
       "type": "from",
       "uncertain": false,
       "target": "Mercury",
-      "slug": "mercury",
+      "slug": null,
       "start": 26,
       "end": 33
      },
@@ -176601,6 +177916,33 @@
   ]
  },
  {
+  "slug": "meta-company",
+  "term": "Meta",
+  "gloss": "company",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "vrZwAuQ6X0c",
+    "t": 2336,
+    "role": "aside",
+    "note": "Facebook's new name, adopted out of dedication to the metaverse and to own the term.",
+    "links": [
+     {
+      "type": "from",
+      "uncertain": false,
+      "target": "metaverse",
+      "slug": "metaverse",
+      "start": 54,
+      "end": 63
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "metahistory",
   "term": "metahistory",
   "original": null,
@@ -176855,8 +178197,8 @@
      {
       "type": "gave",
       "uncertain": false,
-      "target": "Meta",
-      "slug": "meta",
+      "target": "Meta (company)",
+      "slug": "meta-company",
       "start": 88,
       "end": 92
      },
@@ -178712,8 +180054,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "meal",
-      "slug": "meal",
+      "target": "meal (flour)",
+      "slug": "meal-flour",
       "start": 20,
       "end": 24
      }
@@ -182693,8 +184035,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Dracula",
-      "slug": "dracula",
+      "target": "Dracula (orchid)",
+      "slug": "dracula-orchid",
       "start": 34,
       "end": 41
      }
@@ -186601,23 +187943,6 @@
   "language": "English",
   "mentions": [
    {
-    "episode_id": "vBa8CIltJ24",
-    "t": 1247,
-    "role": "aside",
-    "note": "A parlour game played to pass the evenings, which inspired the inventor of Cluedo.",
-    "links": [
-     {
-      "type": "see",
-      "uncertain": false,
-      "target": "Cluedo",
-      "slug": "cluedo",
-      "start": 75,
-      "end": 81
-     }
-    ],
-    "confidence": "high"
-   },
-   {
     "episode_id": "ZqBYXlunxds",
     "t": 2141,
     "role": "aside",
@@ -186663,6 +187988,33 @@
       "slug": "mord",
       "start": 104,
       "end": 108
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "murder-game",
+  "term": "Murder",
+  "gloss": "game",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "mentions": [
+   {
+    "episode_id": "vBa8CIltJ24",
+    "t": 1247,
+    "role": "aside",
+    "note": "A parlour game played to pass the evenings, which inspired the inventor of Cluedo.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "Cluedo",
+      "slug": "cluedo",
+      "start": 75,
+      "end": 81
      }
     ],
     "confidence": "high"
@@ -187587,6 +188939,33 @@
       "slug": null,
       "start": 85,
       "end": 93
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "muster-german",
+  "term": "Muster",
+  "gloss": "German",
+  "original": "Muster",
+  "translation": "sample",
+  "language": "German",
+  "mentions": [
+   {
+    "episode_id": "d2q4bBjWmtI",
+    "t": 1071,
+    "role": "subject",
+    "note": "German for a sample, such as a carpet sample; in most European languages this cognate of English muster means a sample, example or template.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "muster",
+      "slug": "muster",
+      "start": 97,
+      "end": 103
      }
     ],
     "confidence": "high"
@@ -189216,8 +190595,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "Narcissus",
-      "slug": "narcissus",
+      "target": "Narcissus (myth)",
+      "slug": "narcissus-myth",
       "start": 30,
       "end": 39
      },
@@ -189241,8 +190620,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "Narcissus",
-      "slug": "narcissus",
+      "target": "Narcissus (myth)",
+      "slug": "narcissus-myth",
       "start": 30,
       "end": 39
      },
@@ -189283,8 +190662,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "Narcissus",
-      "slug": "narcissus",
+      "target": "Narcissus (myth)",
+      "slug": "narcissus-myth",
       "start": 35,
       "end": 44
      },
@@ -189320,6 +190699,41 @@
       "slug": null,
       "start": 52,
       "end": 56
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "narcissus-myth",
+  "term": "Narcissus",
+  "gloss": "myth",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "mentions": [
+   {
+    "episode_id": "b8s2uxWrMhQ",
+    "t": 351,
+    "role": "aside",
+    "note": "Beautiful youth in love with his own reflection who rejected Echo and faded away, giving narcissism and the flower narcissus.",
+    "links": [
+     {
+      "type": "gave",
+      "uncertain": false,
+      "target": "narcissism",
+      "slug": "narcissism",
+      "start": 89,
+      "end": 99
+     },
+     {
+      "type": "gave",
+      "uncertain": false,
+      "target": "narcissus",
+      "slug": "narcissus",
+      "start": 115,
+      "end": 124
      }
     ],
     "confidence": "high"
@@ -190727,7 +192141,44 @@
     "note": "A suffix called the friend of every Scrabble player wanting to extend a word.",
     "links": [],
     "confidence": "high"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "ness-headland",
+  "term": "ness",
+  "gloss": "headland",
+  "original": null,
+  "translation": null,
+  "language": "Old Norse",
+  "mentions": [
+   {
+    "episode_id": "hcVF8b2w6n4",
+    "t": 2650,
+    "role": "aside",
+    "note": "Norse word for coastal areas, probably related to the river name Ness.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": true,
+      "target": "Ness (river)",
+      "slug": "ness-river",
+      "start": 65,
+      "end": 69
+     }
+    ],
+    "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "ness-river",
+  "term": "Ness",
+  "gloss": "river",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
    {
     "episode_id": "hcVF8b2w6n4",
     "t": 2642,
@@ -190737,8 +192188,8 @@
      {
       "type": "same-root",
       "uncertain": true,
-      "target": "ness",
-      "slug": "ness",
+      "target": "ness (headland)",
+      "slug": "ness-headland",
       "start": 90,
       "end": 94
      }
@@ -191593,8 +193044,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "Nike",
-      "slug": "nike",
+      "target": "Nike (goddess)",
+      "slug": "nike-goddess",
       "start": 72,
       "end": 76
      }
@@ -192494,8 +193945,27 @@
   ]
  },
  {
-  "slug": "nike",
+  "slug": "nike-company",
   "term": "Nike",
+  "gloss": "company",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "7jPjtgg06L0",
+    "t": 978,
+    "role": "subject",
+    "note": "Pitched by Jeff Johnson after a dream, from the winged goddess of victory; early buyers couldn't pronounce it, and Britons often said Nike to rhyme with bike.",
+    "links": [],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "nike-goddess",
+  "term": "Nike",
+  "gloss": "goddess",
   "original": null,
   "translation": null,
   "language": "Greek",
@@ -192515,14 +193985,6 @@
       "end": 64
      }
     ],
-    "confidence": "high"
-   },
-   {
-    "episode_id": "7jPjtgg06L0",
-    "t": 978,
-    "role": "subject",
-    "note": "Pitched by Jeff Johnson after a dream, from the winged goddess of victory; early buyers couldn't pronounce it, and Britons often said Nike to rhyme with bike.",
-    "links": [],
     "confidence": "high"
    },
    {
@@ -197962,8 +199424,36 @@
   ]
  },
  {
-  "slug": "ol",
+  "slug": "ol-german",
+  "term": "Öl",
+  "gloss": "German",
+  "original": "Öl",
+  "translation": "oil",
+  "language": "German",
+  "mentions": [
+   {
+    "episode_id": "b5O7JqRT7u8",
+    "t": 451,
+    "role": "aside",
+    "note": "German for oil, coincidentally identical to Swedish öl.",
+    "links": [
+     {
+      "type": "unrelated",
+      "uncertain": false,
+      "target": "öl (Swedish)",
+      "slug": "ol-swedish",
+      "start": 52,
+      "end": 54
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "ol-swedish",
   "term": "öl",
+  "gloss": "Swedish",
   "original": "öl",
   "translation": "beer",
   "language": "Swedish",
@@ -197977,8 +199467,8 @@
      {
       "type": "unrelated",
       "uncertain": false,
-      "target": "Öl",
-      "slug": "ol",
+      "target": "Öl (German)",
+      "slug": "ol-german",
       "start": 57,
       "end": 59
      }
@@ -200224,6 +201714,33 @@
     "note": "What the French called the orange, fitting the idea that the fruit was named after the tree.",
     "links": [],
     "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "orange-town",
+  "term": "Orange",
+  "gloss": "town",
+  "original": null,
+  "translation": null,
+  "language": "French",
+  "mentions": [
+   {
+    "episode_id": "7vwN3aiiBM4",
+    "t": 941,
+    "role": "aside",
+    "note": "French place name, as in William of Orange, orange the fruit, though their spellings influenced each other.",
+    "links": [
+     {
+      "type": "unrelated",
+      "uncertain": false,
+      "target": "orange",
+      "slug": "orange",
+      "start": 44,
+      "end": 50
+     }
+    ],
+    "confidence": "high"
    }
   ]
  },
@@ -203383,7 +204900,7 @@
  {
   "slug": "pal",
   "term": "pal",
-  "original": "Pål",
+  "original": null,
   "translation": null,
   "language": "English",
   "mentions": [
@@ -203394,7 +204911,17 @@
     "note": "Originally prison slang for a partner in crime.",
     "links": [],
     "confidence": "high"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "pal-name",
+  "term": "Pål",
+  "gloss": "name",
+  "original": "Pål",
+  "translation": null,
+  "language": "Norwegian",
+  "mentions": [
    {
     "episode_id": "P7OrRqykwWc",
     "t": 2460,
@@ -203829,6 +205356,41 @@
     "role": "subject",
     "note": "In English, flair; it was a French word for a tuft or plume of feathers worn on a hat.",
     "links": [],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "panache-french",
+  "term": "panaché",
+  "gloss": "French",
+  "original": "panaché",
+  "translation": null,
+  "language": "French",
+  "mentions": [
+   {
+    "episode_id": "PfK6C7NASqQ",
+    "t": 2178,
+    "role": "subject",
+    "note": "A French drink of beer mixed with lemonade, the same as a shandy or Radler.",
+    "links": [
+     {
+      "type": "equivalent",
+      "uncertain": false,
+      "target": "shandy",
+      "slug": "shandy",
+      "start": 58,
+      "end": 64
+     },
+     {
+      "type": "equivalent",
+      "uncertain": false,
+      "target": "Radler",
+      "slug": "radler",
+      "start": 68,
+      "end": 74
+     }
+    ],
     "confidence": "high"
    }
   ]
@@ -206334,8 +207896,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "péter",
-      "slug": "peter",
+      "target": "péter (French)",
+      "slug": "peter-french",
       "start": 34,
       "end": 39
      },
@@ -209041,7 +210603,7 @@
  {
   "slug": "people",
   "term": "people",
-  "original": "people",
+  "original": null,
   "translation": null,
   "language": "English",
   "mentions": [
@@ -209052,7 +210614,17 @@
     "note": "One of the only French words among the top 100 English words in everyday use.",
     "links": [],
     "confidence": "high"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "people-french",
+  "term": "people",
+  "gloss": "French",
+  "original": "people",
+  "translation": null,
+  "language": "French",
+  "mentions": [
    {
     "episode_id": "XA4d9r6Yu5A",
     "t": 2464,
@@ -210063,8 +211635,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "péter",
-      "slug": "peter",
+      "target": "péter (French)",
+      "slug": "peter-french",
       "start": 94,
       "end": 99
      }
@@ -210110,27 +211682,10 @@
  {
   "slug": "peter",
   "term": "Peter",
-  "original": "péter",
-  "translation": "to fart",
+  "original": null,
+  "translation": null,
   "language": "English",
   "mentions": [
-   {
-    "episode_id": "HEk4hJZfo6Q",
-    "t": 1484,
-    "role": "aside",
-    "note": "French to fart, sharing its root with petard, so hoisted by your own fart bomb.",
-    "links": [
-     {
-      "type": "same-root",
-      "uncertain": false,
-      "target": "petard",
-      "slug": "petard",
-      "start": 38,
-      "end": 44
-     }
-    ],
-    "confidence": "high"
-   },
    {
     "episode_id": "v2pWWECvdvc",
     "t": 2388,
@@ -210154,6 +211709,33 @@
     "role": "subject",
     "note": "Famously means stone.",
     "links": [],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "peter-french",
+  "term": "péter",
+  "gloss": "French",
+  "original": "péter",
+  "translation": "to fart",
+  "language": "French",
+  "mentions": [
+   {
+    "episode_id": "HEk4hJZfo6Q",
+    "t": 1484,
+    "role": "aside",
+    "note": "French to fart, sharing its root with petard, so hoisted by your own fart bomb.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "petard",
+      "slug": "petard",
+      "start": 38,
+      "end": 44
+     }
+    ],
     "confidence": "high"
    }
   ]
@@ -210596,10 +212178,37 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "pétulant",
-      "slug": "petulant",
+      "target": "pétulant (French)",
+      "slug": "petulant-french",
       "start": 115,
       "end": 123
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "petulant-french",
+  "term": "pétulant",
+  "gloss": "French",
+  "original": "pétulant",
+  "translation": null,
+  "language": "French",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 526,
+    "role": "subject",
+    "note": "French for playful, an ameliorated sense, whereas English petulant came to mean irritable.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "petulant",
+      "slug": "petulant",
+      "start": 58,
+      "end": 66
      }
     ],
     "confidence": "high"
@@ -210776,8 +212385,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Berliner",
-      "slug": "berliner",
+      "target": "Berliner (German)",
+      "slug": "berliner-german",
       "start": 44,
       "end": 52
      }
@@ -211613,7 +213222,7 @@
  {
   "slug": "phoenix",
   "term": "phoenix",
-  "original": "phoenix",
+  "original": null,
   "translation": null,
   "language": "English",
   "mentions": [
@@ -211633,7 +213242,17 @@
      }
     ],
     "confidence": "high"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "phoenix-city",
+  "term": "Phoenix",
+  "gloss": "city",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
    {
     "episode_id": "fR7IIZAy4Js",
     "t": 2877,
@@ -211658,7 +213277,17 @@
      }
     ],
     "confidence": "high"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "phoenix-greek",
+  "term": "phoenix",
+  "gloss": "Greek",
+  "original": "phoenix",
+  "translation": null,
+  "language": "Greek",
+  "mentions": [
    {
     "episode_id": "m9AaobtBMtA",
     "t": 1734,
@@ -211702,8 +213331,8 @@
      {
       "type": "same-root",
       "uncertain": true,
-      "target": "phoenix",
-      "slug": "phoenix",
+      "target": "phoenix (Greek)",
+      "slug": "phoenix-greek",
       "start": 119,
       "end": 126
      }
@@ -212714,10 +214343,27 @@
    },
    {
     "episode_id": "_r2HMeiDhKA",
-    "t": 2470,
-    "role": "subject",
-    "note": "Miley Cyrus's pet pig.",
-    "links": [],
+    "t": 330,
+    "role": "aside",
+    "note": "Another G-final animal word, like dog, apparently a diminutive that replaced swine.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "dog",
+      "slug": "dog",
+      "start": 34,
+      "end": 37
+     },
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "swine",
+      "slug": "swine",
+      "start": 77,
+      "end": 82
+     }
+    ],
     "confidence": "high"
    }
   ]
@@ -212803,6 +214449,24 @@
       "end": 57
      }
     ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "pig-miley-cyrus-pet",
+  "term": "Pig",
+  "gloss": "Miley Cyrus pet",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "mentions": [
+   {
+    "episode_id": "_r2HMeiDhKA",
+    "t": 2470,
+    "role": "subject",
+    "note": "Miley Cyrus's pet pig.",
+    "links": [],
     "confidence": "high"
    }
   ]
@@ -216890,8 +218554,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Gift",
-      "slug": "gift",
+      "target": "Gift (German)",
+      "slug": "gift-german",
       "start": 75,
       "end": 79
      }
@@ -220385,25 +222049,67 @@
  {
   "slug": "pregnant",
   "term": "pregnant",
-  "original": "pregnant",
+  "original": null,
   "translation": null,
-  "language": "Romanian",
+  "language": "English",
   "mentions": [
    {
     "episode_id": "XA4d9r6Yu5A",
-    "t": 2184,
+    "t": 2192,
     "role": "subject",
-    "note": "Romanian for evident, marked or manifest, from the same Latin word as English pregnant.",
+    "note": "From Latin, meaning before birth; figurative in pregnant pause; Old English said mid cilde or bearneacen, and the 1800s poisoned.",
     "links": [
      {
-      "type": "same-root",
+      "type": "see",
       "uncertain": false,
-      "target": "pregnant",
-      "slug": "pregnant",
-      "start": 78,
-      "end": 86
+      "target": "pregnant pause",
+      "slug": "pregnant-pause",
+      "start": 48,
+      "end": 62
+     },
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "mid cilde",
+      "slug": "with-child",
+      "start": 81,
+      "end": 90
+     },
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "bearneacen",
+      "slug": "bearneacen",
+      "start": 94,
+      "end": 104
+     },
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "poisoned",
+      "slug": "poisoned",
+      "start": 120,
+      "end": 128
      }
     ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "pregnant-dutch",
+  "term": "pregnant",
+  "gloss": "Dutch",
+  "original": "pregnant",
+  "translation": null,
+  "language": "Dutch",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 2192,
+    "role": "subject",
+    "note": "Dutch for poignant or meaningful.",
+    "links": [],
     "confidence": "high"
    }
   ]
@@ -220438,6 +222144,51 @@
       "end": 62
      }
     ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "pregnant-romanian",
+  "term": "pregnant",
+  "gloss": "Romanian",
+  "original": "pregnant",
+  "translation": null,
+  "language": "Romanian",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 2184,
+    "role": "subject",
+    "note": "Romanian for evident, marked or manifest, from the same Latin word as English pregnant.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "pregnant",
+      "slug": "pregnant",
+      "start": 78,
+      "end": 86
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "pregnant-swedish",
+  "term": "pregnant",
+  "gloss": "Swedish",
+  "original": "pregnant",
+  "translation": null,
+  "language": "Swedish",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 2184,
+    "role": "subject",
+    "note": "Swedish word that can mean pregnant but also striking or distinctive.",
+    "links": [],
     "confidence": "high"
    }
   ]
@@ -222966,8 +224717,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Handy",
-      "slug": "handy",
+      "target": "Handy (German)",
+      "slug": "handy-german",
       "start": 127,
       "end": 132
      }
@@ -224356,6 +226107,59 @@
     "confidence": "high"
    },
    {
+    "episode_id": "56YLffYfQ7M",
+    "t": 1369,
+    "role": "subject",
+    "note": "Not specifically a comedy word: it means to puncture or poke, from French poinçonner, to punch, prick or stamp, and also names a pointed tool.",
+    "links": [
+     {
+      "type": "from",
+      "uncertain": false,
+      "target": "poinçonner",
+      "slug": null,
+      "start": 74,
+      "end": 84
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "punch-and-judy",
+  "term": "Punch and Judy",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "mentions": [
+   {
+    "episode_id": "56YLffYfQ7M",
+    "t": 1275,
+    "role": "subject",
+    "note": "A puppet show in a small booth where Punch and Judy beat each other with sticks, chased by a policeman; based on Pulcinella.",
+    "links": [
+     {
+      "type": "from",
+      "uncertain": false,
+      "target": "Pulcinella",
+      "slug": "pulcinella",
+      "start": 113,
+      "end": 123
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "punch-magazine",
+  "term": "Punch",
+  "gloss": "magazine",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
     "episode_id": "wtOpyi_xjKw",
     "t": 465,
     "role": "aside",
@@ -224385,32 +226189,6 @@
       "slug": "punch-and-judy",
       "start": 97,
       "end": 111
-     }
-    ],
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "punch-and-judy",
-  "term": "Punch and Judy",
-  "original": null,
-  "translation": null,
-  "language": null,
-  "mentions": [
-   {
-    "episode_id": "56YLffYfQ7M",
-    "t": 1275,
-    "role": "subject",
-    "note": "A puppet show in a small booth where Punch and Judy beat each other with sticks, chased by a policeman; based on Pulcinella.",
-    "links": [
-     {
-      "type": "from",
-      "uncertain": false,
-      "target": "Pulcinella",
-      "slug": "pulcinella",
-      "start": 113,
-      "end": 123
      }
     ],
     "confidence": "high"
@@ -231068,8 +232846,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Mark",
-      "slug": "mark",
+      "target": "Mark (currency)",
+      "slug": "mark-currency",
       "start": 44,
       "end": 48
      }
@@ -237619,8 +239397,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "rum",
-      "slug": "rum",
+      "target": "rum (odd)",
+      "slug": "rum-odd",
       "start": 27,
       "end": 30
      }
@@ -237645,10 +239423,45 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "rum",
-      "slug": "rum",
+      "target": "rum (odd)",
+      "slug": "rum-odd",
       "start": 42,
       "end": 45
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "rum-odd",
+  "term": "rum",
+  "gloss": "odd",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "b5O7JqRT7u8",
+    "t": 941,
+    "role": "subject",
+    "note": "Romani-dialect word meaning good, as in rum kicks, yet in British English it means odd or bad, making it a contronym.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "rum kicks",
+      "slug": "rum-kicks",
+      "start": 40,
+      "end": 49
+     },
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "contronym",
+      "slug": "contronym",
+      "start": 107,
+      "end": 116
      }
     ],
     "confidence": "high"
@@ -238295,10 +240108,54 @@
      {
       "type": "unrelated",
       "uncertain": false,
-      "target": "Ruth",
-      "slug": "ruth",
+      "target": "Ruth (name)",
+      "slug": "ruth-name",
       "start": 130,
       "end": 134
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "ruth-name",
+  "term": "Ruth",
+  "gloss": "name",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "6EnIqXnW5Kw",
+    "t": 1036,
+    "role": "subject",
+    "note": "The given name comes from a Hebrew word for friendship, ruth meaning mercy, though Rob thinks Ruths should enjoy the double meaning.",
+    "links": [
+     {
+      "type": "unrelated",
+      "uncertain": false,
+      "target": "ruth",
+      "slug": "ruth",
+      "start": 56,
+      "end": 60
+     }
+    ],
+    "confidence": "high"
+   },
+   {
+    "episode_id": "La3toomR-ow",
+    "t": 761,
+    "role": "aside",
+    "note": "The name is unrelated to ruth.",
+    "links": [
+     {
+      "type": "unrelated",
+      "uncertain": false,
+      "target": "ruth",
+      "slug": "ruth",
+      "start": 25,
+      "end": 29
      }
     ],
     "confidence": "high"
@@ -243129,6 +244986,33 @@
   "mentions": [
    {
     "episode_id": "1PM_iwxAyb8",
+    "t": 1187,
+    "role": "subject",
+    "note": "The educational school is a Latin and Greek word whose basic sense is leisure; its spelling converged with the fish school.",
+    "links": [
+     {
+      "type": "unrelated",
+      "uncertain": false,
+      "target": "school (fish)",
+      "slug": "school-fish",
+      "start": 116,
+      "end": 122
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "school-fish",
+  "term": "school",
+  "gloss": "fish",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "1PM_iwxAyb8",
     "t": 1179,
     "role": "subject",
     "note": "A school of fish is borrowed from Middle Dutch and related to shoal, but unrelated to the educational school.",
@@ -246421,6 +248305,33 @@
  {
   "slug": "sensible",
   "term": "sensible",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 330,
+    "role": "subject",
+    "note": "From French sensible, which means sensitive rather than sensible.",
+    "links": [
+     {
+      "type": "from",
+      "uncertain": false,
+      "target": "sensible (French)",
+      "slug": "sensible-french",
+      "start": 12,
+      "end": 20
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "sensible-french",
+  "term": "sensible",
+  "gloss": "French",
   "original": "sensible",
   "translation": null,
   "language": "French",
@@ -249556,8 +251467,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "school",
-      "slug": "school",
+      "target": "school (fish)",
+      "slug": "school-fish",
       "start": 11,
       "end": 17
      }
@@ -253498,24 +255409,24 @@
    },
    {
     "episode_id": "9xorsfTRRHM",
-    "t": 1201,
+    "t": 1250,
     "role": "subject",
-    "note": "Etymologically the same word as sloth, surviving in the collective noun sleuth of bears.",
+    "note": "The detective sense is a different, unrelated word from sloth, coming from sleuth hound.",
     "links": [
      {
-      "type": "same-root",
+      "type": "unrelated",
       "uncertain": false,
       "target": "sloth",
       "slug": "sloth",
-      "start": 32,
-      "end": 37
+      "start": 56,
+      "end": 61
      },
      {
-      "type": "see",
+      "type": "from",
       "uncertain": false,
-      "target": "sleuth of bears",
-      "slug": "sleuth-of-bears",
-      "start": 72,
+      "target": "sleuth hound",
+      "slug": "sleuth-hound",
+      "start": 75,
       "end": 87
      }
     ],
@@ -253607,8 +255518,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "sleuth",
-      "slug": "sleuth",
+      "target": "sleuth (sloth)",
+      "slug": "sleuth-sloth",
       "start": 93,
       "end": 99
      }
@@ -253628,6 +255539,41 @@
       "slug": "litter-of-whelps",
       "start": 46,
       "end": 62
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "sleuth-sloth",
+  "term": "sleuth",
+  "gloss": "sloth",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "9xorsfTRRHM",
+    "t": 1201,
+    "role": "subject",
+    "note": "Etymologically the same word as sloth, surviving in the collective noun sleuth of bears.",
+    "links": [
+     {
+      "type": "same-root",
+      "uncertain": false,
+      "target": "sloth",
+      "slug": "sloth",
+      "start": 32,
+      "end": 37
+     },
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "sleuth of bears",
+      "slug": "sleuth-of-bears",
+      "start": 72,
+      "end": 87
      }
     ],
     "confidence": "high"
@@ -254070,8 +256016,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "sleuth",
-      "slug": "sleuth",
+      "target": "sleuth (sloth)",
+      "slug": "sleuth-sloth",
       "start": 121,
       "end": 127
      }
@@ -254246,7 +256192,7 @@
  {
   "slug": "slut",
   "term": "slut",
-  "original": "slut",
+  "original": null,
   "translation": null,
   "language": "English",
   "mentions": [
@@ -254257,7 +256203,17 @@
     "note": "Originally used for dirty men, then transferred to sexually active women.",
     "links": [],
     "confidence": "low"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "slut-swedish",
+  "term": "slut",
+  "gloss": "Swedish",
+  "original": "slut",
+  "translation": null,
+  "language": "Swedish",
+  "mentions": [
    {
     "episode_id": "XA4d9r6Yu5A",
     "t": 2751,
@@ -254293,8 +256249,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "slut",
-      "slug": "slut",
+      "target": "slut (Swedish)",
+      "slug": "slut-swedish",
       "start": 35,
       "end": 39
      }
@@ -258542,6 +260498,33 @@
   ]
  },
  {
+  "slug": "spell-period",
+  "term": "spell",
+  "gloss": "period",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "O5DTL8Ogoo4",
+    "t": 1190,
+    "role": "subject",
+    "note": "A period of time, unrelated to the magic spell; from Old English for a substitute giving someone rest, then any span, as in cold spell.",
+    "links": [
+     {
+      "type": "unrelated",
+      "uncertain": false,
+      "target": "spell",
+      "slug": "spell",
+      "start": 41,
+      "end": 46
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "spell-the-wind",
   "term": "spell the wind",
   "original": null,
@@ -259474,8 +261457,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "Dick",
-      "slug": "dick",
+      "target": "Dick (name)",
+      "slug": "dick-name",
       "start": 11,
       "end": 15
      }
@@ -267461,8 +269444,35 @@
  {
   "slug": "tag",
   "term": "tag",
-  "original": "Tag",
-  "translation": "day",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "mentions": [
+   {
+    "episode_id": "Q_A1OtVd8RA",
+    "t": 1833,
+    "role": "aside",
+    "note": "What Rob thinks a slug would be called if invented today.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "slug",
+      "slug": "slug",
+      "start": 18,
+      "end": 22
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "tag-game",
+  "term": "tag",
+  "gloss": "game",
+  "original": null,
+  "translation": null,
   "language": "English",
   "mentions": [
    {
@@ -267506,24 +269516,17 @@
      }
     ],
     "confidence": "high"
-   },
-   {
-    "episode_id": "Q_A1OtVd8RA",
-    "t": 1833,
-    "role": "aside",
-    "note": "What Rob thinks a slug would be called if invented today.",
-    "links": [
-     {
-      "type": "see",
-      "uncertain": false,
-      "target": "slug",
-      "slug": "slug",
-      "start": 18,
-      "end": 22
-     }
-    ],
-    "confidence": "high"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "tag-german",
+  "term": "Tag",
+  "gloss": "German",
+  "original": "Tag",
+  "translation": "day",
+  "language": "German",
+  "mentions": [
    {
     "episode_id": "Lad89Mtao0U",
     "t": 412,
@@ -276013,8 +278016,17 @@
     "episode_id": "ZqBYXlunxds",
     "t": 2067,
     "role": "subject",
-    "note": "A see:pronominal adverbs example meaning in that, letting legal texts avoid repeating a document's name.",
-    "links": [],
+    "note": "One of the pronominal adverbs, meaning in that, letting legal texts avoid repeating a document's name.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "pronominal adverbs",
+      "slug": "pronominal-adverbs",
+      "start": 11,
+      "end": 29
+     }
+    ],
     "confidence": "high"
    },
    {
@@ -276460,8 +278472,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "dick",
-      "slug": "dick",
+      "target": "dick (German)",
+      "slug": "dick-german",
       "start": 21,
       "end": 25
      }
@@ -277638,10 +279650,37 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Three Dog Night",
-      "slug": "three-dog-night",
+      "target": "Three Dog Night (band)",
+      "slug": "three-dog-night-band",
       "start": 143,
       "end": 158
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "three-dog-night-band",
+  "term": "Three Dog Night",
+  "gloss": "band",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "mentions": [
+   {
+    "episode_id": "gH0Zz10y9Ek",
+    "t": 874,
+    "role": "aside",
+    "note": "A band whose widely repeated story spread the explanation of three dog night.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "three dog night",
+      "slug": "three-dog-night",
+      "start": 61,
+      "end": 76
      }
     ],
     "confidence": "high"
@@ -278572,8 +280611,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "tag",
-      "slug": "tag",
+      "target": "tag (game)",
+      "slug": "tag-game",
       "start": 22,
       "end": 25
      }
@@ -282115,8 +284154,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "tag",
-      "slug": "tag",
+      "target": "tag (game)",
+      "slug": "tag-game",
       "start": 42,
       "end": 45
      }
@@ -291384,7 +293423,7 @@
       "type": "same-root",
       "uncertain": false,
       "target": "vaso",
-      "slug": "vaso",
+      "slug": null,
       "start": 50,
       "end": 54
      }
@@ -291409,8 +293448,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "fat",
-      "slug": "fat",
+      "target": "fat (Swedish)",
+      "slug": "fat-swedish",
       "start": 22,
       "end": 25
      }
@@ -293423,8 +295462,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "-ing",
-      "slug": "ing",
+      "target": "-ing (noun suffix)",
+      "slug": "ing-noun-suffix",
       "start": 27,
       "end": 31
      }
@@ -296075,10 +298114,37 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "WAP",
-      "slug": "wap",
+      "target": "WAP (song)",
+      "slug": "wap-song",
       "start": 117,
       "end": 120
+     }
+    ],
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "wap-song",
+  "term": "WAP",
+  "gloss": "song",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "mentions": [
+   {
+    "episode_id": "GHqlu7p6GQ0",
+    "t": 1492,
+    "role": "aside",
+    "note": "A fairly famous recent song with an acronym title, recalled by Grose's wap.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "wap",
+      "slug": "wap",
+      "start": 71,
+      "end": 74
      }
     ],
     "confidence": "high"
@@ -305510,7 +307576,7 @@
     "episode_id": "EOfP8sTYJwo",
     "t": 1258,
     "role": "subject",
-    "note": "The stranger gas, related to xenophobia; strange because it is unusually reactive for a see:noble gases member and was discovered late.",
+    "note": "The stranger gas, related to xenophobia; strange because it is unusually reactive for one of the noble gases and was discovered late.",
     "links": [
      {
       "type": "same-root",
@@ -305519,6 +307585,14 @@
       "slug": "xenophobia",
       "start": 29,
       "end": 39
+     },
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "noble gases",
+      "slug": "noble-gases",
+      "start": 97,
+      "end": 108
      }
     ],
     "confidence": "high"

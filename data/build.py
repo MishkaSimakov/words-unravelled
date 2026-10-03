@@ -8,14 +8,19 @@ Reads:
 
 Writes:
     data/episodes.json       [{ id, title, date, duration }]
-    data/entries.json        [{ slug, term, original, translation, language, mentions: [...] }]
+    data/entries.json        [{ slug, term, gloss?, original, translation, language, mentions: [...] }]
     data/duplicates.md       likely duplicates, for manual review (nothing is merged automatically)
 
 Each entry file is one episode, whatever produced it (ingest/ writes them with Claude):
 
     {"video_id": "m9AaobtBMtA", "prompt_version": 4, "title": "...", "date": "2026-09-30",
-     "duration": 2623, "entries": [{term, original, translation, language, timestamp, role, note,
-     confidence}]}
+     "duration": 2623, "entries": [{term, gloss?, original, translation, language, timestamp, role,
+     note, confidence}]}
+
+"gloss" (absent or null unless another word has the same spelling) tells homographs apart, like
+a Wikipedia disambiguation suffix: a language (Gift, German), a meaning (meal, flour) or a kind
+(Phoenix, city). An entry's slug is slugify(term + " " + gloss), or slugify(term) without one,
+and entries.json has "gloss" only on entries that have one.
 
 Each mention is {episode_id, t, role, note, links, confidence, verified?}:
 
@@ -26,11 +31,14 @@ Each mention is {episode_id, t, role, note, links, confidence, verified?}:
 
 "role" is subject, aside or mention. Extracted notes mark links as [[type:target]]trail (letters
 right after ]] are part of the link text), with a "?" after the type for an uncertain relation.
+A link to a glossed entry gives the gloss in brackets, [[type:meal (flour)]], and shows only "meal".
 "note" is plain text: each link is replaced by its text, and "start"/"end" give the link's position
 in it, in UTF-16 code units (how JavaScript indexes strings), so the site never parses notes.
 "links" lists a note's links in the order they appear; "slug" is the entry the target resolves to
-(null if it isn't an entry), looked up after overrides: first an entry mentioned in the same
-episode, then any entry by term, then by original form.
+(null if it isn't an entry), looked up after overrides: a target with a gloss is the slug of
+the entry it names; other targets are looked up first among the entries mentioned in the same
+episode, then any entry by term, then by original form, and reach a glossed entry only if no
+entry has the target's own slug. A link never resolves to the entry its note belongs to.
 
 Overrides (data/overrides.json) are a list of operations applied in order:
 
@@ -43,10 +51,10 @@ Overrides (data/overrides.json) are a list of operations applied in order:
     {"op": "set",       "slug": "ciao", "fields": {"language": "Italian", "original": "ciao"}}
     {"op": "distinct",  "slugs": ["latin", "latino"]}
 
-"rename" changes the term, so the slug is rebuilt from it (or given with "new_slug"); if the
-new slug already exists, the mentions join it. "set" changes entry fields without touching the
-slug. "distinct" only removes a pair from the duplicates report. Keys starting with "_" are
-ignored, so {"_comment": "..."} can be used anywhere as a comment.
+"rename" changes the term, so the slug is rebuilt from it and the mention's gloss (or given with
+"new_slug"); if the new slug already exists, the mentions join it. "set" changes entry fields
+without touching the slug. "distinct" only removes a pair from the duplicates report. Keys
+starting with "_" are ignored, so {"_comment": "..."} can be used anywhere as a comment.
 """
 import argparse
 import json
@@ -59,7 +67,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 ROLES = ("subject", "aside", "mention")  # in order of precedence
 LINK_TYPES = ("from", "gave", "same-root", "equivalent", "unrelated", "see")
-ENTRY_FIELDS = ("term", "original", "translation", "language")
+ENTRY_FIELDS = ("term", "gloss", "original", "translation", "language")
 
 # ---------------------------------------------------------------------------
 # Slugs
@@ -80,6 +88,11 @@ def slugify(term: str) -> str:
     s = re.sub(r"['’‘`´]", "", s)          # "don't" -> "dont", not "don-t"
     s = re.sub(r"[\W_]+", "-", s)           # anything else that isn't a letter or digit
     return s.strip("-") or "entry"
+
+
+def entry_slug(term, gloss=None):
+    """The slug of an entry: its term, plus the gloss if it has one ("meal (flour)" -> meal-flour)."""
+    return slugify(f"{term} {gloss}" if gloss else term)
 
 
 def fold(text):
@@ -123,6 +136,7 @@ def clean_str(value):
 
 ANY_LINK = re.compile(r"\[\[((?:(?!\[\[).)*?)\]\]")  # the innermost [[...]]; a target may contain "]"
 TYPED_LINK = re.compile(r"([a-z-]+)(\?)?:([^|]+)")  # the inside of [[type:target]] or [[type?:target]]
+GLOSS = re.compile(r"\s*\([^()]*\)$")  # the " (gloss)" at the end of a link target
 
 
 def utf16_len(text):
@@ -132,9 +146,10 @@ def utf16_len(text):
 def render_note(note):
     """(plain text, links): the note with each [[...]] replaced by its text, and the links in order.
 
-    A link shows its target plus the letters straight after "]]" (its trail). Each link records
-    where its text is in the plain note ("start", "end", in UTF-16 code units); "slug" is left for
-    resolve_links(). Malformed links (no type or target, or a |alias) become plain text.
+    A link shows its target, minus any " (gloss)", plus the letters straight after "]]" (its
+    trail): [[see:meal (flour)]]s shows "meals". Each link records where its text is in the plain
+    note ("start", "end", in UTF-16 code units); "slug" is left for resolve_links(). Malformed
+    links (no type or target, or a |alias) become plain text.
     """
     parts, links, pos, last = [], [], 0, 0
 
@@ -156,7 +171,7 @@ def render_note(note):
         trail = re.match(r"[^\W\d_]*", note[m.end():]).group(0)
         last += len(trail)
         link = {"type": typed.group(1), "uncertain": bool(typed.group(2)), "target": typed.group(3).strip()}
-        text = link["target"] + trail
+        text = GLOSS.sub("", link["target"]) + trail
         start = pos
         add(text)
         links.append({**link, "slug": None, "start": start, "end": pos})
@@ -210,7 +225,7 @@ def read_entry(raw, stamps=None, duration=None):
     note, links = render_note(markup)
     confidence = clean_str(raw.get("confidence"))
     return {
-        "term": term, "original": clean_str(raw.get("original")),
+        "term": term, "gloss": clean_str(raw.get("gloss")), "original": clean_str(raw.get("original")),
         "translation": clean_str(raw.get("translation")),
         "language": clean_str(raw.get("language")), "t": t, "role": role,
         "note": note, "markup": markup, "links": links,
@@ -218,9 +233,9 @@ def read_entry(raw, stamps=None, duration=None):
     }, problems
 
 
-def review_key(video_id, term):
+def review_key(video_id, term, gloss=None):
     """Key used by the review tool to store a decision about one extracted item."""
-    return f"{video_id}/{slugify(term)}"
+    return f"{video_id}/{entry_slug(term, gloss)}"
 
 
 # ---------------------------------------------------------------------------
@@ -249,9 +264,8 @@ class Overrides:
                 if not term:
                     self.warn(i, op, "missing 'term'")
                     continue
-                new_slug = op.get("new_slug") or slugify(term)
                 for m in hits:
-                    m["term"], m["slug"] = term, new_slug
+                    m["term"], m["slug"] = term, op.get("new_slug") or entry_slug(term, m["gloss"])
             elif kind == "merge":
                 src, dst = op.get("from"), op.get("into")
                 hits = self._select(mentions, src)
@@ -359,6 +373,8 @@ def group(mentions, episodes):
     for slug in sorted(by_slug):
         ms = by_slug[slug]
         entry = {"slug": slug, **representative(ms)}
+        if not entry["gloss"]:
+            del entry["gloss"]
         languages = Counter(m["language"] for m in ms if m.get("language"))
         if len(languages) > 1:
             conflicts.append((slug, languages))
@@ -376,8 +392,15 @@ def group(mentions, episodes):
 def resolve_links(entries, mentions):
     """Set each link's "slug" to the entry its target names, or None. Run after overrides and grouping.
 
-    A mention's term and original form as extracted count as well as the entry's current ones, so
-    links still resolve after an entry is renamed or merged into another.
+    A target with a gloss ("meal (flour)") resolves to the entry with that slug (meal-flour) or to
+    nothing. Other targets are looked up by term and original form, the mention's as extracted
+    as well as the entry's current ones, so links still resolve after an entry is renamed or
+    merged into another. A target without a gloss names the word without one ("gift", not
+    "Gift (German)"); only when there is no such entry can it reach a glossed one. A link never
+    resolves to its own entry.
+
+    Returns (problem, mention, link) for links whose gloss names no entry, and for links that
+    reached a glossed entry without naming its gloss (they may point at the wrong homograph).
     """
     by_slug = {e["slug"]: e for e in entries}
     in_episode, by_term, by_original = defaultdict(set), defaultdict(set), defaultdict(set)
@@ -399,20 +422,32 @@ def resolve_links(entries, mentions):
             if form:
                 in_episode[(m["episode_id"], slugify(form))].add(e["slug"])
 
-    def pick(slugs, target):
+    def pick(slugs, target, own):
+        slugs = (slugs or set()) - {own}
+        if target in by_slug:
+            slugs = {s for s in slugs if not by_slug[s].get("gloss")}
         if not slugs:
             return None
         if target in slugs:
             return target
         return max(sorted(slugs), key=lambda s: len(by_slug[s]["mentions"]))
 
+    found = []
     for m in mentions:
         for link in m["links"]:
             if not link["target"]:
                 continue
-            t = slugify(link["target"])
-            link["slug"] = (pick(in_episode.get((m["episode_id"], t)), t) or pick(by_term.get(t), t)
-                            or pick(by_original.get(t), t))
+            t, own = slugify(link["target"]), m["slug"]
+            if GLOSS.search(link["target"]):
+                link["slug"] = t if t in by_slug and t != own else None
+                if t not in by_slug:
+                    found.append(("link to a gloss that isn't an entry", m, link))
+                continue
+            link["slug"] = (pick(in_episode.get((m["episode_id"], t)), t, own) or pick(by_term.get(t), t, own)
+                            or pick(by_original.get(t), t, own))
+            if link["slug"] and by_slug[link["slug"]].get("gloss"):
+                found.append(("link to a glossed entry without its gloss", m, link))
+    return found
 
 
 # ---------------------------------------------------------------------------
@@ -460,10 +495,16 @@ def within_distance(a, b, limit):
 
 def find_duplicates(entries, ignored_pairs):
     found = {}  # (a, b) -> reason
+    by_slug = {e["slug"]: e for e in entries}
+
+    def homographs(a, b):
+        """Same term, different glosses: told apart on purpose (meal-flour, meal-repast)."""
+        ea, eb = by_slug[a], by_slug[b]
+        return fold(ea["term"]) == fold(eb["term"]) and fold(ea.get("gloss")) != fold(eb.get("gloss"))
 
     def add(a, b, reason):
         pair = tuple(sorted((a, b)))
-        if a != b and pair not in ignored_pairs and pair not in found:
+        if a != b and pair not in ignored_pairs and pair not in found and not homographs(a, b):
             found[pair] = reason
 
     def buckets(keyfunc, reason):
@@ -526,7 +567,8 @@ def write_report(path, entries, duplicates, conflicts, episodes):
         if e.get("original"):
             bits.append(f"original: {e['original']}")
         eps = sorted({m["episode_id"] for m in e["mentions"]})
-        return f"`{slug}` — **{e['term']}** ({', '.join(bits)}; {len(eps)} episode(s))"
+        name = f"{e['term']} ({e['gloss']})" if e.get("gloss") else e["term"]
+        return f"`{slug}` — **{name}** ({', '.join(bits)}; {len(eps)} episode(s))"
 
     lines = ["# Likely duplicates", "",
              "Generated by `data/build.py`. Nothing here was merged. For each pair, either add a",
@@ -540,7 +582,8 @@ def write_report(path, entries, duplicates, conflicts, episodes):
         lines += [f"## {reason.capitalize()} ({len(pairs)})", ""]
         for a, b in pairs:
             keep, drop = sorted((a, b), key=lambda s: (-len(by_slug[s]["mentions"]),
-                                                        s != slugify(by_slug[s]["term"]), len(s), s))
+                                                        s != entry_slug(by_slug[s]["term"], by_slug[s].get("gloss")),
+                                                        len(s), s))
             lines += [f"- {describe(a)}", f"  {describe(b)}",
                       f"  - merge: `{json.dumps({'op': 'merge', 'from': drop, 'into': keep})}`",
                       f"  - keep apart: `{json.dumps({'op': 'distinct', 'slugs': [a, b]})}`", ""]
@@ -598,11 +641,11 @@ def main():
                 problems[kind].append(f"{where} {detail}".rstrip())
             if entry is None or entry["t"] is None:
                 continue
-            decision = (review.get(review_key(vid, entry["term"])) or {}).get("status")
+            decision = (review.get(review_key(vid, entry["term"], entry["gloss"])) or {}).get("status")
             if decision == "rejected":
                 continue
             mentions.append({
-                **entry, "slug": slugify(entry["term"]), "episode_id": vid,
+                **entry, "slug": entry_slug(entry["term"], entry["gloss"]), "episode_id": vid,
                 # As extracted, so links still resolve after overrides rename or merge the entry.
                 "extracted_term": entry["term"], "extracted_original": entry["original"],
                 "verified": decision == "approved", "where": where,
@@ -615,7 +658,8 @@ def main():
         problems["same entry twice in one episode (highest role kept)"].append(f"{m['where']} -> {m['slug']}")
     entries, conflicts = group(mentions, episodes)
     overrides.apply_to_entries(entries)
-    resolve_links(entries, mentions)
+    for kind, m, link in resolve_links(entries, mentions):
+        problems[kind].append(f"{m['where']} [[{link['type']}:{link['target']}]] -> {link['slug']}")
 
     # Only episodes that still have entries are published.
     used = {m["episode_id"] for e in entries for m in e["mentions"]}

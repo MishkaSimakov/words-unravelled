@@ -77,6 +77,11 @@ function highlight(text, query) {
   )
 }
 
+// An entry's name: the term, plus the gloss that tells it apart from homographs ("meal (flour)").
+const nameText = (entry) => (entry.gloss ? `${entry.term} (${entry.gloss})` : entry.term)
+const nameHtml = (entry, query = '') =>
+  highlight(entry.term, query) + (entry.gloss ? ` <span class="hw-gloss">(${esc(entry.gloss)})</span>` : '')
+
 const LINK_TITLES = {
   from: 'from', gave: 'gave', 'same-root': 'same root', equivalent: 'equivalent',
   unrelated: 'unrelated', see: 'see also',
@@ -103,7 +108,7 @@ function noteHtml(mention, { links = true, self = null } = {}) {
     html += entry && entry !== self
       ? `<a class="note-link" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}"` +
         ` data-type="${esc(link.type)}"${link.uncertain ? ' data-uncertain' : ''}` +
-        ` title="${esc(linkTitle(link.type, link.uncertain))}">${esc(text)}</a>`
+        ` title="${esc(linkTitle(link.type, link.uncertain) + (entry.gloss ? `: ${nameText(entry)}` : ''))}">${esc(text)}</a>`
       : esc(text)
     last = link.end
   }
@@ -223,7 +228,12 @@ async function load() {
     db.episodeById.set(ep.id, ep)
     db.byEpisode.set(ep.id, [])
   }
-  db.entries = entries.sort((a, b) => a.term.localeCompare(b.term, 'en', { sensitivity: 'base' }))
+  // Homographs side by side, the one without a gloss first.
+  db.entries = entries.sort(
+    (a, b) =>
+      a.term.localeCompare(b.term, 'en', { sensitivity: 'base' }) ||
+      (a.gloss ?? '').localeCompare(b.gloss ?? '', 'en', { sensitivity: 'base' }),
+  )
   for (const entry of db.entries) {
     // Episodes that discuss the entry, and all episodes, including those that only point to it
     // ("as we discussed in..."): the entry page lists the first under "Discussed in".
@@ -245,6 +255,7 @@ async function load() {
   db.fuse = new Fuse(db.entries, {
     keys: [
       { name: 'term', weight: 3 },
+      { name: 'gloss', weight: 0.5 },
       { name: 'original', weight: 1.5 },
       { name: 'translation', weight: 1 },
     ],
@@ -276,20 +287,20 @@ function search(query) {
 
 function entryItem(entry, query = '') {
   const { original, translation } = forms(entry)
-  const gloss = []
-  if (original) gloss.push(`<i>${highlight(original, query)}</i>`)
-  if (translation) gloss.push(`‘${highlight(translation, query)}’`)
+  const extra = []
+  if (original) extra.push(`<i>${highlight(original, query)}</i>`)
+  if (translation) extra.push(`‘${highlight(translation, query)}’`)
   const mention = [...entry.mentions].sort((a, b) => roleRank(a) - roleRank(b))[0]
   return `
     <li>
       <a class="result" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">
         <span class="result-head">
-          <span class="hw">${highlight(entry.term, query)}</span>
+          <span class="hw">${nameHtml(entry, query)}</span>
           <span class="result-class">
             ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
           </span>
         </span>
-        ${gloss.length ? `<span class="gloss">${gloss.join(' · ')}</span>` : ''}
+        ${extra.length ? `<span class="result-forms">${extra.join(' · ')}</span>` : ''}
         ${mention?.note ? `<span class="result-note">${noteHtml(mention, { links: false })}</span>` : ''}
         <span class="result-count">${
           entry.mentionOnly ? `Mentioned in ${plural(entry.allEpisodeCount, 'episode')}` : plural(entry.episodeCount, 'episode')
@@ -507,7 +518,7 @@ function suggestions() {
 function entryPage(slug) {
   const entry = db.bySlug.get(slug)
   if (!entry) return notFound(`There is no entry called “${slug}”.`, slug.replace(/-/g, ' '))
-  setTitle(entry.term)
+  setTitle(nameText(entry))
 
   const i = db.entries.indexOf(entry)
   const prev = db.entries[i - 1]
@@ -519,13 +530,13 @@ function entryPage(slug) {
   const discussed = mentions.filter((m) => m.role !== 'mention')
   const pointers = mentions.filter((m) => m.role === 'mention')
   const count = (list) => new Set(list.map((m) => m.episode_id)).size
-  const linkedFrom = [...(db.linkedFrom.get(entry.slug) ?? [])].sort((a, b) => a.term.localeCompare(b.term))
+  const linkedFrom = [...(db.linkedFrom.get(entry.slug) ?? [])].sort((a, b) => db.entries.indexOf(a) - db.entries.indexOf(b))
 
   main.innerHTML = `
     <nav class="crumbs"><a href="${href()}">← Search the hoard</a></nav>
     <article class="entry">
       <header class="entry-head">
-        <h1 class="headword">${esc(entry.term)}</h1>
+        <h1 class="headword">${nameHtml(entry)}</h1>
         <p class="entry-class">
           ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
         </p>
@@ -558,8 +569,8 @@ function entryPage(slug) {
       }
 
       <nav class="adjacent" aria-label="Neighbouring entries">
-        ${prev ? `<a rel="prev" href="${href(`entry/${encodeURIComponent(prev.slug)}`)}"><span class="adjacent-label">Previous entry</span><span class="adjacent-term">${esc(prev.term)}</span></a>` : '<span></span>'}
-        ${next ? `<a rel="next" href="${href(`entry/${encodeURIComponent(next.slug)}`)}"><span class="adjacent-label">Next entry</span><span class="adjacent-term">${esc(next.term)}</span></a>` : '<span></span>'}
+        ${prev ? `<a rel="prev" href="${href(`entry/${encodeURIComponent(prev.slug)}`)}"><span class="adjacent-label">Previous entry</span><span class="adjacent-term">${nameHtml(prev)}</span></a>` : '<span></span>'}
+        ${next ? `<a rel="next" href="${href(`entry/${encodeURIComponent(next.slug)}`)}"><span class="adjacent-label">Next entry</span><span class="adjacent-term">${nameHtml(next)}</span></a>` : '<span></span>'}
       </nav>
     </article>`
 }
@@ -613,7 +624,7 @@ function episodePage(id) {
           <li data-t="${mention.t}">
             <button type="button" class="ts" data-t="${mention.t}" aria-label="Play from ${fmtTime(mention.t)}">${fmtTime(mention.t)}</button>
             <div>
-              <a class="hw" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">${esc(entry.term)}</a>
+              <a class="hw" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}">${nameHtml(entry)}</a>
               ${entry.language ? `<span class="lang">${esc(entry.language)}</span>` : ''}
               ${roleBadge(mention.role)}
               ${mention.note ? `<p class="note">${noteHtml(mention, { self: entry })}</p>` : ''}
