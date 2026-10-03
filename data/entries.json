@@ -1047,7 +1047,7 @@
     "episode_id": "9A0hAxeFyo4",
     "t": 1347,
     "role": "aside",
-    "note": "Louisa May Alcott's children's story, an early mention of Christmas elves.",
+    "note": "Louisa May Alcott's children's story, an early mention of the Christmas elf.",
     "links": [
      {
       "type": "see",
@@ -1056,6 +1056,14 @@
       "slug": "louisa-may-alcott",
       "start": 0,
       "end": 17
+     },
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "elf",
+      "slug": "elf",
+      "start": 72,
+      "end": 75
      }
     ],
     "confidence": "high"
@@ -140803,8 +140811,17 @@
     "episode_id": "6JYqGa_-UZE",
     "t": 1235,
     "role": "subject",
-    "note": "A see:softeners example: at a party you can't just say 'I'm leaving'; you say you're going to head out and leave gradually.",
-    "links": [],
+    "note": "An example of softeners: at a party you can't just say 'I'm leaving'; you say you're going to head out and leave gradually.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "softeners",
+      "slug": "softeners",
+      "start": 14,
+      "end": 23
+     }
+    ],
     "confidence": "high"
    }
   ]
@@ -277989,8 +278006,17 @@
     "episode_id": "ZqBYXlunxds",
     "t": 2067,
     "role": "subject",
-    "note": "A see:pronominal adverbs example meaning in that, letting legal texts avoid repeating a document's name.",
-    "links": [],
+    "note": "One of the pronominal adverbs, meaning in that, letting legal texts avoid repeating a document's name.",
+    "links": [
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "pronominal adverbs",
+      "slug": "pronominal-adverbs",
+      "start": 11,
+      "end": 29
+     }
+    ],
     "confidence": "high"
    },
    {
@@ -307540,7 +307566,7 @@
     "episode_id": "EOfP8sTYJwo",
     "t": 1258,
     "role": "subject",
-    "note": "The stranger gas, related to xenophobia; strange because it is unusually reactive for a see:noble gases member and was discovered late.",
+    "note": "The stranger gas, related to xenophobia; strange because it is unusually reactive for one of the noble gases and was discovered late.",
     "links": [
      {
       "type": "same-root",
@@ -307549,6 +307575,14 @@
       "slug": "xenophobia",
       "start": 29,
       "end": 39
+     },
+     {
+      "type": "see",
+      "uncertain": false,
+      "target": "noble gases",
+      "slug": "noble-gases",
+      "start": 97,
+      "end": 108
      }
     ],
     "confidence": "high"
