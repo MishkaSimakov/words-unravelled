@@ -6,7 +6,8 @@ the moment each one comes up. This prototype covers the **audience side** only. 
 `docs/prototype_brief.md` for the background.
 
 ```
-data/      the dataset the site shows, the manual edits to it, and build.py, which builds it
+data/      the dataset the site shows, the manual edits to it, build.py, which builds it, and
+           layout.py, which places the entries on the graph page
 ingest/    produces entries from YouTube episodes with Claude: one way to feed data/
 review/    a tool to approve or reject entries next to the video
 site/      the website (Vite, vanilla JS, Fuse.js)
@@ -19,16 +20,20 @@ How they fit together:
 ingest/3-entries/<video_id>.json ─┐
 data/overrides.json (by hand) ────┼─> data/build.py ─> data/entries.json, episodes.json ─> site/
 data/review.json (review/) ───────┘                    data/duplicates.md (to check by hand)
+
+data/entries.json ─> data/layout.py ─> data/graph-layout.json ─> site/ (graph page)
 ```
 
-Requirements: Python 3.9+, Node 20+, and for `ingest/`: [yt-dlp](https://github.com/yt-dlp/yt-dlp)
-and the `claude` CLI.
+Requirements: Python 3.9+, Node 20+, numpy for `data/layout.py` (`pip install -r
+data/requirements.txt`), and for `ingest/`: [yt-dlp](https://github.com/yt-dlp/yt-dlp) and the
+`claude` CLI.
 
 ```sh
 ingest/1-download.sh          # see ingest/README.md for the steps
 ingest/2-make-transcripts.py
 ingest/3-extract.sh
 python3 data/build.py         # build data/*.json, print a summary
+python3 data/layout.py        # place the entries on the graph page (about a minute)
 cd site && npm run dev        # http://localhost:5173
 ```
 
@@ -117,7 +122,20 @@ links. It also flags:
 Timestamps that aren't in the transcript are reported by `ingest/3-extract.sh` and flagged in
 the review tool, which both have the transcript.
 
-Tests: `python3 -m unittest discover data/test`.
+Tests: `python3 -m unittest discover data/test` (the `layout.py` tests are skipped without numpy).
+
+### Graph layout: data/layout.py
+
+`data/layout.py` reads `data/entries.json` and writes `data/graph-layout.json`, `{slug: [x, y]}`
+for every entry, which the graph page starts from. Two entries are linked when a note of one
+links to the other. Each connected group of entries is drawn on its own by stress majorization
+(linked entries about 30 units apart, others as far apart as the links between them say),
+then the groups are arranged like a galaxy: the largest group at the centre, the others as
+islands around it, bigger ones nearer the centre and unlinked entries furthest out, none
+overlapping. The result is the same for the same entries.
+
+Re-run it after `data/build.py` whenever entries or links change, and commit the result. Until
+then, new entries appear next to a linked entry, or outside the graph if they have none.
 
 ### Manual fixes: data/overrides.json
 
@@ -170,7 +188,13 @@ npm run preview
 ```
 
 - Pages: home (search, category chips, language filter, suggestions), `/entry/<slug>`,
-  `/episode/<id>`, `/episodes`, `/about`.
+  `/episode/<id>`, `/episodes`, `/graph`, `/about`.
+- The graph page (a prototype) draws every entry as a node and every note link as an edge, with
+  force-graph, loaded only on that page. Nodes start at the positions in `data/graph-layout.json`
+  and a spring holds each one there, so dragging moves a node and its neighbours, and they settle
+  back. Filters hide categories, asides (entries never the subject of a mention), unlinked
+  entries, and see and unrelated links; hidden entries leave gaps, the rest keep their places.
+  Clicking a node, or a link in its card, selects it; `?focus=<slug>` selects one on load.
 - Categories: chips under the search box filter by category (`?cat=name`), and each chip counts
   the entries the current search and language filter leave. On narrow screens the chips scroll
   sideways. Result cards, entry pages and episode timelines show each entry's category in

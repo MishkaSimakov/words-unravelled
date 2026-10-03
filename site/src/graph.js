@@ -1,6 +1,7 @@
 // Graph view (prototype): every entry as a node, links in mention notes as edges, drawn
 // Obsidian-style with force-graph. Loaded on demand from main.js, so the rest of the site
-// doesn't pay for the library.
+// doesn't pay for the library. Nodes start where data/layout.py put them (data/graph-layout.json)
+// and are anchored there, so the simulation only adjusts them locally and after a drag.
 import ForceGraph from 'force-graph'
 
 // Categories that get their own colour; the rest (mostly words) stay the neutral node colour.
@@ -15,7 +16,7 @@ const DEFAULTS = {
   textFade: 2.2, // zoom level at which labels start to fade in
   nodeSize: 1,
   linkWidth: 1,
-  center: 0.5,
+  anchor: 0.3,
   repel: 10,
   linkForce: 1,
   linkDistance: 30,
@@ -28,10 +29,11 @@ const LINK_TYPE_SETTINGS = { see: 'seeLinks', unrelated: 'unrelatedLinks' }
  * Nodes and undirected, de-duplicated links from the links data/build.py resolved in mention notes.
  * A link keeps every type it was given between its two entries.
  */
-function buildGraph({ db, nameText }) {
+function buildGraph({ db, nameText, layout }) {
   const nodes = db.entries.map((entry) => ({
     id: entry.slug,
     entry,
+    anchor: layout[entry.slug] ?? null, // [x, y] from data/layout.py
     term: nameText(entry),
     category: entry.category,
     // Only ever an aside (or passing mention), never the subject of a mention.
@@ -64,17 +66,35 @@ function buildGraph({ db, nameText }) {
     }
   }
   for (const n of nodes) n.deg = n.neighbors.size
+  placeMissing(nodes)
+  for (const n of nodes) [n.x, n.y] = n.anchor
   return { nodes, links, byId }
 }
 
-/** Pulls every node towards the origin, so disconnected clusters and orphans don't drift away. */
-function gravity() {
+/**
+ * Anchors for entries added since data/layout.py last ran: next to a linked entry that has one,
+ * or else on a ring just outside the graph.
+ */
+function placeMissing(nodes) {
+  const GOLDEN = Math.PI * (3 - Math.sqrt(5))
+  const missing = nodes.filter((n) => !n.anchor)
+  if (!missing.length) return
+  const rim = Math.max(0, ...nodes.filter((n) => n.anchor).map((n) => Math.hypot(...n.anchor))) + 150
+  missing.forEach((n, k) => {
+    const near = [...n.neighbors].find((o) => o.anchor)
+    const [cx, cy, r] = near ? [...near.anchor, 30] : [0, 0, rim]
+    n.anchor = [cx + r * Math.cos(k * GOLDEN), cy + r * Math.sin(k * GOLDEN)]
+  })
+}
+
+/** Pulls every node towards its anchor, which keeps the precomputed layout in place. */
+function anchorForce() {
   let nodes = []
-  let strength = 0.05
+  let strength = DEFAULTS.anchor
   const force = (alpha) => {
     for (const n of nodes) {
-      n.vx -= n.x * strength * alpha
-      n.vy -= n.y * strength * alpha
+      n.vx += (n.anchor[0] - n.x) * strength * alpha
+      n.vy += (n.anchor[1] - n.y) * strength * alpha
     }
   }
   force.initialize = (ns) => (nodes = ns)
@@ -142,7 +162,7 @@ export function mountGraph(root, h) {
       </details>
       <details>
         <summary>Forces</summary>
-        ${slider('center', 'Center force', 0, 1, 0.01)}
+        ${slider('anchor', 'Anchor force', 0, 1, 0.01)}
         ${slider('repel', 'Repel force', 0, 20, 0.5)}
         ${slider('linkForce', 'Link force', 0, 2, 0.05)}
         ${slider('linkDistance', 'Link distance', 5, 150, 1)}
@@ -393,11 +413,13 @@ export function mountGraph(root, h) {
       node.fx = node.fy = undefined
     })
 
-  const grav = gravity()
-  fg.d3Force('gravity', grav)
+  const anchor = anchorForce()
+  fg.d3Force('center', null) // the anchors keep the layout in place
+  fg.d3Force('anchor', anchor)
   const applyForces = () => {
-    grav.strength(settings.center * 0.1)
-    fg.d3Force('charge').strength(-settings.repel * 6).distanceMax(500)
+    anchor.strength(settings.anchor)
+    // Short-range only: the layout already spreads things out, repulsion just keeps neighbours apart.
+    fg.d3Force('charge').strength(-settings.repel * 6).distanceMax(40)
     fg.d3Force('link')
       .distance(settings.linkDistance)
       .strength((l) => settings.linkForce / Math.max(1, Math.min(l.source.deg, l.target.deg)))
@@ -543,7 +565,7 @@ export function mountGraph(root, h) {
   // Open by default where there's room for it.
   setPanel(matchMedia('(min-width: 900px)').matches)
 
-  const FORCE_KEYS = ['center', 'repel', 'linkForce', 'linkDistance']
+  const FORCE_KEYS = ['anchor', 'repel', 'linkForce', 'linkDistance']
   const refilter = () => {
     fg.graphData(visibleData())
     if (selected && !fg.graphData().nodes.includes(selected)) select(null)

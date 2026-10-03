@@ -5,7 +5,9 @@ import { fileURLToPath } from 'node:url'
 // The site reads the pipeline output from ../data at runtime (fetch), so the data can be
 // rebuilt without touching the code. In dev it is served from there; on build it is copied.
 const DATA_DIR = fileURLToPath(new URL('../data/', import.meta.url))
-const DATA_FILES = ['episodes.json', 'entries.json']
+const DATA_FILES = ['episodes.json', 'entries.json', 'graph-layout.json']
+// The script that writes each file, for the error when one is missing.
+const WRITER = { 'graph-layout.json': 'data/layout.py' }
 
 function siteData() {
   let base = '/'
@@ -27,7 +29,7 @@ function siteData() {
           res.end(readFileSync(DATA_DIR + file))
         } catch {
           res.statusCode = 404
-          res.end(`Missing data/${file}: run python3 data/build.py first.`)
+          res.end(`Missing data/${file}: run python3 ${WRITER[file] ?? 'data/build.py'} first.`)
         }
       })
     },

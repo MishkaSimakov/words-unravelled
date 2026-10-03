@@ -810,20 +810,26 @@ function episodesPage() {
 // Graph (prototype)
 
 let teardown = null // cleanup for the current page, run before the router renders the next one
+let graphLayout = null // data/graph-layout.json, fetched the first time the graph is shown
 
 function graphPage() {
   setTitle('Graph')
   main.innerHTML = '<section class="graph-page"><p class="loading">Drawing the graph…</p></section>'
   const root = main.querySelector('.graph-page')
-  import('./graph.js')
-    .then(({ mountGraph }) => {
+  graphLayout ??= fetch(href('data/graph-layout.json')).then((res) => {
+    if (!res.ok) throw new Error(`graph-layout.json: HTTP ${res.status}`)
+    return res.json()
+  })
+  Promise.all([import('./graph.js'), graphLayout])
+    .then(([{ mountGraph }, layout]) => {
       if (!root.isConnected) return // navigated away while loading
       teardown = mountGraph(root, {
-        db, esc, href, fold, noteHtml, nameText, nameHtml, forms, plural, CATEGORIES, categoryById,
+        db, esc, href, fold, noteHtml, nameText, nameHtml, forms, plural, CATEGORIES, categoryById, layout,
       })
     })
     .catch((err) => {
       console.error(err)
+      graphLayout = null // try again next time
       root.innerHTML = `<p class="loading">The graph could not be loaded (${esc(err.message)}).</p>`
     })
 }
