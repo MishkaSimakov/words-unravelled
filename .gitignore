@@ -1,3 +1,5 @@
+.idea
+
 # Ingest downloads and transcripts: large, and transcripts are not to be published.
 ingest/1-youtube/
 ingest/2-transcripts/
@@ -11,6 +13,7 @@ __pycache__/
 
 site/node_modules/
 site/dist/
+site/.svelte-kit/
 toolkit/node_modules/
 
 # Left behind if a save is interrupted (toolkit/src/io/files.js)

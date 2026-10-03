@@ -39,7 +39,8 @@ Superseded plans go in `docs/` with a status header at the top.
 
 ## Code
 
-- The site is vanilla JS with Vite and Fuse.js, no framework. Keep it that way.
+- The site is Svelte 5 with SvelteKit (adapter-static, a single-page app). Components only render:
+  data logic stays in `toolkit/`.
 - Slugs, link parsing and link resolution live in `toolkit/` only; the site imports them.
 - Tests: `cd toolkit && npm test`.
 - READMEs describe current behaviour. Update them in the same change as the code.
