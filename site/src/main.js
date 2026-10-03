@@ -1,4 +1,7 @@
 import Fuse from 'fuse.js'
+import { fileAs, fileLetter, fold } from '../../toolkit/src/model/slugs.js'
+import { parseNote } from '../../toolkit/src/model/links.js'
+import { linkIndex, resolveLink } from '../../toolkit/src/query/links.js'
 import '@fontsource-variable/fraunces/opsz.css'
 import '@fontsource-variable/fraunces/opsz-italic.css'
 import '@fontsource-variable/source-serif-4/opsz.css'
@@ -26,7 +29,7 @@ const db = {
   random: [],
 }
 
-// Categories in display order (data/build.py's CATEGORIES). `label` tags an entry, `title` is its
+// Categories in display order. `label` tags an entry, `title` is its
 // chip, and `noun` names a count of them in running text ("1,950 names"), with `one` its singular.
 const CATEGORIES = [
   { id: 'word', label: 'word', title: 'Words', noun: 'words', one: 'word' },
@@ -58,22 +61,6 @@ function fmtDate(date) {
   return new Date(`${date}T12:00:00Z`).toLocaleDateString('en-GB', {
     day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
   })
-}
-
-// Fold one character at a time, so indices in the folded string match the original.
-const fold = (s) =>
-  [...(s ?? '')].map((c) => c.normalize('NFD')[0].toLowerCase()).join('')
-
-// Letters that don't fold to a-z, spelt out as data/build.py's slugs spell them.
-const UNFOLDABLE = { ß: 'ss', æ: 'ae', œ: 'oe', ø: 'o', ł: 'l', đ: 'd', ð: 'd', þ: 'th', ı: 'i' }
-// How an entry files in the A to Z: folded, with those letters spelt out and anything before the
-// first letter or digit dropped, so "-able" files next to "able" and "ælf" under A.
-const fileAs = (term) =>
-  fold(term).replace(/[ßæœøłđðþı]/g, (c) => UNFOLDABLE[c]).replace(/^[^\p{L}\p{N}]+/u, '')
-// The letter heading an entry goes under: A to Z, or # for digits and other scripts.
-const fileLetter = (filed) => {
-  const c = filed[0]?.toUpperCase() ?? ''
-  return /[A-Z]/.test(c) ? c : '#'
 }
 
 // Original form and literal translation, minus any that merely restate the headword
@@ -115,27 +102,22 @@ const linkTitle = (type, uncertain) => {
 }
 
 /**
- * A mention's note with its links turned into entry links. data/build.py gives the note as plain text
- * and each link's position in it (`start`, `end`) and resolved `slug`, so notes are never parsed
- * here. Links to things that aren't entries, links back to `self`, and all links when `links` is
- * false (e.g. inside another <a>) stay plain text.
+ * A mention's note with its links turned into entry links, from the parts load() parsed and
+ * resolved. Links to things that aren't entries, links back to `self`, and all links when `links`
+ * is false (e.g. inside another <a>) stay plain text.
  */
 function noteHtml(mention, { links = true, self = null } = {}) {
-  const note = mention.note ?? ''
-  let html = ''
-  let last = 0
-  for (const link of mention.links ?? []) {
-    const text = note.slice(link.start, link.end)
-    const entry = links && link.slug ? db.bySlug.get(link.slug) : null
-    html += esc(note.slice(last, link.start))
-    html += entry && entry !== self
-      ? `<a class="note-link" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}"` +
-        ` data-type="${esc(link.type)}"${link.uncertain ? ' data-uncertain' : ''}` +
-        ` title="${esc(linkTitle(link.type, link.uncertain) + (entry.gloss ? `: ${nameText(entry)}` : ''))}">${esc(text)}</a>`
-      : esc(text)
-    last = link.end
-  }
-  return html + esc(note.slice(last))
+  return mention.parts
+    .map((part) => {
+      if (typeof part === 'string') return esc(part)
+      const entry = links && part.slug ? db.bySlug.get(part.slug) : null
+      return entry && entry !== self
+        ? `<a class="note-link" href="${href(`entry/${encodeURIComponent(entry.slug)}`)}"` +
+            ` data-type="${esc(part.type)}"${part.uncertain ? ' data-uncertain' : ''}` +
+            ` title="${esc(linkTitle(part.type, part.uncertain) + (entry.gloss ? `: ${nameText(entry)}` : ''))}">${esc(part.text)}</a>`
+        : esc(part.text)
+    })
+    .join('')
 }
 
 // An entry's category as a small label; on the entry page it links to the category.
@@ -149,7 +131,7 @@ function categoryTag(entry, { link = false } = {}) {
 
 // Roles in order of importance.
 const ROLE_RANK = { subject: 0, aside: 1, mention: 2 }
-// A missing or unknown role (data/build.py warns about it) ranks last, as in build.py's role_rank().
+// A missing or unknown role ranks last.
 const roleRank = (m) => ROLE_RANK[m.role] ?? Object.keys(ROLE_RANK).length
 
 // Debug only: a mention's role, or the roles of all an entry's mentions ("subject · aside ×2").
@@ -282,11 +264,18 @@ async function load() {
     for (const mention of entry.mentions) db.byEpisode.get(mention.episode_id)?.push({ entry, mention })
   }
   for (const list of db.byEpisode.values()) list.sort((a, b) => a.mention.t - b.mention.t)
+  // Notes keep their link markup: parse each one, resolve its links, and collect the backlinks.
+  const links = linkIndex(db.entries)
   for (const entry of db.entries) {
-    for (const link of entry.mentions.flatMap((m) => m.links ?? [])) {
-      if (!link.slug || link.slug === entry.slug) continue
-      if (!db.linkedFrom.has(link.slug)) db.linkedFrom.set(link.slug, new Set())
-      db.linkedFrom.get(link.slug).add(entry)
+    for (const mention of entry.mentions) {
+      mention.parts = parseNote(mention.note)
+      for (const part of mention.parts) {
+        if (typeof part === 'string') continue
+        part.slug = resolveLink(links, part.target, entry.slug)
+        if (!part.slug) continue
+        if (!db.linkedFrom.has(part.slug)) db.linkedFrom.set(part.slug, new Set())
+        db.linkedFrom.get(part.slug).add(entry)
+      }
     }
   }
 
@@ -666,7 +655,7 @@ function mentionItem(m, entry) {
         </p>
         ${m.note ? `<p class="note">${noteHtml(m, { self: entry })}</p>` : ''}
         ${
-          m.confidence === 'low' && !m.verified
+          m.confidence === 'low'
             ? `<p class="flag" title="The automatic captions were unclear here, so the spelling or the entry itself may be wrong.">Unverified: the captions were unclear here</p>`
             : ''
         }

@@ -396,8 +396,8 @@ def group(mentions, episodes):
                 conflicts.append((slug, field, values))
         entry["mentions"] = []
         for m in ms:
-            mention = {"episode_id": m["episode_id"], "t": m["t"], "role": m["role"], "note": m["note"],
-                       "links": m["links"], "confidence": m["confidence"]}
+            mention = {"episode_id": m["episode_id"], "t": m["t"], "role": m["role"], "note": m["markup"],
+                       "confidence": m["confidence"]}
             if m.get("verified"):
                 mention["verified"] = True
             entry["mentions"].append(mention)
@@ -698,7 +698,7 @@ def main():
     low = [(e, m) for e, m in all_mentions if m["confidence"] == "low" and not m.get("verified")]
     verified = sum(1 for _, m in all_mentions if m.get("verified"))
     roles = Counter(m["role"] for _, m in all_mentions)
-    links = [link for _, m in all_mentions for link in m["links"]]
+    links = [link for m in mentions for link in m["links"]]
     link_types = Counter(link["type"] for link in links)
 
     def counts(counter, label=str):
