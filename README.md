@@ -168,9 +168,11 @@ npm run preview
   `/episodes`, `/about`.
 - `npm run dev` also shows debug details: each mention's role (subject / aside / mention) as a
   small badge on result cards, entry pages and episode timelines. `npm run build` leaves them out.
-- Search is client-side with Fuse.js over `term`, `original` and `translation`. It ignores
-  accents and ranks exact and prefix matches first; within each of those tiers, entries that are
-  only ever pointed to (role `mention`) come last.
+- Search is client-side with Fuse.js over `term`, `gloss`, `original` and `translation`. It
+  ignores accents and ranks exact and prefix matches first; within each of those tiers, entries
+  that are only ever pointed to (role `mention`) come last.
+- A glossed entry is shown as its term with the gloss muted after it, *meal (flour)*, wherever
+  its name appears; note links show only the term, with the full name in the tooltip.
 - Entry pages list the episodes that discuss the entry (`subject`, then `aside`), and put
   episodes that only point to it under "Also mentioned in".
 - Query and filters are kept in the URL, so searches can be shared and the back button works.

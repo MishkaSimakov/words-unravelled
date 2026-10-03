@@ -281,7 +281,7 @@ main.wrap {
    it opens shows the word in full; in plain text, break the word onto the next line.
    Text still wraps at spaces either way. Line-clamped boxes break the word and let the clamp cut. */
 .result .hw,
-.gloss,
+.result-forms,
 .adjacent-term,
 .note {
   overflow: hidden;
@@ -531,7 +531,14 @@ main.wrap {
   line-height: 1.25;
   transition: color 0.12s;
 }
-.gloss {
+/* The gloss after a homograph's term: "meal (flour)". */
+.hw-gloss {
+  font-weight: 400;
+  font-size: 0.8em;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+.result-forms {
   font-size: 0.95rem;
   color: var(--ink-soft);
 }
