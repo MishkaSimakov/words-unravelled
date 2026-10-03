@@ -244,7 +244,8 @@ async function load() {
   }
   // A to Z by filing form, # first (digits, other scripts), so that each letter heading is one run.
   // Then "-able" before "able", and homographs side by side, the one without a gloss first.
-  const compare = (a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' })
+  // One collator for the whole sort: localeCompare() with options builds a new one on every call.
+  const { compare } = new Intl.Collator('en', { sensitivity: 'base' })
   for (const e of entries) {
     e.fileAs = fileAs(e.term)
     e.letter = fileLetter(e.fileAs)
