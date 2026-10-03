@@ -2094,7 +2094,7 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "a-",
+      "target": "a- (prefix)",
       "slug": "a-prefix",
       "start": 60,
       "end": 62
@@ -2793,7 +2793,7 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "a-",
+      "target": "a- (prefix)",
       "slug": "a-prefix",
       "start": 39,
       "end": 41
@@ -4667,7 +4667,7 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "å",
+      "target": "å (Norwegian)",
       "slug": "a-norwegian",
       "start": 127,
       "end": 128
@@ -4883,7 +4883,7 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "a-",
+      "target": "a- (prefix)",
       "slug": "a-prefix",
       "start": 39,
       "end": 41
@@ -6442,7 +6442,7 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "a-",
+      "target": "a- (prefix)",
       "slug": "a-prefix",
       "start": 39,
       "end": 41
@@ -15274,8 +15274,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Orange",
-      "slug": "orange",
+      "target": "Orange (town)",
+      "slug": "orange-town",
       "start": 112,
       "end": 118
      }
@@ -18821,7 +18821,7 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "a-",
+      "target": "a- (prefix)",
       "slug": "a-prefix",
       "start": 39,
       "end": 41
@@ -18873,7 +18873,7 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "a-",
+      "target": "a- (prefix)",
       "slug": "a-prefix",
       "start": 39,
       "end": 41
@@ -19028,7 +19028,7 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "a-",
+      "target": "a- (prefix)",
       "slug": "a-prefix",
       "start": 39,
       "end": 41
@@ -20409,7 +20409,7 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "å",
+      "target": "å (Norwegian)",
       "slug": "a-norwegian",
       "start": 47,
       "end": 48
@@ -22082,8 +22082,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Avatar",
-      "slug": "avatar",
+      "target": "Avatar (film)",
+      "slug": "avatar-film",
       "start": 35,
       "end": 41
      }
@@ -23458,8 +23458,8 @@
      {
       "type": "unrelated",
       "uncertain": false,
-      "target": "Bad",
-      "slug": null,
+      "target": "Bad (German)",
+      "slug": "bad-german",
       "start": 22,
       "end": 25
      },
@@ -26442,8 +26442,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "Bad",
-      "slug": "bad",
+      "target": "Bad (German)",
+      "slug": "bad-german",
       "start": 52,
       "end": 55
      }
@@ -27101,8 +27101,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "BM",
-      "slug": "bm",
+      "target": "BM (French)",
+      "slug": "bm-french",
       "start": 51,
       "end": 53
      }
@@ -28618,8 +28618,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "long",
-      "slug": "long",
+      "target": "long (Chinese)",
+      "slug": "long-chinese",
       "start": 24,
       "end": 28
      }
@@ -32731,8 +32731,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "-ing",
-      "slug": "ing",
+      "target": "-ing (noun suffix)",
+      "slug": "ing-noun-suffix",
       "start": 99,
       "end": 103
      },
@@ -35601,7 +35601,7 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Nike",
+      "target": "Nike (company)",
       "slug": "nike-company",
       "start": 45,
       "end": 49
@@ -41251,7 +41251,7 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Berliner",
+      "target": "Berliner (newspaper)",
       "slug": "berliner-newspaper",
       "start": 139,
       "end": 147
@@ -41268,7 +41268,7 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Berliner",
+      "target": "Berliner (newspaper)",
       "slug": "berliner-newspaper",
       "start": 117,
       "end": 125
@@ -49198,8 +49198,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Punch",
-      "slug": "punch",
+      "target": "Punch (magazine)",
+      "slug": "punch-magazine",
       "start": 88,
       "end": 93
      },
@@ -49466,8 +49466,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "casino",
-      "slug": null,
+      "target": "casino (Italian)",
+      "slug": "casino-italian",
       "start": 67,
       "end": 73
      }
@@ -53967,8 +53967,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "chef",
-      "slug": null,
+      "target": "chef (French)",
+      "slug": "chef-french",
       "start": 43,
       "end": 47
      }
@@ -53993,8 +53993,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "chef",
-      "slug": "chef",
+      "target": "chef (French)",
+      "slug": "chef-french",
       "start": 56,
       "end": 60
      }
@@ -54798,8 +54798,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "chef",
-      "slug": "chef",
+      "target": "chef (French)",
+      "slug": "chef-french",
       "start": 31,
       "end": 35
      }
@@ -55942,8 +55942,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "long",
-      "slug": "long",
+      "target": "long (Chinese)",
+      "slug": "long-chinese",
       "start": 61,
       "end": 65
      }
@@ -57239,8 +57239,8 @@
      {
       "type": "unrelated",
       "uncertain": false,
-      "target": "clam",
-      "slug": "clam",
+      "target": "clam (Latin)",
+      "slug": "clam-latin",
       "start": 125,
       "end": 129
      }
@@ -57418,8 +57418,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "clam",
-      "slug": "clam",
+      "target": "clam (Latin)",
+      "slug": "clam-latin",
       "start": 73,
       "end": 77
      },
@@ -57486,8 +57486,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "clam",
-      "slug": "clam",
+      "target": "clam (Latin)",
+      "slug": "clam-latin",
       "start": 66,
       "end": 70
      },
@@ -57899,7 +57899,7 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Donner",
+      "target": "Donner (reindeer)",
       "slug": "donner-reindeer",
       "start": 113,
       "end": 119
@@ -60607,8 +60607,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Cold Turkey",
-      "slug": null,
+      "target": "Cold Turkey (song)",
+      "slug": "cold-turkey-song",
       "start": 122,
       "end": 133
      }
@@ -63621,8 +63621,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "rum",
-      "slug": "rum",
+      "target": "rum (odd)",
+      "slug": "rum-odd",
       "start": 17,
       "end": 20
      }
@@ -76129,8 +76129,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "dîner",
-      "slug": "diner",
+      "target": "dîner (French)",
+      "slug": "diner-french",
       "start": 121,
       "end": 126
      }
@@ -78895,8 +78895,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "dick",
-      "slug": "dick",
+      "target": "dick (German)",
+      "slug": "dick-german",
       "start": 51,
       "end": 55
      }
@@ -83488,7 +83488,7 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "donner",
+      "target": "donner (French)",
       "slug": "donner-french",
       "start": 98,
       "end": 104
@@ -83645,7 +83645,7 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "donner",
+      "target": "donner (French)",
       "slug": "donner-french",
       "start": 48,
       "end": 54
@@ -86814,7 +86814,7 @@
      {
       "type": "gave",
       "uncertain": false,
-      "target": "Donner",
+      "target": "Donner (reindeer)",
       "slug": "donner-reindeer",
       "start": 73,
       "end": 79
@@ -88418,8 +88418,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Narcissus",
-      "slug": "narcissus",
+      "target": "Narcissus (myth)",
+      "slug": "narcissus-myth",
       "start": 72,
       "end": 81
      }
@@ -88452,8 +88452,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Narcissus",
-      "slug": "narcissus",
+      "target": "Narcissus (myth)",
+      "slug": "narcissus-myth",
       "start": 64,
       "end": 73
      },
@@ -88563,8 +88563,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "écu",
-      "slug": null,
+      "target": "écu (French)",
+      "slug": "ecu-french",
       "start": 124,
       "end": 127
      }
@@ -93034,8 +93034,8 @@
      {
       "type": "gave",
       "uncertain": false,
-      "target": "gin",
-      "slug": "gin",
+      "target": "gin (machine)",
+      "slug": "gin-machine",
       "start": 111,
       "end": 114
      }
@@ -98092,8 +98092,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Hackney",
-      "slug": "hackney",
+      "target": "Hackney (place)",
+      "slug": "hackney-place",
       "start": 84,
       "end": 91
      }
@@ -98583,8 +98583,8 @@
      {
       "type": "gave",
       "uncertain": false,
-      "target": "fare",
-      "slug": "fare",
+      "target": "fare (Italian)",
+      "slug": "fare-italian",
       "start": 100,
       "end": 104
      }
@@ -99123,8 +99123,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Gonzo",
-      "slug": "gonzo",
+      "target": "Gonzo (Muppet)",
+      "slug": "gonzo-muppet",
       "start": 46,
       "end": 51
      }
@@ -99986,8 +99986,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "fast",
-      "slug": null,
+      "target": "fast (German)",
+      "slug": "fast-german",
       "start": 133,
       "end": 137
      }
@@ -100222,8 +100222,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "fat",
-      "slug": "fat-cantonese",
+      "target": "fat (Catalan)",
+      "slug": "fat-catalan",
       "start": 36,
       "end": 39
      }
@@ -109492,8 +109492,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "-lich",
-      "slug": "lich",
+      "target": "-lich (German)",
+      "slug": "lich-german",
       "start": 28,
       "end": 33
      },
@@ -116020,8 +116020,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "Gift",
-      "slug": null,
+      "target": "Gift (German)",
+      "slug": "gift-german",
       "start": 84,
       "end": 88
      }
@@ -116074,8 +116074,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "Gift",
-      "slug": "gift",
+      "target": "Gift (German)",
+      "slug": "gift-german",
       "start": 32,
       "end": 36
      }
@@ -117382,7 +117382,7 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "A",
+      "target": "A (letter)",
       "slug": "a-letter",
       "start": 81,
       "end": 82
@@ -117451,8 +117451,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "-lich",
-      "slug": "lich",
+      "target": "-lich (German)",
+      "slug": "lich-german",
       "start": 52,
       "end": 57
      }
@@ -122121,8 +122121,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "groß",
-      "slug": null,
+      "target": "groß (German)",
+      "slug": "gross-german",
       "start": 141,
       "end": 145
      },
@@ -122659,8 +122659,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "long",
-      "slug": "long",
+      "target": "long (Chinese)",
+      "slug": "long-chinese",
       "start": 57,
       "end": 61
      }
@@ -124194,8 +124194,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Dick",
-      "slug": "dick",
+      "target": "Dick (name)",
+      "slug": "dick-name",
       "start": 84,
       "end": 88
      }
@@ -124844,8 +124844,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "Hackney",
-      "slug": null,
+      "target": "Hackney (place)",
+      "slug": "hackney-place",
       "start": 96,
       "end": 103
      }
@@ -125754,8 +125754,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "-er",
-      "slug": "er",
+      "target": "-er (German)",
+      "slug": "er-german",
       "start": 56,
       "end": 59
      }
@@ -126129,8 +126129,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Handy",
-      "slug": "handy",
+      "target": "Handy (German)",
+      "slug": "handy-german",
       "start": 72,
       "end": 77
      }
@@ -130525,8 +130525,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Heorot",
-      "slug": null,
+      "target": "Heorot (hall)",
+      "slug": "heorot-hall",
       "start": 79,
       "end": 85
      }
@@ -131432,8 +131432,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "-ing",
-      "slug": "ing",
+      "target": "-ing (noun suffix)",
+      "slug": "ing-noun-suffix",
       "start": 74,
       "end": 78
      }
@@ -133782,8 +133782,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Phoenix",
-      "slug": "phoenix",
+      "target": "Phoenix (city)",
+      "slug": "phoenix-city",
       "start": 119,
       "end": 126
      }
@@ -136286,8 +136286,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Hostel",
-      "slug": null,
+      "target": "Hostel (film)",
+      "slug": "hostel-film",
       "start": 106,
       "end": 112
      }
@@ -146016,8 +146016,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Phoenix",
-      "slug": "phoenix",
+      "target": "Phoenix (city)",
+      "slug": "phoenix-city",
       "start": 100,
       "end": 107
      }
@@ -161145,8 +161145,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "lego",
-      "slug": null,
+      "target": "lego (Latin)",
+      "slug": "lego-latin",
       "start": 134,
       "end": 138
      }
@@ -163788,8 +163788,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "-lich",
-      "slug": "lich",
+      "target": "-lich (German)",
+      "slug": "lich-german",
       "start": 19,
       "end": 24
      },
@@ -164346,8 +164346,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "-ing",
-      "slug": "ing",
+      "target": "-ing (noun suffix)",
+      "slug": "ing-noun-suffix",
       "start": 46,
       "end": 50
      }
@@ -165892,8 +165892,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Ness",
-      "slug": "ness",
+      "target": "Ness (river)",
+      "slug": "ness-river",
       "start": 108,
       "end": 112
      }
@@ -167083,8 +167083,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Lore",
-      "slug": null,
+      "target": "Lore (podcast)",
+      "slug": "lore-podcast",
       "start": 125,
       "end": 129
      }
@@ -169079,8 +169079,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "-lich",
-      "slug": "lich",
+      "target": "-lich (German)",
+      "slug": "lich-german",
       "start": 77,
       "end": 82
      }
@@ -170339,8 +170339,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "magazine",
-      "slug": null,
+      "target": "magazine (French)",
+      "slug": "magazine-french",
       "start": 155,
       "end": 163
      }
@@ -173542,8 +173542,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "Mark",
-      "slug": null,
+      "target": "Mark (currency)",
+      "slug": "mark-currency",
       "start": 40,
       "end": 44
      }
@@ -175792,8 +175792,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "long",
-      "slug": "long",
+      "target": "long (Chinese)",
+      "slug": "long-chinese",
       "start": 60,
       "end": 64
      }
@@ -178180,8 +178180,8 @@
      {
       "type": "gave",
       "uncertain": false,
-      "target": "Meta",
-      "slug": "meta",
+      "target": "Meta (company)",
+      "slug": "meta-company",
       "start": 88,
       "end": 92
      },
@@ -180037,8 +180037,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "meal",
-      "slug": "meal",
+      "target": "meal (flour)",
+      "slug": "meal-flour",
       "start": 20,
       "end": 24
      }
@@ -184018,8 +184018,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Dracula",
-      "slug": "dracula",
+      "target": "Dracula (orchid)",
+      "slug": "dracula-orchid",
       "start": 34,
       "end": 41
      }
@@ -190568,8 +190568,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "Narcissus",
-      "slug": "narcissus",
+      "target": "Narcissus (myth)",
+      "slug": "narcissus-myth",
       "start": 30,
       "end": 39
      },
@@ -190593,8 +190593,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "Narcissus",
-      "slug": "narcissus",
+      "target": "Narcissus (myth)",
+      "slug": "narcissus-myth",
       "start": 30,
       "end": 39
      },
@@ -190635,8 +190635,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "Narcissus",
-      "slug": null,
+      "target": "Narcissus (myth)",
+      "slug": "narcissus-myth",
       "start": 35,
       "end": 44
      },
@@ -192134,8 +192134,8 @@
      {
       "type": "same-root",
       "uncertain": true,
-      "target": "Ness",
-      "slug": "ness",
+      "target": "Ness (river)",
+      "slug": "ness-river",
       "start": 65,
       "end": 69
      }
@@ -192161,8 +192161,8 @@
      {
       "type": "same-root",
       "uncertain": true,
-      "target": "ness",
-      "slug": "ness",
+      "target": "ness (headland)",
+      "slug": "ness-headland",
       "start": 90,
       "end": 94
      }
@@ -193017,7 +193017,7 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "Nike",
+      "target": "Nike (goddess)",
       "slug": "nike-goddess",
       "start": 72,
       "end": 76
@@ -199413,7 +199413,7 @@
      {
       "type": "unrelated",
       "uncertain": false,
-      "target": "öl",
+      "target": "öl (Swedish)",
       "slug": "ol-swedish",
       "start": 52,
       "end": 54
@@ -199440,7 +199440,7 @@
      {
       "type": "unrelated",
       "uncertain": false,
-      "target": "Öl",
+      "target": "Öl (German)",
       "slug": "ol-german",
       "start": 57,
       "end": 59
@@ -207869,8 +207869,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "péter",
-      "slug": "peter",
+      "target": "péter (French)",
+      "slug": "peter-french",
       "start": 34,
       "end": 39
      },
@@ -211608,8 +211608,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "péter",
-      "slug": "peter",
+      "target": "péter (French)",
+      "slug": "peter-french",
       "start": 94,
       "end": 99
      }
@@ -212151,8 +212151,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "pétulant",
-      "slug": null,
+      "target": "pétulant (French)",
+      "slug": "petulant-french",
       "start": 115,
       "end": 123
      }
@@ -212358,7 +212358,7 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Berliner",
+      "target": "Berliner (German)",
       "slug": "berliner-german",
       "start": 44,
       "end": 52
@@ -213304,8 +213304,8 @@
      {
       "type": "same-root",
       "uncertain": true,
-      "target": "phoenix",
-      "slug": "phoenix",
+      "target": "phoenix (Greek)",
+      "slug": "phoenix-greek",
       "start": 119,
       "end": 126
      }
@@ -218527,8 +218527,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Gift",
-      "slug": "gift",
+      "target": "Gift (German)",
+      "slug": "gift-german",
       "start": 75,
       "end": 79
      }
@@ -224690,8 +224690,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Handy",
-      "slug": "handy",
+      "target": "Handy (German)",
+      "slug": "handy-german",
       "start": 127,
       "end": 132
      }
@@ -232819,8 +232819,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Mark",
-      "slug": "mark",
+      "target": "Mark (currency)",
+      "slug": "mark-currency",
       "start": 44,
       "end": 48
      }
@@ -239370,8 +239370,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "rum",
-      "slug": "rum",
+      "target": "rum (odd)",
+      "slug": "rum-odd",
       "start": 27,
       "end": 30
      }
@@ -239396,8 +239396,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "rum",
-      "slug": "rum",
+      "target": "rum (odd)",
+      "slug": "rum-odd",
       "start": 42,
       "end": 45
      }
@@ -240081,8 +240081,8 @@
      {
       "type": "unrelated",
       "uncertain": false,
-      "target": "Ruth",
-      "slug": null,
+      "target": "Ruth (name)",
+      "slug": "ruth-name",
       "start": 130,
       "end": 134
      }
@@ -244966,8 +244966,8 @@
      {
       "type": "unrelated",
       "uncertain": false,
-      "target": "school",
-      "slug": null,
+      "target": "school (fish)",
+      "slug": "school-fish",
       "start": 116,
       "end": 122
      }
@@ -248291,8 +248291,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "sensible",
-      "slug": null,
+      "target": "sensible (French)",
+      "slug": "sensible-french",
       "start": 12,
       "end": 20
      }
@@ -251440,8 +251440,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "school",
-      "slug": "school",
+      "target": "school (fish)",
+      "slug": "school-fish",
       "start": 11,
       "end": 17
      }
@@ -255491,8 +255491,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "sleuth",
-      "slug": "sleuth",
+      "target": "sleuth (sloth)",
+      "slug": "sleuth-sloth",
       "start": 93,
       "end": 99
      }
@@ -255989,8 +255989,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "sleuth",
-      "slug": "sleuth",
+      "target": "sleuth (sloth)",
+      "slug": "sleuth-sloth",
       "start": 121,
       "end": 127
      }
@@ -256222,8 +256222,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "slut",
-      "slug": "slut",
+      "target": "slut (Swedish)",
+      "slug": "slut-swedish",
       "start": 35,
       "end": 39
      }
@@ -261430,8 +261430,8 @@
      {
       "type": "from",
       "uncertain": false,
-      "target": "Dick",
-      "slug": "dick",
+      "target": "Dick (name)",
+      "slug": "dick-name",
       "start": 11,
       "end": 15
      }
@@ -278436,8 +278436,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "dick",
-      "slug": "dick",
+      "target": "dick (German)",
+      "slug": "dick-german",
       "start": 21,
       "end": 25
      }
@@ -279614,8 +279614,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "Three Dog Night",
-      "slug": null,
+      "target": "Three Dog Night (band)",
+      "slug": "three-dog-night-band",
       "start": 143,
       "end": 158
      }
@@ -280575,8 +280575,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "tag",
-      "slug": "tag",
+      "target": "tag (game)",
+      "slug": "tag-game",
       "start": 22,
       "end": 25
      }
@@ -284118,8 +284118,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "tag",
-      "slug": "tag",
+      "target": "tag (game)",
+      "slug": "tag-game",
       "start": 42,
       "end": 45
      }
@@ -293412,8 +293412,8 @@
      {
       "type": "same-root",
       "uncertain": false,
-      "target": "fat",
-      "slug": "fat-cantonese",
+      "target": "fat (Swedish)",
+      "slug": "fat-swedish",
       "start": 22,
       "end": 25
      }
@@ -295426,8 +295426,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "-ing",
-      "slug": "ing",
+      "target": "-ing (noun suffix)",
+      "slug": "ing-noun-suffix",
       "start": 27,
       "end": 31
      }
@@ -298078,8 +298078,8 @@
      {
       "type": "see",
       "uncertain": false,
-      "target": "WAP",
-      "slug": null,
+      "target": "WAP (song)",
+      "slug": "wap-song",
       "start": 117,
       "end": 120
      }
