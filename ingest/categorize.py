@@ -34,6 +34,7 @@ sys.path.insert(0, str(INGEST.parent / "data"))
 from build import CATEGORIES, clean_str, render_note, slugify  # noqa: E402
 
 LINE = re.compile(r"^\s*(\d+)\.\s+(.*?)\s*->\s*([a-z-]+)\s*$")
+GLOSS = re.compile(r"\s*\[[^\]]*\]$")  # answers sometimes keep the gloss
 
 
 def prompt():
@@ -67,7 +68,7 @@ def parse(output, entries):
         if not m:
             problems.append(f"unreadable line: {line!r}")
             continue
-        n, term, category = int(m.group(1)), m.group(2), m.group(3)
+        n, term, category = int(m.group(1)), GLOSS.sub("", m.group(2)), m.group(3)
         if not 1 <= n <= len(entries):
             problems.append(f"unknown number: {line!r}")
             continue

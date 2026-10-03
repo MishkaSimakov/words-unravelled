@@ -23,7 +23,8 @@ terms = [t for _, t in lines]
 if os.environ.get("FAKE_SHIFT"):
     terms = terms[1:] + terms[:1]
 for (n, _), t in zip(lines, terms):
-    print(f"{n}. {t} -> {'name' if t[0].isupper() else 'word'}")
+    gloss = " [game]" if t == "Murder" else ""
+    print(f"{n}. {t}{gloss} -> {'name' if t[0].isupper() else 'word'}")
 '''
 
 
@@ -45,6 +46,7 @@ class CategorizeTest(unittest.TestCase):
         self.file = self.ingest / "3-entries" / "aaaaaaaaaaa.json"
         entries = [{"term": t, "language": "English", "timestamp": "00:00:10", "role": "subject",
                     "note": "A [[see:thing]].", "confidence": "high"} for t in ("ocean", "Okeanos", "sea")]
+        entries.append({**entries[1], "term": "Murder", "gloss": "game"})
         self.file.write_text(json.dumps({"video_id": "aaaaaaaaaaa", "prompt_version": 4, "title": "T",
                                          "entries": entries}), encoding="utf-8")
 
@@ -57,7 +59,7 @@ class CategorizeTest(unittest.TestCase):
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
         data = json.loads(self.file.read_text(encoding="utf-8"))
         self.assertGreater(data["prompt_version"], 4)
-        self.assertEqual([e["category"] for e in data["entries"]], ["word", "name", "word"])
+        self.assertEqual([e["category"] for e in data["entries"]], ["word", "name", "word", "name"])
         self.assertEqual(list(data["entries"][0])[:3], ["term", "language", "category"])
         self.assertIn("Nothing to do", self.run_script().stdout)
 
