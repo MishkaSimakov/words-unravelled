@@ -18,7 +18,7 @@ set -u
 # Version of 3-extract-prompt.md: increase it whenever the prompt changes. The script writes it
 # into each output file as "prompt_version"; files with another version (or none) are
 # extracted again.
-PROMPT_VERSION=4
+PROMPT_VERSION=5
 
 usage() { echo "usage: $0 [-j workers] [video_id...]" >&2; exit 2; }
 

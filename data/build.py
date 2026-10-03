@@ -8,19 +8,23 @@ Reads:
 
 Writes:
     data/episodes.json       [{ id, title, date, duration }]
-    data/entries.json        [{ slug, term, gloss?, original, translation, language, mentions: [...] }]
+    data/entries.json        [{ slug, term, gloss?, original, translation, language, category,
+                                mentions: [...] }]
     data/duplicates.md       likely duplicates, for manual review (nothing is merged automatically)
 
 Each entry file is one episode, whatever produced it (ingest/ writes them with Claude):
 
     {"video_id": "m9AaobtBMtA", "prompt_version": 4, "title": "...", "date": "2026-09-30",
-     "duration": 2623, "entries": [{term, gloss?, original, translation, language, timestamp, role,
-     note, confidence}]}
+     "duration": 2623, "entries": [{term, gloss?, original, translation, language, category,
+     timestamp, role, note, confidence}]}
 
 "gloss" (absent or null unless another word has the same spelling) tells homographs apart, like
 a Wikipedia disambiguation suffix: a language (Gift, German), a meaning (meal, flour) or a kind
 (Phoenix, city). An entry's slug is slugify(term + " " + gloss), or slugify(term) without one,
 and entries.json has "gloss" only on entries that have one.
+
+"category" is what kind of thing the entry is: word, name, expression, about-language or
+word-part. It belongs to the entry, so mentions vote on it like on the other entry fields.
 
 Each mention is {episode_id, t, role, note, links, confidence, verified?}:
 
@@ -67,7 +71,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 ROLES = ("subject", "aside", "mention")  # in order of precedence
 LINK_TYPES = ("from", "gave", "same-root", "equivalent", "unrelated", "see")
-ENTRY_FIELDS = ("term", "gloss", "original", "translation", "language")
+ENTRY_FIELDS = ("term", "gloss", "original", "translation", "language", "category")
+CATEGORIES = ("word", "name", "expression", "about-language", "word-part")
 
 # ---------------------------------------------------------------------------
 # Slugs
@@ -220,6 +225,14 @@ def read_entry(raw, stamps=None, duration=None):
     elif role not in ROLES:
         problems.append((f"unknown role '{role}' (kept as is)", ""))
 
+    category = clean_str(raw.get("category"))
+    category = category.lower() if category else None
+    if not category:
+        problems.append(("missing category", ""))
+    elif category not in CATEGORIES:
+        problems.append((f"unknown category '{category}' (ignored)", ""))
+        category = None
+
     markup = clean_str(raw.get("note")) or ""
     problems += link_problems(markup)
     note, links = render_note(markup)
@@ -227,7 +240,7 @@ def read_entry(raw, stamps=None, duration=None):
     return {
         "term": term, "gloss": clean_str(raw.get("gloss")), "original": clean_str(raw.get("original")),
         "translation": clean_str(raw.get("translation")),
-        "language": clean_str(raw.get("language")), "t": t, "role": role,
+        "language": clean_str(raw.get("language")), "category": category, "t": t, "role": role,
         "note": note, "markup": markup, "links": links,
         "confidence": confidence if confidence in ("high", "low") else "low",
     }, problems
@@ -305,7 +318,9 @@ class Overrides:
                 self.warn(i, op, "matched nothing (stale override?)")
                 continue
             for k, v in (op.get("fields") or {}).items():
-                if k in ENTRY_FIELDS:
+                if k == "category" and v not in CATEGORIES:
+                    self.warn(i, op, f"unknown category '{v}'")
+                elif k in ENTRY_FIELDS:
                     e[k] = v
                 else:
                     self.warn(i, op, f"unknown field '{k}'")
@@ -375,9 +390,10 @@ def group(mentions, episodes):
         entry = {"slug": slug, **representative(ms)}
         if not entry["gloss"]:
             del entry["gloss"]
-        languages = Counter(m["language"] for m in ms if m.get("language"))
-        if len(languages) > 1:
-            conflicts.append((slug, languages))
+        for field in ("language", "category"):
+            values = Counter(m[field] for m in ms if m.get(field))
+            if len(values) > 1:
+                conflicts.append((slug, field, values))
         entry["mentions"] = []
         for m in ms:
             mention = {"episode_id": m["episode_id"], "t": m["t"], "role": m["role"], "note": m["note"],
@@ -588,13 +604,13 @@ def write_report(path, entries, duplicates, conflicts, episodes):
                       f"  - merge: `{json.dumps({'op': 'merge', 'from': drop, 'into': keep})}`",
                       f"  - keep apart: `{json.dumps({'op': 'distinct', 'slugs': [a, b]})}`", ""]
     if conflicts:
-        lines += ["## Mentions that disagree on language", "",
-                  "These mentions were grouped under one slug but give different languages.",
+        lines += ["## Mentions that disagree on language or category", "",
+                  "These mentions were grouped under one slug but give different values.",
                   "The majority value is used; fix it with a `set` override, or split the entry",
-                  "with a `rename` override limited to one `episode_id`.", ""]
-        for slug, values in conflicts:
+                  "with a `rename` override limited to one `episode_id` if they are different words.", ""]
+        for slug, field, values in conflicts:
             detail = ", ".join(f"{v} ×{n}" for v, n in values.most_common())
-            lines.append(f"- `{slug}` language: {detail}")
+            lines.append(f"- `{slug}` {field}: {detail}")
         lines.append("")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(lines), encoding="utf-8")
@@ -700,7 +716,10 @@ def main():
         print(f"    {m['episode_id']} {fmt_time(m['t'])}  {e['term']}")
     if len(low) > 15 and not args.verbose:
         print(f"    ... and {len(low) - 15} more (use -v, or review them with review/review.py)")
-    print(f"Likely duplicates: {len(duplicates)} pairs, {len(conflicts)} language conflicts -> {report.relative_to(root)}")
+    conflict_fields = Counter(field for _, field, _ in conflicts)
+    print(f"Categories: {counts(Counter(e['category'] for e in entries))}")
+    print(f"Likely duplicates: {len(duplicates)} pairs, {conflict_fields['language']} language and "
+          f"{conflict_fields['category']} category conflicts -> {report.relative_to(root)}")
     for kind, items in problems.items():
         print(f"\n{kind}: {len(items)}")
         for item in items[:10]:

@@ -15,8 +15,9 @@ sys.path.insert(0, str(DATA))
 from build import entry_slug, link_problems, render_note, review_key  # noqa: E402
 
 
-def entry(term, timestamp, role="subject", note="", gloss=None):
-    e = {"term": term, "timestamp": timestamp, "role": role, "note": note, "confidence": "high"}
+def entry(term, timestamp, role="subject", note="", gloss=None, category="word"):
+    e = {"term": term, "category": category, "timestamp": timestamp, "role": role, "note": note,
+         "confidence": "high"}
     if gloss:
         e["gloss"] = gloss
     return e
@@ -33,7 +34,7 @@ class BuildTest(unittest.TestCase):
         self.entries.mkdir(parents=True)
 
     def episode(self, vid, entries, title="Title", date="2026-09-30"):
-        data = {"video_id": vid, "prompt_version": 4, "title": title, "date": date, "duration": 600,
+        data = {"video_id": vid, "prompt_version": 5, "title": title, "date": date, "duration": 600,
                 "entries": entries}
         (self.entries / f"{vid}.json").write_text(json.dumps(data), encoding="utf-8")
 
@@ -134,6 +135,33 @@ class BuildTest(unittest.TestCase):
         self.build()
         self.assertEqual([(e["slug"], e["term"]) for e in self.built("entries.json")],
                          [("phoenix", "phoenix"), ("phoenix-city", "Phoenix")])
+
+    def test_category_vote_and_conflict(self):
+        self.episode("aaaaaaaaaaa", [entry("Waterloo", "00:00:10", category="name")])
+        self.episode("bbbbbbbbbbb", [entry("Waterloo", "00:00:10", category="name")])
+        self.episode("ccccccccccc", [entry("Waterloo", "00:00:10", category="expression")])
+        out = self.build()
+        [e] = self.built("entries.json")
+        self.assertEqual(e["category"], "name")
+        self.assertIn("1 category conflicts", out)
+        self.assertIn("`waterloo` category: name ×2, expression ×1",
+                      (self.root / "data" / "duplicates.md").read_text(encoding="utf-8"))
+
+    def test_missing_and_unknown_category(self):
+        self.episode("aaaaaaaaaaa", [entry("fish", "00:00:10", category=None),
+                                     entry("chips", "00:00:20", category="food")])
+        out = self.build()
+        self.assertEqual([e["category"] for e in self.built("entries.json")], [None, None])
+        self.assertIn("missing category: 1", out)
+        self.assertIn("unknown category 'food' (ignored): 1", out)
+
+    def test_set_category(self):
+        self.episode("aaaaaaaaaaa", [entry("Covent Garden", "00:00:10", category="name")])
+        self.overrides([{"op": "set", "slug": "covent-garden", "fields": {"category": "expression"}},
+                        {"op": "set", "slug": "covent-garden", "fields": {"category": "slang"}}])
+        out = self.build()
+        self.assertEqual(self.built("entries.json")[0]["category"], "expression")
+        self.assertIn("unknown category 'slang'", out)
 
     def test_episode_without_a_date(self):
         self.episode("aaaaaaaaaaa", [entry("fish", "00:00:10")], title="Fish", date=None)

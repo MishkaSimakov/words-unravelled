@@ -38,8 +38,8 @@ cd site && npm run dev        # http://localhost:5173
 folder), `data/overrides.json` and `data/review.json`, and writes:
 
 - `data/episodes.json`: `[{ id, title, date, duration }]`, newest first
-- `data/entries.json`: `[{ slug, term, gloss?, original, translation, language, mentions: [...] }]`,
-  where each mention is
+- `data/entries.json`: `[{ slug, term, gloss?, original, translation, language, category,
+  mentions: [...] }]`, where each mention is
 
   ```json
   {"episode_id": "m9AaobtBMtA", "t": 978, "role": "subject",
@@ -54,15 +54,17 @@ folder), `data/overrides.json` and `data/review.json`, and writes:
 episode, `<video_id>.json`:
 
 ```json
-{"video_id": "m9AaobtBMtA", "prompt_version": 4,
+{"video_id": "m9AaobtBMtA", "prompt_version": 5,
  "title": "Ancient writing systems and how they work", "date": "2026-09-30", "duration": 2623,
  "entries": [{"term": "cartridge", "original": null, "translation": null, "language": "English",
-              "timestamp": "00:16:18", "role": "subject",
+              "category": "word", "timestamp": "00:16:18", "role": "subject",
               "note": "A doublet of [[same-root:cartouche]]; …", "confidence": "high"}]}
 ```
 
-Entries have no kind (word, expression, name...): that will come from a later tagging pass over
-the built entries.
+**Category** says what kind of thing an entry is: `word`, `name`, `expression`,
+`about-language` (terms for describing language, and names of languages and scripts) or
+`word-part` (*-chester*, *aber*, letters). The rules are in `ingest/3-extract-prompt.md`. It
+belongs to the entry, so like the other entry fields it is voted on across mentions.
 
 **Gloss** tells apart different words with the same spelling. It is absent or `null` unless
 another word has the same spelling, and is a short label like a Wikipedia disambiguation
@@ -95,7 +97,7 @@ Nothing else is merged automatically. Likely duplicates (plural/singular, spelli
 "to kick the bucket" vs "kick the bucket", one expression contained in another, one entry's
 term being another's original form; never two entries with the same term and different
 glosses) go to `data/duplicates.md`, each with a ready-to-paste override, along with mentions
-that disagree on language.
+that disagree on language or category.
 
 The summary shows how many files there are at each `prompt_version`, and counts of roles and
 links. It also flags:
@@ -103,6 +105,7 @@ links. It also flags:
 - low-confidence mentions not yet approved in the review tool
 - timestamps after the end of the video
 - missing roles, and roles other than subject/aside/mention
+- missing categories, and unknown ones (dropped)
 - malformed links in notes (`[[x]]`, `[[x|y]]`, `[[see: ]]`) and unknown link types
 - the same entry twice in one episode, including after overrides (the mention with the highest
   role is kept); for two different words with one spelling, a gloss is missing
