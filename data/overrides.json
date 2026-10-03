@@ -1,4 +1,0 @@
-[
-  {"_comment": "Manual fixes applied by data/build.py on every run. See its docstring or the README for the operations."},
-  {"op": "merge", "from": "bald-mouse", "into": "chauve-souris"}
-]
