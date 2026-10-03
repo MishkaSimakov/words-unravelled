@@ -1,19 +1,15 @@
 // Resolving link targets to entries.
 
 import { slugify } from '../model/slugs.js'
+import { groupBy } from './groups.js'
 
-/** The lookups resolveLink() needs, built once from all entries. */
+/** The lookups resolveLink() and the link checks need, built once from all entries. */
 export function linkIndex(entries) {
-  const bySlug = new Map()
-  const byOriginal = new Map() // slug of an original form -> entries with it
-  for (const entry of entries) {
-    bySlug.set(entry.slug, entry)
-    if (!entry.original) continue
-    const key = slugify(entry.original)
-    if (!byOriginal.has(key)) byOriginal.set(key, [])
-    byOriginal.get(key).push(entry)
+  return {
+    bySlug: new Map(entries.map((e) => [e.slug, e])),
+    byOriginal: groupBy(entries.filter((e) => e.original), (e) => slugify(e.original)), // slug of an original form -> entries with it
+    byTerm: groupBy(entries, (e) => slugify(e.term)), // slug of a term -> entries spelt that way, glossed or not
   }
-  return { bySlug, byOriginal }
 }
 
 /**

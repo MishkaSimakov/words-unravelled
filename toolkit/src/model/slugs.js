@@ -6,8 +6,11 @@ const UNFOLDABLE = { ß: 'ss', æ: 'ae', œ: 'oe', ø: 'o', ł: 'l', đ: 'd', ð
 const UNFOLDABLE_RE = new RegExp(`[${Object.keys(UNFOLDABLE).join('')}]`, 'g')
 
 /** Lowercase, drop invisible characters, fold diacritics, anything that isn't a letter or digit to hyphens. */
-export function slugify(text) {
-  const s = (text ?? '')
+export const slugify = (text) => slugText(text) || 'entry'
+
+/** slugify() without the fallback: '' for text with no letters or digits. */
+export function slugText(text) {
+  return (text ?? '')
     .replace(INVISIBLE, '')
     .toLowerCase()
     .replace(UNFOLDABLE_RE, (c) => UNFOLDABLE[c])
@@ -17,7 +20,6 @@ export function slugify(text) {
     .replace(/['’‘`´]/g, '') // "don't" -> "dont", not "don-t"
     .replace(/[^\p{L}\p{N}]+/gu, '-')
     .replace(/^-+|-+$/g, '')
-  return s || 'entry'
 }
 
 /** The slug of an entry: its term, plus the gloss if it has one ("meal (flour)" -> meal-flour). */

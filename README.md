@@ -7,7 +7,7 @@ the moment each one comes up. This prototype covers the **audience side** only. 
 
 ```
 data/      the dataset: entries.json and episodes.json, edited by hand and read by the site as is
-toolkit/   shared JS for reading the data: slugs, link markup, link resolution
+toolkit/   shared JS for the data: slugs, link markup, link resolution, search
 ingest/    downloads episodes' captions and turns them into transcripts
 site/      the website (Vite, vanilla JS, Fuse.js)
 docs/      plans and briefs, kept for the record
@@ -15,15 +15,16 @@ docs/      plans and briefs, kept for the record
 
 `data/*.json` are the source of truth. There is no build step: the site reads them as they are,
 so a fix made by hand shows up when the page is reloaded. New episodes will be added by an
-extraction agent (issue #13); until then they can't be ingested. Nothing checks the data for
-duplicates or broken links yet (issue #12).
+extraction agent (issue #13); until then they can't be ingested. After editing the data by
+hand, run `cd toolkit && npm run check` (see **Checks** below).
 
 Requirements: Node 20+, and for `ingest/`: Python 3.9+ and
 [yt-dlp](https://github.com/yt-dlp/yt-dlp).
 
 ```sh
 cd site && npm run dev        # http://localhost:5173
-cd toolkit && npm test        # the toolkit's tests, including checks on data/entries.json
+cd toolkit && npm run check   # problems in data/: errors and warnings
+cd toolkit && npm test        # the toolkit's tests, including a check that data/ has no errors
 ```
 
 ## Data
@@ -80,23 +81,121 @@ So a target without a gloss means the word without one: `[[see:gift]]` never rea
 
 ## Toolkit
 
-`toolkit/` holds the code that reads the data, shared by the site and, later, the tools that
-edit it (issues #12 and #13). It is plain ES modules with no dependencies and no browser or
-Node globals, so the site imports it directly (Vite's `server.fs.allow` includes it).
+`toolkit/` holds the code that reads, checks and edits the data, shared by the site and, later,
+the tools that edit it (the extraction agent's MCP server in issue #13, and a review tool). It is plain ES modules with no browser or Node globals, so the site
+imports it directly (Vite's `server.fs.allow` includes it). Its one dependency is Fuse.js, for
+search; run `npm install` in `toolkit/` before building the site.
 
 ```
-toolkit/src/model/slugs.js   slugify, entrySlug, the A-to-Z filing form
-toolkit/src/model/links.js   link types and parseNote
-toolkit/src/query/links.js   linkIndex and resolveLink
-toolkit/test/                node --test; data.test.js checks the real data/entries.json
+toolkit/src/model/slugs.js       slugify, entrySlug, the A-to-Z filing form
+toolkit/src/model/links.js       link types; parse, format and rewrite link markup
+toolkit/src/model/schema.js      categories, roles, field order, entryName
+toolkit/src/model/transcript.js  the times transcript lines start at
+toolkit/src/query/links.js       linkIndex and resolveLink
+toolkit/src/query/index.js       buildIndex and its lookups: entry, episode, episodeMentions,
+                                 episodeCounts, noteParts (resolved links), backlinks, homographs
+toolkit/src/query/search.js      search, as on the site
+toolkit/src/query/plain.js       plainMentions: notes that name an entry without linking to it
+toolkit/src/query/groups.js      groupBy, the grouping the indexes and checks share
+toolkit/src/checks/              problems() and introduced(); codes.js lists every problem code;
+                                 invariants.js: dataChanges and linkResolutions
+toolkit/src/edit/                edits: episodes, mentions, entries, names (gloss, rename), merges
+toolkit/src/io/files.js          Node only: load and save the data files
+toolkit/cli/check.js             npm run check
+toolkit/test/                    node --test, mirroring src/; fixtures/data.js is a small dataset,
+                                 helpers.js the invariants every edit test checks
 ```
 
-Tests: `cd toolkit && npm test`.
+Everything but `io/` and `cli/` is pure: plain data in, plain data out. Data is always
+`{ entries, episodes }`, shaped like the files.
+
+### Checks
+
+`problems(data, { warnings, transcripts })` returns every problem in the data as
+`{ level, code, message, slugs, mention?, episode?, detail? }`. `checks/codes.js` lists each
+code with its level and meaning.
+
+- **Errors** make the data invalid:
+  - fields of the wrong type, and unknown categories, roles and confidences;
+  - an entry without mentions, two mentions of one entry in one episode, a mention of an
+    unknown episode or after its end;
+  - a slug that isn't the slug of its term and gloss, or that two entries share;
+  - malformed links, unknown link types, a target that several original forms match, and an
+    unglossed target when only glossed entries have that term.
+
+  Given transcripts (`{ episode id: text }`), it also reports timestamps that start no
+  transcript line. `check` doesn't pass them, since hand-corrected timestamps needn't match a
+  line.
+- **Warnings** are only reported:
+  - likely duplicates (article or "to", spacing or hyphen variants, plurals, spelling variants,
+    an expression inside another, a term that is another entry's original form);
+  - link targets that resolve to nothing but are close to an entry, a link to its own entry
+    included;
+  - notes that start as if next to other entries ("Another…", "Also…", "One of the…", "The
+    same…").
+
+  Duplicate detection compares every pair of entries, so `warnings: false` skips the warnings
+  when only errors matter.
+
+A problem's identity is its code, slugs, mention, episode and detail, not its wording.
+`introduced(before, after)` returns the problems of `after` that `before` doesn't have, so a
+tool can show what one change caused without the hundreds of known warnings. It counts keys, so
+a second copy of a known problem (a second identical bad link in one note) is new.
+
+`npm run check` prints every problem grouped by code and exits with 1 if there are errors.
+Each line starts with its code in brackets, so `npm run check | grep '\[note-context\]'` lists
+one kind. The
+Pages workflow runs it before building, so a deploy fails on data with errors.
+
+### Edits
+
+Each edit takes data and returns new data, keeping the files' order (entries by slug, mentions
+by episode date and time, episodes newest first) and key order, and reusing the objects it
+doesn't change. It never changes its input. If it can't be applied (an unknown slug, episode or
+mention, or a field it doesn't set), or if its result has errors the input didn't
+(`introduced()`), it throws a `ToolkitError` whose `problems` say why. Edits never run the
+warnings.
+
+| edit | does |
+|---|---|
+| `addEpisode(data, episode)` | adds `{ id, title, date, duration }` |
+| `replaceEpisodeMentions(data, id, items)` | replaces all of an episode's mentions; creates the entries the items declare, removes entries left without mentions |
+| `addMention(data, id, item)` | adds one mention, to an existing or a new entry |
+| `editMention(data, slug, id, fields)` | sets a mention's `t`, `role`, `note` or `confidence` |
+| `deleteMention(data, slug, id)` | deletes a mention, and the entry if it has no others |
+| `setFields(data, slug, fields)` | sets `original`, `translation`, `language` or `category` |
+| `deleteEntry(data, slug)` | deletes an entry; links to it show as plain text, unless that leaves a link that needs a gloss or is ambiguous: then it is refused |
+| `setGloss(data, slug, gloss)` | sets or (with null) removes the gloss, so the slug; links that named the entry get the gloss and keep their text (`[[see:meal]]s` → `[[see:meal (flour)]]s`) |
+| `renameEntry(data, slug, term)` | changes the term, so the slug; links that named the entry name the new term |
+
+`setGloss` and `renameEntry` are refused (`link-taken`) if the new slug would take a link that
+resolves to another entry by its original form, since a slug match comes first. Links that
+resolved to nothing may start resolving to the renamed entry. Removing entries the same way
+(`deleteMention`, `replaceEpisodeMentions`) is refused like `deleteEntry` when it would leave a
+link in error.
+| `mergeEntries(data, from, into)` | moves `from`'s mentions to `into` and deletes `from`; links that resolved to `from` name `into`. Refused if both have a mention in one episode |
+
+A mention item is `{ slug, t, role, note, confidence }`, or, for a new entry,
+`{ entry: { term, gloss?, original, translation, language, category }, t, role, note,
+confidence }`.
+
+`io/files.js` loads the data files and saves them atomically: each file is written to a
+temporary file (`data/*.tmp`, ignored by git) renamed over the old one, with the same
+formatting, so a failed save leaves the old file whole and a save changes only the bytes of what
+changed. Data without both `entries` and `episodes` lists is refused before anything is written.
+
+Every edit test runs the edit on frozen data and checks the invariants in `test/helpers.js`:
+valid data stays valid, the order is kept, only the intended entries change (others may differ
+in link targets only, where the edit renames), every link resolves to the same entry as before,
+and a refused edit leaves the data as it was. `test/checks/codes.test.js` and
+`test/edit/refusals.test.js` fail if a problem or refusal code has no test.
+
+Tests: `cd toolkit && npm install && npm test`.
 
 ## Website
 
 ```sh
-cd site
+cd toolkit && npm install && cd ../site
 npm install
 npm run dev        # http://localhost:5173, reads ../data live, shows debug details
 npm run build      # -> site/dist (data copied into dist/data, index.html copied to 404.html)
