@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { FILES, saveData } from '../../src/io/files.js'
+import { FILES, saveData, saveSilenced } from '../../src/io/files.js'
 import { editSession } from '../../src/io/session.js'
 import { small } from '../fixtures/data.js'
 
@@ -11,6 +11,7 @@ function session(t) {
   const dir = mkdtempSync(join(tmpdir(), 'toolkit-session-'))
   t.after(() => rmSync(dir, { recursive: true, force: true }))
   saveData(dir, small())
+  saveSilenced(dir, [])
   return { dir, session: editSession(dir), texts: () => Object.values(FILES).map((f) => readFileSync(join(dir, f), 'utf8')) }
 }
 
@@ -64,8 +65,36 @@ test('undo refuses when the files changed since the last apply', (t) => {
 
 test('problems lists warnings too, for the files as they are now', (t) => {
   const { session: s } = session(t)
-  assert.deepEqual(s.problems().problems.map((p) => p.code), [])
+  assert.deepEqual(s.problems().active.map((p) => p.code), [])
   const ops = [{ op: 'editMention', args: ['gift', 'ep-b', { note: 'Another present.' }] }]
   s.apply(ops, s.problems().version)
-  assert.deepEqual(s.problems().problems.map((p) => p.code), ['note-context'])
+  assert.deepEqual(s.problems().active.map((p) => p.code), ['note-context'])
+})
+
+test('silence moves one warning to the silenced list, saved in silenced.json, and unsilence lifts it', (t) => {
+  const { dir, session: s } = session(t)
+  s.apply([{ op: 'editMention', args: ['gift', 'ep-b', { note: 'Another present.' }] }], s.problems().version)
+  const [warning] = s.problems().active
+  const silenced = s.silence(warning)
+  assert.deepEqual([silenced.active, silenced.silenced, silenced.stale], [[], [warning], []])
+  assert.deepEqual(JSON.parse(readFileSync(join(dir, 'silenced.json'), 'utf8')), [
+    { code: 'note-context', slugs: ['gift'], mention: { slug: 'gift', episode_id: 'ep-b' } },
+  ])
+  assert.deepEqual(s.unsilence(warning).active, [warning])
+  assert.equal(readFileSync(join(dir, 'silenced.json'), 'utf8'), '[]\n')
+})
+
+test('silence and unsilence return the refusal when they cannot', (t) => {
+  const { session: s } = session(t)
+  const warning = { level: 'warning', code: 'note-context', message: 'm', slugs: ['gift'], mention: { slug: 'gift', episode_id: 'ep-b' } }
+  assert.deepEqual(s.silence(warning).problems.map((p) => p.code), ['silence-unknown'])
+  assert.deepEqual(s.unsilence(warning).problems.map((p) => p.code), ['silence-unknown'])
+})
+
+test('a silenced record that matches no problem any more is listed as stale', (t) => {
+  const { dir, session: s } = session(t)
+  const record = { code: 'note-context', slugs: ['gift'], mention: { slug: 'gift', episode_id: 'ep-b' } }
+  saveSilenced(dir, [record])
+  assert.deepEqual(s.problems().stale, [record])
+  assert.deepEqual(s.unsilence(record).stale, [])
 })

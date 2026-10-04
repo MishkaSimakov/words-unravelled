@@ -42,6 +42,8 @@ export const CODES = {
   'merge-self': { level: 'error', refusal: true, about: 'an entry was to be merged into itself' },
   'merge-keep-invalid': { level: 'error', refusal: true, about: "a merge's keep names an episode where the two entries don't both have a mention, or a side other than from or into" },
   'link-taken': { level: 'error', refusal: true, about: "a new name would take links that resolve to another entry, e.g. by its original form" },
+  'silence-not-warning': { level: 'error', refusal: true, about: 'an error was to be silenced; only warnings can be' },
+  'silence-unknown': { level: 'error', refusal: true, about: 'no active warning (to silence) or silenced record (to unsilence) has that identity' },
   'unknown-edit': { level: 'error', refusal: true, about: 'an edit list names an edit that does not exist, or an item is not { op, args: [...] }' },
 }
 

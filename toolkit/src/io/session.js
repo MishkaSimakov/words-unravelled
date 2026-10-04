@@ -8,13 +8,17 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { sideEffects } from '../checks/effects.js'
 import { problems } from '../checks/problems.js'
+import { applySilenced, silence, unsilence } from '../checks/silenced.js'
 import { applyEdits } from '../edit/batch.js'
 import { ToolkitError } from '../edit/errors.js'
-import { FILES, saveData, writeAtomic } from './files.js'
+import { FILES, loadSilenced, saveData, saveSilenced, writeAtomic } from './files.js'
 
 /**
  * An editing session on the data files in `dir`. Each method returns a result object:
- * - problems(): { version, problems }, every problem with warnings;
+ * - problems(): { version, active, silenced, stale }: the active problems (warnings too), the
+ *   silenced ones, and the silenced records that match no problem (see applySilenced());
+ * - silence(problem), unsilence(problem): problems() after silencing the warning or lifting
+ *   its silence (or removing a stale record), or { problems } if refused;
  * - preview(ops): { version, effects } (see sideEffects()), or { problems } if refused;
  * - apply(ops, version): { version, undo }, the version saved and how many steps can be
  *   undone (at most UNDO_STEPS); { problems } if refused; { conflict } if the files are no longer `version`;
@@ -43,11 +47,24 @@ export function editSession(dir) {
     }
   }
 
+  const sorted = (state) => {
+    const { active, silenced, stale } = applySilenced(problemsOf(state), loadSilenced(dir))
+    return { version: state.version, active, silenced, stale }
+  }
+  const silencing = (change) => {
+    const state = read()
+    return refusals(() => {
+      saveSilenced(dir, change(loadSilenced(dir), problemsOf(state)))
+      return sorted(state)
+    })
+  }
+
   return {
-    problems() {
-      const state = read()
-      return { version: state.version, problems: problemsOf(state) }
-    },
+    problems: () => sorted(read()),
+
+    silence: (problem) => silencing((records, found) => silence(records, problem, found)),
+
+    unsilence: (problem) => silencing((records) => unsilence(records, problem)),
 
     preview(ops) {
       const state = read()

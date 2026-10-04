@@ -39,7 +39,10 @@ cd toolkit && npm test        # the toolkit's tests, including a check that data
    "confidence": "high"}
   ```
 
-Both files are JSON with one-space indentation (`indent=1`). Keep that formatting when editing
+- `data/silenced.json`: the warnings looked at and found fine (see **Silenced warnings** below),
+  `[{ code, slugs, mention?, episode?, detail? }]`. The site doesn't read it.
+
+The files are JSON with one-space indentation (`indent=1`). Keep that formatting when editing
 them, so that git diffs show only what changed.
 
 **Slug.** The entry's term, followed by the gloss if there is one, lowercased, with invisible
@@ -104,6 +107,7 @@ toolkit/src/query/search.js      search, as on the site
 toolkit/src/query/plain.js       plainMentions: notes that name an entry without linking to it
 toolkit/src/query/groups.js      groupBy, the grouping the indexes and checks share
 toolkit/src/checks/              problems() and introduced(); codes.js lists every problem code;
+                                 silenced.js: silenced warnings;
                                  invariants.js: dataChanges and linkResolutions;
                                  effects.js: sideEffects, what an edit changes
 toolkit/src/edit/                edits: episodes, mentions, entries, names (gloss, rename), merges;
@@ -153,8 +157,24 @@ a second copy of a known problem (a second identical bad link in one note) is ne
 
 `npm run check` prints every problem grouped by code and exits with 1 if there are errors.
 Each line starts with its code in brackets, so `npm run check | grep '\[note-context\]'` lists
-one kind. The
-Pages workflow runs it before building, so a deploy fails on data with errors.
+one kind. Silenced warnings are counted, not listed, and silenced records that match no warning
+any more are listed at the end. The Pages workflow runs it before building, so a deploy fails on
+data with errors (or a malformed `silenced.json`).
+
+**Silenced warnings.** A warning that has been looked at and is fine (two entries that only look
+like duplicates) can be silenced: `data/silenced.json` keeps its identity, the same fields
+`problemKey()` compares (code, slugs, mention, episode, detail), not its wording.
+`checks/silenced.js` has the functions:
+- `applySilenced(problems, records)` splits the problems into `{ active, silenced, stale }`.
+- A record silences exactly one problem: the one with its identity. Other warnings about the
+  same entry, mention or episode, or of the same code, stay active; so does a second warning
+  with the same identity (a second identical link in one note), which takes a record of its own.
+- A record whose warning is gone, for example after a rename, a merge or a fix, is `stale`.
+- `silence(records, problem, problems)` adds a record. It is refused for errors, which are fixed,
+  not silenced, and for a warning the data doesn't have or that is already silenced.
+- `unsilence(records, problem)` removes one record.
+
+Records are kept sorted by identity.
 
 ### Edits
 
@@ -212,7 +232,9 @@ from the two versions alone, so it can't drift from what the edits do:
   renamed and merged owners;
 - the problems, warnings included, that the edit introduced.
 
-`editSession(dir)` (`io/session.js`, Node only) edits the data files: `preview(ops)` returns the
+`editSession(dir)` (`io/session.js`, Node only) edits the data files. `problems()` returns the
+active, silenced and stale problems, and `silence(problem)` and `unsilence(problem)` change
+`silenced.json`. `preview(ops)` returns the
 side effects without writing; `apply(ops, version)` saves, but only if the files are still the
 version the preview saw; `undo()` restores the files before the last apply, while they are still
 as it left them (up to 20 steps). Each call reads the files afresh, so edits made by hand or by
@@ -309,9 +331,13 @@ the endpoint that writes the data exists only in the dev server (`vite.config.js
 - **Merging:** the dialog shows both entries' fields side by side; the survivor keeps its name and
   its fields, with blanks filled from the other by default, and each field can be chosen. In each
   episode where both entries have a mention, you choose whose mention stays.
-- **`/review`** lists every problem `check` finds, one collapsible list per kind, 50 at a time:
+- **`/review`** lists every active problem `check` finds, one collapsible list per kind, 50 at a time:
   likely duplicates with a merge in either direction, and problems in notes with the mention's
   editor. It is checked again after every edit.
+  - **Silence** moves a warning to the collapsible **Silenced** section below, with its own list
+    per kind. Each silenced warning can be brought back with **Unsilence**.
+  - Silenced warnings whose problem is gone are listed under "no longer found", each with a
+    **Remove** button.
 
 Every edit is a list of toolkit edits (`[{ op, args }]`) that the dev server previews first: a
 dialog lists everything it changes, computed by `sideEffects()` (entries removed or renamed,
