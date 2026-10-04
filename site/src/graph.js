@@ -10,7 +10,7 @@ const COLORED_CATEGORIES = ['expression', 'name', 'about-language']
 const DEFAULTS = {
   orphans: false,
   asides: true,
-  seeLinks: true,
+  seeLinks: false, // the layout (data/layout.py) ignores them too
   unrelatedLinks: true,
   colorByCategory: true,
   textFade: 2.2, // zoom level at which labels start to fade in
@@ -148,7 +148,7 @@ export function mountGraph(root, h) {
           <span class="chip-count">${graph.nodes.filter((n) => n.aside).length}</span></label>
         <label class="graph-switch"><input type="checkbox" data-setting="orphans" /> Orphans
           <span class="chip-count">${graph.nodes.length - linkedCount}</span></label>
-        <label class="graph-switch" title="“See also” links"><input type="checkbox" data-setting="seeLinks" checked /> See links
+        <label class="graph-switch" title="“See also” links"><input type="checkbox" data-setting="seeLinks" /> See links
           <span class="chip-count">${graph.links.filter((l) => l.types.has('see')).length}</span></label>
         <label class="graph-switch"><input type="checkbox" data-setting="unrelatedLinks" checked /> Unrelated links
           <span class="chip-count">${graph.links.filter((l) => l.types.has('unrelated')).length}</span></label>

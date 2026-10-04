@@ -16,8 +16,8 @@ except ImportError:  # numpy missing: pip install -r data/requirements.txt
     layout = None
 
 
-def entry(slug, *targets):
-    links = [{"type": "see", "uncertain": False, "target": t, "slug": t, "start": 0, "end": 1}
+def entry(slug, *targets, type="same-root"):
+    links = [{"type": type, "uncertain": False, "target": t, "slug": t, "start": 0, "end": 1}
              for t in targets]
     return {"slug": slug, "term": slug, "mentions": [{"note": "x", "links": links}]}
 
@@ -28,6 +28,10 @@ class LayoutTest(unittest.TestCase):
         slugs, adj = layout.build_graph([entry("a", "b", "b", "a", "nowhere"), entry("b", "a")])
         self.assertEqual(slugs, ["a", "b"])
         self.assertEqual(adj, [{1}, {0}])
+
+    def test_graph_ignores_see_links(self):
+        _, adj = layout.build_graph([entry("a", "b", type="see"), entry("b")])
+        self.assertEqual(adj, [set(), set()])
 
     def test_components_largest_first(self):
         entries = [entry("a"), entry("b", "c"), entry("c", "d"), entry("d"), entry("e", "a")]

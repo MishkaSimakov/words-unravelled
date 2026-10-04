@@ -6,8 +6,9 @@ Reads:
 Writes:
     data/graph-layout.json   {slug: [x, y]} for every entry, in graph units (a link is about 30)
 
-The graph has an edge between two entries when a mention note of one links to the other (any link
-type). Its connected components are laid out one by one, then arranged like a galaxy: the largest
+The graph has an edge between two entries when a mention note of one links to the other, except
+for "see" links: they are most of the links but the loosest, and the graph page hides them by
+default, so they don't shape the layout. Its connected components are laid out one by one, then arranged like a galaxy: the largest
 component is the core, at the origin, and the others are islands around it, bigger ones nearer the
 core and single entries (orphans) furthest out, none overlapping.
 
@@ -33,10 +34,12 @@ import numpy as np
 DATA = Path(__file__).resolve().parent
 LINK = 30.0  # the page's link distance
 STRESS_ITERATIONS = 300
+MIN_GAP = 20.0  # closest two entries of a component may be (entries with the same links would coincide)
 PAD = 12.0  # empty space kept around each island
 CORE_GAP = 60.0  # extra space between the core's entries and the islands
 FILL = 0.45  # share of the island belt covered by islands
 SEED = 1
+IGNORED_LINK_TYPES = {"see"}
 
 
 def build_graph(entries):
@@ -48,7 +51,7 @@ def build_graph(entries):
         for m in e["mentions"]:
             for link in m.get("links") or []:
                 j = index.get(link.get("slug"))
-                if j is not None and j != i:
+                if j is not None and j != i and link["type"] not in IGNORED_LINK_TYPES:
                     adj[i].add(j)
                     adj[j].add(i)
     return slugs, adj
@@ -121,6 +124,20 @@ def stress_layout(adj, comp, rng):
         dist = np.sqrt(np.maximum(sq[:, None] + sq[None, :] - 2 * X @ X.T, 1e-6))
         A = WD / dist  # sum_j A_ij (x_i - x_j) = x_i * sum_j A_ij - (A @ X)_i
         X = (W @ X + X * A.sum(1)[:, None] - A @ X) / wsum
+    return separate(X - X.mean(0))
+
+
+def separate(X, sweeps=50):
+    """Push apart entries closer than MIN_GAP, a little at a time so the shape keeps."""
+    for _ in range(sweeps):
+        diff = X[:, None, :] - X[None, :, :]
+        dist = np.sqrt((diff ** 2).sum(-1))
+        np.fill_diagonal(dist, np.inf)
+        overlap = np.maximum(MIN_GAP - dist, 0)
+        if not overlap.any():
+            break
+        dist = np.maximum(dist, 1e-6)
+        X = X + 0.25 * ((overlap / dist)[:, :, None] * diff).sum(1)
     return X - X.mean(0)
 
 

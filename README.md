@@ -128,9 +128,10 @@ Tests: `python3 -m unittest discover data/test` (the `layout.py` tests are skipp
 
 `data/layout.py` reads `data/entries.json` and writes `data/graph-layout.json`, `{slug: [x, y]}`
 for every entry, which the graph page starts from. Two entries are linked when a note of one
-links to the other. Each connected group of entries is drawn on its own by stress majorization
-(linked entries about 30 units apart, others as far apart as the links between them say),
-then the groups are arranged like a galaxy: the largest group at the centre, the others as
+links to the other, except by a "see" link: those are most of the links but the loosest, and
+the graph page hides them by default. Each connected group of entries is drawn on its own by
+stress majorization (linked entries about 30 units apart, others as far apart as the links
+between them say, and no two closer than 20), then the groups are arranged like a galaxy: the largest group at the centre, the others as
 islands around it, bigger ones nearer the centre and unlinked entries furthest out, none
 overlapping. The result is the same for the same entries.
 
@@ -194,6 +195,7 @@ npm run preview
   and a spring holds each one there, so dragging moves a node and its neighbours, and they settle
   back. Filters hide categories, asides (entries never the subject of a mention), unlinked
   entries, and see and unrelated links; hidden entries leave gaps, the rest keep their places.
+  See links are hidden by default: the layout ignores them, so shown they cross between groups.
   Clicking a node, or a link in its card, selects it; `?focus=<slug>` selects one on load.
 - Categories: chips under the search box filter by category (`?cat=name`), and each chip counts
   the entries the current search and language filter leave. On narrow screens the chips scroll
