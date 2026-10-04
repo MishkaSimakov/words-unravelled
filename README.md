@@ -232,7 +232,7 @@ Tests: `cd toolkit && npm install && npm test`.
 ```sh
 cd toolkit && npm install && cd ../site
 npm install
-npm run dev        # http://localhost:5173, reads ../data live, shows debug details
+npm run dev        # http://localhost:5173, reads ../data live; debug mode and the review tool
 npm run build      # -> site/dist (data copied into dist/data, 404.html is the app shell)
 npm run preview
 npm run check      # svelte-check
@@ -247,10 +247,13 @@ it has loaded.
 site/src/app.html            the page shell
 site/src/app.css             colours, fonts, base styles and the classes several pages share
 site/src/routes/             pages: home (+page.svelte), entry/[slug], episode/[id], episodes,
-                             about, [...path] (unknown paths) and +error; +layout.svelte is the
+                             about, review (dev only), [...path] (unknown paths) and +error; +layout.svelte is the
                              header, footer, loading state and the / shortcut
 site/src/lib/components/     EntryItem, EntryList, EntryName, Note, CategoryTag, Mention, Player…
-site/src/lib/db.js           loading, sorting and indexing the data; search
+site/src/lib/db.js           loading, sorting and indexing the data (and reloading it after an edit); search
+site/src/lib/debug.svelte.js the Debug switch (dev only)
+site/src/lib/edit/           the review tool (dev only): edit forms, the merge and confirmation dialogs,
+                             the /review list, and the flow every edit goes through (edits.svelte.js)
 site/src/lib/entries.js      categories, display forms, role order, link titles
 site/src/lib/format.js       numbers, plurals, times, dates
 site/src/lib/paths.js        links under the base path
@@ -269,8 +272,10 @@ Each component's CSS is scoped to it. `src/lib` is imported as `#lib/*`.
   folded, letters like *æ* and *þ* spelt out (*ae*, *th*) and leading punctuation ignored, so
   *-ness* sits next to *ness* and *ælf* under A; digits and other scripts come first, under #.
   The entry page's previous and next links follow the same order.
-- `npm run dev` also shows debug details: each mention's role (subject / aside / mention) as a
-  small badge on result cards, entry pages and episode timelines. `npm run build` leaves them out.
+- `npm run dev` adds a **Debug** switch to the header (on by default, remembered in the browser).
+  It shows each mention's role (subject / aside / mention) as a small badge on result cards, entry
+  pages and episode timelines, and the review tool below. Switched off, the site looks as
+  visitors see it. `npm run build` has neither the switch nor anything it shows.
 - Search is client-side with Fuse.js over `term`, `gloss`, `original` and `translation`. It
   ignores accents and ranks exact and prefix matches first; within each of those tiers, entries
   that are only ever pointed to (role `mention`) come last.
@@ -285,6 +290,37 @@ Each component's CSS is scoped to it. `src/lib` is imported as `#lib/*`.
   embed at `t - 3` seconds.
 - Fonts are self-hosted (Fraunces, Source Serif 4), so the site makes no requests to
   third-party font servers.
+
+### Review tool
+
+The data can be edited on the site itself, under `npm run dev` with Debug on. A build contains
+none of it: the edit tools (`src/lib/edit/`) are loaded only behind `import.meta.env.DEV`, and
+the endpoint that writes the data exists only in the dev server (`vite.config.js`).
+
+- **Entry pages:** edit the term, gloss, original form, literal translation, language and
+  category; merge the entry into another; delete it. A new term or gloss that is another entry's
+  name offers a merge instead of the rename. Each mention can be edited (time, role, confidence,
+  and the note as raw `[[type:target]]` markup with a live preview that marks links leading
+  nowhere), moved to another entry, or deleted.
+- **Episode pages,** where a new episode is reviewed while it plays: the same mention tools, with
+  the time taken from the player, "Mark checked" (confidence high) for unverified mentions, and
+  adding a mention to an existing or a new entry. The timeline follows each edit without reloading
+  the page, so the player keeps playing.
+- **Merging:** the dialog shows both entries' fields side by side; the survivor keeps its name and
+  its fields, with blanks filled from the other by default, and each field can be chosen. In each
+  episode where both entries have a mention, you choose whose mention stays.
+- **`/review`** lists every problem `check` finds, one collapsible list per kind, 50 at a time:
+  likely duplicates with a merge in either direction, and problems in notes with the mention's
+  editor. It is checked again after every edit.
+
+Every edit is a list of toolkit edits (`[{ op, args }]`) that the dev server previews first: a
+dialog lists everything it changes, computed by `sideEffects()` (entries removed or renamed,
+mentions moved or removed, notes rewritten, links that change where they lead, new warnings),
+and nothing is written until it is applied. The server reads `data/` afresh for every request,
+refuses to apply an edit if the files changed since its preview, and can undo the edits of the
+session while the files are as it left them. Older changes are in git; commit `data/` as
+usual. The dev server loads the toolkit for the endpoint once, so restart it after changing
+toolkit code.
 
 **GitHub Pages:** build with `BASE_PATH=/<repo-name>/ npm run build` for a project site.
 `404.html` is the app shell, so deep links like `/entry/break-a-leg` work. The workflow

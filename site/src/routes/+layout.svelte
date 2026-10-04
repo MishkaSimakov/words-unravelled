@@ -7,6 +7,7 @@
   import { afterNavigate, goto } from '$app/navigation'
   import { page } from '$app/state'
   import { load } from '#lib/db.js'
+  import { debug, setDebug } from '#lib/debug.svelte.js'
   import { href } from '#lib/paths.js'
 
   let { children } = $props()
@@ -14,6 +15,8 @@
   let main
   const route = $derived(page.route.id)
   const data = load()
+  // The edit tools (npm run dev only; see lib/edit).
+  const edit = import.meta.env.DEV ? import('#lib/edit/index.js') : null
 
   // Like a page load, a followed link starts reading at the content.
   afterNavigate(({ type }) => {
@@ -48,6 +51,12 @@
         >Episodes</a
       >
       <a href={href('about')} aria-current={route === '/about' ? 'page' : undefined}>About</a>
+      {#if edit}
+        {#if debug.on}<a href={href('review')} aria-current={route === '/review' ? 'page' : undefined}>Review</a>{/if}
+        <label class="debug" title="Show the edit tools and the roles of mentions">
+          <input type="checkbox" checked={debug.on} onchange={(ev) => setDebug(ev.currentTarget.checked)} /> Debug
+        </label>
+      {/if}
     </nav>
   </div>
 </header>
@@ -57,6 +66,7 @@
   {:then}
     <!-- Every navigation renders the page afresh, also between two entries. -->
     {#key page.url.pathname}{@render children()}{/key}
+    {#if edit}{#await edit then tools}<tools.EditHost />{/await}{/if}
   {:catch err}
     <article class="prose">
       <h1 class="page-title">The hoard is locked</h1>
@@ -165,6 +175,16 @@
     letter-spacing: 0.06em;
     font-size: 1.1rem;
     color: var(--ink-soft);
+  }
+  .debug {
+    display: inline-flex;
+    gap: 4px;
+    align-items: center;
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.06em;
+    font-size: 1.1rem;
+    color: var(--muted);
+    cursor: pointer;
   }
   .site-nav a[aria-current] {
     color: var(--rubric);

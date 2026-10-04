@@ -1,6 +1,6 @@
 <script>
-  // Debug only: the roles of all an entry's mentions ("subject · aside ×2").
-  import { dev } from '$app/env'
+  // Debug mode only: the roles of all an entry's mentions ("subject · aside ×2").
+  import { debug } from '../debug.svelte.js'
   import { roleRank } from '../entries.js'
   import RoleBadge from './RoleBadge.svelte'
 
@@ -15,4 +15,4 @@
   })
 </script>
 
-{#if dev}{#each counts as [role, n] (role)}<RoleBadge {role} text="{role}{n > 1 ? ` ×${n}` : ''}" />{/each}{/if}
+{#if debug.on}{#each counts as [role, n] (role)}<RoleBadge {role} text="{role}{n > 1 ? ` ×${n}` : ''}" />{/each}{/if}

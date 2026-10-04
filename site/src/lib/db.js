@@ -2,6 +2,7 @@ import { fileAs, fileLetter } from '#toolkit/model/slugs.js'
 import { buildIndex, episodeCounts } from '#toolkit/query/index.js'
 import { search as searchIndex } from '#toolkit/query/search.js'
 import { dataUrl } from './paths.js'
+import { dataVersion } from './version.svelte.js'
 
 export const SUGGESTION_COUNT = 12
 export const PAGE_SIZE = 60
@@ -30,6 +31,13 @@ let loading = null
 export function load() {
   loading ??= fetchData()
   return loading
+}
+
+/** Fetches and indexes the data again (after an edit), then bumps dataVersion. */
+export async function reload() {
+  loading = fetchData()
+  await loading
+  dataVersion.n++
 }
 
 async function fetchData() {

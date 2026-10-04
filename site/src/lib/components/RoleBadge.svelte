@@ -1,11 +1,11 @@
 <script>
-  // Debug only (npm run dev): a mention's role.
-  import { dev } from '$app/env'
+  // Debug mode only (the header's switch under npm run dev): a mention's role.
+  import { debug } from '../debug.svelte.js'
 
   let { role, text = role } = $props()
 </script>
 
-{#if dev}<span class="role-badge" data-role={role}>{text}</span>{/if}
+{#if debug.on}<span class="role-badge" data-role={role}>{text}</span>{/if}
 
 <style>
   /* Solid, dashed and dotted, from subject to mention. */
