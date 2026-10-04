@@ -1,28 +1,26 @@
-import { defineConfig, searchForWorkspaceRoot } from 'vite'
-import { copyFileSync, readFileSync } from 'node:fs'
+import { sveltekit } from '@sveltejs/kit/vite'
+import adapter from '@sveltejs/adapter-static'
+import { defineConfig } from 'vite'
+import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
+
+// For a GitHub Pages project site, build with BASE_PATH=/<repo-name>/ (SvelteKit wants it
+// without the trailing slash).
+const BASE = (process.env.BASE_PATH || '').replace(/\/+$/, '')
 
 // The site reads the dataset from ../data at runtime (fetch), so the data can be edited without
 // touching the code. In dev it is served from there, so an edit shows up on reload; on build it
 // is copied.
 const DATA_DIR = fileURLToPath(new URL('../data/', import.meta.url))
-// The shared data toolkit, imported from outside the site's own folder.
-const TOOLKIT_DIR = fileURLToPath(new URL('../toolkit/', import.meta.url))
 const DATA_FILES = ['episodes.json', 'entries.json']
 
 function siteData() {
-  let base = '/'
-  let outDir = 'dist'
   return {
     name: 'site-data',
-    configResolved(config) {
-      base = config.base
-      outDir = config.build.outDir
-    },
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const path = (req.url || '').split('?')[0]
-        const file = DATA_FILES.find((f) => path === `${base}data/${f}`)
+        const file = DATA_FILES.find((f) => path === `${BASE}/data/${f}`)
         if (!file) return next()
         try {
           res.setHeader('Content-Type', 'application/json; charset=utf-8')
@@ -35,21 +33,22 @@ function siteData() {
       })
     },
     generateBundle() {
+      if (this.environment.name !== 'client') return
       for (const f of DATA_FILES) {
         this.emitFile({ type: 'asset', fileName: `data/${f}`, source: readFileSync(DATA_DIR + f) })
       }
-    },
-    writeBundle() {
-      // GitHub Pages serves 404.html for unknown paths, which lets /entry/<slug> deep links
-      // load the app; the router then reads the path.
-      copyFileSync(`${outDir}/index.html`, `${outDir}/404.html`)
     },
   }
 }
 
 export default defineConfig({
-  // For a GitHub Pages project site, build with BASE_PATH=/<repo-name>/
-  base: process.env.BASE_PATH || '/',
-  plugins: [siteData()],
-  server: { fs: { allow: [searchForWorkspaceRoot(process.cwd()), TOOLKIT_DIR] } },
+  plugins: [
+    sveltekit({
+      // A single-page app: GitHub Pages serves 404.html for unknown paths, which lets
+      // /entry/<slug> deep links load the app; the router then reads the path.
+      adapter: adapter({ pages: 'dist', fallback: '404.html' }),
+      paths: { base: BASE },
+    }),
+    siteData(),
+  ],
 })

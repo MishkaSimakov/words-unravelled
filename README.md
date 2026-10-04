@@ -9,7 +9,7 @@ the moment each one comes up. This prototype covers the **audience side** only. 
 data/      the dataset: entries.json and episodes.json, edited by hand and read by the site as is
 toolkit/   shared JS for the data: slugs, link markup, link resolution, search
 ingest/    downloads episodes' captions and turns them into transcripts
-site/      the website (Vite, vanilla JS, Fuse.js)
+site/      the website (Svelte 5, SvelteKit)
 docs/      plans and briefs, kept for the record
 ```
 
@@ -18,7 +18,7 @@ so a fix made by hand shows up when the page is reloaded. New episodes will be a
 extraction agent (issue #13); until then they can't be ingested. After editing the data by
 hand, run `cd toolkit && npm run check` (see **Checks** below).
 
-Requirements: Node 20+, and for `ingest/`: Python 3.9+ and
+Requirements: Node 22.17+, and for `ingest/`: Python 3.9+ and
 [yt-dlp](https://github.com/yt-dlp/yt-dlp).
 
 ```sh
@@ -83,7 +83,7 @@ So a target without a gloss means the word without one: `[[see:gift]]` never rea
 
 `toolkit/` holds the code that reads, checks and edits the data, shared by the site and, later,
 the tools that edit it (the extraction agent's MCP server in issue #13, and a review tool). It is plain ES modules with no browser or Node globals, so the site
-imports it directly (Vite's `server.fs.allow` includes it). Its one dependency is Fuse.js, for
+imports it directly (as `#toolkit/*`, a package import in `site/package.json`). Its one dependency is Fuse.js, for
 search; run `npm install` in `toolkit/` before building the site.
 
 ```
@@ -198,9 +198,31 @@ Tests: `cd toolkit && npm install && npm test`.
 cd toolkit && npm install && cd ../site
 npm install
 npm run dev        # http://localhost:5173, reads ../data live, shows debug details
-npm run build      # -> site/dist (data copied into dist/data, index.html copied to 404.html)
+npm run build      # -> site/dist (data copied into dist/data, 404.html is the app shell)
 npm run preview
+npm run check      # svelte-check
 ```
+
+The site is a SvelteKit single-page app (`ssr = false`, adapter-static with a `404.html`
+fallback). SvelteKit is configured in `vite.config.js`, which also serves and copies the data.
+The data is fetched once when the app starts (`src/lib/db.js`); the layout shows the pages once
+it has loaded.
+
+```
+site/src/app.html            the page shell
+site/src/app.css             colours, fonts, base styles and the classes several pages share
+site/src/routes/             pages: home (+page.svelte), entry/[slug], episode/[id], episodes,
+                             about, [...path] (unknown paths) and +error; +layout.svelte is the
+                             header, footer, loading state and the / shortcut
+site/src/lib/components/     EntryItem, EntryList, EntryName, Note, CategoryTag, Mention, Player…
+site/src/lib/db.js           loading, sorting and indexing the data; search
+site/src/lib/entries.js      categories, display forms, role order, link titles
+site/src/lib/format.js       numbers, plurals, times, dates
+site/src/lib/paths.js        links under the base path
+site/src/lib/youtube.js      YouTube URLs and the IFrame API loader
+```
+
+Each component's CSS is scoped to it. `src/lib` is imported as `#lib/*`.
 
 - Pages: home (search, category chips, language filter, suggestions), `/entry/<slug>`,
   `/episode/<id>`, `/episodes`, `/about`.
@@ -230,6 +252,6 @@ npm run preview
   third-party font servers.
 
 **GitHub Pages:** build with `BASE_PATH=/<repo-name>/ npm run build` for a project site.
-`404.html` is a copy of the app, so deep links like `/entry/break-a-leg` work. The workflow
+`404.html` is the app shell, so deep links like `/entry/break-a-leg` work. The workflow
 in `.github/workflows/pages.yml` does this on every push to `main`, from the committed
 `data/*.json`.
