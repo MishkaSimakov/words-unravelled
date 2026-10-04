@@ -1,7 +1,8 @@
 <script>
   // The /review page (dev only): every problem `check` finds, a collapsible list per code, each
   // with a link to where it is and, where there is one, a fix: merging likely duplicates, or
-  // editing the mention's note.
+  // editing the mention's note. A warning that is fine can be silenced (data/silenced.json): it
+  // moves to the silenced lists below, from which it can be brought back.
   import { CODES } from '#toolkit/checks/codes.js'
   import { entryName } from '#toolkit/model/schema.js'
   import { entry as entryBySlug, episode as episodeById } from '#toolkit/query/index.js'
@@ -9,31 +10,47 @@
   import { plural } from '../format.js'
   import { entryHref, episodeHref } from '../paths.js'
   import { dataVersion } from '../version.svelte.js'
-  import { fetchProblems } from './api.js'
+  import * as api from './api.js'
   import { openMerge } from './edits.svelte.js'
   import MentionEditor from './MentionEditor.svelte'
 
   const PAGE = 50
 
-  let result = $state.raw(null)
-  let shown = $state({}) // code -> how many are shown
+  let result = $state.raw(null) // { active, silenced, stale }, or { error }
+  let failure = $state('') // why the last silence or unsilence was refused
+  let busy = $state(false)
+  let shown = $state({}) // "list:code" -> how many are shown
   let editing = $state.raw(null) // the problem whose mention is being edited
 
   // Again after every reload of the data, i.e. after every edit.
   $effect(() => {
     dataVersion.n
-    fetchProblems().then((r) => (result = r))
+    api.fetchProblems().then((r) => (result = r))
   })
 
-  const groups = $derived.by(() => {
-    if (!result?.problems) return []
-    const byCode = new Map()
-    for (const p of result.problems) byCode.set(p.code, [...(byCode.get(p.code) ?? []), p])
-    return [...byCode].map(([code, list]) => ({ code, list, ...CODES[code] }))
-  })
-  const count = (level) => result?.problems?.filter((p) => p.level === level).length ?? 0
+  async function change(call, problem) {
+    busy = true
+    const r = await call(problem)
+    busy = false
+    if (r.active) {
+      result = r
+      failure = ''
+    } else {
+      failure = r.problems?.map((p) => p.message).join(' ') ?? r.conflict ?? r.error
+    }
+  }
 
-  const left = (group) => group.list.length - (shown[group.code] ?? PAGE)
+  /** Problems by code, in the order check lists them. */
+  function byCode(list) {
+    const groups = new Map()
+    for (const p of list) groups.set(p.code, [...(groups.get(p.code) ?? []), p])
+    return [...groups].map(([code, list]) => ({ code, list, ...CODES[code] }))
+  }
+  const active = $derived(result?.active ? byCode(result.active) : [])
+  const silenced = $derived(result?.silenced ? byCode(result.silenced) : [])
+  const count = (level) => result?.active?.filter((p) => p.level === level).length ?? 0
+
+  const limit = (id) => shown[id] ?? PAGE
   const isDuplicate = (code) => code.startsWith('duplicate-')
   const mentionOf = (p) => {
     const entry = p.mention && entryBySlug(db.index, p.mention.slug)
@@ -44,50 +61,98 @@
 
 <svelte:head><title>Review · Wordhoard</title></svelte:head>
 
-<h1 class="page-title">Review</h1>
-{#if !result}
-  <p class="meta">Checking the data… (the duplicate checks take a second)</p>
-{:else if !result.problems}
-  <p>The check failed: {result.error ?? result.conflict}</p>
-{:else}
-  <p class="meta">{plural(count('error'), 'error')} and {plural(count('warning'), 'warning')}, by kind. Open a kind to go through it.</p>
-  {#each groups as group (group.code)}
+{#snippet where(p)}
+  <p class="meta">
+    {#each p.slugs as slug, j}
+      {@const e = entryBySlug(db.index, slug)}
+      {j ? ' · ' : ''}{#if e}<a href={entryHref(e)}>{entryName(e)}</a>{:else}{slug}{/if}
+    {/each}
+    {#if p.mention}· <a href={episodeHref(p.mention.episode_id)}>{episodeById(db.index, p.mention.episode_id)?.title ?? p.mention.episode_id}</a>{/if}
+    {#if p.episode}· <a href={episodeHref(p.episode)}>{episodeById(db.index, p.episode)?.title ?? p.episode}</a>{/if}
+  </p>
+{/snippet}
+
+{#snippet item(p, isSilenced)}
+  {@const found = mentionOf(p)}
+  <p class="message">{p.message}</p>
+  {@render where(p)}
+  <div class="edit-actions">
+    {#if isDuplicate(p.code) && p.slugs.length === 2}
+      <button type="button" onclick={() => openMerge(p.slugs[0], p.slugs[1])}>Merge {p.slugs[0]} into {p.slugs[1]}…</button>
+      <button type="button" onclick={() => openMerge(p.slugs[1], p.slugs[0])}>Merge {p.slugs[1]} into {p.slugs[0]}…</button>
+    {/if}
+    {#if found && editing !== p}<button type="button" onclick={() => (editing = p)}>Edit the mention</button>{/if}
+    {#if isSilenced}
+      <button type="button" class="danger" disabled={busy} onclick={() => change(api.unsilence, p)}>Unsilence</button>
+    {:else if p.level === 'warning'}
+      <button type="button" class="danger" disabled={busy} onclick={() => change(api.silence, p)}>Silence</button>
+    {/if}
+  </div>
+  {#if found && editing === p}<MentionEditor entry={found.entry} mention={found.mention} />{/if}
+{/snippet}
+
+{#snippet groups(list, isSilenced)}
+  {#each list as group (group.code)}
+    {@const id = `${isSilenced ? 'silenced' : 'active'}:${group.code}`}
     <details class="group" class:error={group.level === 'error'}>
       <summary>
         <code>{group.code}</code> <span class="count">{group.list.length}</span>
         <span class="about">{group.about}</span>
       </summary>
       <ol>
-        {#each group.list.slice(0, shown[group.code] ?? PAGE) as p, i (i)}
-          {@const found = mentionOf(p)}
-          <li>
-            <p class="message">{p.message}</p>
-            <p class="meta">
-              {#each p.slugs as slug, j}
-                {@const e = entryBySlug(db.index, slug)}
-                {j ? ' · ' : ''}{#if e}<a href={entryHref(e)}>{entryName(e)}</a>{:else}{slug}{/if}
-              {/each}
-              {#if p.mention}· <a href={episodeHref(p.mention.episode_id)}>{episodeById(db.index, p.mention.episode_id)?.title ?? p.mention.episode_id}</a>{/if}
-              {#if p.episode}· <a href={episodeHref(p.episode)}>{episodeById(db.index, p.episode)?.title ?? p.episode}</a>{/if}
-            </p>
-            <div class="edit-actions">
-              {#if isDuplicate(p.code) && p.slugs.length === 2}
-                <button type="button" onclick={() => openMerge(p.slugs[0], p.slugs[1])}>Merge {p.slugs[0]} into {p.slugs[1]}…</button>
-                <button type="button" onclick={() => openMerge(p.slugs[1], p.slugs[0])}>Merge {p.slugs[1]} into {p.slugs[0]}…</button>
-              {/if}
-              {#if found && editing !== p}<button type="button" onclick={() => (editing = p)}>Edit the mention</button>{/if}
-            </div>
-            {#if found && editing === p}<MentionEditor entry={found.entry} mention={found.mention} />{/if}
-          </li>
-        {/each}
+        {#each group.list.slice(0, limit(id)) as p, i (i)}<li>{@render item(p, isSilenced)}</li>{/each}
       </ol>
-      {#if left(group) > 0}
-        <button type="button" class="more" onclick={() => (shown[group.code] = (shown[group.code] ?? PAGE) + PAGE)}>
-          {left(group) > PAGE ? `Show ${PAGE} more of ${left(group)}` : `Show the last ${left(group)}`}
+      {#if group.list.length > limit(id)}
+        {@const left = group.list.length - limit(id)}
+        <button type="button" class="more" onclick={() => (shown[id] = limit(id) + PAGE)}>
+          {left > PAGE ? `Show ${PAGE} more of ${left}` : `Show the last ${left}`}
         </button>
       {/if}
     </details>
   {/each}
+{/snippet}
+
+<h1 class="page-title">Review</h1>
+{#if !result}
+  <p class="meta">Checking the data… (the duplicate checks take a second)</p>
+{:else if !result.active}
+  <p>The check failed: {result.error ?? result.conflict}</p>
+{:else}
+  <p class="meta">
+    {plural(count('error'), 'error')} and {plural(count('warning'), 'warning')}, by kind; {plural(result.silenced.length, 'warning')}
+    silenced. Open a kind to go through it.
+  </p>
+  {#if failure}<p class="failure" role="alert">{failure}</p>{/if}
+  {@render groups(active, false)}
+
+  {#if result.silenced.length || result.stale.length}
+    <details class="silenced">
+      <summary>
+        <h2>Silenced <span class="count">{result.silenced.length}</span></h2>
+        <span class="about">Warnings looked at and found fine, kept in data/silenced.json.</span>
+      </summary>
+      {@render groups(silenced, true)}
+      {#if result.stale.length}
+        <details class="group">
+          <summary>
+            <code>no longer found</code> <span class="count">{result.stale.length}</span>
+            <span class="about">Silenced warnings the data no longer has, e.g. after a rename or merge.</span>
+          </summary>
+          <ol>
+            {#each result.stale as record, i (i)}
+              <li>
+                <p class="message"><code>{record.code}</code>{record.detail ? `: ${record.detail}` : ''}</p>
+                {@render where(record)}
+                <div class="edit-actions">
+                  <button type="button" class="danger" disabled={busy} onclick={() => change(api.unsilence, record)}>Remove</button>
+                </div>
+              </li>
+            {/each}
+          </ol>
+        </details>
+      {/if}
+    </details>
+  {/if}
 {/if}
 
 <style>
@@ -133,6 +198,26 @@
   .message {
     margin: 0;
     overflow-wrap: anywhere;
+  }
+  .silenced {
+    margin-top: 36px;
+  }
+  .silenced > summary {
+    padding: 0 0 6px;
+    cursor: pointer;
+  }
+  .silenced > summary h2 {
+    display: inline;
+    font-family: var(--serif-display);
+    font-weight: 600;
+    font-size: 1.35rem;
+    color: var(--rubric);
+  }
+  .silenced .group {
+    opacity: 0.85;
+  }
+  .failure {
+    color: var(--rubric);
   }
   .group .more {
     margin: 10px auto 14px;
