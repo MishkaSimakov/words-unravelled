@@ -44,7 +44,8 @@ const linksOf = (note) => parseNote(note).filter((part) => typeof part !== 'stri
  * - links whose resolution changed ({ slug, episode_id, target, before, after, follows }):
  *   before and after are slugs or null, so a link may be orphaned, captured or sent to another
  *   entry. `follows` is true when it follows its entry's rename or merge. Links are matched
- *   through moved mentions; in a note whose text changed, by type and target;
+ *   through moved mentions; in a note whose text changed, by type and target (or by type alone
+ *   for a link to an entry renamed or merged away);
  * - introduced: the problems (warnings too) that `after` has and `before` doesn't. `known`, the
  *   problems of `before`, saves finding them again.
  */
@@ -107,7 +108,7 @@ export function sideEffects(before, after, { known } = {}) {
     const pairs =
       y.mention === x.mention || sameButTargets(x.mention.note, y.mention.note)
         ? Array.from({ length: countFrom(resolvedBefore, place) }, (_, n) => [n, n])
-        : pairByTarget(linksOf(x.mention.note), linksOf(y.mention.note))
+        : pairByTarget(linksOf(x.mention.note), linksOf(y.mention.note), (i) => intoOf.has(resolvedBefore.get(`${place}|${i}`)))
     for (const [i, j] of pairs) {
       const old = resolvedBefore.get(`${place}|${i}`)
       const is = resolvedAfter.get(`${to}|${j}`)
@@ -131,16 +132,18 @@ function countFrom(resolved, place) {
 }
 
 /**
- * Links of two notes paired as [[i, j]] for a[i] and b[j], in b's order: first by type and
- * target, then the rest by type, in order (a link whose target was rewritten).
+ * Links of two notes paired as [[i, j]] for a[i] and b[j], in b's order: by type and target,
+ * then, for links of `a` that `retargeted(i)` (their entry was renamed or merged away, so an edit
+ * in the same list rewrote them), by type in order.
  */
-function pairByTarget(a, b) {
+function pairByTarget(a, b, retargeted) {
   const pairs = new Map() // j -> i
   const used = new Set()
-  for (const same of [(x, y) => x.type === y.type && x.target === y.target, (x, y) => x.type === y.type]) {
+  const passes = [(x, y) => x.type === y.type && x.target === y.target, (x, y, i) => x.type === y.type && retargeted(i)]
+  for (const same of passes) {
     b.forEach((link, j) => {
       if (pairs.has(j)) return
-      const i = a.findIndex((other, i) => !used.has(i) && same(other, link))
+      const i = a.findIndex((other, i) => !used.has(i) && same(other, link, i))
       if (i < 0) return
       used.add(i)
       pairs.set(j, i)

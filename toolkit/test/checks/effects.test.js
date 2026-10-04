@@ -33,6 +33,9 @@ test('in a note whose text changed, links pair up by type and target', () => {
   const after = editMention(small(), 'inch', 'ep-b', { note: 'Like [[see:ounce]]s, from [[from:uncia]] and [[from:pondus]].' })
   // Only the new link to pondus is unpaired; the others still resolve as they did.
   assert.deepEqual(sideEffects(small(), after).links, [])
+  // Links whose target was edited by hand are new links, not old ones resolving elsewhere.
+  const replaced = editMention(small(), 'inch', 'ep-b', { note: 'Like [[from:cartouche]] and [[see:gift]].' })
+  assert.deepEqual(sideEffects(small(), replaced).links, [])
   // Merged in the same edit list, both links to ounce are rewritten: then they pair by type.
   const merged = sideEffects(small(), mergeEntries(after, 'ounce', 'acrobat'))
   assert.equal(merged.mentions.changed[0].fields.note[1], 'Like [[see:acrobat]]s, from [[from:acrobat]] and [[from:pondus]].')
