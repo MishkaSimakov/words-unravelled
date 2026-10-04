@@ -1,5 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
+import { sideEffects } from '../../src/checks/effects.js'
 import { deleteEntry, setFields } from '../../src/edit/entries.js'
 import { data, entry, mention, small } from '../fixtures/data.js'
 import { assertEdit, assertRefused } from '../helpers.js'
@@ -36,4 +37,18 @@ test('deleteEntry refuses when a link would then need a gloss', () => {
     entry('oatmeal', {}, mention('ep-a', 3, 'Porridge of [[see:meal]].')),
   ])
   assertRefused((d) => deleteEntry(d, 'meal'), d, 'link-needs-gloss')
+})
+
+test('setFields reports the fields it set and the links that no longer resolve', () => {
+  // As setFields(arctos, { original: null }) orphans arktos in arctic.
+  const effects = sideEffects(small(), setFields(small(), 'ounce', { original: null }))
+  assert.deepEqual(effects.entries.changed, [{ slug: 'ounce', name: 'ounce', fields: { original: ['uncia', null] } }])
+  assert.deepEqual(effects.links, [{ slug: 'inch', episode_id: 'ep-b', target: 'uncia', before: 'ounce', after: null, follows: false }])
+})
+
+test('deleteEntry reports the entry, its mentions and the links it orphans', () => {
+  const effects = sideEffects(small(), deleteEntry(small(), 'ounce'))
+  assert.deepEqual(effects.entries.removed, [{ slug: 'ounce', name: 'ounce' }])
+  assert.deepEqual(effects.mentions.removed.map((m) => [m.slug, m.episode_id]), [['ounce', 'ep-b']])
+  assert.deepEqual(effects.links.map((l) => [l.target, l.before, l.after]), [['uncia', 'ounce', null], ['ounce', 'ounce', null]])
 })

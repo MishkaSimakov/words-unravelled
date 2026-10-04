@@ -76,13 +76,19 @@ relation (`[[from?:shesep ankh]]`). Letters straight after `]]` are part of the 
    entry, or a target that several original forms match).
 
 So a target without a gloss means the word without one: `[[see:gift]]` never reaches
-*Gift (German)* by its term. Parsing and resolution live in `toolkit/src/model/links.js` and
+*Gift (German)* by its term.
+
+Links may lead nowhere, by design: a target that is no entry is valid data, shown as plain text
+(about 950 of 13,600 links, mostly to things without an entry, like `[[from?:tan galán]]`). So
+deleting an entry leaves the links to it as they are. `check` warns about such a link only when
+it is close to an entry (`link-unresolved-close`), not about every one; instead, the review tool
+lists the links an edit orphans before it is applied (`sideEffects()`). Parsing and resolution live in `toolkit/src/model/links.js` and
 `toolkit/src/query/links.js`.
 
 ## Toolkit
 
 `toolkit/` holds the code that reads, checks and edits the data, shared by the site and, later,
-the tools that edit it (the extraction agent's MCP server in issue #13, and a review tool). It is plain ES modules with no browser or Node globals, so the site
+the tools that edit it (the review tool on the dev site, and later the extraction agent's MCP server in issue #13). It is plain ES modules with no browser or Node globals, so the site
 imports it directly (as `#toolkit/*`, a package import in `site/package.json`). Its one dependency is Fuse.js, for
 search; run `npm install` in `toolkit/` before building the site.
 
@@ -98,9 +104,12 @@ toolkit/src/query/search.js      search, as on the site
 toolkit/src/query/plain.js       plainMentions: notes that name an entry without linking to it
 toolkit/src/query/groups.js      groupBy, the grouping the indexes and checks share
 toolkit/src/checks/              problems() and introduced(); codes.js lists every problem code;
-                                 invariants.js: dataChanges and linkResolutions
-toolkit/src/edit/                edits: episodes, mentions, entries, names (gloss, rename), merges
+                                 invariants.js: dataChanges and linkResolutions;
+                                 effects.js: sideEffects, what an edit changes
+toolkit/src/edit/                edits: episodes, mentions, entries, names (gloss, rename), merges;
+                                 batch.js: applyEdits, a list of edits applied as one
 toolkit/src/io/files.js          Node only: load and save the data files
+toolkit/src/io/session.js        Node only: preview, apply and undo edits on the data files
 toolkit/cli/check.js             npm run check
 toolkit/test/                    node --test, mirroring src/; fixtures/data.js is a small dataset,
                                  helpers.js the invariants every edit test checks
@@ -167,13 +176,17 @@ warnings.
 | `deleteEntry(data, slug)` | deletes an entry; links to it show as plain text, unless that leaves a link that needs a gloss or is ambiguous: then it is refused |
 | `setGloss(data, slug, gloss)` | sets or (with null) removes the gloss, so the slug; links that named the entry get the gloss and keep their text (`[[see:meal]]s` → `[[see:meal (flour)]]s`) |
 | `renameEntry(data, slug, term)` | changes the term, so the slug; links that named the entry name the new term |
+| `mergeEntries(data, from, into, { keep })` | moves `from`'s mentions to `into` and deletes `from`; `into` keeps its fields; links that resolved to `from` name `into`. Where both have a mention in one episode, `keep` (`{ episode id: 'from' \| 'into' }`) says whose stays; a clash it doesn't settle is refused |
 
 `setGloss` and `renameEntry` are refused (`link-taken`) if the new slug would take a link that
 resolves to another entry by its original form, since a slug match comes first. Links that
 resolved to nothing may start resolving to the renamed entry. Removing entries the same way
 (`deleteMention`, `replaceEpisodeMentions`) is refused like `deleteEntry` when it would leave a
 link in error.
-| `mergeEntries(data, from, into)` | moves `from`'s mentions to `into` and deletes `from`; links that resolved to `from` name `into`. Refused if both have a mention in one episode |
+
+A merge keeps the links to `from` even when none of its mentions survive, which deleting the
+clashing mention first wouldn't: deleting an entry's last mention deletes the entry, and its
+links then lead nowhere. To give the survivor fields of the other entry, run `setFields` first.
 
 A mention item is `{ slug, t, role, note, confidence }`, or, for a new entry,
 `{ entry: { term, gloss?, original, translation, language, category }, t, role, note,
@@ -184,10 +197,32 @@ temporary file (`data/*.tmp`, ignored by git) renamed over the old one, with the
 formatting, so a failed save leaves the old file whole and a save changes only the bytes of what
 changed. Data without both `entries` and `episodes` lists is refused before anything is written.
 
+`applyEdits(data, ops)` applies a list of edits, `[{ op, args }]` with `op` a name in `EDITS`
+(`{ op: 'setFields', args: [slug, fields] }`), as one: if any refuses, none is applied.
+
+`sideEffects(before, after)` (`checks/effects.js`) lists everything an edit changed, computed
+from the two versions alone, so it can't drift from what the edits do:
+- entries added, removed (with `into` when their mentions moved to one entry: a rename or a
+  merge) and changed in their fields;
+- mentions added, removed (with their notes), moved to another entry, and changed;
+- notes whose link targets were rewritten;
+- links whose resolution changed: orphaned, captured (an added entry, or a new original form, now
+  matches a link that led nowhere) or sent to another entry, with `follows` for links that follow
+  a rename or merge. Links are matched through moved mentions, so they are compared across
+  renamed and merged owners;
+- the problems, warnings included, that the edit introduced.
+
+`editSession(dir)` (`io/session.js`, Node only) edits the data files: `preview(ops)` returns the
+side effects without writing; `apply(ops, version)` saves, but only if the files are still the
+version the preview saw; `undo()` restores the files before the last apply, while they are still
+as it left them (up to 20 steps). Each call reads the files afresh, so edits made by hand or by
+an agent in the meantime are never overwritten.
+
 Every edit test runs the edit on frozen data and checks the invariants in `test/helpers.js`:
 valid data stays valid, the order is kept, only the intended entries change (others may differ
 in link targets only, where the edit renames), every link resolves to the same entry as before,
-and a refused edit leaves the data as it was. `test/checks/codes.test.js` and
+and a refused edit leaves the data as it was. Each edit also has a test of the side effects
+`sideEffects()` reports for it. `test/checks/codes.test.js` and
 `test/edit/refusals.test.js` fail if a problem or refusal code has no test.
 
 Tests: `cd toolkit && npm install && npm test`.

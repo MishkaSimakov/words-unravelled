@@ -1,5 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
+import { sideEffects } from '../../src/checks/effects.js'
+import { applyEdits } from '../../src/edit/batch.js'
 import { addMention, deleteMention, editMention, replaceEpisodeMentions } from '../../src/edit/mentions.js'
 import { small } from '../fixtures/data.js'
 import { assertEdit, assertRefused } from '../helpers.js'
@@ -100,4 +102,42 @@ test('deleteMention deletes one mention, and an entry left without mentions', ()
   assert.deepEqual(find(after, 'cartouche').mentions.map((x) => x.episode_id), ['ep-a'])
   const gone = assertEdit(deleteMention, small(), ['acrobat', 'ep-c'], { touched: ['acrobat'] }).after
   assert.ok(!slugs(gone).includes('acrobat'))
+})
+
+test('addMention reports a new entry, and the links it starts resolving', () => {
+  // As adding John Heywood makes a link in A Dialogue containing ... the English tongue resolve.
+  const before = small()
+  before.entries.find((e) => e.slug === 'acrobat').mentions[0].note = 'Weighed by the [[see:pound]].'
+  const effects = sideEffects(before, addMention(before, 'ep-a', m({ entry: pound() })))
+  assert.deepEqual(effects.entries.added, [{ slug: 'pound', name: 'pound' }])
+  assert.deepEqual(effects.mentions.added.map((x) => [x.slug, x.episode_id]), [['pound', 'ep-a']])
+  assert.deepEqual(effects.links, [{ slug: 'acrobat', episode_id: 'ep-c', target: 'pound', before: null, after: 'pound', follows: false }])
+})
+
+test('editMention reports the fields it changed', () => {
+  const effects = sideEffects(small(), editMention(small(), 'gift', 'ep-b', { t: 11, confidence: 'low' }))
+  assert.deepEqual(effects.mentions.changed, [{ slug: 'gift', episode_id: 'ep-b', fields: { t: [10, 11], confidence: ['high', 'low'] } }])
+})
+
+test('deleteMention reports the mention, and its entry when it was the last', () => {
+  const effects = sideEffects(small(), deleteMention(small(), 'acrobat', 'ep-c'))
+  assert.deepEqual(effects.entries.removed, [{ slug: 'acrobat', name: 'acrobat' }])
+  assert.deepEqual(effects.mentions.removed.map((x) => [x.slug, x.mention.note]), [['acrobat', 'Literally a walker on tiptoe.']])
+})
+
+test('addMention and deleteMention together report a moved mention', () => {
+  const moved = { ...find(small(), 'gift').mentions[0], slug: 'batter' }
+  delete moved.episode_id
+  const after = applyEdits(small(), [{ op: 'addMention', args: ['ep-b', moved] }, { op: 'deleteMention', args: ['gift', 'ep-b'] }])
+  const effects = sideEffects(small(), after)
+  assert.deepEqual(effects.mentions.moved, [{ from: { slug: 'gift', episode_id: 'ep-b' }, to: { slug: 'batter', episode_id: 'ep-b' } }])
+  assert.deepEqual([effects.mentions.added, effects.mentions.removed], [[], []])
+  assert.deepEqual(effects.entries.removed, [{ slug: 'gift', name: 'gift', into: 'batter' }])
+})
+
+test('replaceEpisodeMentions reports the entries it creates and removes', () => {
+  const effects = sideEffects(small(), replaceEpisodeMentions(small(), 'ep-b', [m({ slug: 'gift' }), m({ entry: pound(), t: 6 })]))
+  assert.deepEqual(effects.entries.added.map((e) => e.slug), ['pound'])
+  assert.deepEqual(effects.entries.removed.map((e) => e.slug), ['gift-german', 'inch', 'ounce'])
+  assert.deepEqual(effects.mentions.changed.map((x) => x.slug), ['gift'])
 })

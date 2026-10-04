@@ -32,12 +32,15 @@ export function problems(data, { warnings = true, transcripts = {} } = {}) {
  * The problems of `after` that `before` doesn't have, compared by problemKey(). Keys are
  * counted, so a second copy of a known problem (a second identical bad link in a note) is new.
  */
-export function introduced(before, after, options) {
-  const known = new Map()
-  for (const p of problems(before, options)) known.set(problemKey(p), (known.get(problemKey(p)) ?? 0) + 1)
-  return problems(after, options).filter((p) => {
-    const n = known.get(problemKey(p)) ?? 0
-    known.set(problemKey(p), n - 1)
+export const introduced = (before, after, options) => newProblems(problems(before, options), problems(after, options))
+
+/** introduced() for problem lists already found: the problems in `list` that `known` doesn't have. */
+export function newProblems(known, list) {
+  const counts = new Map()
+  for (const p of known) counts.set(problemKey(p), (counts.get(problemKey(p)) ?? 0) + 1)
+  return list.filter((p) => {
+    const n = counts.get(problemKey(p)) ?? 0
+    counts.set(problemKey(p), n - 1)
     return n <= 0
   })
 }

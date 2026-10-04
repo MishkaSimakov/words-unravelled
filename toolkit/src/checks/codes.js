@@ -40,7 +40,9 @@ export const CODES = {
   'unknown-mention': { level: 'error', refusal: true, about: 'the entry has no mention in the episode an edit names' },
   'field-not-settable': { level: 'error', refusal: true, about: 'an edit was asked to set a field it does not set' },
   'merge-self': { level: 'error', refusal: true, about: 'an entry was to be merged into itself' },
+  'merge-keep-invalid': { level: 'error', refusal: true, about: "a merge's keep names an episode where the two entries don't both have a mention, or a side other than from or into" },
   'link-taken': { level: 'error', refusal: true, about: "a new name would take links that resolve to another entry, e.g. by its original form" },
+  'unknown-edit': { level: 'error', refusal: true, about: 'an edit list names an edit that does not exist, or an item is not { op, args: [...] }' },
 }
 
 /** The codes problems() can find, i.e. all but the refusals. */
