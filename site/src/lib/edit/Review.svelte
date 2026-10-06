@@ -119,8 +119,8 @@
   <p>The check failed: {result.error ?? result.conflict}</p>
 {:else}
   <p class="meta">
-    {plural(count('error'), 'error')} and {plural(count('warning'), 'warning')}, by kind; {plural(result.silenced.length, 'warning')}
-    silenced. Open a kind to go through it.
+    {plural(count('error'), 'error')}, {plural(count('warning'), 'warning')}, and
+    {plural(result.silenced.length, 'warning')} silenced.
   </p>
   {#if failure}<p class="failure" role="alert">{failure}</p>{/if}
   {@render groups(active, false)}
