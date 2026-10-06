@@ -77,11 +77,11 @@
   <nav class="crumbs"><a href={href('episodes')}>← All episodes</a></nav>
   <header class="episode-head">
     <p class="kicker">
-      Episode{ep.date ? ` · ${fmtDate(ep.date)}` : ''}{ep.duration ? ` · ${Math.round(ep.duration / 60)} min` : ''}
+      Episode{ep.date ? ` · ${fmtDate(ep.date)}` : ''}{ep.duration ? ` · ${Math.round(ep.duration / 60)} min` : ''} ·
+      {plural(items.length, 'entry', 'entries')}
     </p>
     <h1 class="episode-title">{ep.title}</h1>
     <p class="episode-links">
-      {plural(items.length, 'entry', 'entries')} ·
       <a href={youtubeUrl(ep.id)} target="_blank" rel="noopener">Watch on YouTube</a>
     </p>
   </header>
