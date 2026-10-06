@@ -8,26 +8,38 @@
   import Mention from '#lib/components/Mention.svelte'
   import NotFound from '#lib/components/NotFound.svelte'
   import { db } from '#lib/db.js'
+  import { debug } from '#lib/debug.svelte.js'
   import { forms, roleRank } from '#lib/entries.js'
   import { plural } from '#lib/format.js'
   import { entryHref, href } from '#lib/paths.js'
+  import { dataVersion } from '#lib/version.svelte.js'
 
-  // The layout renders a page afresh on every navigation, so nothing here needs to react to it.
+  // The layout renders a page afresh on every navigation; within one, the page follows reloads
+  // of the data (after an edit in debug mode).
   const slug = page.params.slug
-  const entry = entryBySlug(db.index, slug)
-
-  const i = db.entries.indexOf(entry)
-  const prev = entry && db.entries[i - 1]
-  const next = entry && db.entries[i + 1]
-  const { original, translation } = entry ? forms(entry) : {}
-  // Subjects, then asides, newest first; episodes that only point to the entry go last.
-  const date = (m) => episodeById(db.index, m.episode_id)?.date ?? ''
-  const mentions = entry ? [...entry.mentions].sort((a, b) => roleRank(a) - roleRank(b) || date(b).localeCompare(date(a))) : []
-  const discussed = mentions.filter((m) => m.role !== 'mention')
-  const pointers = mentions.filter((m) => m.role === 'mention')
+  const { entry, prev, next, original, translation, discussed, pointers, linkedFrom } = $derived.by(() => {
+    dataVersion.n
+    const entry = entryBySlug(db.index, slug)
+    if (!entry) return { entry }
+    const i = db.entries.indexOf(entry)
+    // Subjects, then asides, newest first; episodes that only point to the entry go last.
+    const date = (m) => episodeById(db.index, m.episode_id)?.date ?? ''
+    const mentions = [...entry.mentions].sort((a, b) => roleRank(a) - roleRank(b) || date(b).localeCompare(date(a)))
+    return {
+      entry,
+      prev: db.entries[i - 1],
+      next: db.entries[i + 1],
+      ...forms(entry),
+      discussed: mentions.filter((m) => m.role !== 'mention'),
+      pointers: mentions.filter((m) => m.role === 'mention'),
+      linkedFrom: backlinks(db.index, entry.slug),
+    }
+  })
   const count = (list) => new Set(list.map((m) => m.episode_id)).size
-  const linkedFrom = entry ? backlinks(db.index, entry.slug) : []
+  const edit = import.meta.env.DEV ? import('#lib/edit/index.js') : null
 </script>
+
+{#snippet tools(mention)}{#if edit && debug.on}{#await edit then { MentionEditor }}<MentionEditor {entry} {mention} />{/await}{/if}{/snippet}
 
 <svelte:head>{#if entry}<title>{entryName(entry)} · Wordhoard</title>{/if}</svelte:head>
 
@@ -48,6 +60,7 @@
           {#if translation}<div><dt>Literally</dt><dd>‘{translation}’</dd></div>{/if}
         </dl>
       {/if}
+      {#if edit && debug.on}{#await edit then { EntryEditor }}<EntryEditor {entry} />{/await}{/if}
     </header>
 
     {#if discussed.length}
@@ -55,13 +68,13 @@
         <span>Discussed in {plural(count(discussed), 'episode')}</span>
       </h2>
       <ol class="mentions">
-        {#each discussed as mention}<Mention {mention} {entry} />{/each}
+        {#each discussed as mention (mention.episode_id)}<Mention {mention} {entry}>{@render tools(mention)}</Mention>{/each}
       </ol>
     {/if}
     {#if pointers.length}
       <h2 class="section-title"><span>Also mentioned in</span></h2>
       <ol class="mentions">
-        {#each pointers as mention}<Mention {mention} {entry} />{/each}
+        {#each pointers as mention (mention.episode_id)}<Mention {mention} {entry}>{@render tools(mention)}</Mention>{/each}
       </ol>
     {/if}
     {#if linkedFrom.length}

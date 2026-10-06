@@ -8,15 +8,22 @@
   import Player from '#lib/components/Player.svelte'
   import RoleBadge from '#lib/components/RoleBadge.svelte'
   import { db, episodesOf } from '#lib/db.js'
+  import { debug } from '#lib/debug.svelte.js'
   import { fmtDate, fmtTime, plural } from '#lib/format.js'
   import { entryHref, href } from '#lib/paths.js'
+  import { dataVersion } from '#lib/version.svelte.js'
   import { LEAD_IN, youtubeUrl } from '#lib/youtube.js'
 
-  // The layout renders a page afresh on every navigation, so nothing here needs to react to it.
+  // The layout renders a page afresh on every navigation; within one, the timeline follows
+  // reloads of the data (after an edit in debug mode) while the player keeps playing.
   const id = page.params.id
   const ep = episodeById(db.index, id)
-  const items = ep ? episodeMentions(db.index, id) : []
-  const times = items.map(({ mention }) => mention.t - LEAD_IN)
+  const items = $derived.by(() => {
+    dataVersion.n
+    return ep ? episodeMentions(db.index, id) : []
+  })
+  const times = $derived(items.map(({ mention }) => mention.t - LEAD_IN))
+  const edit = import.meta.env.DEV ? import('#lib/edit/index.js') : null
 
   let player = $state()
   let playerBox = $state()
@@ -70,11 +77,11 @@
   <nav class="crumbs"><a href={href('episodes')}>← All episodes</a></nav>
   <header class="episode-head">
     <p class="kicker">
-      Episode{ep.date ? ` · ${fmtDate(ep.date)}` : ''}{ep.duration ? ` · ${Math.round(ep.duration / 60)} min` : ''}
+      Episode{ep.date ? ` · ${fmtDate(ep.date)}` : ''}{ep.duration ? ` · ${Math.round(ep.duration / 60)} min` : ''} ·
+      {plural(items.length, 'entry', 'entries')}
     </p>
     <h1 class="episode-title">{ep.title}</h1>
     <p class="episode-links">
-      {plural(items.length, 'entry', 'entries')} ·
       <a href={youtubeUrl(ep.id)} target="_blank" rel="noopener">Watch on YouTube</a>
     </p>
   </header>
@@ -82,9 +89,10 @@
     <div class="episode-player" bind:this={playerBox}>
       <Player bind:this={player} videoId={ep.id} start={0} label="Play episode" api />
       <p class="hint">Click a timestamp to jump there. The list follows along as you watch.</p>
+      {#if edit && debug.on}{#await edit then { AddMention }}<AddMention episodeId={ep.id} currentTime={() => player.currentTime()} />{/await}{/if}
     </div>
     <ol class="timeline">
-      {#each items as { entry, mention }, i}
+      {#each items as { entry, mention }, i (entry.slug)}
         <li class:is-current={times[i] === current} bind:this={rows[i]}>
           <button
             type="button"
@@ -100,6 +108,8 @@
             <RoleBadge role={mention.role} />
             {#if mention.note}<p class="note"><Note {mention} self={entry} /></p>{/if}
             {#if episodesOf(entry).all > 1}<p class="also">Also in {plural(episodesOf(entry).all - 1, 'other episode')}</p>{/if}
+            {#if mention.confidence === 'low' && edit && debug.on}<p class="flag">Unverified</p>{/if}
+            {#if edit && debug.on}{#await edit then { MentionEditor }}<MentionEditor {entry} {mention} currentTime={() => player.currentTime()} />{/await}{/if}
           </div>
         </li>
       {/each}
@@ -144,6 +154,9 @@
     position: sticky;
     top: 16px;
     scroll-margin-top: 16px;
+    /* The add-mention form (debug mode) can be taller than the window. */
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
   }
   .hint {
     color: var(--muted);
@@ -227,6 +240,7 @@
     }
     .episode-player {
       position: static;
+      max-height: none;
     }
   }
 

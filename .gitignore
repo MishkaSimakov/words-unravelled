@@ -1,4 +1,7 @@
 .idea
+.playwright-mcp
+
+docs
 
 # Ingest downloads and transcripts: large, and transcripts are not to be published.
 ingest/1-youtube/

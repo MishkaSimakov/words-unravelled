@@ -1,0 +1,130 @@
+/* Styles the edit tools share (debug mode, dev only): forms, buttons and the edit panels. */
+
+.edit-panel {
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  border: 1px dashed var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper);
+  font-size: 0.95rem;
+}
+.edit-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px 12px;
+}
+.edit-fields label,
+.edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.8rem;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.edit-panel input,
+.edit-panel select,
+.edit-panel textarea,
+.edit-dialog input,
+.edit-dialog select {
+  font: inherit;
+  font-size: 0.95rem;
+  font-variant-caps: normal;
+  letter-spacing: normal;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 4px 6px;
+  min-width: 0;
+}
+.edit-panel textarea {
+  width: 100%;
+  min-height: 5.5em;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  resize: vertical;
+}
+.edit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.edit-actions button,
+.edit-btn {
+  border: 1px solid var(--rule);
+  background: var(--card);
+  border-radius: 999px;
+  padding: 2px 12px;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+.edit-actions button:hover,
+.edit-btn:hover {
+  border-color: var(--rubric);
+  color: var(--rubric);
+}
+.edit-actions .primary {
+  background: var(--rubric);
+  border-color: var(--rubric);
+  color: var(--paper);
+}
+.edit-actions .primary:hover {
+  color: var(--paper);
+}
+.edit-actions .danger {
+  margin-left: auto;
+}
+.edit-actions button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.edit-hint {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+.edit-hint button {
+  font-style: normal;
+}
+
+.edit-dialog {
+  width: min(720px, calc(100vw - 32px));
+  max-height: calc(100vh - 64px);
+  padding: 20px 22px;
+  border: 1px solid var(--rule);
+  border-radius: calc(var(--radius) + 2px);
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+.edit-dialog.wide {
+  width: min(820px, calc(100vw - 32px));
+}
+.edit-dialog::backdrop {
+  background: rgb(20 15 10 / 0.45);
+}
+.edit-dialog h2 {
+  margin: 0 0 8px;
+  font-family: var(--serif-display);
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+/* A long list of side effects scrolls under the buttons. */
+.edit-dialog > .edit-actions {
+  position: sticky;
+  bottom: -20px;
+  margin: 12px -22px -20px;
+  padding: 12px 22px 16px;
+  background: var(--card);
+  border-top: 1px solid var(--rule);
+}
+.edit-fields label button {
+  font-variant-caps: normal;
+  letter-spacing: normal;
+  color: var(--ink);
+  white-space: nowrap;
+}

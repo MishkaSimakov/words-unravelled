@@ -4,8 +4,11 @@
 
 import { readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { silencedFileProblems } from '../checks/silenced.js'
 
 export const FILES = { entries: 'entries.json', episodes: 'episodes.json' }
+// The warnings silenced in review (checks/silenced.js); not part of the data the site shows.
+export const SILENCED = 'silenced.json'
 
 /** The text a value is saved as. */
 export const formatJson = (value) => JSON.stringify(value, null, 1) + '\n'
@@ -47,4 +50,25 @@ export function saveData(dir, data) {
     } catch {}
     if (old !== text) writeAtomic(path, text)
   }
+}
+
+/** The silenced warnings' records from `dir`. Throws if the file isn't a list of valid records. */
+export function loadSilenced(dir) {
+  const records = JSON.parse(readFileSync(join(dir, SILENCED), 'utf8'))
+  const found = silencedFileProblems(records)
+  if (found.length) throw new TypeError(found.join('\n'))
+  return records
+}
+
+/** Saves the silenced warnings' records to `dir`, like saveData(). */
+export function saveSilenced(dir, records) {
+  const found = silencedFileProblems(records)
+  if (found.length) throw new TypeError(found.join('\n'))
+  const path = join(dir, SILENCED)
+  const text = formatJson(records)
+  let old = null
+  try {
+    old = readFileSync(path, 'utf8')
+  } catch {}
+  if (old !== text) writeAtomic(path, text)
 }

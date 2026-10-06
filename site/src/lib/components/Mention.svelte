@@ -1,5 +1,6 @@
 <script>
-  // One episode that mentions the entry, on the entry page.
+  // One episode that mentions the entry, on the entry page. `children` go at the end (the edit
+  // tools, in debug mode).
   import { episode as episodeById } from '#toolkit/query/index.js'
   import { db } from '../db.js'
   import { fmtDate, fmtTime } from '../format.js'
@@ -9,7 +10,7 @@
   import Player from './Player.svelte'
   import RoleBadge from './RoleBadge.svelte'
 
-  let { mention, entry } = $props()
+  let { mention, entry, children } = $props()
 
   const ep = $derived(episodeById(db.index, mention.episode_id) ?? { id: mention.episode_id, title: 'Unknown episode' })
   const start = $derived(Math.max(0, mention.t - LEAD_IN))
@@ -30,6 +31,7 @@
         Unverified: the captions were unclear here
       </p>
     {/if}
+    {@render children?.()}
   </div>
 </li>
 

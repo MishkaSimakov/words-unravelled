@@ -2,7 +2,10 @@
 // the catalogue has no row here.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { REFUSAL_CODES } from '../../src/checks/codes.js'
+import { REFUSAL_CODES, problem } from '../../src/checks/codes.js'
+import { problems } from '../../src/checks/problems.js'
+import { silence, unsilence } from '../../src/checks/silenced.js'
+import { applyEdits } from '../../src/edit/batch.js'
 import { addEpisode } from '../../src/edit/episodes.js'
 import { deleteEntry, setFields } from '../../src/edit/entries.js'
 import { mergeEntries } from '../../src/edit/merges.js'
@@ -39,6 +42,16 @@ const ROWS = [
   ['field-not-settable', 'a mention item with slug and entry', (d) => addMention(d, 'ep-a', { ...newItem, slug: 'gift' })],
   ['field-not-settable', 'a new entry', (d) => replaceEpisodeMentions(d, 'ep-a', [{ ...newItem, entry: { ...newItem.entry, slug: 'pound' } }])],
   ['merge-self', 'mergeEntries', (d) => mergeEntries(d, 'gift', 'gift')],
+  // bat and bath both have a mention in ep-c, and only there.
+  ['merge-keep-invalid', 'mergeEntries keep without a clash', (d) => mergeEntries(d, 'bath', 'bat', { keep: { 'ep-a': 'from' } })],
+  ['merge-keep-invalid', 'mergeEntries keep with another side', (d) => mergeEntries(d, 'bath', 'bat', { keep: { 'ep-c': 'both' } })],
+  ['silence-not-warning', 'silence of an error', (d) => silence([], problem('entry-empty', 'm', ['gift']), problems(d))],
+  ['silence-unknown', 'silence of a warning the data does not have', (d) => silence([], problem('note-context', 'm', ['gift']), problems(d))],
+  ['silence-unknown', 'unsilence of a warning not silenced', () => unsilence([], problem('note-context', 'm', ['gift']))],
+  ['unknown-edit', 'applyEdits with an unknown op', (d) => applyEdits(d, [{ op: 'frobnicate', args: [] }])],
+  ['unknown-edit', 'applyEdits without args', (d) => applyEdits(d, [{ op: 'deleteEntry' }])],
+  ['unknown-edit', 'applyEdits with an inherited name', (d) => applyEdits(d, [{ op: 'toString', args: [] }])],
+  ['unknown-edit', 'applyEdits with no list', (d) => applyEdits(d, { op: 'deleteEntry', args: ['gift'] })],
   // inch links [[from:uncia]], which resolves to ounce by its original form.
   ['link-taken', 'renameEntry', (d) => renameEntry(d, 'acrobat', 'uncia')],
 ]

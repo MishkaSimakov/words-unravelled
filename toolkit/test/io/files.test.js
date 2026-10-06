@@ -4,7 +4,7 @@ import { cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writ
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { FILES, formatJson, loadData, saveData, writeAtomic } from '../../src/io/files.js'
+import { FILES, SILENCED, formatJson, loadData, loadSilenced, saveData, saveSilenced, writeAtomic } from '../../src/io/files.js'
 import { small } from '../fixtures/data.js'
 
 const REAL = fileURLToPath(new URL('../../../data/', import.meta.url))
@@ -72,4 +72,20 @@ test('a failed rename leaves the old file intact and removes the temporary file'
   assert.throws(() => writeAtomic(path, 'new'), { code: /^(EISDIR|ENOTEMPTY|EEXIST|EPERM)$/ })
   assert.equal(readFileSync(join(path, 'inside'), 'utf8'), 'old')
   assert.deepEqual(readdirSync(dir), ['entries.json'])
+})
+
+test('silenced records save with one-space indentation, load back, and must be valid', (t) => {
+  const dir = tempDir(t)
+  const records = [{ code: 'note-context', slugs: ['gift'], mention: { slug: 'gift', episode_id: 'ep-b' } }]
+  saveSilenced(dir, records)
+  assert.equal(readFileSync(join(dir, SILENCED), 'utf8'), formatJson(records))
+  assert.deepEqual(loadSilenced(dir), records)
+  assert.throws(() => saveSilenced(dir, [{ code: 'entry-empty', slugs: [] }]), TypeError)
+  assert.deepEqual(loadSilenced(dir), records)
+  writeFileSync(join(dir, SILENCED), '[{"code": "note-context"}]')
+  assert.throws(() => loadSilenced(dir), /slugs/)
+})
+
+test('the repository has a valid silenced.json', () => {
+  assert.ok(Array.isArray(loadSilenced(REAL)))
 })

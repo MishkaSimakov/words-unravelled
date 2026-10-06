@@ -1,5 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
+import { sideEffects } from '../../src/checks/effects.js'
 import { renameEntry, setGloss } from '../../src/edit/names.js'
 import { data, entry, mention, small } from '../fixtures/data.js'
 import { assertEdit, assertLinksFollow, assertRefused } from '../helpers.js'
@@ -90,4 +91,17 @@ test('a new name may take links that resolved to nothing', () => {
 test('renameEntry refuses a slug that is taken, and an empty term', () => {
   assertRefused((d) => renameEntry(d, 'bath', 'Bat'), small(), 'slug-duplicate')
   assertRefused((d) => renameEntry(d, 'bath', ''), small(), 'entry-field')
+})
+
+test('renameEntry and setGloss report a rename, the notes rewritten and the links that follow', () => {
+  const effects = sideEffects(small(), renameEntry(small(), 'ounce', 'onza'))
+  assert.deepEqual(effects.entries.added, [{ slug: 'onza', name: 'onza' }])
+  assert.deepEqual(effects.entries.removed, [{ slug: 'ounce', name: 'ounce', into: 'onza' }])
+  assert.deepEqual(effects.mentions.moved, [{ from: { slug: 'ounce', episode_id: 'ep-b' }, to: { slug: 'onza', episode_id: 'ep-b' } }])
+  assert.deepEqual(effects.notes, [
+    { slug: 'inch', episode_id: 'ep-b', before: 'From Latin [[from:uncia]], a twelfth, like [[see:ounce]]s.', after: 'From Latin [[from:uncia]], a twelfth, like [[see:onza]]s.' },
+  ])
+  assert.deepEqual(effects.links.map((l) => [l.target, l.before, l.after, l.follows]), [['uncia', 'ounce', 'onza', true], ['onza', 'ounce', 'onza', true]])
+  const glossed = sideEffects(small(), setGloss(small(), 'gift', 'present'))
+  assert.deepEqual(glossed.entries.removed, [{ slug: 'gift', name: 'gift', into: 'gift-present' }])
 })

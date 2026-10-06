@@ -1,5 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
+import { sideEffects } from '../../src/checks/effects.js'
 import { addEpisode } from '../../src/edit/episodes.js'
 import { small } from '../fixtures/data.js'
 import { assertEdit, assertRefused } from '../helpers.js'
@@ -24,4 +25,15 @@ test('addEpisode refuses an id that is taken, and an invalid field', () => {
   assertRefused((d) => addEpisode(d, { ...episode, id: 'ep-a' }), small(), 'episode-duplicate')
   assertRefused((d) => addEpisode(d, { ...episode, date: '15 Feb 2026' }), small(), 'episode-field')
   assertRefused((d) => addEpisode(d, { ...episode, duration: undefined }), small(), 'episode-field')
+})
+
+test('addEpisode has no side effects on entries', () => {
+  const effects = sideEffects(small(), addEpisode(small(), episode))
+  assert.deepEqual([effects.entries, effects.mentions, effects.notes, effects.links, effects.introduced], [
+    { added: [], removed: [], changed: [] },
+    { added: [], removed: [], moved: [], changed: [] },
+    [],
+    [],
+    [],
+  ])
 })

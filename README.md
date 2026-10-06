@@ -39,7 +39,10 @@ cd toolkit && npm test        # the toolkit's tests, including a check that data
    "confidence": "high"}
   ```
 
-Both files are JSON with one-space indentation (`indent=1`). Keep that formatting when editing
+- `data/silenced.json`: the warnings looked at and found fine (see **Silenced warnings** below),
+  `[{ code, slugs, mention?, episode?, detail? }]`. The site doesn't read it.
+
+The files are JSON with one-space indentation (`indent=1`). Keep that formatting when editing
 them, so that git diffs show only what changed.
 
 **Slug.** The entry's term, followed by the gloss if there is one, lowercased, with invisible
@@ -76,13 +79,19 @@ relation (`[[from?:shesep ankh]]`). Letters straight after `]]` are part of the 
    entry, or a target that several original forms match).
 
 So a target without a gloss means the word without one: `[[see:gift]]` never reaches
-*Gift (German)* by its term. Parsing and resolution live in `toolkit/src/model/links.js` and
+*Gift (German)* by its term.
+
+Links may lead nowhere, by design: a target that is no entry is valid data, shown as plain text
+(about 950 of 13,600 links, mostly to things without an entry, like `[[from?:tan galán]]`). So
+deleting an entry leaves the links to it as they are. `check` warns about such a link only when
+it is close to an entry (`link-unresolved-close`), not about every one; instead, the review tool
+lists the links an edit orphans before it is applied (`sideEffects()`). Parsing and resolution live in `toolkit/src/model/links.js` and
 `toolkit/src/query/links.js`.
 
 ## Toolkit
 
 `toolkit/` holds the code that reads, checks and edits the data, shared by the site and, later,
-the tools that edit it (the extraction agent's MCP server in issue #13, and a review tool). It is plain ES modules with no browser or Node globals, so the site
+the tools that edit it (the review tool on the dev site, and later the extraction agent's MCP server in issue #13). It is plain ES modules with no browser or Node globals, so the site
 imports it directly (as `#toolkit/*`, a package import in `site/package.json`). Its one dependency is Fuse.js, for
 search; run `npm install` in `toolkit/` before building the site.
 
@@ -98,9 +107,13 @@ toolkit/src/query/search.js      search, as on the site
 toolkit/src/query/plain.js       plainMentions: notes that name an entry without linking to it
 toolkit/src/query/groups.js      groupBy, the grouping the indexes and checks share
 toolkit/src/checks/              problems() and introduced(); codes.js lists every problem code;
-                                 invariants.js: dataChanges and linkResolutions
-toolkit/src/edit/                edits: episodes, mentions, entries, names (gloss, rename), merges
+                                 silenced.js: silenced warnings;
+                                 invariants.js: dataChanges and linkResolutions;
+                                 effects.js: sideEffects, what an edit changes
+toolkit/src/edit/                edits: episodes, mentions, entries, names (gloss, rename), merges;
+                                 batch.js: applyEdits, a list of edits applied as one
 toolkit/src/io/files.js          Node only: load and save the data files
+toolkit/src/io/session.js        Node only: preview, apply and undo edits on the data files
 toolkit/cli/check.js             npm run check
 toolkit/test/                    node --test, mirroring src/; fixtures/data.js is a small dataset,
                                  helpers.js the invariants every edit test checks
@@ -144,8 +157,24 @@ a second copy of a known problem (a second identical bad link in one note) is ne
 
 `npm run check` prints every problem grouped by code and exits with 1 if there are errors.
 Each line starts with its code in brackets, so `npm run check | grep '\[note-context\]'` lists
-one kind. The
-Pages workflow runs it before building, so a deploy fails on data with errors.
+one kind. Silenced warnings are counted, not listed, and silenced records that match no warning
+any more are listed at the end. The Pages workflow runs it before building, so a deploy fails on
+data with errors (or a malformed `silenced.json`).
+
+**Silenced warnings.** A warning that has been looked at and is fine (two entries that only look
+like duplicates) can be silenced: `data/silenced.json` keeps its identity, the same fields
+`problemKey()` compares (code, slugs, mention, episode, detail), not its wording.
+`checks/silenced.js` has the functions:
+- `applySilenced(problems, records)` splits the problems into `{ active, silenced, stale }`.
+- A record silences exactly one problem: the one with its identity. Other warnings about the
+  same entry, mention or episode, or of the same code, stay active; so does a second warning
+  with the same identity (a second identical link in one note), which takes a record of its own.
+- A record whose warning is gone, for example after a rename, a merge or a fix, is `stale`.
+- `silence(records, problem, problems)` adds a record. It is refused for errors, which are fixed,
+  not silenced, and for a warning the data doesn't have or that is already silenced.
+- `unsilence(records, problem)` removes one record.
+
+Records are kept sorted by identity.
 
 ### Edits
 
@@ -167,13 +196,17 @@ warnings.
 | `deleteEntry(data, slug)` | deletes an entry; links to it show as plain text, unless that leaves a link that needs a gloss or is ambiguous: then it is refused |
 | `setGloss(data, slug, gloss)` | sets or (with null) removes the gloss, so the slug; links that named the entry get the gloss and keep their text (`[[see:meal]]s` → `[[see:meal (flour)]]s`) |
 | `renameEntry(data, slug, term)` | changes the term, so the slug; links that named the entry name the new term |
+| `mergeEntries(data, from, into, { keep })` | moves `from`'s mentions to `into` and deletes `from`; `into` keeps its fields; links that resolved to `from` name `into`. Where both have a mention in one episode, `keep` (`{ episode id: 'from' \| 'into' }`) says whose stays; a clash it doesn't settle is refused |
 
 `setGloss` and `renameEntry` are refused (`link-taken`) if the new slug would take a link that
 resolves to another entry by its original form, since a slug match comes first. Links that
 resolved to nothing may start resolving to the renamed entry. Removing entries the same way
 (`deleteMention`, `replaceEpisodeMentions`) is refused like `deleteEntry` when it would leave a
 link in error.
-| `mergeEntries(data, from, into)` | moves `from`'s mentions to `into` and deletes `from`; links that resolved to `from` name `into`. Refused if both have a mention in one episode |
+
+A merge keeps the links to `from` even when none of its mentions survive, which deleting the
+clashing mention first wouldn't: deleting an entry's last mention deletes the entry, and its
+links then lead nowhere. To give the survivor fields of the other entry, run `setFields` first.
 
 A mention item is `{ slug, t, role, note, confidence }`, or, for a new entry,
 `{ entry: { term, gloss?, original, translation, language, category }, t, role, note,
@@ -184,10 +217,34 @@ temporary file (`data/*.tmp`, ignored by git) renamed over the old one, with the
 formatting, so a failed save leaves the old file whole and a save changes only the bytes of what
 changed. Data without both `entries` and `episodes` lists is refused before anything is written.
 
+`applyEdits(data, ops)` applies a list of edits, `[{ op, args }]` with `op` a name in `EDITS`
+(`{ op: 'setFields', args: [slug, fields] }`), as one: if any refuses, none is applied.
+
+`sideEffects(before, after)` (`checks/effects.js`) lists everything an edit changed, computed
+from the two versions alone, so it can't drift from what the edits do:
+- entries added, removed (with `into` when their mentions moved to one entry: a rename or a
+  merge) and changed in their fields;
+- mentions added, removed (with their notes), moved to another entry, and changed;
+- notes whose link targets were rewritten;
+- links whose resolution changed: orphaned, captured (an added entry, or a new original form, now
+  matches a link that led nowhere) or sent to another entry, with `follows` for links that follow
+  a rename or merge. Links are matched through moved mentions, so they are compared across
+  renamed and merged owners;
+- the problems, warnings included, that the edit introduced.
+
+`editSession(dir)` (`io/session.js`, Node only) edits the data files. `problems()` returns the
+active, silenced and stale problems, and `silence(problem)` and `unsilence(problem)` change
+`silenced.json`. `preview(ops)` returns the
+side effects without writing; `apply(ops, version)` saves, but only if the files are still the
+version the preview saw; `undo()` restores the files before the last apply, while they are still
+as it left them (up to 20 steps). Each call reads the files afresh, so edits made by hand or by
+an agent in the meantime are never overwritten.
+
 Every edit test runs the edit on frozen data and checks the invariants in `test/helpers.js`:
 valid data stays valid, the order is kept, only the intended entries change (others may differ
 in link targets only, where the edit renames), every link resolves to the same entry as before,
-and a refused edit leaves the data as it was. `test/checks/codes.test.js` and
+and a refused edit leaves the data as it was. Each edit also has a test of the side effects
+`sideEffects()` reports for it. `test/checks/codes.test.js` and
 `test/edit/refusals.test.js` fail if a problem or refusal code has no test.
 
 Tests: `cd toolkit && npm install && npm test`.
@@ -197,7 +254,7 @@ Tests: `cd toolkit && npm install && npm test`.
 ```sh
 cd toolkit && npm install && cd ../site
 npm install
-npm run dev        # http://localhost:5173, reads ../data live, shows debug details
+npm run dev        # http://localhost:5173, reads ../data live; debug mode and the review tool
 npm run build      # -> site/dist (data copied into dist/data, 404.html is the app shell)
 npm run preview
 npm run check      # svelte-check
@@ -212,10 +269,13 @@ it has loaded.
 site/src/app.html            the page shell
 site/src/app.css             colours, fonts, base styles and the classes several pages share
 site/src/routes/             pages: home (+page.svelte), entry/[slug], episode/[id], episodes,
-                             about, [...path] (unknown paths) and +error; +layout.svelte is the
+                             about, review (dev only), [...path] (unknown paths) and +error; +layout.svelte is the
                              header, footer, loading state and the / shortcut
 site/src/lib/components/     EntryItem, EntryList, EntryName, Note, CategoryTag, Mention, Player…
-site/src/lib/db.js           loading, sorting and indexing the data; search
+site/src/lib/db.js           loading, sorting and indexing the data (and reloading it after an edit); search
+site/src/lib/debug.svelte.js the Debug switch (dev only)
+site/src/lib/edit/           the review tool (dev only): edit forms, the merge and confirmation dialogs,
+                             the /review list, and the flow every edit goes through (edits.svelte.js)
 site/src/lib/entries.js      categories, display forms, role order, link titles
 site/src/lib/format.js       numbers, plurals, times, dates
 site/src/lib/paths.js        links under the base path
@@ -234,8 +294,10 @@ Each component's CSS is scoped to it. `src/lib` is imported as `#lib/*`.
   folded, letters like *æ* and *þ* spelt out (*ae*, *th*) and leading punctuation ignored, so
   *-ness* sits next to *ness* and *ælf* under A; digits and other scripts come first, under #.
   The entry page's previous and next links follow the same order.
-- `npm run dev` also shows debug details: each mention's role (subject / aside / mention) as a
-  small badge on result cards, entry pages and episode timelines. `npm run build` leaves them out.
+- `npm run dev` adds a **Debug** switch to the header (on by default, remembered in the browser).
+  It shows each mention's role (subject / aside / mention) as a small badge on result cards, entry
+  pages and episode timelines, and the review tool below. Switched off, the site looks as
+  visitors see it. `npm run build` has neither the switch nor anything it shows.
 - Search is client-side with Fuse.js over `term`, `gloss`, `original` and `translation`. It
   ignores accents and ranks exact and prefix matches first; within each of those tiers, entries
   that are only ever pointed to (role `mention`) come last.
@@ -250,6 +312,41 @@ Each component's CSS is scoped to it. `src/lib` is imported as `#lib/*`.
   embed at `t - 3` seconds.
 - Fonts are self-hosted (Fraunces, Source Serif 4), so the site makes no requests to
   third-party font servers.
+
+### Review tool
+
+The data can be edited on the site itself, under `npm run dev` with Debug on. A build contains
+none of it: the edit tools (`src/lib/edit/`) are loaded only behind `import.meta.env.DEV`, and
+the endpoint that writes the data exists only in the dev server (`vite.config.js`).
+
+- **Entry pages:** edit the term, gloss, original form, literal translation, language and
+  category; merge the entry into another; delete it. A new term or gloss that is another entry's
+  name offers a merge instead of the rename. Each mention can be edited (time, role, confidence,
+  and the note as raw `[[type:target]]` markup with a live preview that marks links leading
+  nowhere), moved to another entry, or deleted.
+- **Episode pages,** where a new episode is reviewed while it plays: the same mention tools, with
+  the time taken from the player, "Mark checked" (confidence high) for unverified mentions, and
+  adding a mention to an existing or a new entry. The timeline follows each edit without reloading
+  the page, so the player keeps playing.
+- **Merging:** the dialog shows both entries' fields side by side; the survivor keeps its name and
+  its fields, with blanks filled from the other by default, and each field can be chosen. In each
+  episode where both entries have a mention, you choose whose mention stays.
+- **`/review`** lists every active problem `check` finds, one collapsible list per kind, 50 at a time:
+  likely duplicates with a merge in either direction, and problems in notes with the mention's
+  editor. It is checked again after every edit.
+  - **Silence** moves a warning to the collapsible **Silenced** section below, with its own list
+    per kind. Each silenced warning can be brought back with **Unsilence**.
+  - Silenced warnings whose problem is gone are listed under "no longer found", each with a
+    **Remove** button.
+
+Every edit is a list of toolkit edits (`[{ op, args }]`) that the dev server previews first: a
+dialog lists everything it changes, computed by `sideEffects()` (entries removed or renamed,
+mentions moved or removed, notes rewritten, links that change where they lead, new warnings),
+and nothing is written until it is applied. The server reads `data/` afresh for every request,
+refuses to apply an edit if the files changed since its preview, and can undo the edits of the
+session while the files are as it left them. Older changes are in git; commit `data/` as
+usual. The dev server loads the toolkit for the endpoint once, so restart it after changing
+toolkit code.
 
 **GitHub Pages:** build with `BASE_PATH=/<repo-name>/ npm run build` for a project site.
 `404.html` is the app shell, so deep links like `/entry/break-a-leg` work. The workflow
