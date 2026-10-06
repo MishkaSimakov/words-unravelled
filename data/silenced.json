@@ -1,1 +1,440 @@
-[]
+[
+ {
+  "code": "duplicate-contained",
+  "slugs": [
+   "box-of-frogs",
+   "mad-as-a-box-of-frogs"
+  ]
+ },
+ {
+  "code": "duplicate-contained",
+  "slugs": [
+   "el-grupo-de-rock-and-roll",
+   "rock-and-roll"
+  ]
+ },
+ {
+  "code": "duplicate-contained",
+  "slugs": [
+   "goody-two-shoes",
+   "the-history-of-little-goody-two-shoes"
+  ]
+ },
+ {
+  "code": "duplicate-contained",
+  "slugs": [
+   "long-john-and-the-silver-beatles",
+   "the-silver-beatles"
+  ]
+ },
+ {
+  "code": "duplicate-contained",
+  "slugs": [
+   "put-two-and-two-together",
+   "put-two-and-two-together-and-make-five"
+  ]
+ },
+ {
+  "code": "duplicate-contained",
+  "slugs": [
+   "when-pigs-fly",
+   "when-pigs-fly-with-their-tails-forward"
+  ]
+ },
+ {
+  "code": "duplicate-original",
+  "slugs": [
+   "a-norwegian",
+   "a-prefix"
+  ]
+ },
+ {
+  "code": "duplicate-original",
+  "slugs": [
+   "con-french",
+   "con-prefix"
+  ]
+ },
+ {
+  "code": "duplicate-original",
+  "slugs": [
+   "est",
+   "est-french"
+  ]
+ },
+ {
+  "code": "duplicate-original",
+  "slugs": [
+   "gross",
+   "gross-german"
+  ]
+ },
+ {
+  "code": "duplicate-original",
+  "slugs": [
+   "ian",
+   "ian-name"
+  ]
+ },
+ {
+  "code": "duplicate-original",
+  "slugs": [
+   "lich",
+   "lich-german"
+  ]
+ },
+ {
+  "code": "duplicate-original",
+  "slugs": [
+   "roma",
+   "rome"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "angle",
+   "angles"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "apple",
+   "apples"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "are",
+   "ares"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "argonaut",
+   "argonauts"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "banana",
+   "bananas"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "billiard",
+   "billiards"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "blue",
+   "the-blues"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "buck",
+   "bucks"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "clam",
+   "clams"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "cobbler",
+   "cobblers"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "dies",
+   "to-die"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "door",
+   "the-doors"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "flies",
+   "fly"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "frank",
+   "franks"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "gadzook",
+   "gadzooks"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "gift",
+   "gifts"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "jean",
+   "jeans"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "kink",
+   "the-kinks"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "knickerbocker",
+   "knickerbockers"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "logo",
+   "logos"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "maries",
+   "mary"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "math",
+   "maths"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "nut",
+   "nuts"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "pant",
+   "pants"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "par",
+   "pars"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "pig",
+   "pigs"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "pyramid",
+   "pyramids"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "ranger",
+   "rangers"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "rover",
+   "rovers"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "short",
+   "shorts"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "snicker",
+   "snickers"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "strength",
+   "strengths"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "the-twelve-months",
+   "twelvemonth"
+  ]
+ },
+ {
+  "code": "duplicate-plural",
+  "slugs": [
+   "watt",
+   "watts"
+  ]
+ },
+ {
+  "code": "duplicate-variant",
+  "slugs": [
+   "64-000-question",
+   "the-64-000-question"
+  ]
+ },
+ {
+  "code": "duplicate-variant",
+  "slugs": [
+   "a-letter",
+   "letter"
+  ]
+ },
+ {
+  "code": "duplicate-variant",
+  "slugs": [
+   "at",
+   "to-a-t"
+  ]
+ },
+ {
+  "code": "duplicate-variant",
+  "slugs": [
+   "badger",
+   "to-badger"
+  ]
+ },
+ {
+  "code": "duplicate-variant",
+  "slugs": [
+   "boot",
+   "to-boot"
+  ]
+ },
+ {
+  "code": "duplicate-variant",
+  "slugs": [
+   "ghost",
+   "to-ghost"
+  ]
+ },
+ {
+  "code": "duplicate-variant",
+  "slugs": [
+   "ho-boy",
+   "hoboy"
+  ]
+ },
+ {
+  "code": "duplicate-variant",
+  "slugs": [
+   "home-office",
+   "homeoffice"
+  ]
+ },
+ {
+  "code": "duplicate-variant",
+  "slugs": [
+   "monastery",
+   "the-monastery"
+  ]
+ },
+ {
+  "code": "duplicate-variant",
+  "slugs": [
+   "pain-staking",
+   "painstaking"
+  ]
+ },
+ {
+  "code": "duplicate-variant",
+  "slugs": [
+   "roundhouse",
+   "the-roundhouse"
+  ]
+ },
+ {
+  "code": "duplicate-variant",
+  "slugs": [
+   "seven-year-itch",
+   "the-seven-year-itch"
+  ]
+ },
+ {
+  "code": "duplicate-variant",
+  "slugs": [
+   "tempest",
+   "the-tempest"
+  ]
+ },
+ {
+  "code": "duplicate-variant",
+  "slugs": [
+   "to-uncle",
+   "uncle"
+  ]
+ },
+ {
+  "code": "link-unresolved-close",
+  "slugs": [
+   "accent"
+  ],
+  "mention": {
+   "slug": "accent",
+   "episode_id": "Kbvsg8ZPstg"
+  },
+  "detail": "cantus"
+ }
+]
