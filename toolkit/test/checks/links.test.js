@@ -44,6 +44,10 @@ test('an original form shared by the linking entry itself is not ambiguous', () 
   assert.deepEqual(found(entries), [])
 })
 
+test('a link close only to its own entry is no problem', () => {
+  assert.deepEqual(found([entry('altar', {}, mention('ep-a', 1, 'From [[from:altare]].'))]), [])
+})
+
 test('a link to nothing close is no problem', () => {
   assert.deepEqual(found([entry('pound', {}, mention('ep-a', 1, 'From [[from:pondus]].'))]), [])
 })

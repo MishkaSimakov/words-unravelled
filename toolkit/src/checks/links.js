@@ -47,7 +47,8 @@ export function linkProblems(entries, { warnings = true } = {}) {
           add('link-needs-gloss', `the link to "${target}" needs a gloss: ${names(glossed)}.`, target)
           continue
         }
-        const near = close?.(target)
+        // A link may not name its own entry, so being close to it is no reason to warn.
+        const near = close?.(target)?.filter((e) => e !== entry)
         if (near?.length) add('link-unresolved-close', `the link to "${target}" resolves to nothing, but is close to ${names(near)}.`, target)
       }
     }
