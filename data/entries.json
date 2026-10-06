@@ -445,6 +445,13 @@
     "role": "subject",
     "note": "No longer fun for kids once adults and media picked it up; now mostly older generations joke about it.",
     "confidence": "low"
+   },
+   {
+    "episode_id": "gH0Zz10y9Ek",
+    "t": 1294,
+    "role": "subject",
+    "note": "Slang from [[from:Skrilla]]'s song 'Doot Doot (6 7)', spread through clips of 6'7\" [[see:LaMelo Ball]] and a viral '67 kid'; unrelated to [[unrelated:at sixes and sevens]].",
+    "confidence": "high"
    }
   ]
  },
@@ -500,23 +507,6 @@
   ]
  },
  {
-  "slug": "67",
-  "term": "67",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "gH0Zz10y9Ek",
-    "t": 1294,
-    "role": "subject",
-    "note": "Slang from [[from:Skrilla]]'s song 'Doot Doot (6 7)', spread through clips of 6'7\" [[see:LaMelo Ball]] and a viral '67 kid'; unrelated to [[unrelated:at sixes and sevens]].",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "6sendy",
   "term": "6sendy",
   "original": null,
@@ -528,7 +518,7 @@
     "episode_id": "gH0Zz10y9Ek",
     "t": 1567,
     "role": "subject",
-    "note": "Jess's favourite variation of [[from:67]], related to 'getting sendy', as in send it.",
+    "note": "Jess's favourite variation of [[from:6 7]], related to 'getting sendy', as in send it.",
     "confidence": "low"
    }
   ]
@@ -639,17 +629,7 @@
     "role": "subject",
     "note": "[[see:Thomas Harman]]'s 1567 exposé of vagabonds, with a taxonomy of rogues and a cant glossary that ended up in Grose's dictionary.",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "a-caveat-or-warning-for-common-cursitors-vulgarly-called-vagabonds",
-  "term": "A Caveat or Warning for Common Cursitors, Vulgarly Called Vagabonds",
-  "original": null,
-  "translation": null,
-  "language": null,
-  "category": "name",
-  "mentions": [
+   },
    {
     "episode_id": "1PM_iwxAyb8",
     "t": 1234,
@@ -1001,7 +981,7 @@
     "t": 1110,
     "role": "aside",
     "note": "The particle that forms Norwegian infinitives, cognate with English [[same-root:at]], illustrating the origin of [[see:ado]].",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -4888,7 +4868,7 @@
     "episode_id": "cd5iFbuNKv8",
     "t": 1685,
     "role": "aside",
-    "note": "The original name for [[see:italic]] type, after [[see:Aldus Manutius]].",
+    "note": "The original name for [[see:italics]] type, after [[see:Aldus Manutius]].",
     "confidence": "high"
    }
   ]
@@ -4922,7 +4902,7 @@
     "episode_id": "cd5iFbuNKv8",
     "t": 1677,
     "role": "aside",
-    "note": "Introduced [[see:italic]] type in Venice in 1501.",
+    "note": "Introduced [[see:italics]] type in Venice in 1501.",
     "confidence": "high"
    }
   ]
@@ -5365,7 +5345,7 @@
     "episode_id": "6JYqGa_-UZE",
     "t": 356,
     "role": "subject",
-    "note": "Started on TikTok: creators avoid words like [[see:die]], [[see:kill]] and [[see:suicide]] for fear the algorithm will suppress their videos.",
+    "note": "Started on TikTok: creators avoid words like [[see:to die]], [[see:kill]] and [[see:suicide]] for fear the algorithm will suppress their videos.",
     "confidence": "high"
    }
   ]
@@ -8308,23 +8288,6 @@
   ]
  },
  {
-  "slug": "anti-disestablishmentarianism",
-  "term": "anti-disestablishmentarianism",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "gH0Zz10y9Ek",
-    "t": 2768,
-    "role": "aside",
-    "note": "Made famous by [[see:The $64,000 Question]]; Jess covered its origin on her Substack and blog.",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "anti-language",
   "term": "anti-language",
   "original": null,
@@ -8409,6 +8372,13 @@
     "t": 907,
     "role": "subject",
     "note": "Political term about disestablishing the Church of England, boosted when [[see:Gloria Lockerman]] spelled it on [[see:The $64,000 Question]].",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "gH0Zz10y9Ek",
+    "t": 2768,
+    "role": "aside",
+    "note": "Made famous by [[see:The $64,000 Question]]; Jess covered its origin on her Substack and blog.",
     "confidence": "high"
    }
   ]
@@ -12275,6 +12245,13 @@
     "role": "subject",
     "note": "Old euphemistic phrase for having sex, found in texts describing exhausted men.",
     "confidence": "high"
+   },
+   {
+    "episode_id": "1PM_iwxAyb8",
+    "t": 1926,
+    "role": "aside",
+    "note": "A historical term for sex, recorded centuries ago.",
+    "confidence": "high"
    }
   ]
  },
@@ -14289,7 +14266,7 @@
     "episode_id": "gUlIcVkWj1I",
     "t": 3040,
     "role": "aside",
-    "note": "A cruel blood sport that ended in England in the 1800s, source of the verb [[gave:badger]].",
+    "note": "A cruel blood sport that ended in England in the 1800s, source of the verb [[gave:to badger]].",
     "confidence": "high"
    }
   ]
@@ -14889,7 +14866,7 @@
  },
  {
   "slug": "band-aid",
-  "term": "Band-Aid",
+  "term": "band-aid",
   "original": null,
   "translation": null,
   "language": "English",
@@ -14903,27 +14880,17 @@
     "confidence": "high"
    },
    {
-    "episode_id": "qheviaPndXU",
-    "t": 1705,
-    "role": "subject",
-    "note": "A well-known genericized trademark, or proprietary eponym.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "band-aids",
-  "term": "band-aids",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
     "episode_id": "vrZwAuQ6X0c",
     "t": 304,
     "role": "aside",
     "note": "An example of [[see:trademark death]], a brand name turned generic word.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "qheviaPndXU",
+    "t": 1705,
+    "role": "subject",
+    "note": "A well-known genericized trademark, or proprietary eponym.",
     "confidence": "high"
    }
   ]
@@ -15486,6 +15453,13 @@
   "category": "word",
   "mentions": [
    {
+    "episode_id": "PfK6C7NASqQ",
+    "t": 325,
+    "role": "aside",
+    "note": "One of the French titles that came in with the Norman nobility.",
+    "confidence": "high"
+   },
+   {
     "episode_id": "MrsqUCgXGBk",
     "t": 905,
     "role": "subject",
@@ -15524,23 +15498,6 @@
     "t": 911,
     "role": "aside",
     "note": "Jokingly glossed as a lady man, from [[from:baron]].",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "barons",
-  "term": "barons",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "PfK6C7NASqQ",
-    "t": 325,
-    "role": "aside",
-    "note": "One of the French titles that came in with the Norman nobility.",
     "confidence": "high"
    }
   ]
@@ -16021,7 +15978,7 @@
     "episode_id": "Sucad437VDA",
     "t": 799,
     "role": "subject",
-    "note": "From [[from:abate]], to reduce or end, so breath is halting; bated is a [[see:fossil words]] example.",
+    "note": "From [[from:abate]], to reduce or end, so breath is halting; bated is a [[see:fossil word]] example.",
     "confidence": "high"
    },
    {
@@ -16552,7 +16509,7 @@
     "episode_id": "La3toomR-ow",
     "t": 1805,
     "role": "subject",
-    "note": "Thought to mean brown thing; the original name is unknown, possibly avoided through superstition, as Old English may have avoided a word like [[see:die]].",
+    "note": "Thought to mean brown thing; the original name is unknown, possibly avoided through superstition, as Old English may have avoided a word like [[see:to die]].",
     "confidence": "high"
    }
   ]
@@ -16702,9 +16659,16 @@
   "category": "expression",
   "mentions": [
    {
+    "episode_id": "ca3lz3dXgW8",
+    "t": 1426,
+    "role": "aside",
+    "note": "Iago's line in Othello, which helped Jess guess the meaning of [[see:tup]].",
+    "confidence": "high"
+   },
+   {
     "episode_id": "3bvK3bz_AlY",
     "t": 483,
-    "role": "subject",
+    "role": "aside",
     "note": "Phrase for sex, evoked by [[see:the shaking of the sheets]].",
     "confidence": "high"
    }
@@ -17479,23 +17443,6 @@
     "t": 1948,
     "role": "subject",
     "note": "The closest English has to a word for a person who is alive, though the hosts joke about whether there could be a dead being.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "being-at-the-service-of-venus",
-  "term": "being at the service of Venus",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "expression",
-  "mentions": [
-   {
-    "episode_id": "1PM_iwxAyb8",
-    "t": 1926,
-    "role": "subject",
-    "note": "A historical term for sex, recorded centuries ago.",
     "confidence": "high"
    }
   ]
@@ -19614,7 +19561,7 @@
     "t": 1458,
     "role": "subject",
     "note": "From French [[from:billard]], a small stick, with the diminutive -ard ending; one of many sports named after a stick, like [[see:lacrosse]].",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -22466,8 +22413,8 @@
   ]
  },
  {
-  "slug": "boffins",
-  "term": "boffins",
+  "slug": "boffin",
+  "term": "boffin",
   "original": null,
   "translation": null,
   "language": "English",
@@ -22476,8 +22423,8 @@
    {
     "episode_id": "Q_A1OtVd8RA",
     "t": 453,
-    "role": "subject",
-    "note": "[[see:tabloidese]] for experts, puzzlingly since it isn't any shorter.",
+    "role": "aside",
+    "note": "[[see:tabloidese]] for expert, puzzlingly since it isn't any shorter.",
     "confidence": "high"
    }
   ]
@@ -23621,8 +23568,8 @@
   ]
  },
  {
-  "slug": "bosses",
-  "term": "bosses",
+  "slug": "boss",
+  "term": "boss",
   "original": null,
   "translation": null,
   "language": "English",
@@ -23631,7 +23578,7 @@
    {
     "episode_id": "Q_A1OtVd8RA",
     "t": 477,
-    "role": "subject",
+    "role": "aside",
     "note": "[[see:tabloidese]] used instead of managers and executives.",
     "confidence": "high"
    }
@@ -24440,27 +24387,17 @@
   "category": "word",
   "mentions": [
    {
-    "episode_id": "6Rr6qfIIapY",
-    "t": 1937,
-    "role": "subject",
-    "note": "Rob rejects the claim that it was a rack for cannonballs on ships, finding no such monkey in nautical guides or dialect books.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "brass-monkeys",
-  "term": "brass monkeys",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "expression",
-  "mentions": [
-   {
     "episode_id": "JC79Go-MmaE",
     "t": 2140,
     "role": "subject",
     "note": "Means very cold, short for cold enough to freeze the balls off a brass monkey (popular brass souvenirs); the cannonball-rack theory has no evidence behind it.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "6Rr6qfIIapY",
+    "t": 1937,
+    "role": "subject",
+    "note": "Rob rejects the claim that it was a rack for cannonballs on ships, finding no such monkey in nautical guides or dialect books.",
     "confidence": "high"
    }
   ]
@@ -24840,7 +24777,7 @@
     "episode_id": "ca3lz3dXgW8",
     "t": 152,
     "role": "subject",
-    "note": "Originally clearing a path for others, as icebreaker ships do, recorded figuratively from 1590, before its literal use, probably translating the Latin [[from:scindere glaciem]].",
+    "note": "Originally clearing a path for others, as icebreaker ships do, recorded figuratively from 1590, before its literal use, probably translating the Latin scindere glaciem.",
     "confidence": "high"
    }
   ]
@@ -27254,7 +27191,7 @@
     "episode_id": "uPfbuo6iP6Y",
     "t": 2722,
     "role": "subject",
-    "note": "Came in after the Norman Conquest, replacing [[see:flesh monger]]; named for dealing in goat meat, its butch- related to [[same-root:buck]].",
+    "note": "Came in after the Norman Conquest, replacing [[see:fleshmonger]]; named for dealing in goat meat, its butch- related to [[same-root:buck]].",
     "confidence": "high"
    }
   ]
@@ -27465,7 +27402,7 @@
     "episode_id": "FcP3Orn_rjs",
     "t": 1431,
     "role": "subject",
-    "note": "Not a spoonerism of [[unrelated:flutter by]]; an Old English word with Germanic cognates like Dutch [[same-root:botervlieg]].",
+    "note": "Not a spoonerism of [[unrelated:flutterby]]; an Old English word with Germanic cognates like Dutch [[same-root:botervlieg]].",
     "confidence": "high"
    },
    {
@@ -28870,27 +28807,17 @@
   "category": "word",
   "mentions": [
    {
+    "episode_id": "_iAT5Z5cwJY",
+    "t": 417,
+    "role": "aside",
+    "note": "Its plural campuses, like [[see:virus]]es, is a Latin -us word with an English ending, which supports octopuses as a plural of [[see:octopus]].",
+    "confidence": "high"
+   },
+   {
     "episode_id": "52GtCvS7HCU",
     "t": 2235,
     "role": "subject",
     "note": "Another -us word whose Latin plural English never bothered to adopt.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "campuses",
-  "term": "campuses",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "_iAT5Z5cwJY",
-    "t": 417,
-    "role": "aside",
-    "note": "An example of an English plural for a word ending in -us, which supports octopuses as a plural of [[see:octopus]].",
     "confidence": "high"
    }
   ]
@@ -30821,30 +30748,6 @@
   ]
  },
  {
-  "slug": "cat-out-of-the-bag",
-  "term": "cat out of the bag",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "expression",
-  "mentions": [
-   {
-    "episode_id": "6Rr6qfIIapY",
-    "t": 399,
-    "role": "subject",
-    "note": "Covered in an earlier idioms episode; unrelated to the [[unrelated:cat-o'-nine-tails]], it comes from buying a [[from:pig in a poke]] that turns out to be an unwanted cat.",
-    "confidence": "high"
-   },
-   {
-    "episode_id": "_r2HMeiDhKA",
-    "t": 1092,
-    "role": "mention",
-    "note": "Its origin was explained, more than once, in the hosts' earlier episodes on dog and cat idioms.",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "catachresis",
   "term": "catachresis",
   "original": null,
@@ -32172,7 +32075,7 @@
     "t": 322,
     "role": "subject",
     "note": "German term for the widespread mythological motif of a hero or god battling a giant chaos monster such as [[see:Leviathan]].",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -33706,6 +33609,13 @@
     "confidence": "high"
    },
    {
+    "episode_id": "Q_A1OtVd8RA",
+    "t": 477,
+    "role": "aside",
+    "note": "[[see:tabloidese]] used instead of managers and executives.",
+    "confidence": "high"
+   },
+   {
     "episode_id": "XA4d9r6Yu5A",
     "t": 275,
     "role": "subject",
@@ -33727,23 +33637,6 @@
     "t": 861,
     "role": "aside",
     "note": "A 19th-century Native American leader, important in relations with settlers, after whom [[gave:Seattle]] is named.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "chiefs",
-  "term": "chiefs",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "Q_A1OtVd8RA",
-    "t": 477,
-    "role": "subject",
-    "note": "[[see:tabloidese]] used instead of managers and executives.",
     "confidence": "high"
    }
   ]
@@ -34701,7 +34594,7 @@
     "episode_id": "Iw3nl9Xyjik",
     "t": 1882,
     "role": "subject",
-    "note": "Related to [[same-root:cricket]], with a similar imitative sound; Jess confused cicadas with locusts as a child.",
+    "note": "Related to [[same-root:cricket (insect)]], with a similar imitative sound; Jess confused cicadas with locusts as a child.",
     "confidence": "high"
    }
   ]
@@ -35391,6 +35284,13 @@
   "language": null,
   "category": "name",
   "mentions": [
+   {
+    "episode_id": "TFMaxYzWvJc",
+    "t": 451,
+    "role": "mention",
+    "note": "[[see:Francis Grose]]'s very funny dictionary, which the hosts are thinking of covering in a future episode.",
+    "confidence": "high"
+   },
    {
     "episode_id": "GHqlu7p6GQ0",
     "t": 62,
@@ -37156,7 +37056,7 @@
     "episode_id": "JC79Go-MmaE",
     "t": 2182,
     "role": "subject",
-    "note": "An American expression for very cold; \"as balls\" is a general intensifier among millennials, related in sense to [[see:brass monkeys]].",
+    "note": "An American expression for very cold; \"as balls\" is a general intensifier among millennials, related in sense to [[see:brass monkey]].",
     "confidence": "high"
    }
   ]
@@ -37387,17 +37287,7 @@
     "role": "subject",
     "note": "The episode's topic: words for groups of animals or people, also called [[see:nouns of assembly]] or [[see:terms of venery]], many from the 15th-century [[see:Book of St Albans]].",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "collective-nouns",
-  "term": "collective nouns",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "about-language",
-  "mentions": [
+   },
    {
     "episode_id": "9xorsfTRRHM",
     "t": 1209,
@@ -38361,7 +38251,7 @@
     "t": 1787,
     "role": "subject",
     "note": "A French swear word for an idiot that ultimately shares the meaning of [[same-root:cunt]].",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -40608,23 +40498,6 @@
   ]
  },
  {
-  "slug": "couldnt-give-two-hoots",
-  "term": "couldn't give two hoots",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "expression",
-  "mentions": [
-   {
-    "episode_id": "1PM_iwxAyb8",
-    "t": 3269,
-    "role": "subject",
-    "note": "Uses an old sense of [[see:hoot]], a tiny amount, with nothing to do with owls.",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "count",
   "term": "count",
   "original": null,
@@ -40679,6 +40552,13 @@
     "t": 1809,
     "role": "subject",
     "note": "The noble title originally meant a companion or attendant, later a governor; from roots meaning 'with' and 'to go', unrelated to counting numbers.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "PfK6C7NASqQ",
+    "t": 332,
+    "role": "aside",
+    "note": "One of the French titles that came in with the Norman nobility.",
     "confidence": "high"
    },
    {
@@ -40877,23 +40757,6 @@
     "t": 598,
     "role": "aside",
     "note": "Reflects the earlier notion of [[see:country]] as the land in front of you.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "counts",
-  "term": "counts",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "PfK6C7NASqQ",
-    "t": 332,
-    "role": "aside",
-    "note": "One of the French titles that came in with the Norman nobility.",
     "confidence": "high"
    }
   ]
@@ -41379,23 +41242,6 @@
     "role": "subject",
     "note": "An earlier radio distress call, not short for [[unrelated:come quickly distress]]; it is [[from:CQ]] plus D for distress.",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "crab",
-  "term": "crab",
-  "original": null,
-  "translation": null,
-  "language": "Norwegian",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "hcVF8b2w6n4",
-    "t": 265,
-    "role": "subject",
-    "note": "Another historical name for the [[see:kraken]], suggesting crablike grabbing claws.",
-    "confidence": "low"
    }
   ]
  },
@@ -41994,23 +41840,6 @@
   ]
  },
  {
-  "slug": "cricc",
-  "term": "cricc",
-  "original": "cricc",
-  "translation": "crutch",
-  "language": "Old English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "ClRqFWMR15Y",
-    "t": 1142,
-    "role": "subject",
-    "note": "Old English noun meaning a crutch, almost certainly the source of [[gave:crutch]]; etymologists doubt it gave [[gave?:cricket]] because of the sound change.",
-    "confidence": "low"
-   }
-  ]
- },
- {
   "slug": "crich",
   "term": "Crich",
   "original": null,
@@ -42028,8 +41857,9 @@
   ]
  },
  {
-  "slug": "cricket",
+  "slug": "cricket-insect",
   "term": "cricket",
+  "gloss": "insect",
   "original": null,
   "translation": null,
   "language": "English",
@@ -42041,12 +41871,23 @@
     "role": "subject",
     "note": "Imitative of the insect's sound and related to [[same-root:cicada]].",
     "confidence": "high"
-   },
+   }
+  ]
+ },
+ {
+  "slug": "cricket-sport",
+  "term": "cricket",
+  "gloss": "sport",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "word",
+  "mentions": [
    {
     "episode_id": "ClRqFWMR15Y",
     "t": 1030,
     "role": "subject",
-    "note": "Origin uncertain: probably from an earlier English cricket meaning stool, less likely Old English [[from?:cricc]]; not from French [[unrelated:criquet]], and unrelated to the insect.",
+    "note": "Origin uncertain: probably from an earlier English cricket meaning stool, less likely Old English [[from?:crycc]]; not from French [[unrelated:criquet]], and unrelated to the insect.",
     "confidence": "high"
    }
   ]
@@ -42434,7 +42275,7 @@
     "episode_id": "ClRqFWMR15Y",
     "t": 1158,
     "role": "subject",
-    "note": "Not related to [[unrelated:cricket]]; a much later sport that reached England via Ireland in the 19th century, from a dialect form of [[from:crochet]].",
+    "note": "Not related to [[unrelated:cricket (sport)]]; a much later sport that reached England via Ireland in the 19th century, from a dialect form of [[from:crochet]].",
     "confidence": "high"
    }
   ]
@@ -42680,6 +42521,23 @@
     "t": 1140,
     "role": "subject",
     "note": "One of Jess's favourite Shakespearean insults.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "crycc",
+  "term": "crycc",
+  "original": "crycc",
+  "translation": "crutch",
+  "language": "Old English",
+  "category": "word",
+  "mentions": [
+   {
+    "episode_id": "ClRqFWMR15Y",
+    "t": 1142,
+    "role": "subject",
+    "note": "Old English noun meaning a crutch, almost certainly the source of [[gave:crutch]]; etymologists doubt it gave [[gave?:cricket (sport)]] because of the sound change.",
     "confidence": "high"
    }
   ]
@@ -44408,7 +44266,7 @@
     "episode_id": "c1PM3kbeOYY",
     "t": 2550,
     "role": "subject",
-    "note": "The Greek word for finger, seen in [[gave:pterodactyl]] (wing finger) and sharing a root with [[same-root:date]].",
+    "note": "The Greek word for finger, seen in [[gave:pterodactyl]] (wing finger) and sharing a root with [[same-root:date (fruit)]].",
     "confidence": "high"
    }
   ]
@@ -44967,7 +44825,7 @@
     "episode_id": "9Z2kjEJAscs",
     "t": 1011,
     "role": "subject",
-    "note": "A mashing of French [[from:dent de lion]], lion's tooth, after its serrated leaves; English names have included [[see:pissabed]] and [[see:milk witch]].",
+    "note": "A mashing of French [[from:dent de lion]], lion's tooth, after its serrated leaves; English names have included [[see:piss-a-bed]] and [[see:milk witch]].",
     "confidence": "high"
    },
    {
@@ -45365,8 +45223,27 @@
   ]
  },
  {
-  "slug": "date",
+  "slug": "date-day",
   "term": "date",
+  "gloss": "day",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "word",
+  "mentions": [
+   {
+    "episode_id": "vrZwAuQ6X0c",
+    "t": 386,
+    "role": "subject",
+    "note": "Related to [[same-root:data]]; it just means a given time.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "date-fruit",
+  "term": "date",
+  "gloss": "fruit",
   "original": null,
   "translation": null,
   "language": "English",
@@ -45384,13 +45261,6 @@
     "t": 2558,
     "role": "aside",
     "note": "The fruit shares a root with [[same-root:dactyl]]; it was sometimes called a finger fruit.",
-    "confidence": "high"
-   },
-   {
-    "episode_id": "vrZwAuQ6X0c",
-    "t": 386,
-    "role": "subject",
-    "note": "Related to [[same-root:data]]; it just means a given time.",
     "confidence": "high"
    }
   ]
@@ -47483,7 +47353,7 @@
     "episode_id": "2Jvlji9GlOw",
     "t": 126,
     "role": "subject",
-    "note": "Comes from a different Latin root, meaning to join together or put in a row; a deserted place is severed from humanity, unrelated to [[unrelated:dessert]].",
+    "note": "Comes from a Latin root, meaning to join together or put in a row; a deserted place is severed from humanity, unrelated to [[unrelated:dessert]].",
     "confidence": "high"
    }
   ]
@@ -47531,27 +47401,17 @@
   "category": "word",
   "mentions": [
    {
+    "episode_id": "b0yMF00Pcew",
+    "t": 581,
+    "role": "aside",
+    "note": "In the plural, desserts reads backwards as [[see:stressed]], the longest [[see:semordnilap]] the hosts found.",
+    "confidence": "high"
+   },
+   {
     "episode_id": "2Jvlji9GlOw",
     "t": 75,
     "role": "subject",
     "note": "The last course, eaten after the table has been cleared of everything else; it comes from the same serving verb as [[same-root:just deserts]], and is unrelated to [[unrelated:desert]].",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "desserts",
-  "term": "desserts",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "b0yMF00Pcew",
-    "t": 581,
-    "role": "aside",
-    "note": "Paired with [[see:stressed]] as the longest [[see:semordnilap]] the hosts found.",
     "confidence": "high"
    }
   ]
@@ -48400,23 +48260,6 @@
   ]
  },
  {
-  "slug": "dictionary-of-the-vulgar-tongue",
-  "term": "Dictionary of the Vulgar Tongue",
-  "original": null,
-  "translation": null,
-  "language": null,
-  "category": "name",
-  "mentions": [
-   {
-    "episode_id": "TFMaxYzWvJc",
-    "t": 451,
-    "role": "subject",
-    "note": "[[see:Francis Grose]]'s very funny dictionary, which the hosts are thinking of covering in a future episode.",
-    "confidence": "low"
-   }
-  ]
- },
- {
   "slug": "dictionnaire-comique-satyrique-critique-burlesque-libre-et-proverbial",
   "term": "Dictionnaire comique, satyrique, critique, burlesque, libre et proverbial",
   "original": null,
@@ -48502,51 +48345,6 @@
   ]
  },
  {
-  "slug": "die",
-  "term": "die",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "vBa8CIltJ24",
-    "t": 1410,
-    "role": "subject",
-    "note": "Pointed out in passing as the correct singular of dice.",
-    "confidence": "low"
-   },
-   {
-    "episode_id": "DSD_kMu1INk",
-    "t": 561,
-    "role": "subject",
-    "note": "Borrowed from Old Norse, possibly as a euphemism; it displaced the Old English verb that became [[see:starve]].",
-    "confidence": "high"
-   },
-   {
-    "episode_id": "6JYqGa_-UZE",
-    "t": 356,
-    "role": "aside",
-    "note": "One of the ordinary words avoided in [[see:algospeak]].",
-    "confidence": "high"
-   },
-   {
-    "episode_id": "7vwN3aiiBM4",
-    "t": 2846,
-    "role": "aside",
-    "note": "The singular of dice, which is what the Arabic source of [[see:hazard]] meant.",
-    "confidence": "high"
-   },
-   {
-    "episode_id": "La3toomR-ow",
-    "t": 1741,
-    "role": "subject",
-    "note": "Verb from Old Norse; before it, English used the word that became [[see:starve]], like German [[same-root:sterben]].",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "die-arzte",
   "term": "Die Ärzte",
   "original": "Die Ärzte",
@@ -48559,6 +48357,31 @@
     "t": 2132,
     "role": "subject",
     "note": "A German band whose name means the doctors.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "die-dice",
+  "term": "die",
+  "gloss": "dice",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "word",
+  "mentions": [
+   {
+    "episode_id": "vBa8CIltJ24",
+    "t": 1410,
+    "role": "aside",
+    "note": "Pointed out in passing as the correct singular of dice.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "7vwN3aiiBM4",
+    "t": 2846,
+    "role": "aside",
+    "note": "The singular of dice, which is what the Arabic source of [[see:hazard]] meant.",
     "confidence": "high"
    }
   ]
@@ -51184,17 +51007,24 @@
  },
  {
   "slug": "doodle",
-  "term": "doodle",
+  "term": "-doodle",
   "original": null,
   "translation": null,
   "language": "English",
-  "category": "word",
+  "category": "word-part",
   "mentions": [
    {
-    "episode_id": "GW0em6wW15A",
-    "t": 2465,
+    "episode_id": "L3Qepv4F5Yc",
+    "t": 1838,
     "role": "subject",
-    "note": "In Johnson, a foolish or insignificant person.",
+    "note": "Ending for poodle crosses, taken through [[see:rebracketing]] of [[from:Labradoodle]], whose D belongs to Labrador; some crosses, like the [[see:Puggle]], are true portmanteaus.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "DKCsWcnzWVU",
+    "t": 1380,
+    "role": "mention",
+    "note": "Discussed in the hosts' earlier episode about [[see:portmanteau]]s.",
     "confidence": "high"
    }
   ]
@@ -51212,23 +51042,6 @@
     "t": 2253,
     "role": "subject",
     "note": "Nickname for self-propelled, often gasoline-powered, rail cars that ran on short lines.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "doodles",
-  "term": "Doodles",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "DKCsWcnzWVU",
-    "t": 1380,
-    "role": "mention",
-    "note": "Discussed in the hosts' earlier episode about [[see:portmanteau]]s.",
     "confidence": "high"
    }
   ]
@@ -52885,6 +52698,13 @@
   "category": "word",
   "mentions": [
    {
+    "episode_id": "PfK6C7NASqQ",
+    "t": 325,
+    "role": "aside",
+    "note": "One of the French titles that came in with the Norman nobility.",
+    "confidence": "high"
+   },
+   {
     "episode_id": "MrsqUCgXGBk",
     "t": 913,
     "role": "subject",
@@ -52928,8 +52748,9 @@
   ]
  },
  {
-  "slug": "dukes",
+  "slug": "dukes-slang",
   "term": "dukes",
+  "gloss": "slang",
   "original": null,
   "translation": null,
   "language": "English",
@@ -52940,13 +52761,6 @@
     "t": 2500,
     "role": "subject",
     "note": "Old prison slang for hands, as in put your dukes up.",
-    "confidence": "high"
-   },
-   {
-    "episode_id": "PfK6C7NASqQ",
-    "t": 325,
-    "role": "aside",
-    "note": "One of the French titles that came in with the Norman nobility.",
     "confidence": "high"
    }
   ]
@@ -53638,27 +53452,17 @@
   "category": "word",
   "mentions": [
    {
+    "episode_id": "PfK6C7NASqQ",
+    "t": 317,
+    "role": "aside",
+    "note": "An Anglo-Saxon title used before the French titles such as [[see:baron]] and [[see:duke]] arrived.",
+    "confidence": "high"
+   },
+   {
     "episode_id": "MrsqUCgXGBk",
     "t": 674,
     "role": "subject",
     "note": "Old Germanic title of Old Norse origin that survived the Normans, who would usually have said count; related to Viking [[same-root:jarl]]s.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "earls",
-  "term": "earls",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "PfK6C7NASqQ",
-    "t": 317,
-    "role": "aside",
-    "note": "An Anglo-Saxon title used before the French titles such as [[see:barons]] and [[see:dukes]] arrived.",
     "confidence": "high"
    }
   ]
@@ -55693,7 +55497,7 @@
     "episode_id": "DLBBiY5w8qM",
     "t": 1144,
     "role": "subject",
-    "note": "Means to come short, suggesting an unfinished thought; also marks omissions in quotes. [[see:Shakespeare]] never used it.",
+    "note": "Means to come short, suggesting an unfinished thought; also marks omissions in quotes. [[see:William Shakespeare]] never used it.",
     "confidence": "high"
    }
   ]
@@ -57700,17 +57504,7 @@
     "role": "subject",
     "note": "From Greek for work: ergonomics is the study of how people work, so ergonomic products suit how people operate, not just the human form.",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "ergonomics",
-  "term": "ergonomics",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
+   },
    {
     "episode_id": "JpkXFBDVyxc",
     "t": 2130,
@@ -57732,7 +57526,7 @@
     "episode_id": "JpkXFBDVyxc",
     "t": 2115,
     "role": "subject",
-    "note": "Fear of work, with the ergo of [[same-root:ergonomics]]; one who has it is an ergophobe.",
+    "note": "Fear of work, with the ergo of [[same-root:ergonomic]]; one who has it is an ergophobe.",
     "confidence": "high"
    }
   ]
@@ -59865,7 +59659,7 @@
     "episode_id": "PH64PZAjK_s",
     "t": 1742,
     "role": "aside",
-    "note": "One of the [[see:unpaired words]]: English has no uberant.",
+    "note": "One of the [[see:unpaired word]]s: English has no uberant.",
     "confidence": "high"
    }
   ]
@@ -62501,7 +62295,7 @@
     "episode_id": "cpbX99gYP4M",
     "t": 1225,
     "role": "aside",
-    "note": "The original name for the [[see:date]].",
+    "note": "The original name for the [[see:date (fruit)]].",
     "confidence": "high"
    }
   ]
@@ -63376,23 +63170,6 @@
   ]
  },
  {
-  "slug": "flesh-monger",
-  "term": "flesh monger",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "uPfbuo6iP6Y",
-    "t": 1468,
-    "role": "subject",
-    "note": "Lost English word for a [[see:butcher]], replaced after the Norman Conquest.",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "flesh-tailor",
   "term": "flesh tailor",
   "original": null,
@@ -63463,6 +63240,13 @@
     "t": 562,
     "role": "subject",
     "note": "An old word for a butcher, discussed on an earlier episode, in line with [[see:flesh meat]].",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "uPfbuo6iP6Y",
+    "t": 1468,
+    "role": "subject",
+    "note": "Lost English word for a [[see:butcher]], replaced after the Norman Conquest.",
     "confidence": "high"
    }
   ]
@@ -64087,23 +63871,6 @@
   ]
  },
  {
-  "slug": "flutter-by",
-  "term": "flutter by",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "expression",
-  "mentions": [
-   {
-    "episode_id": "FcP3Orn_rjs",
-    "t": 1431,
-    "role": "subject",
-    "note": "A charming but false claim that [[see:butterfly]] is its spoonerism.",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "flutterby",
   "term": "flutterby",
   "original": null,
@@ -64112,10 +63879,17 @@
   "category": "word",
   "mentions": [
    {
+    "episode_id": "FcP3Orn_rjs",
+    "t": 1431,
+    "role": "subject",
+    "note": "A charming but false claim that [[see:butterfly]] is its spoonerism.",
+    "confidence": "high"
+   },
+   {
     "episode_id": "Iw3nl9Xyjik",
     "t": 1388,
     "role": "subject",
-    "note": "Wrongly claimed to be the source of [[unrelated:butterfly]]; it has only been used in the past couple of centuries.",
+    "note": "Wrongly claimed to be the source of [[see:butterfly]]; it has only been used in the past couple of centuries.",
     "confidence": "high"
    },
    {
@@ -64817,6 +64591,23 @@
   ]
  },
  {
+  "slug": "fopdoodle",
+  "term": "fopdoodle",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "word",
+  "mentions": [
+   {
+    "episode_id": "GW0em6wW15A",
+    "t": 2465,
+    "role": "subject",
+    "note": "A foolish or insignificant person in [[see:A Dictionary of the English Language]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "for-unlawful-carnal-knowledge",
   "term": "for unlawful carnal knowledge",
   "original": null,
@@ -64824,6 +64615,13 @@
   "language": "English",
   "category": "expression",
   "mentions": [
+   {
+    "episode_id": "FcP3Orn_rjs",
+    "t": 1159,
+    "role": "subject",
+    "note": "False acronym for [[see:fuck]]; when that word was first recorded, [[see:knowledge]] was spelled cnawlece.",
+    "confidence": "high"
+   },
    {
     "episode_id": "NqvT3gVz2aw",
     "t": 127,
@@ -65323,8 +65121,8 @@
  {
   "slug": "forthfaran",
   "term": "forthfaran",
-  "original": "forþfaran",
-  "translation": "to fare forth",
+  "original": "forþ-faran",
+  "translation": "to go forth",
   "language": "Old English",
   "category": "word",
   "mentions": [
@@ -65448,27 +65246,17 @@
   "category": "about-language",
   "mentions": [
    {
-    "episode_id": "HEk4hJZfo6Q",
-    "t": 41,
-    "role": "subject",
-    "note": "A word that survives mainly inside one phrase or idiom, a leftover trace of older usage, like [[see:fro]] in to and fro.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "fossil-words",
-  "term": "fossil words",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "about-language",
-  "mentions": [
-   {
     "episode_id": "Sucad437VDA",
     "t": 808,
     "role": "subject",
     "note": "Words that survive in no other context, so speakers cannot work them out, causing many eggcorns like [[see:bated breath]].",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "HEk4hJZfo6Q",
+    "t": 41,
+    "role": "subject",
+    "note": "A word that survives mainly inside one phrase or idiom, a leftover trace of older usage, like [[see:fro]] in to and fro.",
     "confidence": "high"
    },
    {
@@ -66057,7 +65845,25 @@
  },
  {
   "slug": "frank",
+  "term": "Frank",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "P7OrRqykwWc",
+    "t": 1029,
+    "role": "subject",
+    "note": "A form of [[same-root:Francis]], which people may not realise.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "frank-honest",
   "term": "frank",
+  "gloss": "honest",
   "original": null,
   "translation": null,
   "language": "English",
@@ -66068,13 +65874,6 @@
     "t": 1980,
     "role": "subject",
     "note": "Now means honest but has an older sense of true, seen in [[gave:frankincense]].",
-    "confidence": "high"
-   },
-   {
-    "episode_id": "P7OrRqykwWc",
-    "t": 1029,
-    "role": "subject",
-    "note": "A form of [[same-root:Francis]], which people may not realise.",
     "confidence": "high"
    }
   ]
@@ -66149,7 +65948,7 @@
     "episode_id": "9A0hAxeFyo4",
     "t": 1956,
     "role": "subject",
-    "note": "Literally [[from:frank]] incense, meaning true or really good incense; related to the [[see:Franks]].",
+    "note": "Literally [[from:frank (honest)]] incense, meaning true or really good incense; related to the [[see:Franks]].",
     "confidence": "high"
    }
   ]
@@ -66205,13 +66004,13 @@
     "t": 2224,
     "role": "aside",
     "note": "Rob suggests their name may also mean spear people, like the [[see:Parisii]].",
-    "confidence": "low"
+    "confidence": "high"
    },
    {
     "episode_id": "vrKG4SLajSg",
     "t": 255,
     "role": "aside",
-    "note": "The source of Germanic words like [[see:guerra]] that are found in Romance languages.",
+    "note": "The Germanic tribe who left words like [[see:guerra]] behind in Romance languages.",
     "confidence": "high"
    }
   ]
@@ -66481,6 +66280,13 @@
     "t": 1016,
     "role": "aside",
     "note": "A historical English name for syphilis, a slight on an enemy like the English uses of [[see:Dutch]].",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "KVFMuOBPjNs",
+    "t": 2460,
+    "role": "subject",
+    "note": "Name for [[see:syphilis]] across Europe, from [[from:Syphilis, or the French Disease]] and French soldiers catching it in Italy; compare [[equivalent:Italian disease]].",
     "confidence": "high"
    }
   ]
@@ -67294,7 +67100,7 @@
     "episode_id": "FcP3Orn_rjs",
     "t": 1093,
     "role": "subject",
-    "note": "Not an acronym of [[unrelated:unlawful carnal knowledge]] or [[unrelated:fornication under consent of the king]]; Germanic, perhaps from words for striking, pushing or fidgeting.",
+    "note": "Not an acronym of [[unrelated:for unlawful carnal knowledge]] or [[unrelated:fornication under consent of the king]]; Germanic, perhaps from words for striking, pushing or fidgeting.",
     "confidence": "low"
    },
    {
@@ -68151,23 +67957,6 @@
   ]
  },
  {
-  "slug": "galaxies",
-  "term": "galaxies",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "qheviaPndXU",
-    "t": 637,
-    "role": "aside",
-    "note": "Talking about galaxies always alludes to milk, just as [[see:hydraulic]] always alludes to a musical instrument.",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "galaxy",
   "term": "galaxy",
   "original": null,
@@ -68187,6 +67976,13 @@
     "t": 534,
     "role": "subject",
     "note": "From Greek [[from:galaxias kyklos]], 'milky circle', so 'the Milky Way galaxy' says the same thing twice.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "qheviaPndXU",
+    "t": 637,
+    "role": "aside",
+    "note": "Talking about galaxies always alludes to milk, just as [[see:hydraulic]] always alludes to a musical instrument.",
     "confidence": "high"
    },
    {
@@ -71318,6 +71114,13 @@
     "role": "subject",
     "note": "Also care two hoots: to care two of a tiny amount, since a [[from:hoot]] meant the smallest imaginable quantity.",
     "confidence": "high"
+   },
+   {
+    "episode_id": "1PM_iwxAyb8",
+    "t": 3269,
+    "role": "subject",
+    "note": "Uses an old sense of [[see:hoot]], a tiny amount, with nothing to do with owls.",
+    "confidence": "high"
    }
   ]
  },
@@ -73088,7 +72891,7 @@
     "episode_id": "PH64PZAjK_s",
     "t": 1767,
     "role": "subject",
-    "note": "Inattentive, from [[from:gorm]], attention; one of Rob's favourite [[see:unpaired words]].",
+    "note": "Inattentive, from [[from:gorm]], attention; one of Rob's favourite [[see:unpaired word]]s.",
     "confidence": "high"
    }
   ]
@@ -73732,7 +73535,7 @@
     "episode_id": "KjQABENyZg0",
     "t": 2625,
     "role": "subject",
-    "note": "Prison slang for paying a bribe, like [[equivalent:grease someone's palm]], using [[see:dukes]] for hands.",
+    "note": "Prison slang for paying a bribe, like [[equivalent:grease someone's palm]], using [[see:dukes (slang)]] for hands.",
     "confidence": "high"
    }
   ]
@@ -74468,7 +74271,7 @@
     "episode_id": "_r2HMeiDhKA",
     "t": 2632,
     "role": "subject",
-    "note": "Charles Dickens's thieving raven, said to have inspired Poe's [[see:The Raven]]; now preserved by taxidermy in Philadelphia.",
+    "note": "Charles Dickens's thieving raven, said to have inspired Poe's [[see:The Raven (poem)]]; now preserved by taxidermy in Philadelphia.",
     "confidence": "high"
    }
   ]
@@ -74782,7 +74585,7 @@
     "episode_id": "La3toomR-ow",
     "t": 2164,
     "role": "subject",
-    "note": "Old Norse in origin but shouldn't have an L; [[see:Shakespeare]] back-formed it from [[from:groveling]], whose ending was misread as -ing.",
+    "note": "Old Norse in origin but shouldn't have an L; [[see:William Shakespeare]] back-formed it from [[from:groveling]], whose ending was misread as -ing.",
     "confidence": "high"
    }
   ]
@@ -76445,27 +76248,17 @@
   "category": "expression",
   "mentions": [
    {
-    "episode_id": "ClRqFWMR15Y",
-    "t": 843,
-    "role": "subject",
-    "note": "An American football idiom that has entered everyday language.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "hail-marys",
-  "term": "Hail Marys",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
     "episode_id": "ZqBYXlunxds",
     "t": 999,
     "role": "subject",
     "note": "A sports term turned corporate jargon, tolerable because it works across contexts.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "ClRqFWMR15Y",
+    "t": 843,
+    "role": "subject",
+    "note": "An American football idiom that has entered everyday language.",
     "confidence": "high"
    }
   ]
@@ -76915,6 +76708,13 @@
   "category": "word",
   "mentions": [
    {
+    "episode_id": "c1PM3kbeOYY",
+    "t": 2657,
+    "role": "aside",
+    "note": "Used for people on a boat, a comparison for [[see:foot]] meaning a person.",
+    "confidence": "high"
+   },
+   {
     "episode_id": "sKcuTYOT0yY",
     "t": 1962,
     "role": "aside",
@@ -77004,23 +76804,6 @@
     "t": 1814,
     "role": "subject",
     "note": "Used in Indonesian and Korean for a mobile phone, a variation on German [[see:Handy (German)]].",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "hands",
-  "term": "hands",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "c1PM3kbeOYY",
-    "t": 2657,
-    "role": "aside",
-    "note": "Used for people on a boat, a comparison for [[see:foot]] meaning a person.",
     "confidence": "high"
    }
   ]
@@ -78431,7 +78214,7 @@
     "episode_id": "7vwN3aiiBM4",
     "t": 2791,
     "role": "subject",
-    "note": "A medieval dice game named via French hasard, luck, from Arabic for a single [[see:die]]; its H is an overcorrection and its D comes from [[see:-ard]].",
+    "note": "A medieval dice game named via French hasard, luck, from Arabic for a single [[see:die (dice)]]; its H is an overcorrection and its D comes from [[see:-ard]].",
     "confidence": "high"
    },
    {
@@ -78867,14 +78650,14 @@
     "episode_id": "Q_A1OtVd8RA",
     "t": 763,
     "role": "aside",
-    "note": "A [[see:knobbly monster]] used for Darth Vader.",
+    "note": "A [[see:knobbly monster]] used for [[see:Darth Vader]].",
     "confidence": "high"
    },
    {
     "episode_id": "1PM_iwxAyb8",
     "t": 485,
     "role": "subject",
-    "note": "A [[see:knobbly monsters]] phrase used for [[see:Darth Vader]].",
+    "note": "A [[see:knobbly monster]] phrase used for [[see:Darth Vader]].",
     "confidence": "high"
    }
   ]
@@ -80056,7 +79839,7 @@
     "episode_id": "EOfP8sTYJwo",
     "t": 762,
     "role": "aside",
-    "note": "Greek god associated with the Roman Mercury, a very fast traveller, explaining [[see:mercury]]'s name.",
+    "note": "Greek god associated with the Roman Mercury, a very fast traveller, explaining [[see:mercury (quicksilver)]]'s name.",
     "confidence": "high"
    }
   ]
@@ -81911,22 +81694,12 @@
     "role": "subject",
     "note": "Used as a verb in British English, to holiday somewhere, as the equivalent of the American to [[equivalent:vacation]].",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "holidays",
-  "term": "holidays",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
+   },
    {
     "episode_id": "9A0hAxeFyo4",
     "t": 773,
     "role": "subject",
-    "note": "In America refers to this time of year; in Britain it means vacation, especially the summer.",
+    "note": "In the plural, America's name for the Christmas season; in Britain the holidays means vacation, especially the summer.",
     "confidence": "high"
    }
   ]
@@ -82301,27 +82074,17 @@
     "confidence": "high"
    },
    {
-    "episode_id": "JpkXFBDVyxc",
-    "t": 1866,
-    "role": "aside",
-    "note": "Uses the unrelated Greek homos, same, like most English homo- words, which shifted the meaning of [[see:homophobia]].",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "homonyms",
-  "term": "homonyms",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "about-language",
-  "mentions": [
-   {
     "episode_id": "P7OrRqykwWc",
     "t": 109,
     "role": "mention",
     "note": "Discussed in the hosts' earlier episode about -nym words.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "JpkXFBDVyxc",
+    "t": 1866,
+    "role": "aside",
+    "note": "Uses the unrelated Greek homos, same, like most English homo- words, which shifted the meaning of [[see:homophobia]].",
     "confidence": "high"
    }
   ]
@@ -82607,7 +82370,7 @@
     "episode_id": "1PM_iwxAyb8",
     "t": 3277,
     "role": "subject",
-    "note": "Once meant the tiniest possible amount, the sense in [[see:couldn't give two hoots]].",
+    "note": "Once meant the tiniest possible amount, the sense in couldn't [[see:give two hoots]].",
     "confidence": "high"
    }
   ]
@@ -85347,9 +85110,9 @@
    {
     "episode_id": "P7OrRqykwWc",
     "t": 1231,
-    "role": "subject",
+    "role": "aside",
     "note": "A variant of [[same-root:John]].",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -86367,7 +86130,7 @@
     "episode_id": "tRR-DHzD7mw",
     "t": 144,
     "role": "subject",
-    "note": "An old swing idiom with the same meaning as [[see:in one fell swoop]].",
+    "note": "An old swing idiom with the same meaning as in [[see:one fell swoop]].",
     "confidence": "high"
    }
   ]
@@ -86436,23 +86199,6 @@
     "t": 194,
     "role": "subject",
     "note": "Rob says it doesn't really work for his sister's husband's family, since his brother-in-law's brother can't also be his brother-in-law.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "in-one-fell-swoop",
-  "term": "in one fell swoop",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "expression",
-  "mentions": [
-   {
-    "episode_id": "tRR-DHzD7mw",
-    "t": 144,
-    "role": "aside",
-    "note": "Used to explain the meaning of [[see:in a swing]].",
     "confidence": "high"
    }
   ]
@@ -87398,22 +87144,12 @@
     "role": "subject",
     "note": "Originally legal Latin meaning a nod forward, still used in libel cases for implied defamation; now a nod to something inappropriate.",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "innuendos",
-  "term": "innuendos",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
+   },
    {
     "episode_id": "PH64PZAjK_s",
     "t": 2583,
-    "role": "subject",
-    "note": "Rebracketed in a joke redefinition as Italian suppositories.",
+    "role": "aside",
+    "note": "Innuendoes can be rebracketed in a joke redefinition as Italian suppositories.",
     "confidence": "high"
    }
   ]
@@ -88753,18 +88489,18 @@
   ]
  },
  {
-  "slug": "italic",
-  "term": "italic",
+  "slug": "italian-disease",
+  "term": "Italian disease",
   "original": null,
   "translation": null,
   "language": "English",
   "category": "word",
   "mentions": [
    {
-    "episode_id": "cd5iFbuNKv8",
-    "t": 1677,
+    "episode_id": "KVFMuOBPjNs",
+    "t": 2489,
     "role": "subject",
-    "note": "Slanted sorts that can overlap, named after Italy because [[see:Aldus Manutius]] introduced them in Venice in 1501; based on right-handed handwriting.",
+    "note": "What the French called [[see:syphilis]], fairly, since that was where it was picked up; compare [[equivalent:French disease]].",
     "confidence": "high"
    }
   ]
@@ -88775,13 +88511,20 @@
   "original": null,
   "translation": null,
   "language": "English",
-  "category": "about-language",
+  "category": "word",
   "mentions": [
    {
     "episode_id": "DLBBiY5w8qM",
     "t": 1463,
     "role": "subject",
     "note": "Lean as if handwritten by a right-hander, and can already convey disingenuousness in the right context.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "cd5iFbuNKv8",
+    "t": 1677,
+    "role": "subject",
+    "note": "Slanted sorts that can overlap, named after Italy because [[see:Aldus Manutius]] introduced them in Venice in 1501; based on right-handed handwriting.",
     "confidence": "high"
    }
   ]
@@ -95048,14 +94791,14 @@
     "episode_id": "Lwj_xBTNJ4I",
     "t": 1133,
     "role": "subject",
-    "note": "New Yorker descended from Dutch settlers, also referring to the trousers, popularised by Washington Irving's satirical character [[see:Diedrich Knickerbocker]].",
+    "note": "Nickname for a New Yorker, originally one descended from Dutch settlers, popularised by Washington Irving's character [[from:Diedrich Knickerbocker]], who also gave [[see:knickerbockers]].",
     "confidence": "high"
    },
    {
     "episode_id": "ClRqFWMR15Y",
     "t": 2090,
     "role": "subject",
-    "note": "Discussed in an earlier episode; common in New York history thanks to [[from:Washington Irving]]'s satirical character [[from:Diedrich Knickerbocker]].",
+    "note": "A name for New Yorkers found throughout the city's history, as in the [[see:Knickerbocker Base Ball Club]], thanks to [[from:Diedrich Knickerbocker]]; discussed in an earlier episode.",
     "confidence": "high"
    }
   ]
@@ -95276,17 +95019,7 @@
     "role": "subject",
     "note": "An extreme synonym used to avoid repeating a word, named after an infamous second reference to a crocodile.",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "knobbly-monsters",
-  "term": "knobbly monsters",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "about-language",
-  "mentions": [
+   },
    {
     "episode_id": "1PM_iwxAyb8",
     "t": 468,
@@ -95495,7 +95228,7 @@
     "episode_id": "FcP3Orn_rjs",
     "t": 1167,
     "role": "aside",
-    "note": "Spelled cnawlece when [[see:fuck]] was first recorded, undermining the [[see:unlawful carnal knowledge]] myth.",
+    "note": "Spelled cnawlece when [[see:fuck]] was first recorded, undermining the [[see:for unlawful carnal knowledge]] myth.",
     "confidence": "high"
    },
    {
@@ -95730,6 +95463,23 @@
   ]
  },
  {
+  "slug": "krabbe",
+  "term": "krabbe",
+  "original": null,
+  "translation": null,
+  "language": "Norwegian",
+  "category": "word",
+  "mentions": [
+   {
+    "episode_id": "hcVF8b2w6n4",
+    "t": 265,
+    "role": "subject",
+    "note": "Historical name for the [[see:kraken]], suggesting crablike grabbing claws.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "kraftwerk",
   "term": "Kraftwerk",
   "original": "Kraftwerk",
@@ -95758,7 +95508,7 @@
     "episode_id": "hcVF8b2w6n4",
     "t": 83,
     "role": "subject",
-    "note": "Norwegian sea beast meaning a crooked tree or hooked wood; its final -n is the Norwegian definite article, so 'the kraken' repeats 'the', like [[see:La Brea Tar Pits]].",
+    "note": "Norwegian sea beast meaning a crooked tree or hooked wood; its final -en is the Norwegian definite article, so 'the kraken' repeats 'the', like [[see:La Brea Tar Pits]].",
     "confidence": "high"
    }
   ]
@@ -96143,8 +95893,8 @@
     "episode_id": "hcVF8b2w6n4",
     "t": 244,
     "role": "aside",
-    "note": "A pleonasm meaning 'the tar tar pits', compared with 'the [[see:kraken]]'.",
-    "confidence": "low"
+    "note": "A [[see:pleonasm]] meaning 'the tar tar pits', compared with 'the [[see:kraken]]'.",
+    "confidence": "high"
    }
   ]
  },
@@ -96575,23 +96325,6 @@
   ]
  },
  {
-  "slug": "lady-chablis",
-  "term": "Lady Chablis",
-  "original": null,
-  "translation": null,
-  "language": null,
-  "category": "name",
-  "mentions": [
-   {
-    "episode_id": "8HuQo5xKSZI",
-    "t": 1706,
-    "role": "aside",
-    "note": "Mentioned in a previous episode as helping popularise [[see:spill the tea]].",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "lady-chatterleys-lover",
   "term": "Lady Chatterley's Lover",
   "original": null,
@@ -96984,7 +96717,7 @@
     "episode_id": "gH0Zz10y9Ek",
     "t": 1495,
     "role": "aside",
-    "note": "NBA player, 6'7\" tall, whose viral clips helped spread [[see:67]].",
+    "note": "NBA player, 6'7\" tall, whose viral clips helped spread [[see:6 7]].",
     "confidence": "high"
    }
   ]
@@ -98282,7 +98015,7 @@
     "episode_id": "ZqBYXlunxds",
     "t": 601,
     "role": "subject",
-    "note": "A verb turned into a noun in corporate speak, but actually old: [[see:Shakespeare]] uses it in [[see:Cymbeline]].",
+    "note": "A verb turned into a noun in corporate speak, but actually old: [[see:William Shakespeare]] uses it in [[see:Cymbeline]].",
     "confidence": "high"
    }
   ]
@@ -99391,6 +99124,20 @@
     "t": 1224,
     "role": "subject",
     "note": "Linked to [[see:pig in a poke]]: revealing that the bagged pig you bought was actually an inferior cat.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "6Rr6qfIIapY",
+    "t": 399,
+    "role": "subject",
+    "note": "Covered in an earlier idioms episode; unrelated to the [[unrelated:cat-o'-nine-tails]], it comes from buying a [[from:pig in a poke]] that turns out to be an unwanted cat.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "_r2HMeiDhKA",
+    "t": 1092,
+    "role": "mention",
+    "note": "Its origin was explained, more than once, in the hosts' earlier episodes on dog and cat idioms.",
     "confidence": "high"
    }
   ]
@@ -101763,14 +101510,14 @@
     "episode_id": "cd5iFbuNKv8",
     "t": 1382,
     "role": "subject",
-    "note": "Short for [[from:logotype]], from Greek logos, word, so the [[see:Apple logo]] technically isn't a logo but the [[see:Google logo]] is.",
+    "note": "Short for [[from:logotype]], from Greek [[from:logos]], word, so the [[see:Apple logo]] technically isn't a logo but the [[see:Google logo]] is.",
     "confidence": "high"
    },
    {
     "episode_id": "uPfbuo6iP6Y",
     "t": 2018,
     "role": "subject",
-    "note": "Short for [[from:logotype]], from Greek logos, word: originally a single piece of type for a whole word, so Apple's emblem isn't strictly one.",
+    "note": "Short for [[from:logotype]], from Greek [[from:logos]], word: originally a single piece of type for a whole word, so Apple's emblem isn't strictly one.",
     "confidence": "high"
    }
   ]
@@ -102561,17 +102308,7 @@
     "role": "subject",
     "note": "Rob's term for a word like [[see:nocent]] whose un-negated form has disappeared; Susie Dent corrected him to [[see:lost negative]].",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "lost-positives",
-  "term": "lost positives",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "about-language",
-  "mentions": [
+   },
    {
     "episode_id": "uPfbuo6iP6Y",
     "t": 211,
@@ -102583,7 +102320,7 @@
     "episode_id": "PH64PZAjK_s",
     "t": 1742,
     "role": "subject",
-    "note": "Another name for [[see:unpaired words]].",
+    "note": "Another name for [[see:unpaired word]].",
     "confidence": "high"
    }
   ]
@@ -108004,23 +107741,6 @@
   ]
  },
  {
-  "slug": "men-of-gotham",
-  "term": "men of Gotham",
-  "original": null,
-  "translation": null,
-  "language": null,
-  "category": "name",
-  "mentions": [
-   {
-    "episode_id": "56YLffYfQ7M",
-    "t": 1532,
-    "role": "aside",
-    "note": "Referenced in [[see:Shakespeare's Jest Book]], they do ridiculous things to convince the king not to build his road through their town.",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "menace",
   "term": "menace",
   "original": null,
@@ -108319,17 +108039,28 @@
     "confidence": "high"
    },
    {
-    "episode_id": "EOfP8sTYJwo",
-    "t": 737,
-    "role": "subject",
-    "note": "Named after the Roman god [[from:Mercury]], linked to swift [[see:Hermes]]; also called [[see:quicksilver]], with symbol Hg from [[from:hydrargyrum]].",
-    "confidence": "high"
-   },
-   {
     "episode_id": "4CJRYBxDdGg",
     "t": 937,
     "role": "subject",
     "note": "God of messengers, travellers and merchants, possibly related to [[same-root?:mercenary]]; his name is thought to be borrowed from an Etruscan god of exchange.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "mercury-quicksilver",
+  "term": "mercury",
+  "gloss": "quicksilver",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "word",
+  "mentions": [
+   {
+    "episode_id": "EOfP8sTYJwo",
+    "t": 737,
+    "role": "subject",
+    "note": "Named after the Roman god [[from:Mercury]], linked to swift [[see:Hermes]]; also called [[see:quicksilver]], with symbol Hg from [[from:hydrargyrum]].",
     "confidence": "high"
    }
   ]
@@ -108592,6 +108323,13 @@
     "t": 410,
     "role": "aside",
     "note": "A Middle English collection of stories about a town whose people pretend to be idiots, the source of the nickname [[see:Gotham]].",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "56YLffYfQ7M",
+    "t": 1532,
+    "role": "aside",
+    "note": "Referenced in [[see:Shakespeare's Jest Book]], they do ridiculous things to convince the king not to build his road through their town.",
     "confidence": "high"
    }
   ]
@@ -109299,7 +109037,7 @@
     "episode_id": "sKcuTYOT0yY",
     "t": 1920,
     "role": "subject",
-    "note": "Substituting a related term, like [[see:the White House]] for the US government or [[see:Houston]] for NASA; it came up in a previous episode.",
+    "note": "Substituting a related term, like the [[see:White House]] for the US government or [[see:Houston]] for NASA; it came up in a previous episode.",
     "confidence": "high"
    },
    {
@@ -112556,7 +112294,7 @@
     "episode_id": "1PM_iwxAyb8",
     "t": 476,
     "role": "subject",
-    "note": "A [[see:knobbly monsters]] phrase journalists used to avoid repeating the word badger.",
+    "note": "A [[see:knobbly monster]] phrase journalists used to avoid repeating the word badger.",
     "confidence": "high"
    }
   ]
@@ -118535,7 +118273,14 @@
     "t": 2728,
     "role": "subject",
     "note": "A fun-sounding but more or less nonsensical old name for a doctor.",
-    "confidence": "low"
+    "confidence": "high"
+   },
+   {
+    "episode_id": "KVFMuOBPjNs",
+    "t": 570,
+    "role": "subject",
+    "note": "An old insulting word for doctors and surgeons; the nim may be from Old English [[from?:niman]], to take, with gimmer added for bounce.",
+    "confidence": "high"
    }
   ]
  },
@@ -118611,23 +118356,6 @@
     "role": "aside",
     "note": "French city near Rob's wife's home, where an airport security guard proudly told travellers their jeans were named after his town ([[gave:serge de Nîmes]]).",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "nimgimmer",
-  "term": "nimgimmer",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "KVFMuOBPjNs",
-    "t": 570,
-    "role": "subject",
-    "note": "An old insulting word for doctors and surgeons; the nim may be from Old English [[from?:niman]], to take, with gimmer added for bounce.",
-    "confidence": "low"
    }
   ]
  },
@@ -118990,7 +118718,7 @@
     "episode_id": "c1PM3kbeOYY",
     "t": 2657,
     "role": "subject",
-    "note": "A Middle English way of saying nobody, because [[see:foot]] could mean a person, much as sailors are called [[see:hands]].",
+    "note": "A Middle English way of saying nobody, because [[see:foot]] could mean a person, much as sailors are called [[see:hand]].",
     "confidence": "low"
    }
   ]
@@ -119450,7 +119178,7 @@
     "episode_id": "PH64PZAjK_s",
     "t": 1750,
     "role": "aside",
-    "note": "One of the [[see:unpaired words]]: English has no chalant.",
+    "note": "One of the [[see:unpaired word]]s: English has no chalant.",
     "confidence": "high"
    }
   ]
@@ -119630,23 +119358,6 @@
   ]
  },
  {
-  "slug": "norman",
-  "term": "Norman",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "La3toomR-ow",
-    "t": 351,
-    "role": "subject",
-    "note": "The Normans came soon after the Vikings and were Vikings themselves; the word means [[from:Norsemen]] or Northmen, and they gave their name to [[gave:Normandy]].",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "norman-french",
   "term": "Norman French",
   "original": null,
@@ -119675,7 +119386,7 @@
     "episode_id": "La3toomR-ow",
     "t": 981,
     "role": "subject",
-    "note": "The part of northern France given to [[see:Rollo]]'s Vikings, named after the [[from:Norman]]s.",
+    "note": "The part of northern France given to [[see:Rollo]]'s Vikings, named after the [[from:Normans]].",
     "confidence": "high"
    }
   ]
@@ -119685,7 +119396,7 @@
   "term": "Normans",
   "original": null,
   "translation": null,
-  "language": null,
+  "language": "English",
   "category": "word",
   "mentions": [
    {
@@ -119700,6 +119411,13 @@
     "t": 860,
     "role": "subject",
     "note": "Vikings who settled in France; the French brought by [[see:William the Conqueror]] in 1066 was a Germanic-sounding variety, full of [[see:Frankish]] words.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "La3toomR-ow",
+    "t": 351,
+    "role": "subject",
+    "note": "The Normans came soon after the Vikings and were Vikings themselves; the word means [[from:Norsemen]] or Northmen, and they gave their name to [[gave:Normandy]].",
     "confidence": "high"
    }
   ]
@@ -119733,7 +119451,7 @@
     "episode_id": "La3toomR-ow",
     "t": 316,
     "role": "subject",
-    "note": "Another name for the Vikings, and the meaning behind the word [[gave:Norman]].",
+    "note": "Another name for the Vikings, and the meaning behind the word [[gave:Normans]].",
     "confidence": "high"
    }
   ]
@@ -120315,7 +120033,7 @@
     "episode_id": "6Rr6qfIIapY",
     "t": 369,
     "role": "subject",
-    "note": "The Dutch [[equivalent:spill the beans]], possibly from a magic trick; the hosts say it has [[see:cat out of the bag]] energy.",
+    "note": "The Dutch [[equivalent:spill the beans]], possibly from a magic trick; the hosts say it has [[see:let the cat out of the bag]] energy.",
     "confidence": "low"
    }
   ]
@@ -121915,7 +121633,7 @@
     "episode_id": "DSD_kMu1INk",
     "t": 178,
     "role": "subject",
-    "note": "Undeniably Germanic, with three genders and four cases like German; brought by the [[see:Anglo-Saxons]] from the fifth century and written in [[see:runes]].",
+    "note": "Undeniably Germanic, with three genders and four cases like German; brought by the [[see:Anglo-Saxons]] from the fifth century and written in [[see:rune]]s.",
     "confidence": "high"
    },
    {
@@ -122649,6 +122367,13 @@
     "t": 1192,
     "role": "subject",
     "note": "First found in Macbeth, about a whole family murdered at once like chicks taken by a swooping bird; often turned into the eggcorn [[see:one foul swoop]].",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "tRR-DHzD7mw",
+    "t": 144,
+    "role": "aside",
+    "note": "Used to explain the meaning of [[see:in a swing]].",
     "confidence": "high"
    }
   ]
@@ -123813,8 +123538,8 @@
   ]
  },
  {
-  "slug": "orphan-negative",
-  "term": "orphan negative",
+  "slug": "orphaned-negative",
+  "term": "orphaned negative",
   "original": null,
   "translation": null,
   "language": "English",
@@ -123833,34 +123558,14 @@
     "role": "aside",
     "note": "A negative word without a positive counterpart, like [[see:reckless]] with no reckful.",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "orphan-negatives",
-  "term": "orphan negatives",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "about-language",
-  "mentions": [
+   },
    {
     "episode_id": "PH64PZAjK_s",
     "t": 1742,
     "role": "subject",
-    "note": "Another name for [[see:unpaired words]].",
+    "note": "Another name for [[see:unpaired word]].",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "orphaned-negative",
-  "term": "orphaned negative",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "about-language",
-  "mentions": [
+   },
    {
     "episode_id": "6JYqGa_-UZE",
     "t": 1068,
@@ -125698,7 +125403,7 @@
     "t": 1024,
     "role": "aside",
     "note": "The deposit on Scandinavian beer cans, from the same source as [[same-root:Pfand]].",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -125768,8 +125473,8 @@
   ]
  },
  {
-  "slug": "pantaloon",
-  "term": "pantaloon",
+  "slug": "pantaloons",
+  "term": "pantaloons",
   "original": null,
   "translation": null,
   "language": "English",
@@ -125781,17 +125486,7 @@
     "role": "subject",
     "note": "Comes from the name of [[from:Pantalone]], the Italian character, and gave us [[gave:pants]].",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "pantaloons",
-  "term": "pantaloons",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
+   },
    {
     "episode_id": "s9B1o2ydCmg",
     "t": 239,
@@ -126001,7 +125696,7 @@
     "episode_id": "o6KlBd7TPFI",
     "t": 576,
     "role": "subject",
-    "note": "American for [[equivalent:trousers]] but British for underwear; named after [[from:Pantalone]] via [[from:pantaloon]].",
+    "note": "American for [[equivalent:trousers]] but British for underwear; named after [[from:Pantalone]] via [[from:pantaloons]].",
     "confidence": "high"
    },
    {
@@ -126429,17 +126124,7 @@
     "role": "subject",
     "note": "Coined by [[see:Friedrich Salomon Krauss]] and made clinical by the APA in the 1980s; para- means alongside or against, as in [[see:paranormal]] and [[see:parachute]].",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "paraphilias",
-  "term": "paraphilias",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
+   },
    {
     "episode_id": "JpkXFBDVyxc",
     "t": 1922,
@@ -127714,27 +127399,17 @@
   "category": "word",
   "mentions": [
    {
+    "episode_id": "PfK6C7NASqQ",
+    "t": 2501,
+    "role": "subject",
+    "note": "A French word, used for the poor [[see:Anglo-Saxons]], which just means country people.",
+    "confidence": "high"
+   },
+   {
     "episode_id": "m9AaobtBMtA",
     "t": 182,
     "role": "aside",
     "note": "French itself added a T to form it, as it did with [[see:tyrant]], the same addition English made to [[see:ancient]].",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "peasants",
-  "term": "peasants",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "PfK6C7NASqQ",
-    "t": 2501,
-    "role": "subject",
-    "note": "A French word, used for the poor Anglo-Saxons, which just means country people.",
     "confidence": "high"
    }
   ]
@@ -127898,7 +127573,7 @@
     "episode_id": "9Z2kjEJAscs",
     "t": 1126,
     "role": "subject",
-    "note": "A variant of [[equivalent:pissabed]], an old name for the [[see:dandelion]].",
+    "note": "A variant of [[equivalent:piss-a-bed]], an old name for the [[see:dandelion]].",
     "confidence": "low"
    }
   ]
@@ -130940,7 +130615,7 @@
     "episode_id": "6Rr6qfIIapY",
     "t": 407,
     "role": "subject",
-    "note": "A pig in a bag, bought unseen as a good animal but turning out to be a cat, the idea behind [[gave:cat out of the bag]].",
+    "note": "A pig in a bag, bought unseen as a good animal but turning out to be a cat, the idea behind [[gave:let the cat out of the bag]].",
     "confidence": "high"
    }
   ]
@@ -131927,14 +131602,21 @@
     "t": 2560,
     "role": "subject",
     "note": "A historical name for the [[see:dandelion]], like [[see:pee-a-bed]] and [[see:wet-a-bed]], perhaps because it was used as a diuretic.",
-    "confidence": "low"
+    "confidence": "high"
+   },
+   {
+    "episode_id": "9Z2kjEJAscs",
+    "t": 1126,
+    "role": "subject",
+    "note": "Old English name for the [[see:dandelion]], like French [[equivalent:pissenlit]], perhaps for its diuretic properties or because it looks like pee by the road.",
+    "confidence": "high"
    },
    {
     "episode_id": "uPfbuo6iP6Y",
     "t": 1933,
     "role": "subject",
     "note": "Another name for the [[equivalent:dandelion]], matching French [[equivalent:pissenlit]].",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -131968,23 +131650,6 @@
     "t": 2720,
     "role": "subject",
     "note": "A doctor who tried to diagnose people by examining their urine.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "pissabed",
-  "term": "pissabed",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "9Z2kjEJAscs",
-    "t": 1126,
-    "role": "subject",
-    "note": "Old English name for the [[see:dandelion]], like French [[equivalent:pissenlit]], perhaps for its diuretic properties or because it looks like pee by the road.",
     "confidence": "high"
    }
   ]
@@ -132349,7 +132014,7 @@
     "episode_id": "Lwj_xBTNJ4I",
     "t": 1995,
     "role": "subject",
-    "note": "British for a [[see:Band-Aid]]; Rob doesn't know why, perhaps because it's a sticking plaster or a mini cast.",
+    "note": "British for a [[see:band-aid]]; Rob doesn't know why, perhaps because it's a sticking plaster or a mini cast.",
     "confidence": "high"
    }
   ]
@@ -136786,7 +136451,7 @@
     "episode_id": "Lwj_xBTNJ4I",
     "t": 1979,
     "role": "subject",
-    "note": "A genericised trademark, where a brand name replaces the name of the thing, like [[see:Kleenex]] or [[see:Band-Aid]].",
+    "note": "A genericised trademark, where a brand name replaces the name of the thing, like [[see:Kleenex]] or [[see:band-aid]].",
     "confidence": "high"
    }
   ]
@@ -137814,23 +137479,6 @@
   ]
  },
  {
-  "slug": "pull-me-up",
-  "term": "pull me up",
-  "original": "tiramisù",
-  "translation": "pull me up",
-  "language": "Italian",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "1PM_iwxAyb8",
-    "t": 2396,
-    "role": "subject",
-    "note": "Tiramisu is a sentence, regional Italian for 'pick me up', perhaps for its coffee or, by speculation, invented at a brothel as an aphrodisiac.",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "pull-ones-plonker",
   "term": "pull one's plonker",
   "original": null,
@@ -138534,7 +138182,7 @@
    {
     "episode_id": "gH0Zz10y9Ek",
     "t": 520,
-    "role": "subject",
+    "role": "aside",
     "note": "To reach the right conclusion from the evidence, as opposed to [[see:put two and two together and make five]].",
     "confidence": "high"
    }
@@ -138551,7 +138199,7 @@
    {
     "episode_id": "gH0Zz10y9Ek",
     "t": 529,
-    "role": "subject",
+    "role": "aside",
     "note": "To reach the wrong conclusion from the evidence; an extension of [[from:put two and two together]].",
     "confidence": "high"
    }
@@ -139275,14 +138923,14 @@
     "episode_id": "NO7mNlZhEiM",
     "t": 1749,
     "role": "subject",
-    "note": "A name for the metal [[see:Mercury]]: silver that seems alive and moves quickly, with [[see:quick]] meaning lively.",
+    "note": "A name for the metal [[see:mercury (quicksilver)]]: silver that seems alive and moves quickly, with [[see:quick]] meaning lively.",
     "confidence": "high"
    },
    {
     "episode_id": "EOfP8sTYJwo",
     "t": 745,
     "role": "subject",
-    "note": "Another name for [[see:mercury]]; here [[see:quick]] means liquid or alive rather than speedy.",
+    "note": "Another name for [[see:mercury (quicksilver)]]; here [[see:quick]] means liquid or alive rather than speedy.",
     "confidence": "high"
    },
    {
@@ -141558,7 +141206,7 @@
     "episode_id": "ey38pmqPBnM",
     "t": 1561,
     "role": "subject",
-    "note": "Without calculating consequences, from the same root as [[same-root:reckon]]; an [[see:orphan negative]], since nobody is reckful.",
+    "note": "Without calculating consequences, from the same root as [[same-root:reckon]]; an [[see:orphaned negative]], since nobody is reckful.",
     "confidence": "high"
    }
   ]
@@ -142602,8 +142250,27 @@
   ]
  },
  {
-  "slug": "rest",
+  "slug": "rest-remainder",
   "term": "rest",
+  "gloss": "remainder",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "word",
+  "mentions": [
+   {
+    "episode_id": "XA4d9r6Yu5A",
+    "t": 826,
+    "role": "subject",
+    "note": "Unlike [[unrelated:rest (repose)]] in the sense of repose, it does come from French [[from:rester]]: the remainder is the stuff that stays.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "rest-repose",
+  "term": "rest",
+  "gloss": "repose",
   "original": null,
   "translation": null,
   "language": "English",
@@ -142613,7 +142280,7 @@
     "episode_id": "XA4d9r6Yu5A",
     "t": 802,
     "role": "subject",
-    "note": "In the sense of repose, Germanic through and through, not from French [[unrelated:rester]] as Rob assumed.",
+    "note": "Germanic through and through, not from French [[unrelated:rester]] as Rob assumed, unlike [[unrelated:rest (remainder)]] in the sense of the remainder.",
     "confidence": "high"
    }
   ]
@@ -142630,7 +142297,7 @@
     "episode_id": "XA4d9r6Yu5A",
     "t": 793,
     "role": "subject",
-    "note": "French for to stay, not to rest; English [[unrelated:rest]] meaning repose isn't from it, but [[gave:the rest]] is.",
+    "note": "French for to stay, not to rest; English [[unrelated:rest (repose)]] meaning repose isn't from it, but [[gave:rest (remainder)]] as in \"the rest\" is.",
     "confidence": "high"
    }
   ]
@@ -142841,7 +142508,7 @@
     "episode_id": "cd5iFbuNKv8",
     "t": 1693,
     "role": "subject",
-    "note": "Left-leaning [[see:italic]]s with no real use, suggested in previous episodes as a way to mark sarcasm.",
+    "note": "Left-leaning [[see:italics]] with no real use, suggested in previous episodes as a way to mark sarcasm.",
     "confidence": "high"
    }
   ]
@@ -144738,17 +144405,7 @@
     "role": "subject",
     "note": "Originally a trademark, now generic.",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "rollerblades",
-  "term": "rollerblades",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
+   },
    {
     "episode_id": "qheviaPndXU",
     "t": 1721,
@@ -146401,17 +146058,7 @@
     "role": "subject",
     "note": "Rob made a video on runes: unlike modern letters they had meaningful names such as [[see:oak]], [[see:ash]], [[see:yew]] and [[see:birch]], showing the trees' importance.",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "runes",
-  "term": "runes",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "about-language",
-  "mentions": [
+   },
    {
     "episode_id": "DSD_kMu1INk",
     "t": 1761,
@@ -146789,27 +146436,17 @@
   "category": "word",
   "mentions": [
    {
-    "episode_id": "PfK6C7NASqQ",
-    "t": 2325,
-    "role": "aside",
-    "note": "Said to be related to [[same-root:sabotage]].",
-    "confidence": "low"
-   }
-  ]
- },
- {
-  "slug": "sabatons",
-  "term": "sabatons",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
     "episode_id": "4CJRYBxDdGg",
     "t": 1585,
     "role": "subject",
     "note": "Foot armour, from French sabot, shoe or clog, as in [[same-root:sabotage]].",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "PfK6C7NASqQ",
+    "t": 2325,
+    "role": "aside",
+    "note": "Said to be related to [[same-root:sabotage]].",
     "confidence": "high"
    }
   ]
@@ -146833,7 +146470,7 @@
     "episode_id": "4CJRYBxDdGg",
     "t": 1593,
     "role": "subject",
-    "note": "Previously discussed as implying throwing shoes into the machine; from sabot, clog, like [[same-root:sabatons]].",
+    "note": "Previously discussed as implying throwing shoes into the machine; from sabot, clog, like [[same-root:sabaton]].",
     "confidence": "high"
    },
    {
@@ -147987,7 +147624,7 @@
     "episode_id": "-54FiJ0PsXo",
     "t": 3044,
     "role": "subject",
-    "note": "To do with the tearing of flesh; being sarcastic is essentially tearing chunks of flesh off someone.",
+    "note": "Rooted in tearing flesh, which is why the [[see:sarcastic fringehead]] is a flesh-tearer rather than an irony-monger; being sarcastic is essentially tearing chunks of flesh off someone.",
     "confidence": "high"
    },
    {
@@ -149921,17 +149558,7 @@
     "role": "subject",
     "note": "A boiled egg in sausage meat and breadcrumbs, cheap pub food in Britain but an overpriced gourmet item Jess found in the US.",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "scotch-eggs",
-  "term": "scotch eggs",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
+   },
    {
     "episode_id": "kf6zkx3Zg_4",
     "t": 2417,
@@ -152531,30 +152158,6 @@
   ]
  },
  {
-  "slug": "shakespeare",
-  "term": "Shakespeare",
-  "original": null,
-  "translation": null,
-  "language": null,
-  "category": "name",
-  "mentions": [
-   {
-    "episode_id": "DLBBiY5w8qM",
-    "t": 1144,
-    "role": "aside",
-    "note": "Never used the [[see:ellipsis]], though it had been invented by his time.",
-    "confidence": "high"
-   },
-   {
-    "episode_id": "La3toomR-ow",
-    "t": 2181,
-    "role": "aside",
-    "note": "Often credited with coining [[see:grovel]] in Henry VI, though he actually back-formed it from groveling.",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "shakespeare-authorship-question",
   "term": "Shakespeare authorship question",
   "original": null,
@@ -153878,7 +153481,7 @@
     "episode_id": "s9B1o2ydCmg",
     "t": 575,
     "role": "subject",
-    "note": "Like other legwear, a 'pair'; short shares its Germanic origin with [[same-root:shirt]] and [[same-root:skirt]].",
+    "note": "Like other legwear, a 'pair'; from [[from:short]], which shares its Germanic origin with [[same-root:shirt]] and [[same-root:skirt]].",
     "confidence": "high"
    },
    {
@@ -155690,7 +155293,7 @@
     "episode_id": "gH0Zz10y9Ek",
     "t": 1487,
     "role": "aside",
-    "note": "Rapper whose song 'Doot Doot (6 7)' repeats six seven as a hook, the supposed origin of [[see:67]].",
+    "note": "Rapper whose song 'Doot Doot (6 7)' repeats six seven as a hook, the supposed origin of [[see:6 7]].",
     "confidence": "high"
    }
   ]
@@ -155854,27 +155457,17 @@
   "category": "word",
   "mentions": [
    {
-    "episode_id": "ClRqFWMR15Y",
-    "t": 2475,
-    "role": "subject",
-    "note": "Basketball term Jess lists alongside [[see:alley-oop]] among those used outside the game.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "slam-dunks",
-  "term": "slam dunks",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
     "episode_id": "ZqBYXlunxds",
     "t": 999,
     "role": "subject",
     "note": "A sports term turned corporate jargon, tolerable because it works across contexts.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "ClRqFWMR15Y",
+    "t": 2475,
+    "role": "subject",
+    "note": "Basketball term Jess lists alongside [[see:alley-oop]] among those used outside the game.",
     "confidence": "high"
    }
   ]
@@ -155938,23 +155531,6 @@
   ]
  },
  {
-  "slug": "slang-whanger",
-  "term": "slang-whanger",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "8HuQo5xKSZI",
-    "t": 82,
-    "role": "subject",
-    "note": "Nineteenth-century American English for someone who uses abusive [[see:slang]], or a ranting partisan.",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "slangwhanger",
   "term": "slangwhanger",
   "original": null,
@@ -155967,6 +155543,13 @@
     "t": 1653,
     "role": "subject",
     "note": "Briefly used in 19th-century American English for someone using abusive language or a ranting partisan; the hosts want it revived for elections.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "8HuQo5xKSZI",
+    "t": 82,
+    "role": "subject",
+    "note": "Nineteenth-century American English for someone who uses abusive [[see:slang]], or a ranting partisan.",
     "confidence": "high"
    }
   ]
@@ -159684,7 +159267,7 @@
     "episode_id": "8HuQo5xKSZI",
     "t": 1687,
     "role": "subject",
-    "note": "Discussed in an earlier episode; the tea is the truth, also obliquely referencing trans identity, partly popularised by [[see:Lady Chablis]].",
+    "note": "Discussed in an earlier episode; the tea is the truth, also obliquely referencing trans identity, partly popularised by [[see:The Lady Chablis]].",
     "confidence": "high"
    }
   ]
@@ -161060,14 +160643,14 @@
     "episode_id": "DSD_kMu1INk",
     "t": 577,
     "role": "subject",
-    "note": "Once the general English word for dying, related to German [[same-root:sterben]], it narrowed to dying from lack of food once Norse [[see:die]] took over.",
+    "note": "Once the general English word for dying, related to German [[same-root:sterben]], it narrowed to dying from lack of food once Norse [[see:to die]] took over.",
     "confidence": "high"
    },
    {
     "episode_id": "La3toomR-ow",
     "t": 1763,
     "role": "subject",
-    "note": "Once the general Old English word for to die, like German [[same-root:sterben]]; narrowed to dying from lack of food after [[see:die]] arrived.",
+    "note": "Once the general Old English word for to die, like German [[same-root:sterben]]; narrowed to dying from lack of food after [[see:to die]] arrived.",
     "confidence": "high"
    }
   ]
@@ -162020,7 +161603,7 @@
     "episode_id": "ClRqFWMR15Y",
     "t": 1072,
     "role": "subject",
-    "note": "A sport older than [[see:cricket]] and mostly played by women, in which you guarded an actual stool; it supports the stool theory for cricket.",
+    "note": "A sport older than [[see:cricket (sport)]] and mostly played by women, in which you guarded an actual stool; it supports the stool theory for cricket.",
     "confidence": "high"
    }
   ]
@@ -162371,7 +161954,7 @@
     "episode_id": "b0yMF00Pcew",
     "t": 581,
     "role": "aside",
-    "note": "Paired with [[see:desserts]] as the longest [[see:semordnilap]] the hosts found.",
+    "note": "Paired with [[see:dessert]]s as the longest [[see:semordnilap]] the hosts found.",
     "confidence": "high"
    }
   ]
@@ -163218,8 +162801,8 @@
   ]
  },
  {
-  "slug": "super-ego",
-  "term": "super ego",
+  "slug": "superego",
+  "term": "superego",
   "original": null,
   "translation": null,
   "language": "English",
@@ -163231,17 +162814,7 @@
     "role": "subject",
     "note": "Translators' Latinised version of Freud's [[from:Über-Ich]], literally the super I or above I.",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "superego",
-  "term": "superego",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
+   },
    {
     "episode_id": "1PM_iwxAyb8",
     "t": 2507,
@@ -164131,9 +163704,9 @@
    {
     "episode_id": "DSD_kMu1INk",
     "t": 617,
-    "role": "subject",
-    "note": "An Old English verb for dying, used more often than the predecessor of [[see:starve]] until Norse [[see:die]] took over.",
-    "confidence": "low"
+    "role": "aside",
+    "note": "An Old English verb for dying until Norse [[see:to die]] took over.",
+    "confidence": "high"
    }
   ]
  },
@@ -164988,23 +164561,6 @@
     "t": 810,
     "role": "aside",
     "note": "A woman's name whose association with female cats helped popularise [[see:tabby]], much as [[see:Tom]] was used for male cats.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "table",
-  "term": "table",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "Lwj_xBTNJ4I",
-    "t": 474,
-    "role": "subject",
-    "note": "To table an idea means putting it forward in British usage but setting it aside in American business usage.",
     "confidence": "high"
    }
   ]
@@ -167800,23 +167356,6 @@
   ]
  },
  {
-  "slug": "the-beast-with-two-backs",
-  "term": "the beast with two backs",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "expression",
-  "mentions": [
-   {
-    "episode_id": "ca3lz3dXgW8",
-    "t": 1426,
-    "role": "aside",
-    "note": "Iago's line in Othello, which helped Jess guess the meaning of [[see:tup]].",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "the-beatles",
   "term": "The Beatles",
   "original": null,
@@ -168566,23 +168105,6 @@
   ]
  },
  {
-  "slug": "the-french-disease",
-  "term": "the French disease",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "KVFMuOBPjNs",
-    "t": 2460,
-    "role": "subject",
-    "note": "Name for [[see:syphilis]] across Europe, from [[from:Syphilis, or the French Disease]] and French soldiers catching it in Italy; compare [[equivalent:the Italian disease]].",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "the-gentlemans-magazine",
   "term": "The Gentleman's Magazine",
   "original": null,
@@ -168842,23 +168364,6 @@
   ]
  },
  {
-  "slug": "the-italian-disease",
-  "term": "the Italian disease",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "KVFMuOBPjNs",
-    "t": 2489,
-    "role": "subject",
-    "note": "What the French called [[see:syphilis]], fairly, since that was where it was picked up; compare [[equivalent:the French disease]].",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "the-jest-book",
   "term": "The Jest Book",
   "original": null,
@@ -168921,7 +168426,7 @@
     "episode_id": "JlgQIDxufh0",
     "t": 1003,
     "role": "subject",
-    "note": "Originally [[see:The Ravens]]; the name was a gimmick alluding to kinkiness, meant to be subversive and attract publicity.",
+    "note": "Originally [[see:The Ravens (band)]]; the name was a gimmick alluding to kinkiness, meant to be subversive and attract publicity.",
     "confidence": "high"
    }
   ]
@@ -168956,6 +168461,13 @@
     "t": 291,
     "role": "aside",
     "note": "A major drag figure who appears in Midnight in the Garden of Good and Evil and used [[see:T]] to mean her truth in a 1994 interview.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "8HuQo5xKSZI",
+    "t": 1706,
+    "role": "aside",
+    "note": "Mentioned in a previous episode as helping popularise [[see:spill the tea]].",
     "confidence": "high"
    }
   ]
@@ -169383,8 +168895,9 @@
   ]
  },
  {
-  "slug": "the-raven",
+  "slug": "the-raven-poem",
   "term": "The Raven",
+  "gloss": "poem",
   "original": null,
   "translation": null,
   "language": null,
@@ -169400,8 +168913,9 @@
   ]
  },
  {
-  "slug": "the-ravens",
+  "slug": "the-ravens-band",
   "term": "The Ravens",
+  "gloss": "band",
   "original": null,
   "translation": null,
   "language": "English",
@@ -169446,23 +168960,6 @@
     "t": 2171,
     "role": "aside",
     "note": "Nickname of [[see:Camille Jenatzy]], from the colour of his beard and his record-breaking runs.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "the-rest",
-  "term": "the rest",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "XA4d9r6Yu5A",
-    "t": 826,
-    "role": "subject",
-    "note": "Meaning the remainder, it does come from French [[from:rester]]: it is the stuff that stays.",
     "confidence": "high"
    }
   ]
@@ -169796,7 +169293,7 @@
     "episode_id": "91ZxuC2jLo4",
     "t": 1349,
     "role": "subject",
-    "note": "A genuine Shakespeare creation, a story he wrote from start to finish rather than adapting one; Jess likes its adaptations.",
+    "note": "A genuine creation of [[see:William Shakespeare]], a story he wrote from start to finish rather than adapting one; Jess likes its adaptations.",
     "confidence": "high"
    }
   ]
@@ -169916,23 +169413,6 @@
     "t": 1709,
     "role": "subject",
     "note": "Named after a disapproving 1963 non-fiction exposé on swinging, orgies and BDSM, later appropriated by queer culture.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "the-white-house",
-  "term": "the White House",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "name",
-  "mentions": [
-   {
-    "episode_id": "sKcuTYOT0yY",
-    "t": 1928,
-    "role": "aside",
-    "note": "Used for the US government, an example of [[see:metonymy]].",
     "confidence": "high"
    }
   ]
@@ -172583,8 +172063,8 @@
   "slug": "tiramisu",
   "term": "tiramisu",
   "original": "tiramisù",
-  "translation": "pull me up",
-  "language": "Italian",
+  "translation": "pick-me-up",
+  "language": "English",
   "category": "word",
   "mentions": [
    {
@@ -172592,6 +172072,13 @@
     "t": 169,
     "role": "subject",
     "note": "Literally a pick-me-up, from its coffee or liqueur; a claimed 1800s Treviso brothel origin is doubted because the word isn't recorded until the 1980s; possibly based on [[from?:zuppa inglese]].",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "1PM_iwxAyb8",
+    "t": 2396,
+    "role": "subject",
+    "note": "Tiramisu is a sentence, regional Italian for 'pick me up', perhaps for its coffee or, by speculation, invented at a brothel as an aphrodisiac.",
     "confidence": "high"
    }
   ]
@@ -173044,7 +172531,7 @@
     "episode_id": "gUlIcVkWj1I",
     "t": 3065,
     "role": "subject",
-    "note": "Not from badgers' behaviour but from the dogs' relentless attacks in [[from:badger baiting]].",
+    "note": "Not from [[see:badger]]s' behaviour but from the dogs' relentless attacks in [[from:badger baiting]].",
     "confidence": "high"
    }
   ]
@@ -173095,8 +172582,8 @@
     "episode_id": "DSD_kMu1INk",
     "t": 617,
     "role": "subject",
-    "note": "An Old English way of saying to die, possibly euphemistic, before Old Norse [[see:die]] took over.",
-    "confidence": "low"
+    "note": "An Old English way of saying to die, possibly euphemistic, before Old Norse [[see:to die]] took over.",
+    "confidence": "high"
    }
   ]
  },
@@ -173118,25 +172605,9 @@
   ]
  },
  {
-  "slug": "to-break-the-ice",
-  "term": "to break the ice",
-  "original": "scindere glaciem",
-  "translation": "to break the ice",
-  "language": "Latin",
-  "category": "expression",
-  "mentions": [
-   {
-    "episode_id": "ca3lz3dXgW8",
-    "t": 333,
-    "role": "subject",
-    "note": "The Latin idiom that English probably translated, which explains why [[gave:break the ice]] appears figuratively before literally.",
-    "confidence": "low"
-   }
-  ]
- },
- {
-  "slug": "to-date",
+  "slug": "to-date-so-far",
   "term": "to date",
+  "gloss": "so far",
   "original": null,
   "translation": null,
   "language": "English",
@@ -173147,6 +172618,37 @@
     "t": 2175,
     "role": "subject",
     "note": "Ruled out as an Americanism in the Guardian's 1950 style guide in favour of \"so far\", though now widely used in Britain.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "to-die",
+  "term": "to die",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "word",
+  "mentions": [
+   {
+    "episode_id": "DSD_kMu1INk",
+    "t": 561,
+    "role": "subject",
+    "note": "Borrowed from Old Norse, possibly as a euphemism; it displaced the Old English verb that became [[see:starve]].",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "6JYqGa_-UZE",
+    "t": 356,
+    "role": "aside",
+    "note": "One of the ordinary words avoided in [[see:algospeak]].",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "La3toomR-ow",
+    "t": 1741,
+    "role": "subject",
+    "note": "Verb from Old Norse; before it, English used the word that became [[see:starve]], like German [[same-root:sterben]].",
     "confidence": "high"
    }
   ]
@@ -173242,9 +172744,16 @@
   "category": "word",
   "mentions": [
    {
+    "episode_id": "Lwj_xBTNJ4I",
+    "t": 474,
+    "role": "subject",
+    "note": "To table an idea means putting it forward in British usage but setting it aside in American business usage.",
+    "confidence": "high"
+   },
+   {
     "episode_id": "ZqBYXlunxds",
     "t": 519,
-    "role": "subject",
+    "role": "aside",
     "note": "A disliked usage discussed before as a contronym, since it can mean either taking something off the table or putting it on.",
     "confidence": "high"
    }
@@ -176560,7 +176069,7 @@
     "episode_id": "ca3lz3dXgW8",
     "t": 1418,
     "role": "subject",
-    "note": "Central English dialect for a ram; Jess guessed it from the 'tupping' line in Othello alongside [[see:the beast with two backs]].",
+    "note": "Central English dialect for a ram; Jess guessed it from the 'tupping' line in Othello alongside the [[see:beast with two backs]].",
     "confidence": "high"
    }
   ]
@@ -176802,27 +176311,17 @@
   "category": "word",
   "mentions": [
    {
-    "episode_id": "_r2HMeiDhKA",
-    "t": 1173,
-    "role": "aside",
-    "note": "What Old English [[see:turtle]] referred to, the word imitating its cooing; discussed in an earlier episode.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "turtle-doves",
-  "term": "turtle doves",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
     "episode_id": "9A0hAxeFyo4",
     "t": 2113,
     "role": "subject",
     "note": "Nothing to do with reptiles; named turtur after the sound they make.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "_r2HMeiDhKA",
+    "t": 1173,
+    "role": "aside",
+    "note": "What Old English [[see:turtle]] referred to, the word imitating its cooing; discussed in an earlier episode.",
     "confidence": "high"
    }
   ]
@@ -177459,7 +176958,7 @@
     "episode_id": "JpkXFBDVyxc",
     "t": 161,
     "role": "subject",
-    "note": "Freud's German term meaning the super I or above I, translated into English as [[gave:super ego]].",
+    "note": "Freud's German term meaning the super I or above I, translated into English as [[gave:superego]].",
     "confidence": "low"
    },
    {
@@ -178572,23 +178071,6 @@
   ]
  },
  {
-  "slug": "unlawful-carnal-knowledge",
-  "term": "unlawful carnal knowledge",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "expression",
-  "mentions": [
-   {
-    "episode_id": "FcP3Orn_rjs",
-    "t": 1159,
-    "role": "subject",
-    "note": "False acronym for [[see:fuck]]; when that word was first recorded, [[see:knowledge]] was spelled cnawlece.",
-    "confidence": "high"
-   }
-  ]
- },
- {
   "slug": "unmentionables",
   "term": "unmentionables",
   "original": null,
@@ -178619,22 +178101,12 @@
     "role": "subject",
     "note": "A word rarely found without its prefix or suffix, such as [[see:disgusted]], whose base form should exist under English word-building rules but doesn't.",
     "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "unpaired-words",
-  "term": "unpaired words",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "about-language",
-  "mentions": [
+   },
    {
     "episode_id": "PH64PZAjK_s",
     "t": 1733,
     "role": "subject",
-    "note": "Words like [[see:exuberant]] and [[see:ineffable]] that lack a counterpart; also called [[see:lost positives]] or [[see:orphan negatives]], discussed before.",
+    "note": "Words like [[see:exuberant]] and [[see:ineffable]] that lack a counterpart; also called [[see:lost positive]] or [[see:orphaned negative]], discussed before.",
     "confidence": "high"
    }
   ]
@@ -179744,7 +179216,7 @@
     "episode_id": "EOfP8sTYJwo",
     "t": 2225,
     "role": "subject",
-    "note": "Named after one of the many names for [[from:Freyja]].",
+    "note": "Named after one of the many names for [[from:Freya]].",
     "confidence": "high"
    }
   ]
@@ -181349,27 +180821,17 @@
   "category": "word",
   "mentions": [
    {
+    "episode_id": "_iAT5Z5cwJY",
+    "t": 417,
+    "role": "aside",
+    "note": "Its plural viruses, like [[see:campus]]es, is a Latin -us word with an English ending, which supports octopuses as a plural of [[see:octopus]].",
+    "confidence": "high"
+   },
+   {
     "episode_id": "52GtCvS7HCU",
     "t": 2235,
     "role": "subject",
     "note": "Has a Latin plural that English never adopted; we only say viruses.",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "viruses",
-  "term": "viruses",
-  "original": null,
-  "translation": null,
-  "language": "English",
-  "category": "word",
-  "mentions": [
-   {
-    "episode_id": "_iAT5Z5cwJY",
-    "t": 417,
-    "role": "aside",
-    "note": "An example of an English plural for a word ending in -us, which supports octopuses as a plural of [[see:octopus]].",
     "confidence": "high"
    }
   ]
@@ -184128,7 +183590,7 @@
     "episode_id": "9Z2kjEJAscs",
     "t": 1126,
     "role": "subject",
-    "note": "Another bed-wetting name for the [[see:dandelion]], alongside [[equivalent:pissabed]].",
+    "note": "Another bed-wetting name for the [[see:dandelion]], alongside [[equivalent:piss-a-bed]].",
     "confidence": "low"
    }
   ]
@@ -184864,6 +184326,13 @@
   "category": "name",
   "mentions": [
    {
+    "episode_id": "sKcuTYOT0yY",
+    "t": 1928,
+    "role": "aside",
+    "note": "Used for the US government, an example of [[see:metonymy]].",
+    "confidence": "high"
+   },
+   {
     "episode_id": "MrsqUCgXGBk",
     "t": 1126,
     "role": "aside",
@@ -185126,7 +184595,25 @@
  },
  {
   "slug": "wicca",
+  "term": "wicca",
+  "original": "wicca",
+  "translation": null,
+  "language": "Old English",
+  "category": "word",
+  "mentions": [
+   {
+    "episode_id": "O5DTL8Ogoo4",
+    "t": 444,
+    "role": "aside",
+    "note": "Old English word for a man who practices sorcery. A feminine form is wicce.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "wicca-religion",
   "term": "Wicca",
+  "gloss": "religion",
   "original": null,
   "translation": null,
   "language": "English",
@@ -185143,7 +184630,7 @@
     "episode_id": "O5DTL8Ogoo4",
     "t": 452,
     "role": "subject",
-    "note": "Modern nature-centred pagan religion that took the Old English word for a male witch to give it an ancient feel.",
+    "note": "Modern nature-centred pagan religion that took the Old English word [[from:wicca]] to give it an ancient feel.",
     "confidence": "high"
    }
   ]
@@ -185833,6 +185320,13 @@
     "confidence": "high"
    },
    {
+    "episode_id": "DLBBiY5w8qM",
+    "t": 1144,
+    "role": "aside",
+    "note": "Never used the [[see:ellipsis]], though it had been invented by his time.",
+    "confidence": "high"
+   },
+   {
     "episode_id": "L8QXVs2DNFk",
     "t": 335,
     "role": "aside",
@@ -185858,6 +185352,13 @@
     "t": 2242,
     "role": "aside",
     "note": "In one of his plays he calls [[see:Z]] a useless letter.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "La3toomR-ow",
+    "t": 2181,
+    "role": "aside",
+    "note": "Often credited with coining [[see:grovel]] in Henry VI, though he actually back-formed it from groveling.",
     "confidence": "high"
    }
   ]
@@ -186639,7 +186140,7 @@
     "episode_id": "hZK6kCAmwEQ",
     "t": 795,
     "role": "subject",
-    "note": "From Old English [[from:wicce]], feminine of [[from:wicca]]; originally not gendered, it became associated with women around the 1600s.",
+    "note": "From Old English wicce, feminine of [[from:wicca]]; originally not gendered, it became associated with women around the 1600s.",
     "confidence": "high"
    },
    {
