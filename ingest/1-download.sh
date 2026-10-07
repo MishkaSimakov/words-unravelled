@@ -10,11 +10,15 @@
 #
 # Captions use the "en-orig" track: most episodes have auto-dubbed audio in other languages,
 # and on those videos the plain "en" track is a round-trip machine translation.
-# YouTube rate-limits caption downloads (HTTP 429), hence the long sleeps. Safe to re-run.
+# YouTube rate-limits caption downloads (HTTP 429), hence the long sleeps, and often asks
+# datacenter IPs (cloud machines) to sign in; the android_vr client usually gets through, so it
+# is tried after the default ones. Videos still missing are tried again, up to ATTEMPTS times.
+# Exits with 1 if captions are still missing. Safe to re-run.
 set -u
 cd "$(dirname "$0")"
 CHANNEL="https://www.youtube.com/@wordsunravelled/videos"
 MIN_MINUTES=${MIN_MINUTES:-15}
+ATTEMPTS=${ATTEMPTS:-3}
 mkdir -p 1-youtube
 
 if [[ $# -gt 0 ]]; then
@@ -28,23 +32,34 @@ else
   echo "${#ids[@]} episodes on the channel"
 fi
 
-todo=()
-for id in "${ids[@]}"; do
-  if compgen -G "1-youtube/*\[$id\].info.json" > /dev/null && compgen -G "1-youtube/*\[$id\].en-orig.json3" > /dev/null; then
-    continue
+# The IDs whose captions or metadata are missing.
+missing() {
+  for id in "${ids[@]}"; do
+    if ! compgen -G "1-youtube/*\[$id\].info.json" > /dev/null || ! compgen -G "1-youtube/*\[$id\].en-orig.json3" > /dev/null; then
+      echo "$id"
+    fi
+  done
+}
+
+for (( attempt = 1; attempt <= ATTEMPTS; attempt++ )); do
+  todo=($(missing))
+  if [[ ${#todo[@]} -eq 0 ]]; then
+    (( attempt == 1 )) && echo "Captions and metadata are downloaded already."
+    exit 0
   fi
-  todo+=("https://www.youtube.com/watch?v=$id")
+  if (( attempt > 1 )); then
+    echo "${#todo[@]} still missing; trying again in 60 s (attempt $attempt of $ATTEMPTS)"
+    sleep 60
+  else
+    echo "${#todo[@]} to download"
+  fi
+  yt-dlp --write-auto-subs --sub-langs en-orig --sub-format json3 --write-info-json \
+    --skip-download --sleep-subtitles 60 --no-progress \
+    --extractor-args "youtube:player_client=default,android_vr" \
+    -o "1-youtube/%(title)s [%(id)s].%(ext)s" "${todo[@]/#/https://www.youtube.com/watch?v=}"
 done
-echo "${#todo[@]} to download"
+
+todo=($(missing))
 [[ ${#todo[@]} -eq 0 ]] && exit 0
-
-yt-dlp --write-auto-subs --sub-langs en-orig --sub-format json3 --write-info-json \
-  --skip-download --sleep-subtitles 60 --no-progress \
-  -o "1-youtube/%(title)s [%(id)s].%(ext)s" "${todo[@]}"
-
-for url in "${todo[@]}"; do
-  id=${url##*=}
-  if ! compgen -G "1-youtube/*\[$id\].en-orig.json3" > /dev/null; then
-    echo "WARNING: no en-orig captions for $id (rate-limited, or no auto-captions). Re-run later." >&2
-  fi
-done
+echo "No en-orig captions or metadata for: ${todo[*]} (rate-limited, blocked, or no auto-captions yet). Re-run later." >&2
+exit 1
