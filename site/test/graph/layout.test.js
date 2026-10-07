@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { LINK, components, galaxyLayout, stressLayout } from '../../src/query/layout.js'
+import { LINK, components, galaxyLayout, stressLayout } from '#lib/graph/layout.js'
 
 /** A link graph like linkGraph() makes, from [a, b] slug pairs. */
 function graphOf(pairs) {

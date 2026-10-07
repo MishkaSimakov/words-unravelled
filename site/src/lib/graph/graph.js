@@ -1,6 +1,6 @@
 // The link graph the site's graph page draws: entries joined by the links in their notes.
 
-import { noteParts } from './index.js'
+import { noteParts } from '#toolkit/query/index.js'
 
 /**
  * Link types the graph leaves out. "See" links are most of the links but the loosest: they would

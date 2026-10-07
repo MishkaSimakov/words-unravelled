@@ -106,8 +106,6 @@ toolkit/src/query/index.js       buildIndex and its lookups: entry, episode, epi
 toolkit/src/query/search.js      search, as on the site
 toolkit/src/query/plain.js       plainMentions: notes that name an entry without linking to it
 toolkit/src/query/groups.js      groupBy, the grouping the indexes and checks share
-toolkit/src/query/graph.js       linkGraph: the entries the graph page shows and the links between them
-toolkit/src/query/layout.js      galaxyLayout: where each entry sits on the graph page
 toolkit/src/checks/              problems() and introduced(); codes.js lists every problem code;
                                  silenced.js: silenced warnings;
                                  invariants.js: dataChanges and linkResolutions;
@@ -260,6 +258,7 @@ npm run dev        # http://localhost:5173, reads ../data live; debug mode and t
 npm run build      # -> site/dist (data copied into dist/data, 404.html is the app shell)
 npm run preview
 npm run check      # svelte-check
+npm test           # tests in test/ (node --test; test/setup.js resolves #toolkit/* as Vite does)
 ```
 
 The site is a SvelteKit single-page app (`ssr = false`, adapter-static with a `404.html`
@@ -280,7 +279,9 @@ site/src/lib/edit/           the review tool (dev only): edit forms, the merge a
                              the /review list, and the flow every edit goes through (edits.svelte.js)
 site/src/lib/entries.js      categories, display forms, role order, link titles
 site/src/lib/graph/          the graph page: GraphView (panel, search, card), canvas.js (drawing
-                             and forces, with force-graph), data.js (the graph and its layout)
+                             and forces, with force-graph), graph.js (linkGraph: the entries it
+                             shows and the links between them), layout.js (galaxyLayout: where
+                             each entry sits), data.js (both, cached per loaded dataset)
 site/src/lib/format.js       numbers, plurals, times, dates
 site/src/lib/paths.js        links under the base path
 site/src/lib/youtube.js      YouTube URLs and the IFrame API loader

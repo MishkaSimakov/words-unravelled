@@ -1,7 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { linkGraph } from '../../src/query/graph.js'
-import { buildIndex } from '../../src/query/index.js'
+import { linkGraph } from '#lib/graph/graph.js'
+import { buildIndex } from '#toolkit/query/index.js'
 
 const entry = (slug, ...notes) => ({
   slug, term: slug, original: null, translation: null, language: 'English', category: 'word',

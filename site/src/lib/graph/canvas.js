@@ -1,7 +1,7 @@
 // The graph page's canvas: the link graph drawn Obsidian-style with force-graph. Nodes start at
-// their galaxy layout positions (toolkit query/layout.js) and a spring holds each one there, so
-// the simulation only adjusts them locally and after a drag. GraphView.svelte drives it: filters,
-// selection, search matches and settings go in through the returned object.
+// their galaxy layout positions (layout.js) and a spring holds each one there, so the simulation
+// only adjusts them locally and after a drag. GraphView.svelte drives it: filters, selection,
+// search matches and settings go in through the returned object.
 import ForceGraph from 'force-graph'
 
 // Categories that get their own colour; the rest (mostly words) stay the neutral node colour.
@@ -43,7 +43,7 @@ function anchorForce() {
 }
 
 /**
- * Nodes and links for force-graph from a link graph (toolkit query/graph.js) and its layout.
+ * Nodes and links for force-graph from a link graph (graph.js) and its layout.
  * `name(entry)` is the label.
  */
 export function graphNodes(graph, layout, name) {
