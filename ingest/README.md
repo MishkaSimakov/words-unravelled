@@ -98,12 +98,17 @@ to `3-record.json`; `run.js` writes the agent's log, `3-agent-log.md`, as it goe
 Every tool that changes something applies completely or not at all. It is refused if the data
 would have errors: the toolkit's errors (**Checks** in the main README), plus the rules
 that only bind the agent: a note of more than 30 words (counting link text) or an empty one, and
-a timestamp that starts no transcript line. On success it returns the warnings the episode now
-introduces, compared with the data before it (so never the known warnings of older data), plus
-`homograph-unglossed` for a new glossed entry whose homograph has no gloss, and for each new
-entry it touched, existing entries it may duplicate (`possible_matches`: the same term or
-original form, the same name up to an article, spacing, hyphens or a plural ending, and the best
-search results). The prompt tells the agent to treat each warning as a question.
+a timestamp that starts no transcript line (the error names the nearest lines). One error
+rejects the whole change, so a submission with one bad item is sent again whole, but `data/`
+never holds half of a change. On success it returns:
+- the warnings the episode now introduces, compared with the data before it (so never the known
+  warnings of older data), plus `homograph-unglossed` for a new glossed entry whose homograph
+  has no gloss. The prompt tells the agent to treat each warning as a question;
+- for each new entry it touched, existing entries it may duplicate (`possible_matches`: the same
+  term or original form, or the same name up to an article, spacing, hyphens or a plural ending);
+- for each link in the notes it touched that leads to an entry of another episode, that entry's
+  name, category and first note (`links_to_existing`), so a link that resolves to a different
+  thing of the same spelling shows.
 
 The log has everything the agent wrote, every tool call with its arguments and every result,
 and the cost at the end; the prompt asks the agent to say what it is doing and why before each
@@ -165,8 +170,8 @@ as `4-verify.diff` in the failed run's folder.
    tools, the categories or the data;
 5. **possible links to the new entries**, found by the toolkit, not the agent: for each new
    entry, links in other episodes' notes that led nowhere before and now lead to it (check they
-   mean this sense), and notes of other episodes that name it in plain text. At most 10 of
-   each, with the totals.
+   mean this sense), and notes of other episodes that name it in plain text (not for language
+   names, which notes don't link). At most 10 of each, with the totals.
 
 ## Reviewing an episode
 

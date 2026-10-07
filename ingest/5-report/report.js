@@ -14,6 +14,7 @@ import { join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { linkResolutions } from '../../toolkit/src/checks/invariants.js'
 import { entryName } from '../../toolkit/src/model/schema.js'
+import { slugText } from '../../toolkit/src/model/slugs.js'
 import { buildIndex, episode as findEpisode } from '../../toolkit/src/query/index.js'
 import { plainMentions } from '../../toolkit/src/query/plain.js'
 import { formatTimestamp } from '../lib/episode.js'
@@ -44,8 +45,10 @@ export function possibleLinks(before, after, id, glosses = []) {
     if (!list.some((x) => x.mention === mention)) list.push({ entry, mention })
     captured.set(slug, list)
   }
+  // Notes don't link language names ("from Scottish Gaelic"), so their plain-text mentions aren't missing links.
+  const languages = new Set(after.entries.map((e) => slugText(e.language)).filter(Boolean))
   return created.map((entry) => {
-    const plain = plainMentions(index, entry.slug).filter((x) => x.mention.episode_id !== id)
+    const plain = languages.has(slugText(entry.term)) ? [] : plainMentions(index, entry.slug).filter((x) => x.mention.episode_id !== id)
     const links = captured.get(entry.slug) ?? []
     return { entry, captured: links.slice(0, PER_ENTRY), capturedTotal: links.length, plain: plain.slice(0, PER_ENTRY), plainTotal: plain.length }
   })

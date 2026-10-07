@@ -18,7 +18,7 @@ import { ENTRY_FIELDS, entryName } from '../../toolkit/src/model/schema.js'
 import { entrySlug, slugify } from '../../toolkit/src/model/slugs.js'
 import { transcriptTimes } from '../../toolkit/src/model/transcript.js'
 import { addTo } from '../../toolkit/src/query/groups.js'
-import { backlinks, buildIndex, episode as findEpisode, episodeCounts, episodeMentions, homographs } from '../../toolkit/src/query/index.js'
+import { backlinks, buildIndex, episode as findEpisode, episodeCounts, episodeMentions, homographs, noteParts } from '../../toolkit/src/query/index.js'
 import { resolveLink } from '../../toolkit/src/query/links.js'
 import { search } from '../../toolkit/src/query/search.js'
 import { formatTimestamp, parseTimestamp } from '../lib/episode.js'
@@ -50,6 +50,13 @@ const brief = (p) => ({ code: p.code, message: p.message })
 export function createTools({ data, episode, transcript, save = () => {}, record = () => {} }) {
   const id = episode.id
   const times = transcriptTimes(transcript)
+  const sortedTimes = [...times].sort((a, b) => a - b)
+  // The transcript lines around a time that starts none, for the error message.
+  const nearest = (t) => {
+    const before = sortedTimes.filter((x) => x < t).at(-1)
+    const after = sortedTimes.find((x) => x > t)
+    return [before, after].filter((x) => x !== undefined).map(formatTimestamp).join(' and ')
+  }
   // `base` is the data without this episode's mentions, with the glosses set_gloss added: the
   // warnings the agent sees are those `current` has and `base` doesn't.
   let base = addEpisode(data, episode)
@@ -101,7 +108,11 @@ export function createTools({ data, episode, transcript, save = () => {}, record
       if (!mention.note.trim()) found.push({ code: 'note-empty', message: `${name}: the note is empty.` })
       if (words > MAX_NOTE_WORDS) found.push({ code: 'note-too-long', message: `${name}: the note has ${words} words; at most ${MAX_NOTE_WORDS}.` })
       if (!times.has(mention.t)) {
-        found.push({ code: 'timestamp-not-in-transcript', message: `${name}: no transcript line starts at ${formatTimestamp(mention.t)}.` })
+        const around = nearest(mention.t)
+        found.push({
+          code: 'timestamp-not-in-transcript',
+          message: `${name}: no transcript line starts at ${formatTimestamp(mention.t)}${around ? `; the nearest lines start at ${around}` : ''}.`,
+        })
       }
     }
     return found
@@ -127,8 +138,9 @@ export function createTools({ data, episode, transcript, save = () => {}, record
 
   const warnings = () => [...newProblems(baseProblems, problems(current)), ...extractionWarnings()]
 
-  // Existing entries a new entry may duplicate: same term or original, the same name up to an
-  // article, spacing, hyphens or a plural ending, and the best search results.
+  // Existing entries a new entry may duplicate: the same term or original form, or the same
+  // name up to an article, spacing, hyphens or a plural ending. (Not fuzzy search results: in a
+  // real run they were mostly noise, like Toronto and pronto.)
   const matches = (slugs) => {
     const out = {}
     for (const slug of slugs) {
@@ -141,10 +153,25 @@ export function createTools({ data, episode, transcript, save = () => {}, record
         for (const e of baseKeys.byOriginal.get(slugify(form)) ?? []) found.add(e)
         const term = baseIndex.links.byTerm.get(slugify(form))
         for (const e of term ?? []) found.add(e)
-        for (const e of search(baseIndex, form).slice(0, 3)) found.add(e)
       }
       const list = [...found].map((e) => describe(e, baseIndex))
       if (list.length) out[slug] = list
+    }
+    return out
+  }
+
+  // Where the links in the notes of these mentions lead, when they lead to an entry of other
+  // episodes: its name and its first note, so a link to the wrong thing of the same name shows.
+  const linksToExisting = (slugs) => {
+    const out = []
+    const ownSlugs = new Set(own().map((x) => x.entry.slug))
+    for (const { entry, mention } of own()) {
+      if (!slugs.includes(entry.slug)) continue
+      for (const part of noteParts(index, mention)) {
+        if (typeof part === 'string' || !part.slug || ownSlugs.has(part.slug)) continue
+        const target = index.links.bySlug.get(part.slug)
+        out.push({ in: entry.slug, target: part.target, leads_to: target.slug, name: entryName(target), category: target.category, first_note: target.mentions[0]?.note ?? '' })
+      }
     }
     return out
   }
@@ -178,6 +205,8 @@ export function createTools({ data, episode, transcript, save = () => {}, record
     const result = { ok: true, ...summary(), warnings: changed() }
     const possible = matches(touched === 'all' ? own().map((x) => x.entry.slug) : touched)
     if (Object.keys(possible).length) result.possible_matches = possible
+    const links = linksToExisting(touched === 'all' ? own().map((x) => x.entry.slug) : touched)
+    if (links.length) result.links_to_existing = links
     return result
   }
 
@@ -322,7 +351,7 @@ export function createTools({ data, episode, transcript, save = () => {}, record
       const list = items()
       const { t, role, note, confidence } = list[at]
       list[at] = { slug: into, t, role, note, confidence }
-      return apply(retargetOwn(list, slug, entryName(target)), [])
+      return apply(retargetOwn(list, slug, entryName(target)), [into])
     },
 
     set_gloss({ slug, gloss }) {

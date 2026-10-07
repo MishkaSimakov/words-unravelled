@@ -82,14 +82,14 @@ register('list', "This episode's mentions as they are now, in time order.", {}, 
 
 register(
   'submit',
-  "Replaces all of this episode's mentions with this list. Each item is a mention of an existing entry (slug) or of a new entry (entry). Errors reject the whole list. On success, returns the warnings this episode introduces and, for each new entry, existing entries it may duplicate.",
+  "Replaces all of this episode's mentions with this list. Each item is a mention of an existing entry (slug) or of a new entry (entry). Errors reject the whole list. On success, returns the warnings this episode introduces, for each new entry the existing entries it may duplicate, and where each link to an entry of another episode leads.",
   { entries: z.array(item).min(1) },
   (input) => tools.submit(input),
 )
 
 register(
   'add',
-  "Adds mentions to this episode, in the same format as submit. Errors reject them all. Returns this episode's warnings and possible matches of the new entries.",
+  "Adds mentions to this episode, in the same format as submit. Errors reject them all. Returns this episode's warnings, possible matches of the new entries and where their links lead.",
   { entries: z.array(item).min(1) },
   (input) => tools.add(input),
 )

@@ -26,12 +26,15 @@ and set `confidence` to `"low"`).
    once, so search a batch of candidates in one call. Look at an entry with `entry` when you
    aren't sure it is the same thing.
    - If an existing entry is the same thing, **reuse it** (give its `slug`), even when the
-     hosts say it differently.
-   - If it is a different word with the same spelling, see "Same spelling, different words".
+     hosts say it differently. Same thing means what its notes are about, not only its
+     spelling: read them (`entry`) before you reuse it.
+   - If it is a different thing with the same spelling, see "Same spelling, different words".
    - Search also for what your notes name, so that you can link to it (see "Links").
 3. **Submit** the whole list with `submit`. Errors reject it all: fix them and submit again.
-   On success it returns the warnings your entries introduce and, for each new entry, existing
-   entries it may duplicate (`possible_matches`). Check every possible match.
+   On success it returns the warnings your entries introduce; for each new entry, existing
+   entries it may duplicate (`possible_matches`); and for each link to an entry of another
+   episode, what that entry is, with its first note (`links_to_existing`). Check every possible
+   match and every link: a link to a different thing of the same name is wrong (see "Links").
 4. **Fix** what needs fixing with `edit`, `merge` (a new entry that exists already), `remove`,
    `add` and `set_gloss`, or with another `submit`. Each returns the episode's warnings as they
    are now. `list` shows the episode as it is.
@@ -107,6 +110,10 @@ When in doubt between `subject` and `aside`, choose `aside`.
 - A word that names both a people and their language or script (*Phoenician*) is one entry.
 - A taxon written as such (*Monodon monoceros*, *Mysticeti*) is its own entry, separate from
   the common name (*narwhal*) when the hosts discuss both.
+- Different names of one place or thing (*Constantinople* and *Istanbul*, *Naarm* and
+  *Melbourne*) are separate entries when the hosts say something about each name (what it
+  means, where it comes from); link them to each other with `see`. A name the hosts only
+  mention goes in the note of the entry they discuss.
 - One word with several senses is one entry (*fornix* the arch and *fornix* in the brain), and
   so is one word in several languages (*skinship*, with the Japanese form in `original`),
   unless the hosts discuss the forms as separate words.
@@ -122,10 +129,14 @@ tells them apart, like a Wikipedia disambiguation suffix: a meaning for a homony
 typically the common English one, has no gloss. Leave `gloss` out unless another, different
 word has the same spelling.
 
-When your new entry is a different word from an existing entry with the same spelling and no
+This holds for names too: a given name and a city called the same (*Santiago*, a form of
+James, and *Santiago (city)*), a word and a place, two places with one name (*Perth
+(Scotland)*, *Perth (Australia)*) are different things, never one entry.
+
+When your new entry is a different thing from an existing entry with the same spelling and no
 gloss, give your entry a gloss and decide whether the existing one needs one too: if it isn't
 the obvious, plain sense of the spelling, give it one with `set_gloss`. Its links are updated
-for you.
+for you. If you are unsure whether it needs one, leave it and say so with `complain`.
 
 ## Category
 
@@ -188,7 +199,9 @@ the hosts explain is still a `name` (*Montana*).
   it is the language the name is used in, not the one it comes from: *Montana* is an
   English name, even though it comes from Spanish. `null` for a named thing whose name the
   hosts don't discuss (a person, place or work they only talk about). Every other entry has
-  a language (the name *Vulgar Latin* is English).
+  a language (the name *Vulgar Latin* is English), but only one the hosts give or that is
+  plain from what they say: if they say only "an Indigenous language", the language is `null`.
+  Never fill it in from your own knowledge.
 - `category`: see "Category".
 - `timestamp`: see "Rules".
 - `role`: see "Role".
@@ -239,7 +252,11 @@ Mark connections inside the note as `[[type:target]]`:
 | `see` | any other connection: a pun, a story, a contrast, an example | `a pun on [[see:umbles]]` |
 
 - **Link to the whole index.** When a note names something that is an entry anywhere in the
-  index, from this episode or any other, link it. Find such entries with `search`. Also link a
+  index, from this episode or any other, link it. Find such entries with `search`. Link only
+  to the same thing: a target resolves by spelling, so `[[see:Virgin Mary]]` leads to whatever
+  entry is spelt that way, perhaps a cocktail. Check `links_to_existing` after each change; if
+  a link leads to a different thing of the same name, rewrite the target with its gloss, or
+  leave the word unlinked. Also link a
   person, place, work or source word that is part of this entry's story (who coined or used it,
   what it comes from, what it is compared with), even if it isn't an entry: in "named after
   Jules Léotard", link *Jules Léotard*.

@@ -35,6 +35,12 @@ describe('possibleLinks', () => {
     assert.equal(paris.plainTotal, 0)
   })
 
+  test('lists no plain-text mentions of a language name', () => {
+    const { before, after } = change([entry('Glasgow', { category: 'name' }, mention('ep-a', 10, 'From Scottish Gaelic Glaschu.')), entry('glas', { language: 'Scottish Gaelic' }, mention('ep-a', 20, 'Green.'))])
+    after.entries.push(entry('Scottish Gaelic', { category: 'about-language' }, mention(ID, 180, 'The Celtic language of Scotland.')))
+    assert.equal(of(possibleLinks(before, after, ID), 'scottish-gaelic').plainTotal, 0)
+  })
+
   test('caps each list, with the totals', () => {
     const entries = Array.from({ length: PER_ENTRY + 3 }, (_, i) => entry(`river ${i}`, {}, mention('ep-a', i, `It flows through London, stop ${i}.`)))
     const { before, after } = change(entries)

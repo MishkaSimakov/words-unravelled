@@ -125,6 +125,27 @@ describe('submit', () => {
     assert.ok(r.possible_matches.uncia.some((e) => e.slug === 'ounce'), 'original form')
   })
 
+  test('possible matches are by name, not fuzzy search', () => {
+    const { tools } = setup()
+    const r = tools.submit({ entries: [item({ term: 'batters' }, '00:03:00', 'Mixtures of flour and eggs.')] })
+    assert.deepEqual(r.possible_matches.batters.map((e) => e.slug), ['batter'])
+  })
+
+  test('shows where links to entries of other episodes lead, with their first note', () => {
+    const { tools } = setup()
+    const r = tools.submit({ entries: [item({ term: 'London', language: null, category: 'name' }, '00:01:00', 'Its pound has twelve [[see:ounce]]s, unlike [[see:Paris]].'), OUNCE] })
+    // ounce is a mention of this episode, so the agent chose it; Paris leads nowhere.
+    assert.equal(r.links_to_existing, undefined)
+    const r2 = tools.edit({ slug: 'london', fields: { note: 'Measured in [[see:inch]]es.' } })
+    assert.deepEqual(r2.links_to_existing, [{ in: 'london', target: 'inch', leads_to: 'inch', name: 'inch', category: 'word', first_note: 'From Latin [[from:uncia]], a twelfth, like [[see:ounce]]s.' }])
+  })
+
+  test('a timestamp error names the nearest transcript lines', () => {
+    const { tools } = setup()
+    const r = tools.submit({ entries: [item({ term: 'London' }, '00:01:30', 'A city.')] })
+    assert.match(r.errors[0].message, /no transcript line starts at 00:01:30; the nearest lines start at 00:01:00 and 00:02:00\./)
+  })
+
   test('warns when a new glossed entry has an unglossed homograph', () => {
     const { tools } = setup()
     const r = tools.submit({ entries: [item({ term: 'batter', gloss: 'cricket' }, '00:03:00', 'A player who bats.')] })
