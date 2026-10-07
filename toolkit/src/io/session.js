@@ -17,8 +17,8 @@ import { FILES, loadSilenced, saveData, saveSilenced, writeAtomic } from './file
  * An editing session on the data files in `dir`. Each method returns a result object:
  * - problems(): { version, active, silenced, stale }: the active problems (warnings too), the
  *   silenced ones, and the silenced records that match no problem (see applySilenced());
- * - silence(problem), unsilence(problem): problems() after silencing the warning or lifting
- *   its silence (or removing a stale record), or { problems } if refused;
+ * - silence(list), unsilence(problem): problems() after silencing the warnings in `list` (all
+ *   or none) or lifting one's silence (or removing a stale record), or { problems } if refused;
  * - preview(ops): { version, effects } (see sideEffects()), or { problems } if refused;
  * - apply(ops, version): { version, undo }, the version saved and how many steps can be
  *   undone (at most UNDO_STEPS); { problems } if refused; { conflict } if the files are no longer `version`;
@@ -62,7 +62,7 @@ export function editSession(dir) {
   return {
     problems: () => sorted(read()),
 
-    silence: (problem) => silencing((records, found) => silence(records, problem, found)),
+    silence: (list) => silencing((records, found) => list.reduce((done, problem) => silence(done, problem, found), records)),
 
     unsilence: (problem) => silencing((records) => unsilence(records, problem)),
 

@@ -1,17 +1,20 @@
 <script>
   // The /review page (dev only): every problem `check` finds, a collapsible list per code, each
   // with a link to where it is and, where there is one, a fix: merging likely duplicates, or
-  // editing the mention's note. A warning that is fine can be silenced (data/silenced.json): it
-  // moves to the silenced lists below, from which it can be brought back.
+  // editing the mention's note, or linking what a note names in plain text. link-missing is listed
+  // by the entry named, so that each term can be linked or silenced in all its notes at once. A
+  // warning that is fine can be silenced (data/silenced.json): it moves to the silenced lists
+  // below, from which it can be brought back.
   import { CODES } from '#toolkit/checks/codes.js'
   import { entryName } from '#toolkit/model/schema.js'
-  import { entry as entryBySlug, episode as episodeById } from '#toolkit/query/index.js'
+  import { backlinks, entry as entryBySlug, episode as episodeById } from '#toolkit/query/index.js'
+  import { missingLinks } from '#toolkit/query/plain.js'
   import { db } from '../db.js'
   import { plural } from '../format.js'
   import { entryHref, episodeHref } from '../paths.js'
   import { dataVersion } from '../version.svelte.js'
   import * as api from './api.js'
-  import { openMerge } from './edits.svelte.js'
+  import { openMerge, propose } from './edits.svelte.js'
   import MentionEditor from './MentionEditor.svelte'
 
   const PAGE = 50
@@ -28,9 +31,9 @@
     api.fetchProblems().then((r) => (result = r))
   })
 
-  async function change(call, problem) {
+  async function change(call, arg) {
     busy = true
-    const r = await call(problem)
+    const r = await call(arg)
     busy = false
     if (r.active) {
       result = r
@@ -51,6 +54,31 @@
   const count = (level) => result?.active?.filter((p) => p.level === level).length ?? 0
 
   const limit = (id) => shown[id] ?? PAGE
+  const nameOf = (slug) => {
+    const e = entryBySlug(db.index, slug)
+    return e ? entryName(e) : slug
+  }
+
+  // link-missing: the notes with the link added, by "slug|episode id|target", found again with
+  // every new result (which comes after the data is reloaded).
+  const fixKey = (slug, episode, target) => `${slug}|${episode}|${target}`
+  const linked = $derived.by(() => {
+    if (!result?.active) return new Map()
+    return new Map(missingLinks(db.index.data.entries).map((m) => [fixKey(m.entry.slug, m.mention.episode_id, m.target.slug), m.note]))
+  })
+  const linkOps = (list) =>
+    list
+      .filter((p) => linked.has(fixKey(p.mention.slug, p.mention.episode_id, p.detail)))
+      .map((p) => ({ op: 'editMention', args: [p.mention.slug, p.mention.episode_id, { note: linked.get(fixKey(p.mention.slug, p.mention.episode_id, p.detail)) }] }))
+  const linkOne = (p) => propose(`Link ${nameOf(p.detail)} in ${nameOf(p.mention.slug)}`, linkOps([p]))
+  const linkAll = (target) => propose(`Link ${nameOf(target.slug)} in ${plural(target.list.length, 'note')}`, linkOps(target.list))
+
+  /** link-missing problems by the entry named, most notes first. */
+  function byTarget(list) {
+    const groups = new Map()
+    for (const p of list) groups.set(p.detail, [...(groups.get(p.detail) ?? []), p])
+    return [...groups].map(([slug, list]) => ({ slug, list })).sort((a, b) => b.list.length - a.list.length || (a.slug < b.slug ? -1 : 1))
+  }
   const isDuplicate = (code) => code.startsWith('duplicate-')
   const mentionOf = (p) => {
     const entry = p.mention && entryBySlug(db.index, p.mention.slug)
@@ -81,11 +109,14 @@
       <button type="button" onclick={() => openMerge(p.slugs[0], p.slugs[1])}>Merge {p.slugs[0]} into {p.slugs[1]}…</button>
       <button type="button" onclick={() => openMerge(p.slugs[1], p.slugs[0])}>Merge {p.slugs[1]} into {p.slugs[0]}…</button>
     {/if}
+    {#if p.code === 'link-missing' && !isSilenced && linked.has(fixKey(p.mention.slug, p.mention.episode_id, p.detail))}
+      <button type="button" onclick={() => linkOne(p)}>Link it…</button>
+    {/if}
     {#if found && editing !== p}<button type="button" onclick={() => (editing = p)}>Edit the mention</button>{/if}
     {#if isSilenced}
       <button type="button" class="danger" disabled={busy} onclick={() => change(api.unsilence, p)}>Unsilence</button>
     {:else if p.level === 'warning'}
-      <button type="button" class="danger" disabled={busy} onclick={() => change(api.silence, p)}>Silence</button>
+      <button type="button" class="danger" disabled={busy} onclick={() => change(api.silence, [p])}>Silence</button>
     {/if}
   </div>
   {#if found && editing === p}<MentionEditor entry={found.entry} mention={found.mention} />{/if}
@@ -99,17 +130,40 @@
         <code>{group.code}</code> <span class="count">{group.list.length}</span>
         <span class="about">{group.about}</span>
       </summary>
-      <ol>
-        {#each group.list.slice(0, limit(id)) as p, i (i)}<li>{@render item(p, isSilenced)}</li>{/each}
-      </ol>
-      {#if group.list.length > limit(id)}
-        {@const left = group.list.length - limit(id)}
-        <button type="button" class="more" onclick={() => (shown[id] = limit(id) + PAGE)}>
-          {left > PAGE ? `Show ${PAGE} more of ${left}` : `Show the last ${left}`}
-        </button>
+      {#if group.code === 'link-missing'}
+        {#each byTarget(group.list) as target (target.slug)}
+          {@const linkedFrom = backlinks(db.index, target.slug).length}
+          <details class="target">
+            <summary>
+              <b>{nameOf(target.slug)}</b> <span class="count">{target.list.length}</span>
+              <span class="about">{linkedFrom ? `Linked from ${plural(linkedFrom, 'entry', 'entries')} already.` : 'Linked from nowhere yet.'}</span>
+            </summary>
+            {#if !isSilenced}
+              <div class="edit-actions">
+                <button type="button" onclick={() => linkAll(target)}>Link all {target.list.length}…</button>
+                <button type="button" class="danger" disabled={busy} onclick={() => change(api.silence, target.list)}>Silence all {target.list.length}</button>
+              </div>
+            {/if}
+            {@render items(`${id}:${target.slug}`, target.list, isSilenced)}
+          </details>
+        {/each}
+      {:else}
+        {@render items(id, group.list, isSilenced)}
       {/if}
     </details>
   {/each}
+{/snippet}
+
+{#snippet items(id, list, isSilenced)}
+  <ol>
+    {#each list.slice(0, limit(id)) as p, i (i)}<li>{@render item(p, isSilenced)}</li>{/each}
+  </ol>
+  {#if list.length > limit(id)}
+    {@const left = list.length - limit(id)}
+    <button type="button" class="more" onclick={() => (shown[id] = limit(id) + PAGE)}>
+      {left > PAGE ? `Show ${PAGE} more of ${left}` : `Show the last ${left}`}
+    </button>
+  {/if}
 {/snippet}
 
 <h1 class="page-title">Review</h1>
@@ -218,6 +272,16 @@
   }
   .failure {
     color: var(--rubric);
+  }
+  .target {
+    margin: 0 14px;
+    border-top: 1px dotted var(--rule);
+  }
+  .target > summary {
+    padding: 8px 0;
+  }
+  .target > .edit-actions {
+    margin: 0 0 6px 26px;
   }
   .group .more {
     margin: 10px auto 14px;

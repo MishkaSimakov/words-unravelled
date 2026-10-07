@@ -75,7 +75,7 @@ test('silence moves one warning to the silenced list, saved in silenced.json, an
   const { dir, session: s } = session(t)
   s.apply([{ op: 'editMention', args: ['gift', 'ep-b', { note: 'Another present.' }] }], s.problems().version)
   const [warning] = s.problems().active
-  const silenced = s.silence(warning)
+  const silenced = s.silence([warning])
   assert.deepEqual([silenced.active, silenced.silenced, silenced.stale], [[], [warning], []])
   assert.deepEqual(JSON.parse(readFileSync(join(dir, 'silenced.json'), 'utf8')), [
     { code: 'note-context', slugs: ['gift'], mention: { slug: 'gift', episode_id: 'ep-b' } },
@@ -87,8 +87,20 @@ test('silence moves one warning to the silenced list, saved in silenced.json, an
 test('silence and unsilence return the refusal when they cannot', (t) => {
   const { session: s } = session(t)
   const warning = { level: 'warning', code: 'note-context', message: 'm', slugs: ['gift'], mention: { slug: 'gift', episode_id: 'ep-b' } }
-  assert.deepEqual(s.silence(warning).problems.map((p) => p.code), ['silence-unknown'])
+  assert.deepEqual(s.silence([warning]).problems.map((p) => p.code), ['silence-unknown'])
   assert.deepEqual(s.unsilence(warning).problems.map((p) => p.code), ['silence-unknown'])
+})
+
+test('silence takes several warnings at once, and silences none if one is refused', (t) => {
+  const { dir, session: s } = session(t)
+  const ops = ['gift', 'inch'].map((slug) => ({ op: 'editMention', args: [slug, 'ep-b', { note: 'Another word.' }] }))
+  s.apply(ops, s.problems().version)
+  const warnings = s.problems().active.filter((p) => p.code === 'note-context')
+  assert.equal(warnings.length, 2)
+  const unknown = { ...warnings[0], slugs: ['ounce'], mention: { slug: 'ounce', episode_id: 'ep-b' } }
+  assert.deepEqual(s.silence([...warnings, unknown]).problems.map((p) => p.code), ['silence-unknown'])
+  assert.equal(readFileSync(join(dir, 'silenced.json'), 'utf8'), '[]\n')
+  assert.deepEqual(s.silence(warnings).silenced, warnings)
 })
 
 test('a silenced record that matches no problem any more is listed as stale', (t) => {

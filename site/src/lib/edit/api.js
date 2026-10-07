@@ -16,7 +16,7 @@ async function call(method, name, body) {
 }
 
 export const fetchProblems = () => call('GET', 'problems')
-export const silence = (problem) => call('POST', 'silence', { problem })
+export const silence = (problems) => call('POST', 'silence', { problems })
 export const unsilence = (problem) => call('POST', 'unsilence', { problem })
 export const preview = (ops) => call('POST', 'preview', { ops })
 export const apply = (ops, version) => call('POST', 'apply', { ops, version })

@@ -104,7 +104,8 @@ toolkit/src/query/links.js       linkIndex and resolveLink
 toolkit/src/query/index.js       buildIndex and its lookups: entry, episode, episodeMentions,
                                  episodeCounts, noteParts (resolved links), backlinks, homographs
 toolkit/src/query/search.js      search, as on the site
-toolkit/src/query/plain.js       plainMentions: notes that name an entry without linking to it
+toolkit/src/query/plain.js       notes that name an entry without linking to it: termFinder,
+                                 plainMentions, and missingLinks for terms about language
 toolkit/src/query/groups.js      groupBy, the grouping the indexes and checks share
 toolkit/src/checks/              problems() and introduced(); codes.js lists every problem code;
                                  silenced.js: silenced warnings;
@@ -145,7 +146,15 @@ code with its level and meaning.
   - link targets that resolve to nothing but are close to an entry, a link to its own entry
     included;
   - notes that start as if next to other entries ("Another…", "Also…", "One of the…", "The
-    same…").
+    same…");
+  - notes that name a term about language in plain text without linking to it anywhere in the
+    note (`link-missing`), one warning per note and term. The terms are the `about-language`
+    entries with at least 3 letters, except names of languages (any entry's `language`, so
+    "from Latin" needs no link). A note names a term by its term or original form, as whole
+    words without case or accents, the last word perhaps inflected ("eggcorned"); a match
+    inside a longer one doesn't count ("rhyming slang" doesn't name slang). The warning carries
+    the fix: `missingLinks()` returns each note with its first naming made a `see` link that
+    reads the same (`An [[see:eggcorn]]ed spelling`).
 
   Duplicate detection compares every pair of entries, so `warnings: false` skips the warnings
   when only errors matter.
@@ -233,8 +242,8 @@ from the two versions alone, so it can't drift from what the edits do:
 - the problems, warnings included, that the edit introduced.
 
 `editSession(dir)` (`io/session.js`, Node only) edits the data files. `problems()` returns the
-active, silenced and stale problems, and `silence(problem)` and `unsilence(problem)` change
-`silenced.json`. `preview(ops)` returns the
+active, silenced and stale problems, and `silence(problems)` (a list, all or none) and
+`unsilence(problem)` change `silenced.json`. `preview(ops)` returns the
 side effects without writing; `apply(ops, version)` saves, but only if the files are still the
 version the preview saw; `undo()` restores the files before the last apply, while they are still
 as it left them (up to 20 steps). Each call reads the files afresh, so edits made by hand or by
@@ -334,6 +343,9 @@ the endpoint that writes the data exists only in the dev server (`vite.config.js
 - **`/review`** lists every active problem `check` finds, one collapsible list per kind, 50 at a time:
   likely duplicates with a merge in either direction, and problems in notes with the mention's
   editor. It is checked again after every edit.
+  - `link-missing` is listed by the term named, most notes first, with how many entries link to
+    it already. **Link it** adds the link to one note; **Link all** adds it to every note listed
+    under the term, and **Silence all** silences them all.
   - **Silence** moves a warning to the collapsible **Silenced** section below, with its own list
     per kind. Each silenced warning can be brought back with **Unsilence**.
   - Silenced warnings whose problem is gone are listed under "no longer found", each with a
