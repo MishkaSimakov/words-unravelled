@@ -4,13 +4,14 @@
 Reads:
     data/entries.json        built by data/build.py
 Writes:
-    data/graph-layout.json   {slug: [x, y]} for every entry, in graph units (a link is about 30)
+    data/graph-layout.json   {slug: [x, y]} for every entry in the graph, in graph units (a link
+                             is about 30)
 
 The graph has an edge between two entries when a mention note of one links to the other, except
-for "see" links: they are most of the links but the loosest, and the graph page hides them by
-default, so they don't shape the layout. Its connected components are laid out one by one, then arranged like a galaxy: the largest
-component is the core, at the origin, and the others are islands around it, bigger ones nearer the
-core and single entries (orphans) furthest out, none overlapping.
+for "see" links: they are most of the links but the loosest, and would tie most entries into one
+tangle. Entries without other links are left out, as on the graph page. The connected components
+are laid out one by one, then arranged like a galaxy: the largest component is the core, at the
+origin, and the others are islands around it, bigger ones nearer the core, none overlapping.
 
 Each component is drawn by stress majorization: entries try to sit LINK units apart per link on
 the shortest path between them, which draws the mostly tree-shaped components as clean branching
@@ -195,10 +196,10 @@ def close_pairs(C, radii, slack=80.0):
 
 
 def galaxy_layout(entries):
-    """{slug: [x, y]} for every entry."""
+    """{slug: [x, y]} for every entry with a link, and the components they form."""
     rng = np.random.default_rng(SEED)
     slugs, adj = build_graph(entries)
-    comps = components(adj)
+    comps = [c for c in components(adj) if len(c) > 1]
     shapes = []
     for comp in comps:
         X = stress_layout(adj, comp, rng)
@@ -207,11 +208,11 @@ def galaxy_layout(entries):
         shapes.append(X @ R.T)
     radius = lambda X: float(np.sqrt((X ** 2).sum(1)).max())
     centres = place_islands(shapes[0], [radius(X) + PAD for X in shapes[1:]], rng)
-    pos = np.zeros((len(slugs), 2))
-    pos[comps[0]] = shapes[0]
-    for comp, X, c in zip(comps[1:], shapes[1:], centres):
-        pos[comp] = X + c
-    return {s: [round(float(x)), round(float(y))] for s, (x, y) in zip(slugs, pos)}, comps
+    layout = {}
+    for comp, X, c in zip(comps, shapes, [np.zeros(2), *centres]):
+        for v, (x, y) in zip(comp, X + c):
+            layout[slugs[v]] = [round(float(x)), round(float(y))]
+    return dict(sorted(layout.items())), comps
 
 
 def main():
@@ -220,10 +221,8 @@ def main():
     layout, comps = galaxy_layout(entries)
     out = DATA / "graph-layout.json"
     out.write_text(json.dumps(layout, separators=(",", ":")) + "\n", encoding="utf-8")
-    singles = sum(len(c) == 1 for c in comps)
-    print(f"{len(layout)} entries: a core of {len(comps[0])}, {len(comps) - 1 - singles} islands, "
-          f"{singles} unlinked entries -> {out.relative_to(DATA.parent)} ({time.time() - t0:.0f} s)",
-          file=sys.stderr)
+    print(f"{len(layout)} linked entries: a core of {len(comps[0])} and {len(comps) - 1} islands "
+          f"-> {out.relative_to(DATA.parent)} ({time.time() - t0:.0f} s)", file=sys.stderr)
 
 
 if __name__ == "__main__":

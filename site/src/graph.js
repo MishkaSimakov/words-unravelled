@@ -1,5 +1,6 @@
-// Graph view (prototype): every entry as a node, links in mention notes as edges, drawn
-// Obsidian-style with force-graph. Loaded on demand from main.js, so the rest of the site
+// Graph view (prototype): entries as nodes and the links in mention notes as edges, drawn
+// Obsidian-style with force-graph. "See" links are left out (they are most of the links but the
+// loosest, and tied most entries into one tangle), and so are entries without other links. Loaded on demand from main.js, so the rest of the site
 // doesn't pay for the library. Nodes start where data/layout.py put them (data/graph-layout.json)
 // and are anchored there, so the simulation only adjusts them locally and after a drag.
 import ForceGraph from 'force-graph'
@@ -8,10 +9,6 @@ import ForceGraph from 'force-graph'
 const COLORED_CATEGORIES = ['expression', 'name', 'about-language']
 
 const DEFAULTS = {
-  orphans: false,
-  asides: true,
-  seeLinks: false, // the layout (data/layout.py) ignores them too
-  unrelatedLinks: true,
   colorByCategory: true,
   textFade: 2.2, // zoom level at which labels start to fade in
   nodeSize: 1,
@@ -22,34 +19,32 @@ const DEFAULTS = {
   linkDistance: 30,
 }
 
-// Link types that can be switched off, and the setting that switches each one.
-const LINK_TYPE_SETTINGS = { see: 'seeLinks', unrelated: 'unrelatedLinks' }
+// Link types the graph leaves out (data/layout.py leaves out the same).
+const IGNORED_LINK_TYPES = new Set(['see'])
 
 /**
- * Nodes and undirected, de-duplicated links from the links data/build.py resolved in mention notes.
- * A link keeps every type it was given between its two entries.
+ * Nodes and undirected, de-duplicated links from the links data/build.py resolved in mention notes,
+ * without entries that have no links. A link keeps every type it was given between its two entries.
  */
 function buildGraph({ db, nameText, layout }) {
-  const nodes = db.entries.map((entry) => ({
+  const all = db.entries.map((entry) => ({
     id: entry.slug,
     entry,
     anchor: layout[entry.slug] ?? null, // [x, y] from data/layout.py
     term: nameText(entry),
     category: entry.category,
-    // Only ever an aside (or passing mention), never the subject of a mention.
-    aside: !entry.mentions.some((m) => m.role === 'subject'),
     neighbors: new Set(),
     shownNeighbors: new Set(), // neighbours over the links currently drawn
     links: [],
   }))
-  const byId = new Map(nodes.map((n) => [n.id, n]))
+  const bySlug = new Map(all.map((n) => [n.id, n]))
   const links = []
   const byKey = new Map()
-  for (const node of nodes) {
+  for (const node of all) {
     for (const mention of node.entry.mentions) {
       for (const { slug, type } of mention.links ?? []) {
-        const other = byId.get(slug)
-        if (!other || other === node) continue
+        const other = bySlug.get(slug)
+        if (!other || other === node || IGNORED_LINK_TYPES.has(type)) continue
         const key = [node.id, other.id].sort().join('\n')
         if (byKey.has(key)) {
           byKey.get(key).types.add(type)
@@ -65,14 +60,15 @@ function buildGraph({ db, nameText, layout }) {
       }
     }
   }
+  const nodes = all.filter((n) => n.neighbors.size)
   for (const n of nodes) n.deg = n.neighbors.size
   placeMissing(nodes)
   for (const n of nodes) [n.x, n.y] = n.anchor
-  return { nodes, links, byId }
+  return { nodes, links, byId: new Map(nodes.map((n) => [n.id, n])) }
 }
 
 /**
- * Anchors for entries added since data/layout.py last ran: next to a linked entry that has one,
+ * Anchors for entries linked since data/layout.py last ran: next to a linked entry that has one,
  * or else on a ring just outside the graph.
  */
 function placeMissing(nodes) {
@@ -112,7 +108,6 @@ export function mountGraph(root, h) {
   for (const n of graph.nodes) categoryCounts.set(n.category, (categoryCounts.get(n.category) ?? 0) + 1)
   const categories = CATEGORIES.filter((c) => categoryCounts.has(c.id))
   const hiddenCategories = new Set()
-  const linkedCount = graph.nodes.filter((n) => n.deg).length
 
   root.innerHTML = `
     <div class="graph-canvas" role="img" aria-label="Graph of entries and the links between them"></div>
@@ -143,15 +138,6 @@ export function mountGraph(root, h) {
             )
             .join('')}
         </div>
-        <label class="graph-switch" title="Entries that only come up in passing, never as the subject">
-          <input type="checkbox" data-setting="asides" checked /> Asides
-          <span class="chip-count">${graph.nodes.filter((n) => n.aside).length}</span></label>
-        <label class="graph-switch"><input type="checkbox" data-setting="orphans" /> Orphans
-          <span class="chip-count">${graph.nodes.length - linkedCount}</span></label>
-        <label class="graph-switch" title="“See also” links"><input type="checkbox" data-setting="seeLinks" /> See links
-          <span class="chip-count">${graph.links.filter((l) => l.types.has('see')).length}</span></label>
-        <label class="graph-switch"><input type="checkbox" data-setting="unrelatedLinks" checked /> Unrelated links
-          <span class="chip-count">${graph.links.filter((l) => l.types.has('unrelated')).length}</span></label>
       </details>
       <details open>
         <summary>Display</summary>
@@ -167,7 +153,7 @@ export function mountGraph(root, h) {
         ${slider('linkForce', 'Link force', 0, 2, 0.05)}
         ${slider('linkDistance', 'Link distance', 5, 150, 1)}
       </details>
-      <p class="graph-stats">${plural(linkedCount, 'linked entry', 'linked entries')},
+      <p class="graph-stats">${plural(graph.nodes.length, 'linked entry', 'linked entries')},
         ${plural(graph.links.length, 'link')}</p>
       <button type="button" class="link-button" data-reset>Reset settings</button>
     </aside>
@@ -244,19 +230,16 @@ export function mountGraph(root, h) {
   const FONT = getComputedStyle(document.body).fontFamily
   const LABEL_SIZE = 3.6
 
-  const shown = (n) => !hiddenCategories.has(n.category) && (settings.asides || !n.aside)
-  // A link is drawn while any of its types is switched on.
-  const linkShown = (l) => [...l.types].some((t) => settings[LINK_TYPE_SETTINGS[t]] ?? true)
   const visibleData = () => {
-    const filtered = new Set(graph.nodes.filter(shown))
-    const links = graph.links.filter((l) => filtered.has(l.source) && filtered.has(l.target) && linkShown(l))
+    const filtered = new Set(graph.nodes.filter((n) => !hiddenCategories.has(n.category)))
+    const links = graph.links.filter((l) => filtered.has(l.source) && filtered.has(l.target))
     for (const n of graph.nodes) n.shownNeighbors.clear()
     for (const l of links) {
       l.source.shownNeighbors.add(l.target)
       l.target.shownNeighbors.add(l.source)
     }
-    // Orphans are judged on what's left, so hiding asides or links doesn't leave entries floating.
-    const nodes = [...filtered].filter((n) => settings.orphans || n.shownNeighbors.size)
+    // Entries whose links all lead to hidden categories go too, rather than float alone.
+    const nodes = [...filtered].filter((n) => n.shownNeighbors.size)
     return { nodes, links }
   }
 
@@ -461,20 +444,14 @@ export function mountGraph(root, h) {
       card.hidden = true
       return
     }
-    // A node hidden by the filters is brought back, so a selection always shows up.
+    // A node hidden by the category filters is brought back with its neighbours' categories,
+    // so a selection always shows up.
     if (!fg.graphData().nodes.includes(node)) {
-      hiddenCategories.delete(node.category)
-      root.querySelector(`[data-category="${CSS.escape(node.category)}"]`).checked = true
-      if (node.aside) {
-        settings.asides = true
-        root.querySelector('[data-setting="asides"]').checked = true
+      for (const n of [node, ...node.neighbors]) {
+        hiddenCategories.delete(n.category)
+        root.querySelector(`[data-category="${CSS.escape(n.category)}"]`).checked = true
       }
       fg.graphData(visibleData())
-      if (!fg.graphData().nodes.includes(node)) {
-        settings.orphans = true
-        root.querySelector('[data-setting="orphans"]').checked = true
-        fg.graphData(visibleData())
-      }
     }
     const { entry } = node
     const { original, translation } = forms(entry)
@@ -516,7 +493,8 @@ export function mountGraph(root, h) {
     if (ev.target.closest('[data-close]')) return select(null)
     const btn = ev.target.closest('[data-node]')
     if (btn) return select(graph.byId.get(btn.dataset.node), { center: true })
-    // Links in the note go to that entry's node, not its page (modifier clicks still open the page).
+    // Links in the note go to that entry's node, not its page (modifier clicks still open the
+    // page, and so do links to entries that aren't in the graph).
     const link = ev.target.closest('a.note-link')
     if (!link || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return
     const node = graph.byId.get(decodeURIComponent(new URL(link.href).pathname.split('/').pop()))
@@ -581,7 +559,6 @@ export function mountGraph(root, h) {
     const key = el.dataset.setting
     if (!key) return
     settings[key] = el.type === 'checkbox' ? el.checked : Number(el.value)
-    if (['orphans', 'asides', 'seeLinks', 'unrelatedLinks'].includes(key)) refilter()
     if (key === 'colorByCategory') readColors()
     if (FORCE_KEYS.includes(key)) applyForces()
   })

@@ -45,8 +45,8 @@ class LayoutTest(unittest.TestCase):
         np.testing.assert_allclose(steps, layout.LINK, rtol=0.05)
         self.assertAlmostEqual(np.linalg.norm(X[3] - X[0]), 3 * layout.LINK, delta=layout.LINK * 0.15)
 
-    def test_every_entry_placed_and_islands_clear_of_core_and_each_other(self):
-        # A core (a star of 12) and twenty islands: pairs, triangles and single entries.
+    def test_linked_entries_placed_and_islands_clear_of_core_and_each_other(self):
+        # A core (a star of 12), fourteen islands (pairs and triangles) and unlinked entries.
         entries = [entry("hub", *[f"leaf{i}" for i in range(12)])]
         entries += [entry(f"leaf{i}") for i in range(12)]
         for k in range(8):
@@ -55,9 +55,9 @@ class LayoutTest(unittest.TestCase):
             entries += [entry(f"t{k}a", f"t{k}b"), entry(f"t{k}b", f"t{k}c"), entry(f"t{k}c", f"t{k}a")]
         entries += [entry(f"single{k}") for k in range(6)]
         positions, comps = layout.galaxy_layout(entries)
-        self.assertEqual(set(positions), {e["slug"] for e in entries})
+        self.assertEqual(set(positions), {e["slug"] for e in entries} - {f"single{k}" for k in range(6)})
         slugs = [e["slug"] for e in entries]
-        P = np.array([positions[s] for s in slugs], float)
+        P = np.array([positions.get(s, [np.nan, np.nan]) for s in slugs], float)  # unlinked: unplaced
         core = P[comps[0]]
         circles = [(P[c].mean(0), np.linalg.norm(P[c] - P[c].mean(0), axis=1).max()) for c in comps[1:]]
         for k, (c, r) in enumerate(circles):
@@ -66,7 +66,7 @@ class LayoutTest(unittest.TestCase):
                 self.assertGreater(np.linalg.norm(c - c2), r + r2)
 
     def test_same_entries_same_layout(self):
-        entries = [entry("a", "b"), entry("b", "c"), entry("c"), entry("d", "e"), entry("e"), entry("f")]
+        entries = [entry("a", "b"), entry("b", "c"), entry("c"), entry("d", "e"), entry("e"), entry("f", "a")]
         self.assertEqual(layout.galaxy_layout(entries)[0], layout.galaxy_layout(entries)[0])
 
 

@@ -127,16 +127,17 @@ Tests: `python3 -m unittest discover data/test` (the `layout.py` tests are skipp
 ### Graph layout: data/layout.py
 
 `data/layout.py` reads `data/entries.json` and writes `data/graph-layout.json`, `{slug: [x, y]}`
-for every entry, which the graph page starts from. Two entries are linked when a note of one
-links to the other, except by a "see" link: those are most of the links but the loosest, and
-the graph page hides them by default. Each connected group of entries is drawn on its own by
-stress majorization (linked entries about 30 units apart, others as far apart as the links
-between them say, and no two closer than 20), then the groups are arranged like a galaxy: the largest group at the centre, the others as
-islands around it, bigger ones nearer the centre and unlinked entries furthest out, none
-overlapping. The result is the same for the same entries.
+for every entry on the graph page, which starts from these positions. Two entries are linked
+when a note of one links to the other, except by a "see" link: those are most of the links but
+the loosest, and would tie most entries into one tangle. Entries without other links are left
+out. Each connected group of entries is drawn on its own by stress majorization (linked entries
+about 30 units apart, others as far apart as the links between them say, and no two closer
+than 20), then the groups are arranged like a galaxy: the largest group at the centre, the
+others as islands around it, bigger ones nearer the centre, none overlapping. The result is the
+same for the same entries.
 
 Re-run it after `data/build.py` whenever entries or links change, and commit the result. Until
-then, new entries appear next to a linked entry, or outside the graph if they have none.
+then, newly linked entries appear next to an entry they link to, or outside the graph.
 
 ### Manual fixes: data/overrides.json
 
@@ -190,13 +191,13 @@ npm run preview
 
 - Pages: home (search, category chips, language filter, suggestions), `/entry/<slug>`,
   `/episode/<id>`, `/episodes`, `/graph`, `/about`.
-- The graph page (a prototype) draws every entry as a node and every note link as an edge, with
-  force-graph, loaded only on that page. Nodes start at the positions in `data/graph-layout.json`
-  and a spring holds each one there, so dragging moves a node and its neighbours, and they settle
-  back. Filters hide categories, asides (entries never the subject of a mention), unlinked
-  entries, and see and unrelated links; hidden entries leave gaps, the rest keep their places.
-  See links are hidden by default: the layout ignores them, so shown they cross between groups.
-  Clicking a node, or a link in its card, selects it; `?focus=<slug>` selects one on load.
+- The graph page (a prototype) draws entries as nodes and note links as edges, with force-graph,
+  loaded only on that page. "See" links are left out, and so are entries without other links;
+  the entry pages of entries in the graph link to them there ("Show in graph"). Nodes start at
+  the positions in `data/graph-layout.json` and a spring holds each one there, so dragging moves
+  a node and its neighbours, and they settle back. Category filters hide entries, leaving gaps,
+  and the rest keep their places. Clicking a node, or a link in its card, selects it (a link to
+  an entry that isn't in the graph opens its page); `?focus=<slug>` selects one on load.
 - Categories: chips under the search box filter by category (`?cat=name`), and each chip counts
   the entries the current search and language filter leave. On narrow screens the chips scroll
   sideways. Result cards, entry pages and episode timelines show each entry's category in

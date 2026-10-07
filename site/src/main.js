@@ -19,6 +19,7 @@ const db = {
   entries: [],
   bySlug: new Map(),
   linkedFrom: new Map(), // slug -> entries whose notes link to it
+  inGraph: new Set(), // slugs of the entries the graph page shows: linked by more than "see" links
   episodeById: new Map(),
   byEpisode: new Map(), // episode id -> [{ entry, mention }] in timestamp order
   latest: null,
@@ -287,6 +288,7 @@ async function load() {
       if (!link.slug || link.slug === entry.slug) continue
       if (!db.linkedFrom.has(link.slug)) db.linkedFrom.set(link.slug, new Set())
       db.linkedFrom.get(link.slug).add(entry)
+      if (link.type !== 'see' && db.bySlug.has(link.slug)) db.inGraph.add(entry.slug).add(link.slug)
     }
   }
 
@@ -610,7 +612,7 @@ function entryPage(slug) {
 
   main.innerHTML = `
     <nav class="crumbs"><a href="${href()}">← Search the hoard</a>
-      <a href="${href(`graph?focus=${encodeURIComponent(entry.slug)}`)}">Show in graph</a></nav>
+      ${db.inGraph.has(entry.slug) ? `<a href="${href(`graph?focus=${encodeURIComponent(entry.slug)}`)}">Show in graph</a>` : ''}</nav>
     <article class="entry">
       <header class="entry-head">
         <h1 class="headword">${nameHtml(entry)}</h1>
