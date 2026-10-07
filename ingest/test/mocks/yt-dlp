@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+// Stand-in for yt-dlp in the tests: appends its arguments to $MOCK_YTDLP_LOG (one JSON line per
+// call). Listing the channel (--flat-playlist) prints $MOCK_YTDLP_VIDEOS ("id duration" lines);
+// a download writes the captions and metadata of each video asked for, titled "Words for towns".
+import { appendFileSync, writeFileSync } from 'node:fs'
+
+const args = process.argv.slice(2)
+if (process.env.MOCK_YTDLP_LOG) appendFileSync(process.env.MOCK_YTDLP_LOG, JSON.stringify(args) + '\n')
+if (args.includes('--flat-playlist')) {
+  for (const line of (process.env.MOCK_YTDLP_VIDEOS ?? '').split(',').filter(Boolean)) console.log(line.replace(' ', '\t'))
+  process.exit(0)
+}
+const template = args[args.indexOf('-o') + 1]
+for (const url of args.filter((a) => a.startsWith('https://www.youtube.com/watch?v='))) {
+  const id = url.split('=')[1]
+  const base = template.replace('%(title)s', 'Words for towns').replace('%(id)s', id).replace('.%(ext)s', '')
+  writeFileSync(`${base}.info.json`, JSON.stringify({ id, title: 'Words for towns', upload_date: '20260401', duration: 3000 }))
+  writeFileSync(`${base}.en-orig.json3`, JSON.stringify({ events: [60, 120].map((t) => ({ tStartMs: t * 1000, segs: [{ utf8: `Line at ${t}.` }] })) }))
+}
