@@ -3,7 +3,8 @@
 // as it was), the verifier rejecting a change, and the leftovers of earlier runs.
 
 import assert from 'node:assert/strict'
-import { existsSync, mkdirSync, readdirSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
+import { basename, join } from 'node:path'
 import { after, describe, test } from 'node:test'
 import { ALLOWED_TOOLS } from '../3-extract/run.js'
 import { ID, item, makeProject, submitAndFinish } from './project.js'
@@ -48,6 +49,36 @@ describe('new-episode.sh', () => {
     // The pull request's title and body come last.
     assert.match(r.stdout, /Episode: Words for towns\n\nAdds "Words for towns" \(2026-04-01\): 2 mentions, 1 new entry; 0 warnings, 0 complaints\.\n\nReport: ingest\/runs\/newEpisode1\/5-report\.md\n$/)
     assert.equal(p.json(`${RUN}/3-record.json`).model, 'claude-test')
+  })
+
+  test('passes --cookies to yt-dlp, for listing the channel and downloading', () => {
+    const p = project({ captions: false, transcript: false })
+    // A path relative to where the script is run from, outside the repository.
+    const cookies = join(p.root, '..', `${basename(p.root)}-cookies.txt`)
+    writeFileSync(cookies, '# Netscape HTTP Cookie File\n')
+    projects.push({ remove: () => rmSync(cookies, { force: true }) })
+    const script = submitAndFinish([item({ term: 'London', language: null, category: 'name' }, '00:01:00', 'A city.')])
+    const r = p.run('ingest/new-episode.sh', ['--cookies', `../${basename(cookies)}`], { script, env: { MOCK_YTDLP_VIDEOS: `${ID} 3000,ep-c 3000` } })
+    assert.equal(r.status, 0, r.out)
+    assert.match(r.out, /Next episode: newEpisode1/)
+    assert.equal(r.log.ytdlp.length, 2, 'the listing and the download')
+    for (const args of r.log.ytdlp) assert.deepEqual(args.slice(0, 2), ['--cookies', cookies])
+  })
+
+  test('downloads without cookies when none are given', () => {
+    const p = project({ captions: false, transcript: false })
+    const r = p.run('ingest/new-episode.sh', [ID], { script: GOOD })
+    assert.equal(r.status, 0, r.out)
+    assert.equal(r.log.ytdlp.length, 1)
+    assert.ok(!r.log.ytdlp[0].includes('--cookies'))
+  })
+
+  test('refuses a cookies file that does not exist', () => {
+    const p = project()
+    const r = p.run('ingest/new-episode.sh', [ID, '--cookies', 'nowhere.txt'], { script: GOOD })
+    assert.equal(r.status, 2)
+    assert.match(r.out, /No cookies file nowhere\.txt/)
+    assert.equal(r.log, null, 'nothing was run')
   })
 
   test('refuses a dirty working tree before doing anything', () => {

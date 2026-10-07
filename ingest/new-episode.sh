@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 # Adds one new episode to data/ and commits it on a new branch, episode/<id>, for review:
 #
-#   ingest/new-episode.sh [video_id] [--model claude-opus-5-5]
+#   ingest/new-episode.sh [video_id] [--model claude-opus-5-5] [--cookies FILE]
 #
 # Without a video ID it takes the next episode (lib/next-episode.js): the oldest one on the
 # channel that is newer than every episode in data/ and has no episode/<id> branch yet. If there
-# is none, it says so and exits with 0.
+# is none, it says so and exits with 0. --cookies passes a YouTube cookies file (Netscape format)
+# to yt-dlp, for when YouTube asks to sign in; keep it outside the repository.
 #
 # Steps, each its own script (see README.md):
 #   1 1-download.sh            captions and metadata  -> 1-youtube/
@@ -18,20 +19,29 @@
 # Stops at the first step that fails. Once step 3 has started, a failure also puts data/ back as
 # it is at HEAD and moves runs/<id>/ to ingest/failed/, so the working tree is as before.
 set -euo pipefail
-cd "$(dirname "$0")"
 
-usage() { echo "Usage: ingest/new-episode.sh [video_id] [--model M]" >&2; exit 2; }
+usage() { echo "Usage: ingest/new-episode.sh [video_id] [--model M] [--cookies FILE]" >&2; exit 2; }
 id=""
 model_args=()
+cookie_args=()
 while (( $# )); do
   case "$1" in
     --model) [[ $# -ge 2 ]] || usage; model_args=(--model "$2"); shift 2 ;;
     --model=*) model_args=(--model "${1#--model=}"); shift ;;
+    --cookies) [[ $# -ge 2 ]] || usage; cookie_args=(--cookies "$2"); shift 2 ;;
+    --cookies=*) cookie_args=(--cookies "${1#--cookies=}"); shift ;;
     -h|--help) usage ;;
     *) [[ -z "$id" ]] || usage; id=$1; shift ;;
   esac
 done
+if (( ${#cookie_args[@]} )); then
+  # The scripts run from ingest/, so a relative path is made absolute first.
+  cookies=${cookie_args[1]}
+  [[ -f "$cookies" ]] || { echo "No cookies file $cookies." >&2; exit 2; }
+  cookie_args=(--cookies "$(cd "$(dirname "$cookies")" && pwd)/$(basename "$cookies")")
+fi
 
+cd "$(dirname "$0")"
 for dir in node_modules/@modelcontextprotocol ../toolkit/node_modules/fuse.js; do
   [[ -d "$dir" ]] || { echo "Dependencies missing: run npm ci in ingest/ and in toolkit/." >&2; exit 1; }
 done
@@ -42,7 +52,7 @@ fi
 
 if [[ -z "$id" ]]; then
   echo "== Looking for the next episode"
-  id=$(node lib/next-episode.js)
+  id=$(node lib/next-episode.js ${cookie_args[@]+"${cookie_args[@]}"})
   if [[ -z "$id" ]]; then
     echo "No new episode: every recent episode on the channel is in data/ or has an episode/ branch."
     exit 0
@@ -56,7 +66,7 @@ if git show-ref --verify --quiet "refs/heads/$branch"; then
 fi
 
 echo "== Step 1: download"
-./1-download.sh "$id"
+./1-download.sh ${cookie_args[@]+"${cookie_args[@]}"} "$id"
 echo "== Step 2: transcript"
 captions=$(find 1-youtube -name "*\[$id\].en-orig.json3" | head -n 1)
 ./2-make-transcripts.py "$captions"

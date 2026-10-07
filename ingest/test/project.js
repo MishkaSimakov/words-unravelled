@@ -13,6 +13,7 @@ import { small } from '../../toolkit/test/fixtures/data.js'
 
 const REPO = fileURLToPath(new URL('../../', import.meta.url))
 export const MOCK_CLAUDE = fileURLToPath(new URL('./mocks/claude.js', import.meta.url))
+const MOCKS = fileURLToPath(new URL('./mocks/', import.meta.url)) // has a mock yt-dlp, put first on PATH
 
 export const ID = 'newEpisode1'
 export const EPISODE = { id: ID, title: 'Words for towns', date: '2026-04-01', duration: 3000 }
@@ -75,7 +76,10 @@ export function makeProject({ data = small(), captions = true, transcript: withT
     read: (path) => readFileSync(at(path), 'utf8'),
     json: (path) => JSON.parse(readFileSync(at(path), 'utf8')),
     write: (path, text) => writeFileSync(at(path), text),
-    /** Runs `command` (a path in the project, or node with a script) with the mock claude playing `script`. */
+    /**
+     * Runs `command` (a path in the project, or node with a script) with the mock claude playing
+     * `script` and the mock yt-dlp; `log.ytdlp` lists the yt-dlp calls' arguments.
+     */
     run(command, args = [], { script = {}, env = {} } = {}) {
       const mock = mkdtempSync(join(tmpdir(), 'wordhoard-mock-'))
       writeFileSync(join(mock, 'script.json'), JSON.stringify(script))
@@ -83,12 +87,26 @@ export function makeProject({ data = small(), captions = true, transcript: withT
       const r = spawnSync(isNode ? process.execPath : at(command), isNode ? [at(command), ...args] : args, {
         cwd: root,
         encoding: 'utf8',
-        env: { ...process.env, CLAUDE_BIN: MOCK_CLAUDE, MOCK_SCRIPT: join(mock, 'script.json'), MOCK_LOG: join(mock, 'log.json'), ...env },
+        env: {
+          ...process.env,
+          PATH: `${MOCKS}:${process.env.PATH}`,
+          CLAUDE_BIN: MOCK_CLAUDE,
+          MOCK_SCRIPT: join(mock, 'script.json'),
+          MOCK_LOG: join(mock, 'log.json'),
+          MOCK_YTDLP_LOG: join(mock, 'ytdlp.log'),
+          ...env,
+        },
       })
       let log = null
       try {
         log = JSON.parse(readFileSync(join(mock, 'log.json'), 'utf8'))
       } catch {}
+      let ytdlp = []
+      try {
+        ytdlp = readFileSync(join(mock, 'ytdlp.log'), 'utf8').split('\n').filter(Boolean).map((line) => JSON.parse(line))
+      } catch {}
+      if (log) log.ytdlp = ytdlp
+      else if (ytdlp.length) log = { ytdlp }
       rmSync(mock, { recursive: true, force: true })
       return { status: r.status, stdout: r.stdout, stderr: r.stderr, out: r.stdout + r.stderr, log }
     },

@@ -4,6 +4,9 @@
 #
 #   ./1-download.sh                 all episodes of the channel not downloaded yet
 #   ./1-download.sh ID [ID ...]     only these video IDs (e.g. for a trial run)
+#   ./1-download.sh --cookies FILE [ID ...]
+#                                   with YouTube cookies (Netscape format) for when YouTube
+#                                   asks to sign in; yt-dlp may update the file
 #
 # The episode list comes from the channel's "Videos" tab, which doesn't contain Shorts;
 # anything shorter than MIN_MINUTES is skipped as well (trailers, clips).
@@ -21,6 +24,16 @@ MIN_MINUTES=${MIN_MINUTES:-15}
 ATTEMPTS=${ATTEMPTS:-3}
 mkdir -p 1-youtube
 
+yt=(yt-dlp)
+if [[ "${1:-}" == --cookies ]]; then
+  if [[ $# -lt 2 || ! -f "$2" ]]; then
+    echo "--cookies needs a cookies file; ${2:-none given} is not one." >&2
+    exit 2
+  fi
+  yt+=(--cookies "$2")
+  shift 2
+fi
+
 if [[ $# -gt 0 ]]; then
   ids=("$@")
 else
@@ -28,7 +41,7 @@ else
   ids=()
   while IFS=$'\t' read -r id duration; do
     [[ "$duration" =~ ^[0-9]+$ ]] && (( duration >= MIN_MINUTES * 60 )) && ids+=("$id")
-  done < <(yt-dlp --flat-playlist --print "%(id)s	%(duration)s" "$CHANNEL")
+  done < <("${yt[@]}" --flat-playlist --print "%(id)s	%(duration)s" "$CHANNEL")
   echo "${#ids[@]} episodes on the channel"
 fi
 
@@ -53,7 +66,7 @@ for (( attempt = 1; attempt <= ATTEMPTS; attempt++ )); do
   else
     echo "${#todo[@]} to download"
   fi
-  yt-dlp --write-auto-subs --sub-langs en-orig --sub-format json3 --write-info-json \
+  "${yt[@]}" --write-auto-subs --sub-langs en-orig --sub-format json3 --write-info-json \
     --skip-download --sleep-subtitles 60 --no-progress \
     --extractor-args "youtube:player_client=default,android_vr" \
     -o "1-youtube/%(title)s [%(id)s].%(ext)s" "${todo[@]/#/https://www.youtube.com/watch?v=}"

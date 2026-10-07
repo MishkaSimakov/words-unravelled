@@ -8,6 +8,7 @@ data, an independent check makes sure nothing else changed, and a report lists w
 ingest/new-episode.sh                      # the next episode on the channel not in data/ yet
 ingest/new-episode.sh foQR0vsAAIc          # ...or this one
 ingest/new-episode.sh --model claude-fable-5-1   # another model (default claude-opus-5-5)
+ingest/new-episode.sh --cookies ~/yt-cookies.txt # YouTube cookies, when YouTube asks to sign in
 ```
 
 Setup, once: `npm ci` in `toolkit/` and in `ingest/`, `pip install yt-dlp`, and a logged-in
@@ -35,6 +36,7 @@ step can also be run on its own:
 ```sh
 ingest/1-download.sh                         # all episodes not downloaded yet
 ingest/1-download.sh YBIXXAipmZw JlgQIDxufh0 # ...or only some episodes
+ingest/1-download.sh --cookies FILE [ID ...] # with YouTube cookies
 ingest/2-make-transcripts.py                 # every caption file in 1-youtube/
 node ingest/3-extract/run.js <id> [--model M] [--timeout minutes]
 node ingest/4-verify/verify.js <id>
@@ -62,11 +64,22 @@ run, so it can simply be run again.
 ## 1. Download
 
 Downloads sleep 60 s between caption files because YouTube rate-limits them (HTTP 429), so the
-full catalogue (about 100 episodes) takes about two hours. YouTube often asks datacenter IPs
-(cloud machines) to sign in; yt-dlp's `android_vr` client usually gets through, so it is tried
-after the default ones, and missing files are tried again (`ATTEMPTS`, 3 by default). The
-script exits with 1 if captions or metadata are still missing, for example when YouTube hasn't
-made the auto-captions yet, which can take hours after an upload.
+full catalogue (about 100 episodes) takes about two hours. Missing files are tried again
+(`ATTEMPTS`, 3 by default), and the script exits with 1 if captions or metadata are still
+missing, for example when YouTube hasn't made the auto-captions yet, which can take hours after
+an upload.
+
+**When YouTube asks to sign in** ("Sign in to confirm you're not a bot"), it is blocking the
+machine's IP. yt-dlp asks YouTube as several of its apps ("player clients": the website, the TV
+app, the Apple Vision Pro app `visionos`, the app for VR headsets `android_vr`…), which YouTube
+checks differently; `1-download.sh` adds `android_vr` to yt-dlp's default set, which sometimes
+gets through. When none does, pass cookies of a signed-in YouTube session with `--cookies FILE`
+(to `new-episode.sh` or `1-download.sh`): a cookies.txt file in Netscape format, exported from
+a browser with an extension such as "Get cookies.txt LOCALLY", or with
+`yt-dlp --cookies-from-browser firefox --cookies FILE`. yt-dlp may update the file. Keep it
+outside the repository (`new-episode.sh` needs a clean working tree anyway), and preferably use
+an account you don't mind YouTube flagging. yt-dlp also warns when no JavaScript runtime is
+installed; YouTube's web clients increasingly need one ([deno](https://deno.com) by default).
 
 **Use the `en-orig` caption track.** Most episodes have auto-dubbed audio in other languages.
 On those videos YouTube's plain `en` auto-caption track is a round-trip machine translation,
@@ -190,6 +203,10 @@ environment like the session itself, and yt-dlp gets the captions through its `a
 download simply ends the run, and the next run tries again.
 
 - **Environment setup script:** `pip install yt-dlp && (cd toolkit && npm ci) && (cd ingest && npm ci)`.
+- **Cookies** (if downloads are blocked): the cookies file is a login to a YouTube account, so
+  treat it as a secret: for example keep its contents in an environment variable of the cloud
+  environment, have the setup script write it to a file outside the repository, and add
+  `--cookies <that file>` to the routine prompt's command.
 - **Schedule:** daily, or weekly a day after the episode comes out (episodes come out on
   Wednesdays; auto-captions can take hours). A run with no new episode does nothing.
 - **Routine prompt**, for example:

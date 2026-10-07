@@ -2,6 +2,7 @@
 // Prints the video ID of the next episode to add, or nothing if there is none: the oldest of the
 // channel's episodes newer than every episode in data/episodes.json that has no episode/<id>
 // branch yet, locally or on origin (one in review). Used by new-episode.sh without an ID.
+//   node lib/next-episode.js [--cookies FILE]
 
 import { execFileSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
@@ -26,7 +27,8 @@ export function nextEpisode(videos, known, branches) {
 const branchIds = (text) => new Set([...text.matchAll(/refs\/heads\/episode\/(\S+)/g)].map((m) => m[1]))
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const lines = execFileSync('yt-dlp', ['--flat-playlist', '--print', '%(id)s\t%(duration)s', CHANNEL], {
+  const cookies = process.argv[2] === '--cookies' ? ['--cookies', process.argv[3]] : []
+  const lines = execFileSync('yt-dlp', [...cookies, '--flat-playlist', '--print', '%(id)s\t%(duration)s', CHANNEL], {
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'inherit'],
   })
