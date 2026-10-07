@@ -271,7 +271,7 @@ it has loaded.
 site/src/app.html            the page shell
 site/src/app.css             colours, fonts, base styles and the classes several pages share
 site/src/routes/             pages: home (+page.svelte), entry/[slug], episode/[id], episodes,
-                             about, review (dev only), [...path] (unknown paths) and +error; +layout.svelte is the
+                             graph, about, review (dev only), [...path] (unknown paths) and +error; +layout.svelte is the
                              header, footer, loading state and the / shortcut
 site/src/lib/components/     EntryItem, EntryList, EntryName, Note, CategoryTag, Mention, Player…
 site/src/lib/db.js           loading, sorting and indexing the data (and reloading it after an edit); search
@@ -279,6 +279,8 @@ site/src/lib/debug.svelte.js the Debug switch (dev only)
 site/src/lib/edit/           the review tool (dev only): edit forms, the merge and confirmation dialogs,
                              the /review list, and the flow every edit goes through (edits.svelte.js)
 site/src/lib/entries.js      categories, display forms, role order, link titles
+site/src/lib/graph/          the graph page: GraphView (panel, search, card), canvas.js (drawing
+                             and forces, with force-graph), data.js (the graph and its layout)
 site/src/lib/format.js       numbers, plurals, times, dates
 site/src/lib/paths.js        links under the base path
 site/src/lib/youtube.js      YouTube URLs and the IFrame API loader
@@ -287,7 +289,19 @@ site/src/lib/youtube.js      YouTube URLs and the IFrame API loader
 Each component's CSS is scoped to it. `src/lib` is imported as `#lib/*`.
 
 - Pages: home (search, category chips, language filter, suggestions), `/entry/<slug>`,
-  `/episode/<id>`, `/episodes`, `/about`.
+  `/episode/<id>`, `/episodes`, `/graph`, `/about`.
+- The graph page (a prototype) draws entries as nodes and the links in their notes as edges,
+  with force-graph. "See" links are left out (they are most of the links but the loosest, and
+  would tie most entries into one tangle), and so are entries without other links; entry pages
+  of the entries it shows link to them there ("Show in graph"). The layout is computed when the
+  page opens (`galaxyLayout()`, a fraction of a second): each group of linked entries is drawn on
+  its own by stress majorization (linked entries about 30 units apart, no two closer than 20),
+  then the groups are arranged like a galaxy, the largest in the middle and bigger ones nearer
+  it, none overlapping. A spring holds each node at its place, so dragging moves a node and its
+  neighbours, and they settle back. Unrelated links (a resemblance that isn't a connection, like
+  *emoji* and *emotion*) are red dashes. Category filters hide entries, leaving gaps. Clicking a
+  node, or a link in its card, selects it (a link to an entry that isn't in the graph opens its
+  page); `?focus=<slug>` selects one on load.
 - Categories: chips under the search box filter by category (`?cat=name`), and each chip counts
   the entries the current search and language filter leave. On narrow screens the chips scroll
   sideways. Result cards, entry pages and episode timelines show each entry's category in

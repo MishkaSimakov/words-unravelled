@@ -10,6 +10,7 @@
   import { db } from '#lib/db.js'
   import { debug } from '#lib/debug.svelte.js'
   import { forms, roleRank } from '#lib/entries.js'
+  import { inGraph } from '#lib/graph/data.js'
   import { plural } from '#lib/format.js'
   import { entryHref, href } from '#lib/paths.js'
   import { dataVersion } from '#lib/version.svelte.js'
@@ -46,7 +47,10 @@
 {#if !entry}
   <NotFound message="There is no entry called “{slug}”." suggestion={slug.replace(/-/g, ' ')} />
 {:else}
-  <nav class="crumbs"><a href={href()}>← Search the hoard</a></nav>
+  <nav class="crumbs">
+    <a href={href()}>← Search the hoard</a>
+    {#if inGraph(entry)}<a href={href(`graph?focus=${encodeURIComponent(entry.slug)}`)}>Show in graph</a>{/if}
+  </nav>
   <article class="entry">
     <header class="entry-head">
       <h1 class="headword"><EntryName {entry} /></h1>
