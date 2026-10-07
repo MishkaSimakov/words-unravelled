@@ -60,6 +60,22 @@ export function rewriteLinks(note, fn) {
   })
 }
 
+/**
+ * Where a note is plain text, as [start, end] index pairs: everything but link markup, malformed
+ * links included, and the trail that a link reads as its own text.
+ */
+export function plainSpans(note) {
+  const spans = []
+  let last = 0
+  for (const m of (note ?? '').matchAll(ANY_LINK)) {
+    if (m.index > last) spans.push([last, m.index])
+    last = m.index + m[0].length
+    if (m[1].match(TYPED_LINK)?.[3].trim()) last += note.slice(last).match(TRAIL)[0].length
+  }
+  if (last < (note ?? '').length) spans.push([last, note.length])
+  return spans
+}
+
 /** The link markup parseNote() can't read, as written: [[...]] without a type or target, and stray [[ or ]]. */
 export function malformedLinks(note) {
   const found = []

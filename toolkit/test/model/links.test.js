@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { formatLink, malformedLinks, parseNote, rewriteLinks } from '../../src/model/links.js'
+import { formatLink, malformedLinks, parseNote, plainSpans, rewriteLinks } from '../../src/model/links.js'
 
 const link = (type, target, text, uncertain = false) => ({ type, uncertain, target, text })
 
@@ -83,4 +83,11 @@ test('malformedLinks finds links without a type or target, aliases and stray bra
 test('malformedLinks accepts well-formed links, whatever their type', () => {
   assert.deepEqual(malformedLinks('[[see:ounce]]s and [[nonsense:x]]'), [])
   assert.deepEqual(malformedLinks(''), [])
+})
+
+test('plainSpans leaves out link markup and trails, malformed links included', () => {
+  const note = 'Like [[see:ounce]]s and [[broken]], then text.'
+  assert.deepEqual(plainSpans(note).map(([a, b]) => note.slice(a, b)), ['Like ', ' and ', ', then text.'])
+  assert.deepEqual(plainSpans('[[see:ounce]]'), [])
+  assert.deepEqual(plainSpans(''), [])
 })

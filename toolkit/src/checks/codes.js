@@ -26,6 +26,7 @@ export const CODES = {
   'link-ambiguous': { level: 'error', about: 'a link target that only original forms match, several of them' },
   'link-needs-gloss': { level: 'error', about: 'a link target names a term without a gloss, and only glossed entries have that term' },
   'link-unresolved-close': { level: 'warning', about: 'a link target that resolves to nothing, but is close to an entry' },
+  'link-missing': { level: 'warning', about: 'a note names a term about language (eggcorn, collective noun) without linking to it' },
   // Likely duplicates
   'duplicate-variant': { level: 'warning', about: 'two entries differ only by a leading article or "to", spacing or hyphens' },
   'duplicate-plural': { level: 'warning', about: 'two entries differ only by a plural ending' },

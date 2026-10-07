@@ -52,6 +52,8 @@ test('entrySlug adds the gloss when there is one', () => {
 test('fold keeps one character per character', () => {
   assert.equal(fold('Café'), 'cafe')
   assert.equal(fold('Ælf').length, 3)
+  // An emoji is two code units, and stays two.
+  assert.equal(fold('A😀İb'), 'a😀ib')
 })
 
 test('fileAs files under the first letter, with unfoldable letters spelt out', () => {

@@ -142,6 +142,12 @@ const CASES = {
     nearMiss: added(entry('uncial', { language: 'Latin' }, mention('ep-c', 600, 'A script.'))),
     slugs: ['ounce', 'uncia'],
   },
+  'link-missing': {
+    // cartouche's note says "A doublet of [[same-root:cartridge]]".
+    raised: added(entry('doublet', { category: 'about-language' }, mention('ep-c', 600, 'Two words from one root.'))),
+    nearMiss: added(entry('doublet', {}, mention('ep-c', 600, 'A close-fitting jacket.'))),
+    slugs: ['cartouche', 'doublet'],
+  },
   'note-context': {
     raised: note('acrobat', 'Another walker on tiptoe.'),
     nearMiss: note('acrobat', 'Also called a walker on tiptoe.'),

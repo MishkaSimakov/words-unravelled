@@ -25,8 +25,17 @@ export function slugText(text) {
 /** The slug of an entry: its term, plus the gloss if it has one ("meal (flour)" -> meal-flour). */
 export const entrySlug = (term, gloss = null) => slugify(gloss ? `${term} ${gloss}` : term)
 
-/** Lowercase and drop accents one character at a time, so indices in the result match the input. */
-export const fold = (s) => [...(s ?? '')].map((c) => c.normalize('NFD')[0].toLowerCase()).join('')
+/**
+ * Lowercase and drop accents one character at a time, so indices in the result match the input:
+ * a character whose folded form would be longer or shorter is kept as it is.
+ */
+export const fold = (s) =>
+  [...(s ?? '')]
+    .map((c) => {
+      const folded = [...c.normalize('NFD')][0].toLowerCase()
+      return folded.length === c.length ? folded : c
+    })
+    .join('')
 
 /**
  * How an entry files in the A to Z: folded, with unfoldable letters spelt out as slugs spell them

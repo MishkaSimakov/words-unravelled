@@ -2,7 +2,7 @@
 
 import { CODES, problemKey } from './codes.js'
 import { duplicateProblems } from './duplicates.js'
-import { linkProblems } from './links.js'
+import { linkProblems, missingLinkProblems } from './links.js'
 import { noteProblems } from './notes.js'
 import { entryReadable, mentionReadable, schemaProblems } from './schema.js'
 import { slugProblems } from './slugs.js'
@@ -21,7 +21,7 @@ export function problems(data, { warnings = true, transcripts = {} } = {}) {
     .filter(entryReadable)
     .map((e) => (e.mentions.every(mentionReadable) ? e : { ...e, mentions: e.mentions.filter(mentionReadable) }))
   found.push(...slugProblems(entries), ...linkProblems(entries, { warnings }))
-  if (warnings) found.push(...duplicateProblems(entries), ...noteProblems(entries))
+  if (warnings) found.push(...duplicateProblems(entries), ...missingLinkProblems(entries), ...noteProblems(entries))
   const level = (p) => (p.level === 'error' ? 0 : 1)
   return found.sort(
     (a, b) => level(a) - level(b) || ORDER.indexOf(a.code) - ORDER.indexOf(b.code) || (problemKey(a) < problemKey(b) ? -1 : 1),

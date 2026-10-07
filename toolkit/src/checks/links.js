@@ -5,6 +5,7 @@ import { entryName } from '../model/schema.js'
 import { slugify } from '../model/slugs.js'
 import { addTo } from '../query/groups.js'
 import { linkIndex, resolveLink } from '../query/links.js'
+import { missingLinks } from '../query/plain.js'
 import { problem } from './codes.js'
 import { pluralKey, spellingLimit, variantKey, withinDistance } from './duplicates.js'
 
@@ -54,6 +55,16 @@ export function linkProblems(entries, { warnings = true } = {}) {
     }
   }
   return found
+}
+
+/** Notes that name a link target (query/plain.js: linkTargets()) in plain text without linking to it. */
+export function missingLinkProblems(entries) {
+  return missingLinks(entries).map(({ entry, mention, target, text }) =>
+    problem('link-missing', `${entry.slug} in ${mention.episode_id}: "${text}" names ${entryName(target)} without a link.`, [entry.slug, target.slug], {
+      mention: { slug: entry.slug, episode_id: mention.episode_id },
+      detail: target.slug,
+    }),
+  )
 }
 
 /**
