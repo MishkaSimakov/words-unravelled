@@ -12,7 +12,6 @@ import { DATA } from './paths.js'
 
 const CHANNEL = 'https://www.youtube.com/@wordsunravelled/videos' // as in 1-download.sh
 const MIN_MINUTES = Number(process.env.MIN_MINUTES ?? 15) // shorter videos are trailers and clips
-const LOOK_AT = 20 // the newest videos on the channel
 
 /** The ID to add from the channel's videos, newest first ([{ id, duration }]); null if none. */
 export function nextEpisode(videos, known, branches) {
@@ -27,7 +26,7 @@ export function nextEpisode(videos, known, branches) {
 const branchIds = (text) => new Set([...text.matchAll(/refs\/heads\/episode\/(\S+)/g)].map((m) => m[1]))
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const lines = execFileSync('yt-dlp', ['--flat-playlist', '--print', '%(id)s\t%(duration)s', '--playlist-end', String(LOOK_AT), CHANNEL], {
+  const lines = execFileSync('yt-dlp', ['--flat-playlist', '--print', '%(id)s\t%(duration)s', CHANNEL], {
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'inherit'],
   })

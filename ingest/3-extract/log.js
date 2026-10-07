@@ -4,14 +4,11 @@
 // in the stream, so the log holds no captions.
 
 const PREFIX = /^mcp__[^_]+__/
-const MAX_RESULT = 40_000 // characters of one tool result; a full search page fits
 
 const fence = (text, lang = '') => {
   const ticks = '`'.repeat(Math.max(3, ...[...String(text).matchAll(/`+/g)].map((m) => m[0].length + 1)))
   return `${ticks}${lang}\n${text}\n${ticks}\n`
 }
-
-const truncate = (text) => (text.length > MAX_RESULT ? `${text.slice(0, MAX_RESULT)}\n… (${text.length - MAX_RESULT} more characters)` : text)
 
 const resultText = (content) =>
   typeof content === 'string' ? content : (content ?? []).map((c) => (c.type === 'text' ? c.text : `[${c.type}]`)).join('\n')
@@ -42,7 +39,7 @@ export class LogWriter {
       for (const block of Array.isArray(event.message?.content) ? event.message.content : []) {
         if (block.type !== 'tool_result') continue
         const name = this.names.get(block.tool_use_id) ?? 'tool'
-        this.write(`**← ${name}${block.is_error ? ' (error)' : ''}**\n\n${fence(truncate(resultText(block.content)), 'json')}\n`)
+        this.write(`**← ${name}${block.is_error ? ' (error)' : ''}**\n\n${fence(resultText(block.content), 'json')}\n`)
       }
     } else if (event.type === 'result') {
       const cost = event.total_cost_usd == null ? 'unknown' : `$${event.total_cost_usd.toFixed(2)}`

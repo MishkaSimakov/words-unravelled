@@ -25,10 +25,7 @@ import { formatTimestamp, parseTimestamp } from '../lib/episode.js'
 
 export const MAX_NOTE_WORDS = 30
 export const SEARCH_LIMIT = { default: 20, max: 50 }
-const MATCHES_PER_ENTRY = 6
-const LIST_CAP = 30 // mentions and backlinks shown by entry()
-const MAX_COMPLAINTS = 50
-export const MAX_GLOSSES = 10 // set_gloss calls per run: each renames an existing entry
+// Text lengths, to keep the report readable.
 const MAX_COMPLAINT = 1000
 const MAX_RETRO = 6000
 
@@ -146,7 +143,7 @@ export function createTools({ data, episode, transcript, save = () => {}, record
         for (const e of term ?? []) found.add(e)
         for (const e of search(baseIndex, form).slice(0, 3)) found.add(e)
       }
-      const list = [...found].slice(0, MATCHES_PER_ENTRY).map((e) => describe(e, baseIndex))
+      const list = [...found].map((e) => describe(e, baseIndex))
       if (list.length) out[slug] = list
     }
     return out
@@ -244,10 +241,8 @@ export function createTools({ data, episode, transcript, save = () => {}, record
         ...describe(entry),
         new: isNew(slug),
         homographs: homographs(index, entry.term).filter((e) => e !== entry).map((e) => describe(e)),
-        mentions_total: mentions.length,
-        mentions: mentions.slice(-LIST_CAP),
-        backlinks_total: links.length,
-        backlinks: links.slice(0, LIST_CAP).map((e) => ({ slug: e.slug, name: entryName(e) })),
+        mentions,
+        backlinks: links.map((e) => ({ slug: e.slug, name: entryName(e) })),
       }
     },
 
@@ -336,7 +331,6 @@ export function createTools({ data, episode, transcript, save = () => {}, record
       if (!entry) return fail('unknown-entry', isNew(slug) ? `${slug} is new in this episode: give it a gloss with edit.` : `There is no entry ${slug}.`)
       if (entry.gloss) return fail('gloss-exists', `${entryName(entry)} already has a gloss; glosses of existing entries can't change. Use complain if it is wrong.`)
       if (typeof gloss !== 'string' || !gloss.trim()) return fail('gloss-empty', 'The gloss must be a short label, like "flour" or "German".')
-      if (glosses.length >= MAX_GLOSSES) return fail('glosses-full', `At most ${MAX_GLOSSES} glosses per episode; use complain for the rest.`)
       let after, afterBase
       try {
         after = setGloss(current, slug, gloss.trim())
@@ -358,7 +352,6 @@ export function createTools({ data, episode, transcript, save = () => {}, record
       if (!baseIndex.links.bySlug.has(slug)) return fail('unknown-entry', `There is no existing entry ${slug}; complaints are about entries from other episodes.`)
       if (typeof text !== 'string' || !text.trim()) return fail('complaint-empty', 'Say what is wrong.')
       if (text.length > MAX_COMPLAINT) return fail('complaint-too-long', `At most ${MAX_COMPLAINT} characters.`)
-      if (complaints.length >= MAX_COMPLAINTS) return fail('complaints-full', `At most ${MAX_COMPLAINTS} complaints.`)
       complaints.push({ slug, name: entryName(baseIndex.links.bySlug.get(slug)), text: text.trim() })
       record({ complaints: [...complaints] })
       return { ok: true, complaints: complaints.length }

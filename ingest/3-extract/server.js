@@ -64,7 +64,7 @@ register(
   'search',
   `Searches the existing entries by term, gloss, original form and translation, as the website does (fuzzy, accents ignored, exact and prefix matches first). Takes several queries at once. Each result says how many entries matched in total; page with offset. At most ${SEARCH_LIMIT.max} results per query.`,
   {
-    queries: z.array(z.string().min(1)).min(1).max(50),
+    queries: z.array(z.string().min(1)).min(1),
     limit: z.number().int().min(1).max(SEARCH_LIMIT.max).optional().describe(`Results per query (default ${SEARCH_LIMIT.default})`),
     offset: z.number().int().min(0).optional(),
   },

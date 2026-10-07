@@ -91,7 +91,7 @@ to `3-record.json`; `run.js` writes the agent's log, `3-agent-log.md`, as it goe
 | `submit(entries)` | replaces all of this episode's mentions; an item is `{ slug, … }` for an existing entry or `{ entry: { term, gloss?, … }, … }` for a new one, with `timestamp`, `role`, `note`, `confidence` |
 | `add(entries)`, `edit(slug, fields)`, `remove(slug)` | fix single mentions; `edit` also changes the fields of an entry new in this episode (renaming it updates this episode's links) |
 | `merge(slug, into)` | turns a new entry into a mention of an existing one; this episode's links follow |
-| `set_gloss(slug, gloss)` | adds a gloss to an existing entry without one, at most 10 per episode (its links are rewritten everywhere) |
+| `set_gloss(slug, gloss)` | adds a gloss to an existing entry without one (its links are rewritten everywhere) |
 | `complain(slug, text)` | a remark about an existing entry, for the report |
 | `finish(retro)` | ends the run, with the agent's retrospective |
 

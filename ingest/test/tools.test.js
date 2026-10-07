@@ -7,7 +7,7 @@ import { dataChanges } from '../../toolkit/src/checks/invariants.js'
 import { problems } from '../../toolkit/src/checks/problems.js'
 import { data as makeData, entry, mention, small } from '../../toolkit/test/fixtures/data.js'
 import { checkChange } from '../4-verify/verify.js'
-import { MAX_GLOSSES, MAX_NOTE_WORDS, createTools } from '../3-extract/tools.js'
+import { MAX_NOTE_WORDS, createTools } from '../3-extract/tools.js'
 import { EPISODE, ID, LINES, item } from './project.js'
 
 const TRANSCRIPT = Object.keys(LINES)
@@ -266,13 +266,6 @@ describe('set_gloss', () => {
     assert.deepEqual(codes(tools.set_gloss({ slug: 'nowhere', gloss: 'x' })), ['unknown-entry'])
     assert.deepEqual(codes(tools.set_gloss({ slug: 'bat', gloss: ' ' })), ['gloss-empty'])
     assert.equal(state.saves, saves)
-  })
-
-  test(`refuses more than ${MAX_GLOSSES} glosses`, () => {
-    const entries = Array.from({ length: MAX_GLOSSES + 1 }, (_, i) => entry(`word${i}`, {}, mention('ep-a', i, 'A word.')))
-    const { tools } = setup(makeData(entries))
-    for (let i = 0; i < MAX_GLOSSES; i++) assert.equal(tools.set_gloss({ slug: `word${i}`, gloss: 'sense' }).ok, true)
-    assert.deepEqual(codes(tools.set_gloss({ slug: `word${MAX_GLOSSES}`, gloss: 'sense' })), ['glosses-full'])
   })
 
   test('refuses a gloss whose slug would take links from another entry', () => {
