@@ -298,8 +298,9 @@ Each component's CSS is scoped to it. `src/lib` is imported as `#lib/*`.
   page opens (`galaxyLayout()`, a fraction of a second): each group of linked entries is drawn on
   its own by stress majorization (linked entries about 30 units apart, no two closer than 20),
   then the groups are arranged like a galaxy, the largest in the middle and bigger ones nearer
-  it, none overlapping. A spring holds each node at its place, so dragging moves a node and its
-  neighbours, and they settle back. Unrelated links (a resemblance that isn't a connection, like
+  it, none overlapping. Nodes start there and the simulation (link and repel forces) then moves
+  them freely; a dropped node isn't pinned, so its links pull it back towards its neighbours.
+  Unrelated links (a resemblance that isn't a connection, like
   *emoji* and *emotion*) are red dashes. Category filters hide entries, leaving gaps. Clicking a
   node, or a link in its card, selects it (a link to an entry that isn't in the graph opens its
   page); `?focus=<slug>` selects one on load.

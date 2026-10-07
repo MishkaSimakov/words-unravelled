@@ -1,7 +1,7 @@
 // The graph page's canvas: the link graph drawn Obsidian-style with force-graph. Nodes start at
-// their galaxy layout positions (layout.js) and a spring holds each one there, so the simulation
-// only adjusts them locally and after a drag. GraphView.svelte drives it: filters, selection,
-// search matches and settings go in through the returned object.
+// their galaxy layout positions (layout.js), then the link and repel forces move them freely.
+// GraphView.svelte drives it: filters, selection, search matches and settings go in through the
+// returned object.
 import ForceGraph from 'force-graph'
 
 // Categories that get their own colour; the rest (mostly words) stay the neutral node colour.
@@ -12,12 +12,11 @@ export const DEFAULTS = {
   textFade: 2.2, // zoom level at which labels start to fade in
   nodeSize: 1,
   linkWidth: 1,
-  anchor: 0.3,
   repel: 10,
   linkForce: 1,
   linkDistance: 30,
 }
-const FORCE_KEYS = ['anchor', 'repel', 'linkForce', 'linkDistance']
+const FORCE_KEYS = ['repel', 'linkForce', 'linkDistance']
 
 // "Unrelated" links (a resemblance that isn't a connection) are red dashes, also when highlighted.
 const isUnrelated = (link) => link.types.size === 1 && link.types.has('unrelated')
@@ -27,21 +26,6 @@ const clamp = (x, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, x))
 const lerp = (a, b, t) => a + (b - a) * t
 const smooth = (t) => t * t * (3 - 2 * t)
 
-/** Pulls every node towards its anchor, which keeps the layout in place. */
-function anchorForce() {
-  let nodes = []
-  let strength = DEFAULTS.anchor
-  const force = (alpha) => {
-    for (const n of nodes) {
-      n.vx += (n.anchor[0] - n.x) * strength * alpha
-      n.vy += (n.anchor[1] - n.y) * strength * alpha
-    }
-  }
-  force.initialize = (ns) => (nodes = ns)
-  force.strength = (s) => ((strength = s), force)
-  return force
-}
-
 /**
  * Nodes and links for force-graph from a link graph (graph.js) and its layout.
  * `name(entry)` is the label.
@@ -49,7 +33,7 @@ function anchorForce() {
 export function graphNodes(graph, layout, name) {
   const nodes = graph.entries.map((entry) => {
     const [x, y] = layout.get(entry.slug)
-    return { id: entry.slug, entry, term: name(entry), category: entry.category, anchor: [x, y], x, y,
+    return { id: entry.slug, entry, term: name(entry), category: entry.category, x, y,
       neighbors: new Set(), shownNeighbors: new Set() }
   })
   const byEntry = new Map(nodes.map((n) => [n.entry, n]))
@@ -276,15 +260,11 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
       onClick(node, ev)
     })
     .onNodeDragEnd((node) => {
-      // Let the node settle back into the layout, as in Obsidian (fx/fy would pin it).
+      // Let the node settle among its neighbours, as in Obsidian (fx/fy would pin it).
       node.fx = node.fy = undefined
     })
 
-  const anchor = anchorForce()
-  fg.d3Force('center', null) // the anchors keep the layout in place
-  fg.d3Force('anchor', anchor)
   const applyForces = () => {
-    anchor.strength(settings.anchor)
     // Short-range only: the layout already spreads things out, repulsion just keeps neighbours apart.
     fg.d3Force('charge').strength(-settings.repel * 6).distanceMax(40)
     fg.d3Force('link')

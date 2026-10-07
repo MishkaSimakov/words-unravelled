@@ -36,7 +36,7 @@
   const cardForms = $derived(selected ? forms(selected.entry) : {})
 
   // Settings reach the canvas in two groups, so that display changes don't restart the forces.
-  const forces = $derived({ anchor: settings.anchor, repel: settings.repel, linkForce: settings.linkForce, linkDistance: settings.linkDistance })
+  const forces = $derived({ repel: settings.repel, linkForce: settings.linkForce, linkDistance: settings.linkDistance })
   const display = $derived({ colorByCategory: settings.colorByCategory, textFade: settings.textFade, nodeSize: settings.nodeSize, linkWidth: settings.linkWidth })
   $effect(() => view?.setSettings(forces))
   $effect(() => view?.setSettings(display))
@@ -163,7 +163,6 @@
     </details>
     <details>
       <summary>Forces</summary>
-      {@render slider('anchor', 'Anchor force', 0, 1, 0.01)}
       {@render slider('repel', 'Repel force', 0, 20, 0.5)}
       {@render slider('linkForce', 'Link force', 0, 2, 0.05)}
       {@render slider('linkDistance', 'Link distance', 5, 150, 1)}
