@@ -1,8 +1,11 @@
-# Ingest downloads and intermediate files: large, and transcripts are not to be published.
+.idea
+.playwright-mcp
+
+docs
+
+# Ingest downloads and transcripts: large, and transcripts are not to be published.
 ingest/1-youtube/
 ingest/2-transcripts/
-ingest/3-entries/*.tmp
-ingest/3-entries/*.part
 
 # Downloaded videos and frames taken from them (ingest/extras/grab_frames.py)
 ingest/extras/video/
@@ -13,3 +16,8 @@ __pycache__/
 
 site/node_modules/
 site/dist/
+site/.svelte-kit/
+toolkit/node_modules/
+
+# Left behind if a save is interrupted (toolkit/src/io/files.js)
+data/*.tmp

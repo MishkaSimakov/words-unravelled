@@ -6,41 +6,28 @@ the moment each one comes up. This prototype covers the **audience side** only. 
 `docs/prototype_brief.md` for the background.
 
 ```
-data/      the dataset the site shows, the manual edits to it, build.py, which builds it, and
-           layout.py, which places the entries on the graph page
-ingest/    produces entries from YouTube episodes with Claude: one way to feed data/
-review/    a tool to approve or reject entries next to the video
-site/      the website (Vite, vanilla JS, Fuse.js)
+data/      the dataset: entries.json and episodes.json, edited by hand and read by the site as is
+toolkit/   shared JS for the data: slugs, link markup, link resolution, search
+ingest/    downloads episodes' captions and turns them into transcripts
+site/      the website (Svelte 5, SvelteKit)
 docs/      plans and briefs, kept for the record
 ```
 
-How they fit together:
+`data/*.json` are the source of truth. There is no build step: the site reads them as they are,
+so a fix made by hand shows up when the page is reloaded. New episodes will be added by an
+extraction agent (issue #13); until then they can't be ingested. After editing the data by
+hand, run `cd toolkit && npm run check` (see **Checks** below).
 
-```
-ingest/3-entries/<video_id>.json ─┐
-data/overrides.json (by hand) ────┼─> data/build.py ─> data/entries.json, episodes.json ─> site/
-data/review.json (review/) ───────┘                    data/duplicates.md (to check by hand)
-
-data/entries.json ─> data/layout.py ─> data/graph-layout.json ─> site/ (graph page)
-```
-
-Requirements: Python 3.9+, Node 20+, numpy for `data/layout.py` (`pip install -r
-data/requirements.txt`), and for `ingest/`: [yt-dlp](https://github.com/yt-dlp/yt-dlp) and the
-`claude` CLI.
+Requirements: Node 22.17+, and for `ingest/`: Python 3.9+ and
+[yt-dlp](https://github.com/yt-dlp/yt-dlp).
 
 ```sh
-ingest/1-download.sh          # see ingest/README.md for the steps
-ingest/2-make-transcripts.py
-ingest/3-extract.sh
-python3 data/build.py         # build data/*.json, print a summary
-python3 data/layout.py        # place the entries on the graph page (about a minute)
 cd site && npm run dev        # http://localhost:5173
+cd toolkit && npm run check   # problems in data/: errors and warnings
+cd toolkit && npm test        # the toolkit's tests, including a check that data/ has no errors
 ```
 
 ## Data
-
-`data/build.py` reads the entry files in `ingest/3-entries/` (`--entries <dir>` for another
-folder), `data/overrides.json` and `data/review.json`, and writes:
 
 - `data/episodes.json`: `[{ id, title, date, duration }]`, newest first
 - `data/entries.json`: `[{ slug, term, gloss?, original, translation, language, category,
@@ -48,157 +35,257 @@ folder), `data/overrides.json` and `data/review.json`, and writes:
 
   ```json
   {"episode_id": "m9AaobtBMtA", "t": 978, "role": "subject",
-   "note": "A doublet of cartouche; …",
-   "links": [{"type": "same-root", "uncertain": false, "target": "cartouche", "slug": "cartouche",
-              "start": 13, "end": 22}],
-   "confidence": "high", "verified": true}
+   "note": "The loop around royal names in hieroglyphs; a doublet of [[same-root:cartridge]], …",
+   "confidence": "high"}
   ```
-- `data/duplicates.md`: likely duplicates, for manual review
 
-**Entry files** are the boundary between whatever produces entries and the dataset. One file per
-episode, `<video_id>.json`:
+- `data/silenced.json`: the warnings looked at and found fine (see **Silenced warnings** below),
+  `[{ code, slugs, mention?, episode?, detail? }]`. The site doesn't read it.
 
-```json
-{"video_id": "m9AaobtBMtA", "prompt_version": 5,
- "title": "Ancient writing systems and how they work", "date": "2026-09-30", "duration": 2623,
- "entries": [{"term": "cartridge", "original": null, "translation": null, "language": "English",
-              "category": "word", "timestamp": "00:16:18", "role": "subject",
-              "note": "A doublet of [[same-root:cartouche]]; …", "confidence": "high"}]}
-```
+The files are JSON with one-space indentation (`indent=1`). Keep that formatting when editing
+them, so that git diffs show only what changed.
+
+**Slug.** The entry's term, followed by the gloss if there is one, lowercased, with invisible
+characters removed, diacritics folded, apostrophes dropped and anything else that isn't a letter
+or digit turned into hyphens (`Björk` → `bjork`, *Gift (German)* → `gift-german`). It must stay
+equal to the slug of the term and gloss (`entrySlug()` in `toolkit/src/model/slugs.js`), so
+renaming an entry or adding a gloss changes its slug, and links that name it.
+
+**Gloss** tells apart different words with the same spelling. It is absent unless another word
+has the same spelling, and is a short label like a Wikipedia disambiguation suffix: a language
+for a false friend (*Gift (German)*), a meaning for a homonym (*meal (flour)*, *school (fish)*),
+or a kind for a name (*Phoenix (city)*). Usually one word per spelling (typically the common
+English one) has no gloss.
 
 **Category** says what kind of thing an entry is: `word`, `name`, `expression`,
 `about-language` (terms for describing language, and names of languages and scripts) or
-`word-part` (*-chester*, *aber*, letters). The rules are in `ingest/3-extract-prompt.md`. It
-belongs to the entry, so like the other entry fields it is voted on across mentions.
-
-**Gloss** tells apart different words with the same spelling. It is absent or `null` unless
-another word has the same spelling, and is a short label like a Wikipedia disambiguation
-suffix: a language for a false friend (*Gift (German)*), a meaning for a homonym
-(*meal (flour)*, *school (fish)*), or a kind for a name (*Phoenix (city)*). Usually one word per
-spelling (typically the common English one) has no gloss. In `entries.json`, `gloss` is only
-present on entries that have one.
+`word-part` (*-chester*, *aber*, letters). The rules are in `ingest/3-extract-prompt.md`.
 
 **Role** belongs to the mention: `subject` (discussed for its own sake), `aside` (only to make a
 point about another entry) or `mention` (the hosts only point to where it was discussed).
+**Confidence** is `high` or `low`; the site marks low-confidence mentions "Unverified", so set
+it to `high` once a mention has been checked against the video.
 
-**Links.** Notes in entry files mark connections as `[[type:target]]trail`, with types `from`,
-`gave`, `same-root`, `equivalent`, `unrelated` and `see`, and `?` after the type for an uncertain
+**Links.** Notes mark connections as `[[type:target]]trail`, with types `from`, `gave`,
+`same-root`, `equivalent`, `unrelated` and `see`, and `?` after the type for an uncertain
 relation (`[[from?:shesep ankh]]`). Letters straight after `]]` are part of the link text:
 `[[see:ounce]]s` reads "ounces". A link to a glossed entry gives the gloss in brackets,
-`[[same-root:meal (flour)]]`, and reads "meal". In `entries.json` the note is plain text, with
-each link replaced by its text; `links` lists the links in order, with `start` and `end` giving
-the position of the link text in the note, in UTF-16 code units (how JavaScript indexes
-strings), so the site never parses notes. `slug` is the entry the target resolves to after
-overrides, or `null` if it isn't an entry: a target with a gloss resolves to the entry with that
-slug; any other target to an entry in the same episode first, then any entry by term, then by
-original form. A target without a gloss means the word without one: `[[see:gift]]` is *gift*,
-not *Gift (German)*, unless there is no plain *gift*. A link never resolves to the entry its
-note belongs to.
+`[[same-root:meal (flour)]]`, and reads "meal". The site resolves a target to:
 
-Mentions are grouped by slug: the term, followed by the gloss if there is one, lowercased, with
-invisible characters removed, diacritics folded and spaces turned into hyphens (`Björk` →
-`bjork`, *Gift (German)* → `gift-german`). If mentions disagree on a field, the majority wins.
-Nothing else is merged automatically. Likely duplicates (plural/singular, spelling variants,
-"to kick the bucket" vs "kick the bucket", one expression contained in another, one entry's
-term being another's original form; never two entries with the same term and different
-glosses) go to `data/duplicates.md`, each with a ready-to-paste override, along with mentions
-that disagree on language or category.
+1. the entry whose slug is the target's slug (term, plus gloss if given), unless that is the
+   entry the note belongs to;
+2. else the one other entry whose `original` has the target's slug;
+3. else nothing: the link text is shown as plain text (a link to something that isn't an
+   entry, or a target that several original forms match).
 
-The summary shows how many files there are at each `prompt_version`, and counts of roles and
-links. It also flags:
+So a target without a gloss means the word without one: `[[see:gift]]` never reaches
+*Gift (German)* by its term.
 
-- low-confidence mentions not yet approved in the review tool
-- timestamps after the end of the video
-- missing roles, and roles other than subject/aside/mention
-- missing categories, and unknown ones (dropped)
-- malformed links in notes (`[[x]]`, `[[x|y]]`, `[[see: ]]`) and unknown link types
-- the same entry twice in one episode, including after overrides (the mention with the highest
-  role is kept); for two different words with one spelling, a gloss is missing
-- links that reach a glossed entry without naming its gloss (they may point at the wrong
-  homograph), and links whose gloss names no entry
-- episodes without a title (the video ID is used) or a date (listed last)
-- overrides that no longer match anything
+Links may lead nowhere, by design: a target that is no entry is valid data, shown as plain text
+(about 950 of 13,600 links, mostly to things without an entry, like `[[from?:tan galán]]`). So
+deleting an entry leaves the links to it as they are. `check` warns about such a link only when
+it is close to an entry (`link-unresolved-close`), not about every one; instead, the review tool
+lists the links an edit orphans before it is applied (`sideEffects()`). Parsing and resolution live in `toolkit/src/model/links.js` and
+`toolkit/src/query/links.js`.
 
-Timestamps that aren't in the transcript are reported by `ingest/3-extract.sh` and flagged in
-the review tool, which both have the transcript.
+## Toolkit
 
-Tests: `python3 -m unittest discover data/test` (the `layout.py` tests are skipped without numpy).
+`toolkit/` holds the code that reads, checks and edits the data, shared by the site and, later,
+the tools that edit it (the review tool on the dev site, and later the extraction agent's MCP server in issue #13). It is plain ES modules with no browser or Node globals, so the site
+imports it directly (as `#toolkit/*`, a package import in `site/package.json`). Its one dependency is Fuse.js, for
+search; run `npm install` in `toolkit/` before building the site.
 
-### Graph layout: data/layout.py
-
-`data/layout.py` reads `data/entries.json` and writes `data/graph-layout.json`, `{slug: [x, y]}`
-for every entry on the graph page, which starts from these positions. Two entries are linked
-when a note of one links to the other, except by a "see" link: those are most of the links but
-the loosest, and would tie most entries into one tangle. Entries without other links are left
-out. Each connected group of entries is drawn on its own by stress majorization (linked entries
-about 30 units apart, others as far apart as the links between them say, and no two closer
-than 20), then the groups are arranged like a galaxy: the largest group at the centre, the
-others as islands around it, bigger ones nearer the centre, none overlapping. The result is the
-same for the same entries.
-
-Re-run it after `data/build.py` whenever entries or links change, and commit the result. Until
-then, newly linked entries appear next to an entry they link to, or outside the graph.
-
-### Manual fixes: data/overrides.json
-
-A list of operations, applied in order on every run:
-
-```json
-[
-  {"op": "rename",    "slug": "fat-bread", "term": "Fettes Brot"},
-  {"op": "merge",     "from": "hot-dogs", "into": "hot-dog"},
-  {"op": "delete",    "slug": "between"},
-  {"op": "delete",    "slug": "fish", "episode_id": "-54FiJ0PsXo"},
-  {"op": "timestamp", "slug": "break-a-leg", "episode_id": "YBIXXAipmZw", "t": "00:01:40"},
-  {"op": "set",       "slug": "blues", "fields": {"language": "English", "translation": null}},
-  {"op": "distinct",  "slugs": ["latin", "latino"]},
-  {"_comment": "objects or keys starting with _ are ignored"}
-]
+```
+toolkit/src/model/slugs.js       slugify, entrySlug, the A-to-Z filing form
+toolkit/src/model/links.js       link types; parse, format and rewrite link markup
+toolkit/src/model/schema.js      categories, roles, field order, entryName
+toolkit/src/model/transcript.js  the times transcript lines start at
+toolkit/src/query/links.js       linkIndex and resolveLink
+toolkit/src/query/index.js       buildIndex and its lookups: entry, episode, episodeMentions,
+                                 episodeCounts, noteParts (resolved links), backlinks, homographs
+toolkit/src/query/search.js      search, as on the site
+toolkit/src/query/plain.js       plainMentions: notes that name an entry without linking to it
+toolkit/src/query/groups.js      groupBy, the grouping the indexes and checks share
+toolkit/src/checks/              problems() and introduced(); codes.js lists every problem code;
+                                 silenced.js: silenced warnings;
+                                 invariants.js: dataChanges and linkResolutions;
+                                 effects.js: sideEffects, what an edit changes
+toolkit/src/edit/                edits: episodes, mentions, entries, names (gloss, rename), merges;
+                                 batch.js: applyEdits, a list of edits applied as one
+toolkit/src/io/files.js          Node only: load and save the data files
+toolkit/src/io/session.js        Node only: preview, apply and undo edits on the data files
+toolkit/cli/check.js             npm run check
+toolkit/test/                    node --test, mirroring src/; fixtures/data.js is a small dataset,
+                                 helpers.js the invariants every edit test checks
 ```
 
-- `rename` rebuilds the slug from the new term and the mention's gloss, or uses `new_slug` if
-  given. With `episode_id` it applies to one mention only, which lets you split an entry.
-- `set` changes entry fields but keeps the slug.
-- `distinct` only hides a pair from the duplicates report.
+Everything but `io/` and `cli/` is pure: plain data in, plain data out. Data is always
+`{ entries, episodes }`, shaped like the files.
 
-## Review tool
+### Checks
 
-```sh
-python3 review/review.py        # opens http://localhost:8765
-```
+`problems(data, { warnings, transcripts })` returns every problem in the data as
+`{ level, code, message, slugs, mention?, episode?, detail? }`. `checks/codes.js` lists each
+code with its level and meaning.
 
-Shows one entry from `ingest/3-entries/` at a time, next to the video (starting 3 s before the
-timestamp) and the transcript around it, with the same checks as `data/build.py` plus
-timestamps missing from the transcript. Controls:
+- **Errors** make the data invalid:
+  - fields of the wrong type, and unknown categories, roles and confidences;
+  - an entry without mentions, two mentions of one entry in one episode, a mention of an
+    unknown episode or after its end;
+  - a slug that isn't the slug of its term and gloss, or that two entries share;
+  - malformed links, unknown link types, a target that several original forms match, and an
+    unglossed target when only glossed entries have that term.
 
-- **A** approve, **R** reject, **S** skip, **U** undo, **C** add a comment
-- filter by episode or role, or show only low-confidence and flagged entries
+  Given transcripts (`{ episode id: text }`), it also reports timestamps that start no
+  transcript line. `check` doesn't pass them, since hand-corrected timestamps needn't match a
+  line.
+- **Warnings** are only reported:
+  - likely duplicates (article or "to", spacing or hyphen variants, plurals, spelling variants,
+    an expression inside another, a term that is another entry's original form);
+  - link targets that resolve to nothing but are close to an entry, a link to its own entry
+    included;
+  - notes that start as if next to other entries ("Another…", "Also…", "One of the…", "The
+    same…").
 
-Decisions are saved at once to `data/review.json`, keyed by `<video_id>/<slug of the
-extracted term and gloss>`. Only undecided entries are shown. On the next `data/build.py` run, rejected
-mentions are dropped and approved ones are marked `verified`. On the site, low-confidence
-mentions show an "Unverified" label until they are approved.
+  Duplicate detection compares every pair of entries, so `warnings: false` skips the warnings
+  when only errors matter.
+
+A problem's identity is its code, slugs, mention, episode and detail, not its wording.
+`introduced(before, after)` returns the problems of `after` that `before` doesn't have, so a
+tool can show what one change caused without the hundreds of known warnings. It counts keys, so
+a second copy of a known problem (a second identical bad link in one note) is new.
+
+`npm run check` prints every problem grouped by code and exits with 1 if there are errors.
+Each line starts with its code in brackets, so `npm run check | grep '\[note-context\]'` lists
+one kind. Silenced warnings are counted, not listed, and silenced records that match no warning
+any more are listed at the end. The Pages workflow runs it before building, so a deploy fails on
+data with errors (or a malformed `silenced.json`).
+
+**Silenced warnings.** A warning that has been looked at and is fine (two entries that only look
+like duplicates) can be silenced: `data/silenced.json` keeps its identity, the same fields
+`problemKey()` compares (code, slugs, mention, episode, detail), not its wording.
+`checks/silenced.js` has the functions:
+- `applySilenced(problems, records)` splits the problems into `{ active, silenced, stale }`.
+- A record silences exactly one problem: the one with its identity. Other warnings about the
+  same entry, mention or episode, or of the same code, stay active; so does a second warning
+  with the same identity (a second identical link in one note), which takes a record of its own.
+- A record whose warning is gone, for example after a rename, a merge or a fix, is `stale`.
+- `silence(records, problem, problems)` adds a record. It is refused for errors, which are fixed,
+  not silenced, and for a warning the data doesn't have or that is already silenced.
+- `unsilence(records, problem)` removes one record.
+
+Records are kept sorted by identity.
+
+### Edits
+
+Each edit takes data and returns new data, keeping the files' order (entries by slug, mentions
+by episode date and time, episodes newest first) and key order, and reusing the objects it
+doesn't change. It never changes its input. If it can't be applied (an unknown slug, episode or
+mention, or a field it doesn't set), or if its result has errors the input didn't
+(`introduced()`), it throws a `ToolkitError` whose `problems` say why. Edits never run the
+warnings.
+
+| edit | does |
+|---|---|
+| `addEpisode(data, episode)` | adds `{ id, title, date, duration }` |
+| `replaceEpisodeMentions(data, id, items)` | replaces all of an episode's mentions; creates the entries the items declare, removes entries left without mentions |
+| `addMention(data, id, item)` | adds one mention, to an existing or a new entry |
+| `editMention(data, slug, id, fields)` | sets a mention's `t`, `role`, `note` or `confidence` |
+| `deleteMention(data, slug, id)` | deletes a mention, and the entry if it has no others |
+| `setFields(data, slug, fields)` | sets `original`, `translation`, `language` or `category` |
+| `deleteEntry(data, slug)` | deletes an entry; links to it show as plain text, unless that leaves a link that needs a gloss or is ambiguous: then it is refused |
+| `setGloss(data, slug, gloss)` | sets or (with null) removes the gloss, so the slug; links that named the entry get the gloss and keep their text (`[[see:meal]]s` → `[[see:meal (flour)]]s`) |
+| `renameEntry(data, slug, term)` | changes the term, so the slug; links that named the entry name the new term |
+| `mergeEntries(data, from, into, { keep })` | moves `from`'s mentions to `into` and deletes `from`; `into` keeps its fields; links that resolved to `from` name `into`. Where both have a mention in one episode, `keep` (`{ episode id: 'from' \| 'into' }`) says whose stays; a clash it doesn't settle is refused |
+
+`setGloss` and `renameEntry` are refused (`link-taken`) if the new slug would take a link that
+resolves to another entry by its original form, since a slug match comes first. Links that
+resolved to nothing may start resolving to the renamed entry. Removing entries the same way
+(`deleteMention`, `replaceEpisodeMentions`) is refused like `deleteEntry` when it would leave a
+link in error.
+
+A merge keeps the links to `from` even when none of its mentions survive, which deleting the
+clashing mention first wouldn't: deleting an entry's last mention deletes the entry, and its
+links then lead nowhere. To give the survivor fields of the other entry, run `setFields` first.
+
+A mention item is `{ slug, t, role, note, confidence }`, or, for a new entry,
+`{ entry: { term, gloss?, original, translation, language, category }, t, role, note,
+confidence }`.
+
+`io/files.js` loads the data files and saves them atomically: each file is written to a
+temporary file (`data/*.tmp`, ignored by git) renamed over the old one, with the same
+formatting, so a failed save leaves the old file whole and a save changes only the bytes of what
+changed. Data without both `entries` and `episodes` lists is refused before anything is written.
+
+`applyEdits(data, ops)` applies a list of edits, `[{ op, args }]` with `op` a name in `EDITS`
+(`{ op: 'setFields', args: [slug, fields] }`), as one: if any refuses, none is applied.
+
+`sideEffects(before, after)` (`checks/effects.js`) lists everything an edit changed, computed
+from the two versions alone, so it can't drift from what the edits do:
+- entries added, removed (with `into` when their mentions moved to one entry: a rename or a
+  merge) and changed in their fields;
+- mentions added, removed (with their notes), moved to another entry, and changed;
+- notes whose link targets were rewritten;
+- links whose resolution changed: orphaned, captured (an added entry, or a new original form, now
+  matches a link that led nowhere) or sent to another entry, with `follows` for links that follow
+  a rename or merge. Links are matched through moved mentions, so they are compared across
+  renamed and merged owners;
+- the problems, warnings included, that the edit introduced.
+
+`editSession(dir)` (`io/session.js`, Node only) edits the data files. `problems()` returns the
+active, silenced and stale problems, and `silence(problem)` and `unsilence(problem)` change
+`silenced.json`. `preview(ops)` returns the
+side effects without writing; `apply(ops, version)` saves, but only if the files are still the
+version the preview saw; `undo()` restores the files before the last apply, while they are still
+as it left them (up to 20 steps). Each call reads the files afresh, so edits made by hand or by
+an agent in the meantime are never overwritten.
+
+Every edit test runs the edit on frozen data and checks the invariants in `test/helpers.js`:
+valid data stays valid, the order is kept, only the intended entries change (others may differ
+in link targets only, where the edit renames), every link resolves to the same entry as before,
+and a refused edit leaves the data as it was. Each edit also has a test of the side effects
+`sideEffects()` reports for it. `test/checks/codes.test.js` and
+`test/edit/refusals.test.js` fail if a problem or refusal code has no test.
+
+Tests: `cd toolkit && npm install && npm test`.
 
 ## Website
 
 ```sh
-cd site
+cd toolkit && npm install && cd ../site
 npm install
-npm run dev        # http://localhost:5173, reads ../data live, shows debug details
-npm run build      # -> site/dist (data copied into dist/data, index.html copied to 404.html)
+npm run dev        # http://localhost:5173, reads ../data live; debug mode and the review tool
+npm run build      # -> site/dist (data copied into dist/data, 404.html is the app shell)
 npm run preview
+npm run check      # svelte-check
 ```
 
+The site is a SvelteKit single-page app (`ssr = false`, adapter-static with a `404.html`
+fallback). SvelteKit is configured in `vite.config.js`, which also serves and copies the data.
+The data is fetched once when the app starts (`src/lib/db.js`); the layout shows the pages once
+it has loaded.
+
+```
+site/src/app.html            the page shell
+site/src/app.css             colours, fonts, base styles and the classes several pages share
+site/src/routes/             pages: home (+page.svelte), entry/[slug], episode/[id], episodes,
+                             about, review (dev only), [...path] (unknown paths) and +error; +layout.svelte is the
+                             header, footer, loading state and the / shortcut
+site/src/lib/components/     EntryItem, EntryList, EntryName, Note, CategoryTag, Mention, Player…
+site/src/lib/db.js           loading, sorting and indexing the data (and reloading it after an edit); search
+site/src/lib/debug.svelte.js the Debug switch (dev only)
+site/src/lib/edit/           the review tool (dev only): edit forms, the merge and confirmation dialogs,
+                             the /review list, and the flow every edit goes through (edits.svelte.js)
+site/src/lib/entries.js      categories, display forms, role order, link titles
+site/src/lib/format.js       numbers, plurals, times, dates
+site/src/lib/paths.js        links under the base path
+site/src/lib/youtube.js      YouTube URLs and the IFrame API loader
+```
+
+Each component's CSS is scoped to it. `src/lib` is imported as `#lib/*`.
+
 - Pages: home (search, category chips, language filter, suggestions), `/entry/<slug>`,
-  `/episode/<id>`, `/episodes`, `/graph`, `/about`.
-- The graph page (a prototype) draws entries as nodes and note links as edges, with force-graph,
-  loaded only on that page. "See" links are left out, and so are entries without other links;
-  the entry pages of entries in the graph link to them there ("Show in graph"). Nodes start at
-  the positions in `data/graph-layout.json` and a spring holds each one there, so dragging moves
-  a node and its neighbours, and they settle back. Unrelated links (a resemblance that isn't a
-  connection, like *emoji* and *emotion*) are red dashes. Category filters hide entries, leaving gaps,
-  and the rest keep their places. Clicking a node, or a link in its card, selects it (a link to
-  an entry that isn't in the graph opens its page); `?focus=<slug>` selects one on load.
+  `/episode/<id>`, `/episodes`, `/about`.
 - Categories: chips under the search box filter by category (`?cat=name`), and each chip counts
   the entries the current search and language filter leave. On narrow screens the chips scroll
   sideways. Result cards, entry pages and episode timelines show each entry's category in
@@ -207,13 +294,17 @@ npm run preview
   folded, letters like *æ* and *þ* spelt out (*ae*, *th*) and leading punctuation ignored, so
   *-ness* sits next to *ness* and *ælf* under A; digits and other scripts come first, under #.
   The entry page's previous and next links follow the same order.
-- `npm run dev` also shows debug details: each mention's role (subject / aside / mention) as a
-  small badge on result cards, entry pages and episode timelines. `npm run build` leaves them out.
+- `npm run dev` adds a **Debug** switch to the header (on by default, remembered in the browser).
+  It shows each mention's role (subject / aside / mention) as a small badge on result cards, entry
+  pages and episode timelines, and the review tool below. Switched off, the site looks as
+  visitors see it. `npm run build` has neither the switch nor anything it shows.
 - Search is client-side with Fuse.js over `term`, `gloss`, `original` and `translation`. It
   ignores accents and ranks exact and prefix matches first; within each of those tiers, entries
   that are only ever pointed to (role `mention`) come last.
 - A glossed entry is shown as its term with the gloss muted after it, *meal (flour)*, wherever
   its name appears; note links show only the term, with the full name in the tooltip.
+- Notes are parsed when the data loads, and each link is resolved with the toolkit (see
+  **Links** above). An entry page lists the entries whose notes link to it under "Linked from".
 - Entry pages list the episodes that discuss the entry (`subject`, then `aside`), and put
   episodes that only point to it under "Also mentioned in".
 - Query and filters are kept in the URL, so searches can be shared and the back button works.
@@ -222,7 +313,42 @@ npm run preview
 - Fonts are self-hosted (Fraunces, Source Serif 4), so the site makes no requests to
   third-party font servers.
 
+### Review tool
+
+The data can be edited on the site itself, under `npm run dev` with Debug on. A build contains
+none of it: the edit tools (`src/lib/edit/`) are loaded only behind `import.meta.env.DEV`, and
+the endpoint that writes the data exists only in the dev server (`vite.config.js`).
+
+- **Entry pages:** edit the term, gloss, original form, literal translation, language and
+  category; merge the entry into another; delete it. A new term or gloss that is another entry's
+  name offers a merge instead of the rename. Each mention can be edited (time, role, confidence,
+  and the note as raw `[[type:target]]` markup with a live preview that marks links leading
+  nowhere), moved to another entry, or deleted.
+- **Episode pages,** where a new episode is reviewed while it plays: the same mention tools, with
+  the time taken from the player, "Mark checked" (confidence high) for unverified mentions, and
+  adding a mention to an existing or a new entry. The timeline follows each edit without reloading
+  the page, so the player keeps playing.
+- **Merging:** the dialog shows both entries' fields side by side; the survivor keeps its name and
+  its fields, with blanks filled from the other by default, and each field can be chosen. In each
+  episode where both entries have a mention, you choose whose mention stays.
+- **`/review`** lists every active problem `check` finds, one collapsible list per kind, 50 at a time:
+  likely duplicates with a merge in either direction, and problems in notes with the mention's
+  editor. It is checked again after every edit.
+  - **Silence** moves a warning to the collapsible **Silenced** section below, with its own list
+    per kind. Each silenced warning can be brought back with **Unsilence**.
+  - Silenced warnings whose problem is gone are listed under "no longer found", each with a
+    **Remove** button.
+
+Every edit is a list of toolkit edits (`[{ op, args }]`) that the dev server previews first: a
+dialog lists everything it changes, computed by `sideEffects()` (entries removed or renamed,
+mentions moved or removed, notes rewritten, links that change where they lead, new warnings),
+and nothing is written until it is applied. The server reads `data/` afresh for every request,
+refuses to apply an edit if the files changed since its preview, and can undo the edits of the
+session while the files are as it left them. Older changes are in git; commit `data/` as
+usual. The dev server loads the toolkit for the endpoint once, so restart it after changing
+toolkit code.
+
 **GitHub Pages:** build with `BASE_PATH=/<repo-name>/ npm run build` for a project site.
-`404.html` is a copy of the app, so deep links like `/entry/break-a-leg` work. The workflow
-in `.github/workflows/pages.yml` does this on every push to `main`. Commit `data/*.json`,
-because the pipeline runs locally.
+`404.html` is the app shell, so deep links like `/entry/break-a-leg` work. The workflow
+in `.github/workflows/pages.yml` does this on every push to `main`, from the committed
+`data/*.json`.
