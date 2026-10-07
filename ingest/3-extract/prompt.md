@@ -243,6 +243,10 @@ Mark connections inside the note as `[[type:target]]`:
   person, place, work or source word that is part of this entry's story (who coined or used it,
   what it comes from, what it is compared with), even if it isn't an entry: in "named after
   Jules Léotard", link *Jules Léotard*.
+- **Terms about language.** When a note says what kind of word or expression the entry is, link
+  the term that says it, with `see`: "An [[see:eggcorn]] for…", "A [[see:portmanteau]] of…",
+  "A [[see:back-formation]] from…". Search for these terms like any other. Language names stay
+  unlinked (see "Don't link").
 - **A link never replaces an entry.** First decide the entries (see "What counts as an
   entry"); links come after. Anything that qualifies is listed as its own entry, even if
   another entry's note also links to it. This includes the equivalents of a saying, in
