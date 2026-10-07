@@ -271,8 +271,10 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
       hovered = node
       el.style.cursor = node ? 'pointer' : ''
     })
-    .onNodeClick((node, ev) => onClick(node, ev))
-    .onBackgroundClick(() => onBackground())
+    .onNodeClick((node, ev) => {
+      nodeClicked = true
+      onClick(node, ev)
+    })
     .onNodeDragEnd((node) => {
       // Let the node settle back into the layout, as in Obsidian (fx/fy would pin it).
       node.fx = node.fy = undefined
@@ -301,7 +303,26 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
   setTimeout(() => !userMoved && !selected && fit(0), 50)
   const moved = () => (userMoved = true)
   el.addEventListener('wheel', moved, { passive: true })
-  el.addEventListener('pointerdown', moved)
+
+  // Background clicks are detected here: given a background click handler, force-graph drops
+  // any click, also on a node, during which the mouse moved at all. Node clicks still come from
+  // force-graph, which allows a few pixels of movement for them.
+  const CLICK_TOLERANCE = 5 // px
+  let down = null // where the pointer went down
+  let nodeClicked = false
+  const onPointerDown = (ev) => {
+    moved()
+    down = ev.button === 0 ? [ev.clientX, ev.clientY] : null
+    nodeClicked = false
+  }
+  const onPointerUp = (ev) => {
+    if (!down || Math.hypot(ev.clientX - down[0], ev.clientY - down[1]) > CLICK_TOLERANCE) return
+    down = null
+    // force-graph reports node clicks on the next frame, before this callback runs.
+    requestAnimationFrame(() => !nodeClicked && onBackground())
+  }
+  el.addEventListener('pointerdown', onPointerDown)
+  el.addEventListener('pointerup', onPointerUp)
 
   const resize = new ResizeObserver(([e]) => fg.width(e.contentRect.width).height(e.contentRect.height))
   resize.observe(el)
@@ -353,7 +374,8 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
       resize.disconnect()
       scheme.removeEventListener('change', onScheme)
       el.removeEventListener('wheel', moved)
-      el.removeEventListener('pointerdown', moved)
+      el.removeEventListener('pointerdown', onPointerDown)
+      el.removeEventListener('pointerup', onPointerUp)
       fg._destructor()
     },
   }
