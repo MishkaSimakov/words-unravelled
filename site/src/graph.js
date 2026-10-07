@@ -195,6 +195,7 @@ export function mountGraph(root, h) {
       linkHi: v('--graph-link-hi'),
       accent: v('--graph-accent'),
       text: v('--graph-text'),
+      unrelated: v('--graph-unrelated'),
       categories: Object.fromEntries(COLORED_CATEGORIES.map((c) => [c, v(`--graph-cat-${c}`)])),
     }
     root.querySelectorAll('[data-swatch]').forEach((el) => {
@@ -335,21 +336,28 @@ export function mountGraph(root, h) {
     if (fade > 0.01) drawLabel(node, ctx, scale, fade, 0)
   }
 
+  // "Unrelated" links (a resemblance that isn't a connection) are red dashes, also when highlighted.
+  const isUnrelated = (link) => link.types.size === 1 && link.types.has('unrelated')
+  const UNRELATED_DASH = [4, 3] // in graph units, so the dashes scale with the zoom like the links
+
   function drawLink(link, ctx, scale) {
     const { alpha, highlight } = link.anim ?? linkTargets(link)
     // About 1px on screen, thickening only gently as you zoom in.
     const width = settings.linkWidth * (1 / scale + 0.12)
+    const unrelated = isUnrelated(link)
     const line = (color, a, w) => {
       ctx.globalAlpha = a
       ctx.strokeStyle = color
       ctx.lineWidth = w
+      ctx.setLineDash(unrelated ? UNRELATED_DASH : [])
       ctx.beginPath()
       ctx.moveTo(link.source.x, link.source.y)
       ctx.lineTo(link.target.x, link.target.y)
       ctx.stroke()
     }
-    if (highlight < 1) line(colors.link, alpha * (1 - highlight), width)
+    if (highlight < 1) line(unrelated ? colors.unrelated : colors.link, alpha * (1 - highlight), unrelated ? width * 1.3 : width)
     if (highlight > 0) line(colors.linkHi, alpha * highlight, width * lerp(1, 1.6, highlight))
+    ctx.setLineDash([])
     ctx.globalAlpha = 1
   }
 

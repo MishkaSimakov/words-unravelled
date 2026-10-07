@@ -1077,6 +1077,7 @@ a.cat {
   --graph-link-hi: #8a2a1c;
   --graph-accent: #8a2a1c;
   --graph-text: #1e1a15;
+  --graph-unrelated: #d3392c;
   --graph-cat-expression: #2a78d6;
   --graph-cat-about-language: #eb6834;
   --graph-cat-name: #1baf7a;
@@ -1090,6 +1091,7 @@ a.cat {
     --graph-link-hi: #e38a6f;
     --graph-accent: #e38a6f;
     --graph-text: #ece4d2;
+    --graph-unrelated: #f0705f;
     --graph-cat-expression: #3987e5;
     --graph-cat-about-language: #d95926;
     --graph-cat-name: #199e70;

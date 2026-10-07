@@ -195,7 +195,8 @@ npm run preview
   loaded only on that page. "See" links are left out, and so are entries without other links;
   the entry pages of entries in the graph link to them there ("Show in graph"). Nodes start at
   the positions in `data/graph-layout.json` and a spring holds each one there, so dragging moves
-  a node and its neighbours, and they settle back. Category filters hide entries, leaving gaps,
+  a node and its neighbours, and they settle back. Unrelated links (a resemblance that isn't a
+  connection, like *emoji* and *emotion*) are red dashes. Category filters hide entries, leaving gaps,
   and the rest keep their places. Clicking a node, or a link in its card, selects it (a link to
   an entry that isn't in the graph opens its page); `?focus=<slug>` selects one on load.
 - Categories: chips under the search box filter by category (`?cat=name`), and each chip counts
