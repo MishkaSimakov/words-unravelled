@@ -106,6 +106,8 @@ toolkit/src/query/index.js       buildIndex and its lookups: entry, episode, epi
 toolkit/src/query/search.js      search, as on the site
 toolkit/src/query/plain.js       plainMentions: notes that name an entry without linking to it
 toolkit/src/query/groups.js      groupBy, the grouping the indexes and checks share
+toolkit/src/query/graph.js       linkGraph: the entries the graph page shows and the links between them
+toolkit/src/query/layout.js      galaxyLayout: where each entry sits on the graph page
 toolkit/src/checks/              problems() and introduced(); codes.js lists every problem code;
                                  silenced.js: silenced warnings;
                                  invariants.js: dataChanges and linkResolutions;
