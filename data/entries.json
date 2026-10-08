@@ -12830,7 +12830,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2265,
     "role": "subject",
-    "note": "Named after [[see:George Eden]], Earl of Auckland, the local governor's patron; its Maori name is [[see:Tamaki Makaurau]].",
+    "note": "Named after [[see:George Eden]], Earl of Auckland, the local governor's patron; its Māori name is [[see:Tāmaki Makaurau]].",
     "confidence": "high"
    }
   ]
@@ -34658,7 +34658,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2310,
     "role": "subject",
-    "note": "Named after Christ Church, Oxford, where many of the [[see:Canterbury Association]] colonists studied; its Māori name is [[see:Otautahi]].",
+    "note": "Named after Christ Church, Oxford, where many of the [[see:Canterbury Association]] colonists studied; its Māori name is [[see:Ōtautahi]].",
     "confidence": "high"
    }
   ]
@@ -53530,7 +53530,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2348,
     "role": "subject",
-    "note": "Based on the Scottish Gaelic name for [[from:Edinburgh]], Dùn Èideann, chosen instead of New Edinburgh; its Maori name is [[see:Ōtepoti]].",
+    "note": "Based on the Scottish Gaelic name for [[from:Edinburgh]], Dùn Èideann, chosen instead of New Edinburgh; its Māori name is [[see:Ōtepoti]].",
     "confidence": "high"
    }
   ]
@@ -125050,17 +125050,17 @@
  },
  {
   "slug": "otautahi",
-  "term": "Otautahi",
+  "term": "Ōtautahi",
   "original": null,
   "translation": "place of Tautahi",
-  "language": "Maori",
+  "language": "Māori",
   "category": "name",
   "mentions": [
    {
     "episode_id": "foQR0vsAAIc",
     "t": 2339,
     "role": "subject",
-    "note": "Maori name for [[see:Christchurch]], meaning place of Tautahi.",
+    "note": "Māori name for [[see:Christchurch]], meaning place of Tautahi.",
     "confidence": "high"
    }
   ]
@@ -165522,7 +165522,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2061,
     "role": "subject",
-    "note": "Proposed name for [[see:Canberra]] blending Sydney, Melbourne, Adelaide, Perth, [[see:Brisbane]] and Hobart; not even a good [[see:portmanteau]].",
+    "note": "Proposed name for [[see:Canberra]] blending Sydney, Melbourne, Perth, Adelaide, [[see:Brisbane]] and Hobart; not even a good [[see:portmanteau]].",
     "confidence": "high"
    }
   ]
@@ -166850,17 +166850,17 @@
  },
  {
   "slug": "tamaki-makaurau",
-  "term": "Tamaki Makaurau",
+  "term": "Tāmaki Makaurau",
   "original": null,
-  "translation": "Tamaki desired by many",
-  "language": "Maori",
+  "translation": "Tāmaki desired by many",
+  "language": "Māori",
   "category": "name",
   "mentions": [
    {
     "episode_id": "foQR0vsAAIc",
     "t": 2186,
     "role": "subject",
-    "note": "Maori name for [[see:Auckland]]: Makaurau means desired by many, for its rich soil and two harbours; Tamaki may refer to the isthmus or a chief's son or a female leader of nearby area.",
+    "note": "Māori name for [[see:Auckland]]: Makaurau means desired by many, for its rich soil and two harbours; Tāmaki may refer to the isthmus, a chief's son or a female leader of a nearby area.",
     "confidence": "high"
    }
   ]
@@ -167603,7 +167603,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2283,
     "role": "subject",
-    "note": "Maori name for [[see:Wellington]], the great harbour of Tara, a chief's son sent south to find fertile land who settled the harbour.",
+    "note": "Māori name for [[see:Wellington]], the great harbour of Tara, a chief's son sent south to find fertile land who settled the harbour.",
     "confidence": "high"
    }
   ]
@@ -180992,7 +180992,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2498,
     "role": "subject",
-    "note": "Named in 1886 after [[see:George Vancouver]], a Dutch-origin name, 'from [[from:Coevorden]]'; formerly [[see:Gastown]] and [[see:Granville]]; its Squamish name K'emk'emelày means place of many maple trees.",
+    "note": "Named in 1886 after [[see:George Vancouver]], a Dutch-origin name, 'from [[from:Coevorden]]'; formerly [[see:Gastown]] and [[see:Granville]]; its Squamish name K'emk'emeláy means place of many maple trees.",
     "confidence": "high"
    }
   ]
@@ -185192,7 +185192,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2304,
     "role": "subject",
-    "note": "Named after Arthur Wellesley, first Duke of Wellington; its Maori name is [[see:Te Whanganui-a-Tara]].",
+    "note": "Named after Arthur Wellesley, first Duke of Wellington; its Māori name is [[see:Te Whanganui-a-Tara]].",
     "confidence": "high"
    }
   ]
