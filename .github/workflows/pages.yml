@@ -1,4 +1,4 @@
-# Builds the site from the committed data/*.json and publishes it to GitHub Pages.
+# Checks the committed data/*.json, builds the site from it and publishes it to GitHub Pages.
 # In the repository settings, set Pages -> Source to "GitHub Actions".
 name: Deploy site
 
@@ -28,9 +28,24 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: site/package-lock.json
+          cache-dependency-path: |
+            site/package-lock.json
+            toolkit/package-lock.json
+
+      # test toolkit
+      - run: npm ci
+        working-directory: toolkit
+      - run: npm run check
+        working-directory: toolkit
+      - run: npm test
+        working-directory: toolkit
+
+      # test site
       - run: npm ci
         working-directory: site
+      - run: npm test
+        working-directory: site
+
       - run: npm run build
         working-directory: site
         env:

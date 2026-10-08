@@ -1,0 +1,268 @@
+/* Wordhoard: an old dictionary page. Cream paper, black ink, rubric red for headings. */
+
+:root {
+  --paper: #f6f0e2;
+  --paper-deep: #efe6d2;
+  --card: #fbf8f0;
+  --ink: #1e1a15;
+  --ink-soft: #4a4238;
+  --muted: #736858;
+  --rule: #dccfb6;
+  --rubric: #8a2a1c;
+  --rubric-soft: #f0dccf;
+  --mark: #f3d98b;
+  --focus: #1d5fa8;
+  --shadow: 0 1px 0 rgb(60 40 20 / 0.06), 0 6px 18px -10px rgb(60 40 20 / 0.25);
+
+  --serif-display: 'Fraunces Variable', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --serif-text: 'Source Serif 4 Variable', 'Iowan Old Style', Georgia, serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --radius: 6px;
+  --gutter: 16px;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #17150f;
+    --paper-deep: #1f1c15;
+    --card: #1d1a14;
+    --ink: #ece4d2;
+    --ink-soft: #cfc5b0;
+    --muted: #a3977f;
+    --rule: #3b3428;
+    --rubric: #e38a6f;
+    --rubric-soft: #3a2119;
+    --mark: #6b5516;
+    --focus: #8fbcf0;
+    --shadow: 0 1px 0 rgb(0 0 0 / 0.3), 0 8px 20px -12px rgb(0 0 0 / 0.7);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif-text);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: color-mix(in srgb, var(--rubric) 55%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+a:hover {
+  color: var(--rubric);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+mark {
+  background: var(--mark);
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---- shared by several pages ---------------------------------------------- */
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 44px 0 4px;
+  font-family: var(--serif-display);
+  font-weight: 600;
+  font-size: 1.35rem;
+  color: var(--rubric);
+}
+.section-title::before {
+  content: '§';
+  font-size: 1rem;
+  color: var(--rubric);
+  opacity: 0.8;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+.section-sub {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.lang {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.06em;
+  color: var(--rubric);
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+/* A button that looks like a link. */
+.link-button {
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+/* Words too long for their box (lopadotemacho…): in a link, cut with an ellipsis, since the page
+   it opens shows the word in full; in plain text, break the word onto the next line.
+   Text still wraps at spaces either way. Line-clamped boxes break the word and let the clamp cut.
+   The rules for boxes of one component are in that component. */
+.note {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.section-sub a {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+.note,
+.prose {
+  overflow-wrap: anywhere;
+}
+
+.page-title {
+  font-family: var(--serif-display);
+  font-weight: 650;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin: 40px 0 12px;
+}
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* a second link sits in the right corner */
+  gap: 4px 16px;
+  margin: 24px 0 0;
+  font-size: 0.95rem;
+}
+.crumbs a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.crumbs a:hover {
+  color: var(--rubric);
+}
+
+.hw {
+  font-family: var(--serif-display);
+  font-weight: 650;
+  font-size: 1.2rem;
+  line-height: 1.25;
+  transition: color 0.12s;
+}
+
+.more {
+  display: block;
+  margin: 28px auto 0;
+  border: 1px solid var(--ink);
+  background: transparent;
+  border-radius: 999px;
+  padding: 8px 20px;
+  cursor: pointer;
+}
+.more:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.note {
+  /* The padding keeps the focus outlines of its links clear of the overflow clip. */
+  margin: 10px -4px 0;
+  padding: 0 4px;
+  font-size: 1.05rem;
+}
+.flag {
+  display: inline-block;
+  margin: 10px 0 0;
+  padding: 1px 9px;
+  font-size: 0.82rem;
+  border-radius: 999px;
+  border: 1px dashed var(--muted);
+  color: var(--muted);
+}
+
+.prose {
+  max-width: 68ch;
+}
+.prose h2 {
+  font-family: var(--serif-display);
+  font-weight: 600;
+  color: var(--rubric);
+  font-size: 1.35rem;
+  margin: 36px 0 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
