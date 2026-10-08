@@ -4,18 +4,35 @@
 #
 #   ./1-download.sh                 all episodes of the channel not downloaded yet
 #   ./1-download.sh ID [ID ...]     only these video IDs (e.g. for a trial run)
+#   ./1-download.sh --cookies FILE [ID ...]
+#                                   with YouTube cookies (Netscape format) for when YouTube
+#                                   asks to sign in; yt-dlp may update the file
 #
 # The episode list comes from the channel's "Videos" tab, which doesn't contain Shorts;
 # anything shorter than MIN_MINUTES is skipped as well (trailers, clips).
 #
 # Captions use the "en-orig" track: most episodes have auto-dubbed audio in other languages,
 # and on those videos the plain "en" track is a round-trip machine translation.
-# YouTube rate-limits caption downloads (HTTP 429), hence the long sleeps. Safe to re-run.
+# YouTube rate-limits caption downloads (HTTP 429), hence the long sleeps, and often asks
+# datacenter IPs (cloud machines) to sign in; the android_vr client usually gets through, so it
+# is tried after the default ones. Videos still missing are tried again, up to ATTEMPTS times.
+# Exits with 1 if captions are still missing. Safe to re-run.
 set -u
 cd "$(dirname "$0")"
 CHANNEL="https://www.youtube.com/@wordsunravelled/videos"
 MIN_MINUTES=${MIN_MINUTES:-15}
+ATTEMPTS=${ATTEMPTS:-3}
 mkdir -p 1-youtube
+
+yt=(yt-dlp)
+if [[ "${1:-}" == --cookies ]]; then
+  if [[ $# -lt 2 || ! -f "$2" ]]; then
+    echo "--cookies needs a cookies file; ${2:-none given} is not one." >&2
+    exit 2
+  fi
+  yt+=(--cookies "$2")
+  shift 2
+fi
 
 if [[ $# -gt 0 ]]; then
   ids=("$@")
@@ -24,27 +41,38 @@ else
   ids=()
   while IFS=$'\t' read -r id duration; do
     [[ "$duration" =~ ^[0-9]+$ ]] && (( duration >= MIN_MINUTES * 60 )) && ids+=("$id")
-  done < <(yt-dlp --flat-playlist --print "%(id)s	%(duration)s" "$CHANNEL")
+  done < <("${yt[@]}" --flat-playlist --print "%(id)s	%(duration)s" "$CHANNEL")
   echo "${#ids[@]} episodes on the channel"
 fi
 
-todo=()
-for id in "${ids[@]}"; do
-  if compgen -G "1-youtube/*\[$id\].info.json" > /dev/null && compgen -G "1-youtube/*\[$id\].en-orig.json3" > /dev/null; then
-    continue
+# The IDs whose captions or metadata are missing.
+missing() {
+  for id in "${ids[@]}"; do
+    if ! compgen -G "1-youtube/*\[$id\].info.json" > /dev/null || ! compgen -G "1-youtube/*\[$id\].en-orig.json3" > /dev/null; then
+      echo "$id"
+    fi
+  done
+}
+
+for (( attempt = 1; attempt <= ATTEMPTS; attempt++ )); do
+  todo=($(missing))
+  if [[ ${#todo[@]} -eq 0 ]]; then
+    (( attempt == 1 )) && echo "Captions and metadata are downloaded already."
+    exit 0
   fi
-  todo+=("https://www.youtube.com/watch?v=$id")
+  if (( attempt > 1 )); then
+    echo "${#todo[@]} still missing; trying again in 60 s (attempt $attempt of $ATTEMPTS)"
+    sleep 60
+  else
+    echo "${#todo[@]} to download"
+  fi
+  "${yt[@]}" --write-auto-subs --sub-langs en-orig --sub-format json3 --write-info-json \
+    --skip-download --sleep-subtitles 60 --no-progress \
+    --extractor-args "youtube:player_client=default,android_vr" \
+    -o "1-youtube/%(title)s [%(id)s].%(ext)s" "${todo[@]/#/https://www.youtube.com/watch?v=}"
 done
-echo "${#todo[@]} to download"
+
+todo=($(missing))
 [[ ${#todo[@]} -eq 0 ]] && exit 0
-
-yt-dlp --write-auto-subs --sub-langs en-orig --sub-format json3 --write-info-json \
-  --skip-download --sleep-subtitles 60 --no-progress \
-  -o "1-youtube/%(title)s [%(id)s].%(ext)s" "${todo[@]}"
-
-for url in "${todo[@]}"; do
-  id=${url##*=}
-  if ! compgen -G "1-youtube/*\[$id\].en-orig.json3" > /dev/null; then
-    echo "WARNING: no en-orig captions for $id (rate-limited, or no auto-captions). Re-run later." >&2
-  fi
-done
+echo "No en-orig captions or metadata for: ${todo[*]} (rate-limited, blocked, or no auto-captions yet). Re-run later." >&2
+exit 1

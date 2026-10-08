@@ -8,23 +8,24 @@ the moment each one comes up. This prototype covers the **audience side** only. 
 ```
 data/      the dataset: entries.json and episodes.json, edited by hand and read by the site as is
 toolkit/   shared JS for the data: slugs, link markup, link resolution, search
-ingest/    downloads episodes' captions and turns them into transcripts
+ingest/    adds new episodes: captions, transcript, an extraction agent, checks and a report
 site/      the website (Svelte 5, SvelteKit)
 docs/      plans and briefs, kept for the record
 ```
 
 `data/*.json` are the source of truth. There is no build step: the site reads them as they are,
-so a fix made by hand shows up when the page is reloaded. New episodes will be added by an
-extraction agent (issue #13); until then they can't be ingested. After editing the data by
-hand, run `cd toolkit && npm run check` (see **Checks** below).
+so a fix made by hand shows up when the page is reloaded. New episodes are added by an
+extraction agent, one at a time, with `ingest/new-episode.sh` (see `ingest/README.md`). After
+editing the data by hand, run `cd toolkit && npm run check` (see **Checks** below).
 
-Requirements: Node 22.17+, and for `ingest/`: Python 3.9+ and
-[yt-dlp](https://github.com/yt-dlp/yt-dlp).
+Requirements: Node 22.17+, and for `ingest/`: Python 3.9+,
+[yt-dlp](https://github.com/yt-dlp/yt-dlp) and the `claude` CLI.
 
 ```sh
 cd site && npm run dev        # http://localhost:5173
 cd toolkit && npm run check   # problems in data/: errors and warnings
 cd toolkit && npm test        # the toolkit's tests, including a check that data/ has no errors
+cd ingest && npm test         # the pipeline's tests (a mock claude: no Claude usage)
 ```
 
 ## Data
@@ -59,7 +60,7 @@ English one) has no gloss.
 
 **Category** says what kind of thing an entry is: `word`, `name`, `expression`,
 `about-language` (terms for describing language, and names of languages and scripts) or
-`word-part` (*-chester*, *aber*, letters). The rules are in `ingest/3-extract-prompt.md`.
+`word-part` (*-chester*, *aber*, letters). The rules are in the extraction prompt, `ingest/3-extract/prompt.md`.
 
 **Role** belongs to the mention: `subject` (discussed for its own sake), `aside` (only to make a
 point about another entry) or `mention` (the hosts only point to where it was discussed).
@@ -91,7 +92,7 @@ lists the links an edit orphans before it is applied (`sideEffects()`). Parsing 
 ## Toolkit
 
 `toolkit/` holds the code that reads, checks and edits the data, shared by the site and, later,
-the tools that edit it (the review tool on the dev site, and later the extraction agent's MCP server in issue #13). It is plain ES modules with no browser or Node globals, so the site
+the tools that edit it (the review tool on the dev site, and the extraction agent's MCP server in `ingest/3-extract/`). It is plain ES modules with no browser or Node globals, so the site
 imports it directly (as `#toolkit/*`, a package import in `site/package.json`). Its one dependency is Fuse.js, for
 search; run `npm install` in `toolkit/` before building the site.
 
