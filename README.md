@@ -2,15 +2,13 @@
 
 An unofficial fan project: a searchable index of the words, expressions and named things
 discussed on the *Words Unravelled* podcast (Rob Watts and Jess Zafarris), with a link to
-the moment each one comes up. This prototype covers the **audience side** only. See
-`docs/prototype_brief.md` for the background.
+the moment each one comes up. This prototype covers the **audience side** only.
 
 ```
 data/      the dataset: entries.json and episodes.json, edited by hand and read by the site as is
 toolkit/   shared JS for the data: slugs, link markup, link resolution, search
 ingest/    adds new episodes: captions, transcript, an extraction agent, checks and a report
 site/      the website (Svelte 5, SvelteKit)
-docs/      plans and briefs, kept for the record
 ```
 
 `data/*.json` are the source of truth. There is no build step: the site reads them as they are,
