@@ -4349,8 +4349,8 @@
     "episode_id": "foQR0vsAAIc",
     "t": 607,
     "role": "subject",
-    "note": "The longer name of [[see:Medina]], meaning the enlightened city.",
-    "confidence": "low"
+    "note": "The longer name of [[see:Madinah]], meaning the enlightened city.",
+    "confidence": "high"
    }
   ]
  },
@@ -5421,7 +5421,7 @@
     "t": 631,
     "role": "subject",
     "note": "Capital that gave its name to [[gave:Algeria]], from Arabic for the island or peninsula, the word also behind [[same-root:Al Jazeera]] and [[same-root:Algeciras]].",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -5478,7 +5478,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 719,
     "role": "subject",
-    "note": "From Arabic Alakant, based on Latin [[from:Lucentum]], from Greek [[from:leukos]], white, as in [[same-root:leukemia]].",
+    "note": "From Arabic al-Laqant, based on Latin [[from:Lucentum]], from Greek [[from:leukos]], white, as in [[same-root:leukemia]].",
     "confidence": "high"
    }
   ]
@@ -12830,7 +12830,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2265,
     "role": "subject",
-    "note": "Named after [[see:George Eden]], Earl of Auckland, the local governor's patron; its Māori name is [[see:Tāmaki Makaurau]].",
+    "note": "Named after [[see:George Eden]], Earl of Auckland, the local governor's patron; its Maori name is [[see:Tamaki Makaurau]].",
     "confidence": "high"
    }
   ]
@@ -15384,8 +15384,8 @@
     "episode_id": "foQR0vsAAIc",
     "t": 1793,
     "role": "subject",
-    "note": "Temporary name of [[see:Melbourne (Australia)]], spelt like 'bear' and 'burp' put together, alongside Bearbrass; an example of Australian humour in naming.",
-    "confidence": "low"
+    "note": "Temporary name of [[see:Melbourne (Australia)]]; an example of Australian humour in naming.",
+    "confidence": "high"
    }
   ]
  },
@@ -18060,7 +18060,7 @@
   "mentions": [
    {
     "episode_id": "foQR0vsAAIc",
-    "t": 818,
+    "t": 810,
     "role": "subject",
     "note": "Spanish resort whose name means descendants of Kasim, from Arabic [[from:beni]].",
     "confidence": "high"
@@ -18077,10 +18077,10 @@
   "mentions": [
    {
     "episode_id": "foQR0vsAAIc",
-    "t": 818,
+    "t": 810,
     "role": "subject",
-    "note": "Spanish resort known to British tourists, from Arabic Banu Darim, descendants of Darim, with [[from:beni]].",
-    "confidence": "low"
+    "note": "Spanish resort known to British tourists, from Arabic Banudarhim, descendants of Darim, with [[from:beni]].",
+    "confidence": "high"
    }
   ]
  },
@@ -22803,7 +22803,7 @@
     "t": 1300,
     "role": "subject",
     "note": "From the Chibcha name Bacatá, usually interpreted as the walling of the farmland; English speakers rarely stress the final A as in Spanish.",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -26063,7 +26063,7 @@
     "t": 1881,
     "role": "aside",
     "note": "River in The Lord of the Rings, surely an Anglo-Saxon reference to springs like [[see:bourne]].",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -26539,7 +26539,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 1033,
     "role": "subject",
-    "note": "Not named for its air but after Santa Maria del Buen Ayre, the sailors' Madonna of [[from:Bonaria]], who brought fair winds.",
+    "note": "Not named for its air but after Santa Maria del Buen Aire, the sailors' Madonna of [[from:Bonaria]], who brought fair winds.",
     "confidence": "high"
    }
   ]
@@ -29338,7 +29338,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 1958,
     "role": "subject",
-    "note": "Australia's chosen capital, probably from an Aboriginal name meaning meeting place; rejected names included [[see:Kangaremu]], [[see:Meladneyperbane]] and [[see:Sydmeladperbrisho]].",
+    "note": "Australia's chosen capital, probably from an Aboriginal name meaning meeting place; rejected names included [[see:Kangaremu]], [[see:Meladneyperbane]] and [[see:Sydmelperadbrisho]].",
     "confidence": "high"
    }
   ]
@@ -34658,7 +34658,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2310,
     "role": "subject",
-    "note": "Named after Christ Church, Oxford, where many of the [[see:Canterbury Association]] colonists studied; its Māori name is [[see:Ōtautahi]].",
+    "note": "Named after Christ Church, Oxford, where many of the [[see:Canterbury Association]] colonists studied; its Māori name is [[see:Otautahi]].",
     "confidence": "high"
    }
   ]
@@ -37297,7 +37297,7 @@
     "t": 2515,
     "role": "aside",
     "note": "City in the Netherlands from which the Dutch surname behind [[gave:Vancouver]] comes.",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -53530,7 +53530,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2348,
     "role": "subject",
-    "note": "Based on the Scottish Gaelic name for [[from:Edinburgh]], Dùn Èideann, chosen instead of New Edinburgh; its Māori name is [[see:Ōtepoti]].",
+    "note": "Based on the Scottish Gaelic name for [[from:Edinburgh]], Dùn Èideann, chosen instead of New Edinburgh; its Maori name is [[see:Ōtepoti]].",
     "confidence": "high"
    }
   ]
@@ -53851,7 +53851,7 @@
     "t": 1827,
     "role": "subject",
     "note": "Suggested name for [[see:Melbourne (Australia)]], what the local Aboriginal people called themselves, meaning tribe.",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -69387,7 +69387,7 @@
     "t": 2578,
     "role": "aside",
     "note": "Jack Deighton, whose tavern near Hastings Mill in 1867 became a gathering place for workers, giving [[gave:Gastown]] its name.",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -71443,7 +71443,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 788,
     "role": "subject",
-    "note": "From Arabic Jabal Tariq, the mountain of [[see:Tariq]], with jabal meaning mountain; controversially part of Britain, not Spain.",
+    "note": "From Arabic Jabal Tariq, the mountain of [[see:Tariq]], with jabal meaning mountain; part of Britain, not Spain.",
     "confidence": "high"
    }
   ]
@@ -74001,7 +74001,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 873,
     "role": "subject",
-    "note": "Its Arabic name may mean hill of strangers or pilgrims, but probably also relates to Latin for [[see?:pomegranate]], perhaps for its red soil and buildings.",
+    "note": "City in Spain. Its Arabic name may mean hill of strangers or pilgrims, but probably also relates to Latin for [[see?:pomegranate]], perhaps for its red soil and buildings.",
     "confidence": "high"
    }
   ]
@@ -74829,8 +74829,8 @@
     "episode_id": "foQR0vsAAIc",
     "t": 979,
     "role": "subject",
-    "note": "Caribbean island probably named after [[from?:Granada]]; the French kept the name as La Grenade; earlier Camerhogne, and Columbus's La Concepción.",
-    "confidence": "low"
+    "note": "Caribbean island probably named after [[from?:Granada]]; the French kept the name as La Grenade; earlier Camajuya, and La Concepción.",
+    "confidence": "high"
    }
   ]
  },
@@ -93994,7 +93994,7 @@
     "t": 2023,
     "role": "subject",
     "note": "Proposed name for [[see:Canberra]], a cross of kangaroo and emu.",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -95190,7 +95190,7 @@
     "t": 2007,
     "role": "aside",
     "note": "MP who argued that cold climates produce the greatest geniuses, influencing the chilly site chosen for [[see:Canberra]].",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -101078,7 +101078,7 @@
     "t": 1338,
     "role": "subject",
     "note": "From Quechua limaq, speaker or talker, referring to an oracle in the Rímac valley; Spanish pronunciation shifted it to Limac and then Lima.",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -104888,6 +104888,23 @@
   ]
  },
  {
+  "slug": "madinah",
+  "term": "Madinah",
+  "original": null,
+  "translation": "the city",
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 583,
+    "role": "subject",
+    "note": "Saudi city whose name just means the city, also the word for an Arab city's old town; formerly Yathrib, renamed by the Prophet Muhammad.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "madinat-an-nabi",
   "term": "Madinat an-Nabi",
   "original": null,
@@ -104899,8 +104916,8 @@
     "episode_id": "foQR0vsAAIc",
     "t": 623,
     "role": "subject",
-    "note": "A former name of [[see:Medina]], meaning the city of the prophet.",
-    "confidence": "low"
+    "note": "A former name of [[see:Madinah]], meaning the city of the prophet.",
+    "confidence": "high"
    }
   ]
  },
@@ -108058,7 +108075,7 @@
     "t": 2108,
     "role": "subject",
     "note": "Name for [[see:Brisbane]] in a local language, meaning spike of land.",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -108184,23 +108201,6 @@
     "t": 152,
     "role": "subject",
     "note": "Books linking mythology and morality to animals, with oddly drawn human-faced lions; Jess suspects overlap with the [[see:Book of St Albans]].",
-    "confidence": "high"
-   }
-  ]
- },
- {
-  "slug": "medina",
-  "term": "Medina",
-  "original": null,
-  "translation": "the city",
-  "language": "English",
-  "category": "name",
-  "mentions": [
-   {
-    "episode_id": "foQR0vsAAIc",
-    "t": 583,
-    "role": "subject",
-    "note": "Saudi city whose name just means the city, also the word for an Arab city's old town; formerly Yathrib, renamed by the Prophet Muhammad.",
     "confidence": "high"
    }
   ]
@@ -108438,8 +108438,8 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2046,
     "role": "subject",
-    "note": "Proposed name for [[see:Canberra]], blending Melbourne, Adelaide, Sydney, Perth and Brisbane.",
-    "confidence": "low"
+    "note": "Proposed name for [[see:Canberra]], blending Melbourne, Adelaide, Sydney, Perth and [[see:Brisbane]].",
+    "confidence": "high"
    }
   ]
  },
@@ -110245,7 +110245,7 @@
     "t": 1360,
     "role": "subject",
     "note": "Possibly named after Mexico City; the X, now an H sound in Spanish, was once a sh sound; the Aztec name for the area was [[see:Tenochtitlan]].",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -113675,7 +113675,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2407,
     "role": "subject",
-    "note": "Royal mountain, its spelling perhaps reaching French via Italian Monte Real, used by a Venetian geographer in 1556; earlier [[see:Ville-Marie]], also [[see:Mooniyang]] and [[see:Tiohtià:ke]].",
+    "note": "Royal mountain, its spelling perhaps reaching French via Italian Monte Real, used by a Venetian geographer in 1556; earlier [[see:Ville-Marie]], also [[see:Mooniyaang]] and [[see:Tiohtià:ke]].",
     "confidence": "high"
    }
   ]
@@ -113831,8 +113831,8 @@
   ]
  },
  {
-  "slug": "mooniyang",
-  "term": "Mooniyang",
+  "slug": "mooniyaang",
+  "term": "Mooniyaang",
   "original": null,
   "translation": "the first stopping place",
   "language": "Ojibwe",
@@ -113843,7 +113843,7 @@
     "t": 2448,
     "role": "subject",
     "note": "Ojibwe name for [[see:Montreal]], meaning the first stopping place in the Ojibwe migration story.",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -123760,7 +123760,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2705,
     "role": "subject",
-    "note": "Means beautiful lake in Mohawk; the province is named after the lake, making [[see:Lake Ontario]] a tautology.",
+    "note": "Means beautiful lake in Mohawk; the province is named after the lake, making [[see:Lake Ontario]] a [[see:tautology]].",
     "confidence": "high"
    }
   ]
@@ -124220,7 +124220,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 954,
     "role": "aside",
-    "note": "The fruit's name may have been influenced by the place [[see:Orange (town)]], or vice versa, as with [[see:Granada]] and the pomegranate.",
+    "note": "The fruit's name may have been influenced by the place [[see:Orange (town)]], or vice versa, as with [[see:Granada]] and the [[see:pomegranate]].",
     "confidence": "high"
    }
   ]
@@ -124262,7 +124262,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 954,
     "role": "aside",
-    "note": "Like [[see:Granada]] and the pomegranate, its name and that of [[see:orange]] the fruit may have influenced each other.",
+    "note": "Like [[see:Granada]] and the [[see:pomegranate]], its name and that of [[see:orange]] the fruit may have influenced each other.",
     "confidence": "high"
    }
   ]
@@ -125050,18 +125050,18 @@
  },
  {
   "slug": "otautahi",
-  "term": "Ōtautahi",
+  "term": "Otautahi",
   "original": null,
   "translation": "place of Tautahi",
-  "language": "Māori",
+  "language": "Maori",
   "category": "name",
   "mentions": [
    {
     "episode_id": "foQR0vsAAIc",
     "t": 2339,
     "role": "subject",
-    "note": "Māori name for [[see:Christchurch]], meaning place of Tautahi.",
-    "confidence": "low"
+    "note": "Maori name for [[see:Christchurch]], meaning place of Tautahi.",
+    "confidence": "high"
    }
   ]
  },
@@ -125078,7 +125078,7 @@
     "t": 2372,
     "role": "subject",
     "note": "Māori name for [[see:Dunedin]], meaning place of Tapoti.",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -126217,7 +126217,7 @@
     "t": 259,
     "role": "subject",
     "note": "The old settlement beside the new one that became [[see:Naples]]; its name means old town, with the palaeo- of paleontology.",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -148951,7 +148951,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 1145,
     "role": "subject",
-    "note": "One of many South American cities named after saints, here St James the Great; compare the given name [[see:Santiago]].",
+    "note": "One of many South American cities named after saints, here St James the Great.",
     "confidence": "high"
    }
   ]
@@ -165511,8 +165511,8 @@
   ]
  },
  {
-  "slug": "sydmeladperbrisho",
-  "term": "Sydmeladperbrisho",
+  "slug": "sydmelperadbrisho",
+  "term": "Sydmelperadbrisho",
   "original": null,
   "translation": null,
   "language": "English",
@@ -165522,8 +165522,8 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2061,
     "role": "subject",
-    "note": "Proposed name for [[see:Canberra]] blending Sydney, Melbourne, Adelaide, Perth, Brisbane and Hobart; not even a good [[see:portmanteau]].",
-    "confidence": "low"
+    "note": "Proposed name for [[see:Canberra]] blending Sydney, Melbourne, Adelaide, Perth, [[see:Brisbane]] and Hobart; not even a good [[see:portmanteau]].",
+    "confidence": "high"
    }
   ]
  },
@@ -166850,18 +166850,18 @@
  },
  {
   "slug": "tamaki-makaurau",
-  "term": "Tāmaki Makaurau",
+  "term": "Tamaki Makaurau",
   "original": null,
-  "translation": "Tāmaki desired by many",
-  "language": "Māori",
+  "translation": "Tamaki desired by many",
+  "language": "Maori",
   "category": "name",
   "mentions": [
    {
     "episode_id": "foQR0vsAAIc",
     "t": 2186,
     "role": "subject",
-    "note": "Māori name for [[see:Auckland]]: Makaurau means desired by many, for its rich soil and two harbours; Tāmaki may refer to the isthmus or a chief's son.",
-    "confidence": "low"
+    "note": "Maori name for [[see:Auckland]]: Makaurau means desired by many, for its rich soil and two harbours; Tamaki may refer to the isthmus or a chief's son or a female leader of nearby area.",
+    "confidence": "high"
    }
   ]
  },
@@ -167140,7 +167140,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2721,
     "role": "subject",
-    "note": "Italian city named after [[from:Taras]], son of [[see:Poseidon]]; [[unrelated:Toronto]] despite the similar sound; it gave [[gave:tarantula]] and [[gave:tarantella]].",
+    "note": "Italian city named after [[from:Taras]], son of [[see:Poseidon]]; unrelated to [[unrelated:Toronto]] despite the similar sound; it gave [[gave:tarantula]] and [[gave:tarantella]].",
     "confidence": "high"
    }
   ]
@@ -167206,7 +167206,7 @@
   "mentions": [
    {
     "episode_id": "foQR0vsAAIc",
-    "t": 865,
+    "t": 845,
     "role": "aside",
     "note": "Berber commander whose mountain, Jabal Tariq, gave [[gave:Gibraltar]] its name.",
     "confidence": "high"
@@ -167569,8 +167569,8 @@
     "episode_id": "foQR0vsAAIc",
     "t": 615,
     "role": "subject",
-    "note": "A name the Prophet Muhammad gave to [[see:Medina]], still used today, meaning the kind or the good.",
-    "confidence": "low"
+    "note": "A name the Prophet Muhammad gave to [[see:Madinah]], still used today, meaning the kind or the good.",
+    "confidence": "high"
    }
   ]
  },
@@ -167603,8 +167603,8 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2283,
     "role": "subject",
-    "note": "Māori name for [[see:Wellington]], the great harbour of Tara, a chief's son sent south to find fertile land who settled the harbour.",
-    "confidence": "low"
+    "note": "Maori name for [[see:Wellington]], the great harbour of Tara, a chief's son sent south to find fertile land who settled the harbour.",
+    "confidence": "high"
    }
   ]
  },
@@ -168319,7 +168319,7 @@
     "t": 1369,
     "role": "aside",
     "note": "The Aztec name for the area of [[see:Mexico]] City.",
-    "confidence": "low"
+    "confidence": "high"
    }
   ]
  },
@@ -175163,7 +175163,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2630,
     "role": "subject",
-    "note": "From Mohawk for where there are trees standing in the water, describing Wendat fish weirs of saplings between Lake Simcoe and Lake Couchiching; [[unrelated:Taranto]].",
+    "note": "From Mohawk tkaronto for where there are trees standing in the water, describing Wendat fish weirs of saplings between Lake Simcoe and Lake Couchiching; unrelated to [[unrelated:Taranto]].",
     "confidence": "high"
    }
   ]
@@ -180992,7 +180992,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2498,
     "role": "subject",
-    "note": "Named in 1886 after [[see:George Vancouver]], a Dutch-origin name, 'from [[from:Coevorden]]'; formerly [[see:Gastown]] and [[see:Granville]]; its Squamish name means place of many maple trees.",
+    "note": "Named in 1886 after [[see:George Vancouver]], a Dutch-origin name, 'from [[from:Coevorden]]'; formerly [[see:Gastown]] and [[see:Granville]]; its Squamish name K'emk'emelày means place of many maple trees.",
     "confidence": "high"
    }
   ]
@@ -185192,7 +185192,7 @@
     "episode_id": "foQR0vsAAIc",
     "t": 2304,
     "role": "subject",
-    "note": "Named after Arthur Wellesley, first Duke of Wellington; its Māori name is [[see:Te Whanganui-a-Tara]].",
+    "note": "Named after Arthur Wellesley, first Duke of Wellington; its Maori name is [[see:Te Whanganui-a-Tara]].",
     "confidence": "high"
    }
   ]
