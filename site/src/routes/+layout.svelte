@@ -13,6 +13,8 @@
   let { children } = $props()
 
   let main
+  let navBox
+  let menuOpen = $state(false)
   const route = $derived(page.route.id)
   const data = load()
   // The edit tools (npm run dev only; see lib/edit).
@@ -20,10 +22,21 @@
 
   // Like a page load, a followed link starts reading at the content.
   afterNavigate(({ type }) => {
+    menuOpen = false
     if (type === 'link') main?.focus({ preventScroll: true })
   })
 
+  // On a phone the nav is a menu behind one button; a click outside it closes it.
+  function onclick(ev) {
+    if (menuOpen && !navBox.contains(ev.target)) menuOpen = false
+  }
+
   async function onkeydown(ev) {
+    if (ev.key === 'Escape' && menuOpen) {
+      menuOpen = false
+      navBox.querySelector('.menu-button').focus()
+      return
+    }
     const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName)
     if (ev.key === '/' && !typing) {
       ev.preventDefault()
@@ -36,7 +49,7 @@
   }
 </script>
 
-<svelte:window {onkeydown} />
+<svelte:window {onkeydown} {onclick} />
 
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header" class:home={route === '/'}>
@@ -46,19 +59,27 @@
       <span class="brand-name">Wordhoard</span>
     </a>
     <span class="brand-tag">unofficial index to <em>Words Unravelled</em></span>
-    <nav class="site-nav" aria-label="Main">
-      <a href={href('episodes')} aria-current={route === '/episodes' || route === '/episode/[id]' ? 'page' : undefined}
-        >Episodes</a
+    <div class="nav-box" class:open={menuOpen} bind:this={navBox}>
+      <button
+        class="menu-button"
+        aria-expanded={menuOpen}
+        aria-controls="site-nav"
+        onclick={() => (menuOpen = !menuOpen)}>Menu</button
       >
-      <a href={href('graph')} aria-current={route === '/graph' ? 'page' : undefined}>Graph</a>
-      <a href={href('about')} aria-current={route === '/about' ? 'page' : undefined}>About</a>
-      {#if edit}
-        {#if debug.on}<a href={href('review')} aria-current={route === '/review' ? 'page' : undefined}>Review</a>{/if}
-        <label class="debug" title="Show the edit tools and the roles of mentions">
-          <input type="checkbox" checked={debug.on} onchange={(ev) => setDebug(ev.currentTarget.checked)} /> Debug
-        </label>
-      {/if}
-    </nav>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <a href={href('episodes')} aria-current={route === '/episodes' || route === '/episode/[id]' ? 'page' : undefined}
+          >Episodes</a
+        >
+        <a href={href('graph')} aria-current={route === '/graph' ? 'page' : undefined}>Graph</a>
+        <a href={href('about')} aria-current={route === '/about' ? 'page' : undefined}>About</a>
+        {#if edit}
+          {#if debug.on}<a href={href('review')} aria-current={route === '/review' ? 'page' : undefined}>Review</a>{/if}
+          <label class="debug" title="Show the edit tools and the roles of mentions">
+            <input type="checkbox" checked={debug.on} onchange={(ev) => setDebug(ev.currentTarget.checked)} /> Debug
+          </label>
+        {/if}
+      </nav>
+    </div>
   </div>
 </header>
 <main id="main" class="wrap" tabindex="-1" bind:this={main}>
@@ -165,17 +186,33 @@
   .brand-tag em {
     font-style: normal;
   }
-  .site-nav {
+  .nav-box {
     margin-left: auto;
+    position: relative;
+  }
+  .site-nav {
     display: flex;
     gap: 18px;
   }
-  .site-nav a {
+  .site-nav a,
+  .menu-button {
     text-decoration: none;
     font-variant-caps: all-small-caps;
     letter-spacing: 0.06em;
     font-size: 1.1rem;
     color: var(--ink-soft);
+  }
+  .menu-button {
+    display: none;
+    padding: 0 12px 2px;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .menu-button:hover,
+  .open .menu-button {
+    color: var(--rubric);
   }
   .debug {
     display: inline-flex;
@@ -206,6 +243,35 @@
   @media (max-width: 700px) {
     .brand-tag {
       display: none;
+    }
+  }
+
+  /* A phone has no room for the nav next to the brand: it opens from the Menu button. */
+  @media (max-width: 560px) {
+    .menu-button {
+      display: block;
+    }
+    .site-nav {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      z-index: 20;
+      flex-direction: column;
+      gap: 0;
+      min-width: 10rem;
+      padding: 6px 0;
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .open .site-nav {
+      display: flex;
+    }
+    .site-nav a,
+    .debug {
+      padding: 4px 16px;
     }
   }
 </style>
