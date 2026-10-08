@@ -97,15 +97,13 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
   // card or a panel over it, or a lifted finger), so its hover only counts while a mouse or pen
   // is over the canvas.
   const focus = () => (canHover ? hoverNode : null) ?? selected
-  /** 1 for highlighted nodes, a faint value for the rest while something is focused. */
-  const emphasis = (node) => {
-    const f = focus()
+  /** 1 for highlighted nodes, a faint value for the rest while something (f) is focused. */
+  const emphasis = (node, f) => {
     if (f) return node === f || f.shownNeighbors.has(node) ? 1 : 0.12
     if (matches) return matches.has(node) ? 1 : 0.12
     return 1
   }
-  const isHighlighted = (node) => {
-    const f = focus()
+  const isHighlighted = (node, f) => {
     if (f) return node === f || f.shownNeighbors.has(node)
     return !!matches && matches.size <= 60 && matches.has(node)
   }
@@ -117,41 +115,54 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
 
   // ---- animation ------------------------------------------------------------------------------
 
-  // Hover, selection and search change targets; every frame each node and link eases its
-  // displayed values towards them, so highlights fade in and out instead of switching.
+  // Hover, selection and search change targets; each frame every node and link eases its
+  // displayed values (anim) towards them, so highlights fade in and out instead of switching.
+  // force-graph only redraws while its simulation runs or the view moves, so a change wakes the
+  // redraw loop until everything has arrived.
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)')
   const EASE_MS = 70 // time constant: ~95% of the way there after 3x this
   let lastFrame = performance.now()
+  const wake = () => fg.autoPauseRedraw(false)
 
-  const nodeTargets = (node) => {
-    const f = focus()
-    return {
-      emphasis: emphasis(node),
-      highlight: isHighlighted(node) ? 1 : 0,
-      accent: node === f || (!f && matches?.has(node)) ? 1 : 0,
-      ring: node === selected ? 1 : 0,
-    }
+  const target = {} // reused for every node and link
+  const nodeTargets = (node, f) => {
+    target.emphasis = emphasis(node, f)
+    target.highlight = isHighlighted(node, f) ? 1 : 0
+    target.accent = node === f || (!f && matches?.has(node)) ? 1 : 0
+    target.ring = node === selected ? 1 : 0
+    return target
   }
-  const linkTargets = (link) => {
-    const f = focus()
+  const linkTargets = (link, f) => {
     const hi = !!f && (link.source === f || link.target === f)
-    return { alpha: f ? (hi ? 1 : 0.08) : matches ? 0.25 : 1, highlight: hi ? 1 : 0 }
+    target.alpha = f ? (hi ? 1 : 0.08) : matches ? 0.25 : 1
+    target.highlight = hi ? 1 : 0
+    return target
   }
+  /** Eases obj.anim towards the targets; whether it is still on its way. */
   const approach = (obj, targets, k) => {
-    if (!obj.anim) return (obj.anim = targets) // new on screen: start where it should be
-    for (const key in targets) {
-      const d = targets[key] - obj.anim[key]
-      obj.anim[key] = Math.abs(d) < 0.002 ? targets[key] : obj.anim[key] + d * k
+    if (!obj.anim) {
+      obj.anim = { ...targets } // new on screen: start where it should be
+      return false
     }
+    let moving = false
+    for (const key in obj.anim) {
+      const d = targets[key] - obj.anim[key]
+      if (Math.abs(d) < 0.002) obj.anim[key] = targets[key]
+      else (obj.anim[key] += d * k), (moving = true)
+    }
+    return moving
   }
   function animate() {
     const now = performance.now()
     const dt = Math.min(100, now - lastFrame)
     lastFrame = now
     const k = reducedMotion.matches ? 1 : 1 - Math.exp(-dt / EASE_MS)
+    const f = focus()
     const { nodes, links } = fg.graphData()
-    for (const n of nodes) approach(n, nodeTargets(n), k)
-    for (const l of links) approach(l, linkTargets(l), k)
+    let moving = false
+    for (const n of nodes) moving = approach(n, nodeTargets(n, f), k) || moving
+    for (const l of links) moving = approach(l, linkTargets(l, f), k) || moving
+    if (!moving) fg.autoPauseRedraw(true)
   }
 
   // ---- drawing --------------------------------------------------------------------------------
@@ -176,7 +187,7 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
   }
 
   function drawNode(node, ctx, scale) {
-    const { emphasis: a, highlight, accent, ring } = node.anim ?? nodeTargets(node)
+    const { emphasis: a, highlight, accent, ring } = node.anim
     const r = radius(node)
     ctx.globalAlpha = a
     ctx.beginPath()
@@ -206,7 +217,7 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
   }
 
   function drawLink(link, ctx, scale) {
-    const { alpha, highlight } = link.anim ?? linkTargets(link)
+    const { alpha, highlight } = link.anim
     // About 1px on screen, thickening only gently as you zoom in.
     const width = settings.linkWidth * (1 / scale + 0.12)
     const unrelated = isUnrelated(link)
@@ -244,7 +255,6 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
     })
     .linkCanvasObject(drawLink)
     .linkCanvasObjectMode(() => 'replace')
-    .autoPauseRedraw(false) // hover fades and settings changes need a redraw even when the layout is still
     .minZoom(0.1)
     .maxZoom(8)
     .warmupTicks(40)
@@ -258,6 +268,7 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
     })
     .onNodeHover((node) => {
       hoverNode = node
+      wake()
     })
     .onNodeClick((node, ev) => {
       nodeClicked = true
@@ -278,10 +289,13 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
   fit(0)
 
   const onPointerMove = (ev) => {
-    canHover = ev.pointerType !== 'touch'
+    if (canHover === (ev.pointerType !== 'touch')) return
+    canHover = !canHover
+    wake()
   }
   const onPointerLeave = () => {
     canHover = false
+    wake()
   }
   el.addEventListener('pointermove', onPointerMove)
   el.addEventListener('pointerdown', onPointerMove)
@@ -314,6 +328,7 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
   const onScheme = () => {
     readColors()
     fg.backgroundColor(colors.bg)
+    wake()
   }
   scheme.addEventListener('change', onScheme)
 
@@ -328,6 +343,7 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
     },
     setMatches(set) {
       matches = set
+      wake()
     },
     /** Changes settings (keys of DEFAULTS); forces take effect at once. */
     setSettings(changes) {
@@ -335,6 +351,7 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
       if (!changed.length) return
       Object.assign(settings, changes)
       if (changed.some((k) => FORCE_KEYS.includes(k))) applyForces()
+      wake()
     },
     /**
      * Selects a node (or none). With `center`, zooms to it, keeping it above a bottom sheet of
@@ -342,6 +359,7 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
      */
     select(node, { center = false, sheet = 0 } = {}) {
       selected = node
+      wake()
       if (!node || !center) return
       const zoom = Math.max(fg.zoom(), 2)
       fg.zoom(zoom, 600)
