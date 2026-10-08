@@ -59,7 +59,6 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
   let canHover = false // a mouse or pen is over the canvas
   let selected = null
   let matches = null // Set of nodes matching the search, or null when not searching
-  let userMoved = false // stop auto-fitting once the reader has zoomed or panned themselves
 
   // ---- colours (read from CSS, so the graph follows the site's light/dark theme) --------------
 
@@ -231,6 +230,8 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
 
   readColors()
   const fg = new ForceGraph(el)
+    .width(el.clientWidth)
+    .height(el.clientHeight)
     .backgroundColor(colors.bg)
     .graphData(visibleData())
     .nodeId('id')
@@ -274,14 +275,7 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
   applyForces()
 
   const fit = (ms = 600) => fg.zoomToFit(ms, 40, (n) => !matches || matches.has(n))
-  let fitted = false
-  fg.onEngineStop(() => {
-    if (!fitted && !userMoved && !selected) fit()
-    fitted = true
-  })
-  setTimeout(() => !userMoved && !selected && fit(0), 50)
-  const moved = () => (userMoved = true)
-  el.addEventListener('wheel', moved, { passive: true })
+  fit(0)
 
   const onPointerMove = (ev) => {
     canHover = ev.pointerType !== 'touch'
@@ -299,8 +293,8 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
   const CLICK_TOLERANCE = 5 // px
   let down = null // where the pointer went down
   let nodeClicked = false
+  let clickFrame = 0
   const onPointerDown = (ev) => {
-    moved()
     down = ev.button === 0 ? [ev.clientX, ev.clientY] : null
     nodeClicked = false
   }
@@ -308,7 +302,7 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
     if (!down || Math.hypot(ev.clientX - down[0], ev.clientY - down[1]) > CLICK_TOLERANCE) return
     down = null
     // force-graph reports node clicks on the next frame, before this callback runs.
-    requestAnimationFrame(() => !nodeClicked && onBackground())
+    clickFrame = requestAnimationFrame(() => !nodeClicked && onBackground())
   }
   el.addEventListener('pointerdown', onPointerDown)
   el.addEventListener('pointerup', onPointerUp)
@@ -346,23 +340,18 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
     select(node, { center = false, sheet = 0 } = {}) {
       selected = node
       if (!node || !center) return
-      userMoved = true
       const zoom = Math.max(fg.zoom(), 2)
       fg.zoom(zoom, 600)
       fg.centerAt(node.x, node.y + sheet / 2 / zoom, 600)
     },
     zoomBy(factor) {
-      userMoved = true
       fg.zoom(fg.zoom() * factor, 250)
     },
-    fit() {
-      userMoved = true
-      fit()
-    },
+    fit,
     destroy() {
+      cancelAnimationFrame(clickFrame)
       resize.disconnect()
       scheme.removeEventListener('change', onScheme)
-      el.removeEventListener('wheel', moved)
       el.removeEventListener('pointermove', onPointerMove)
       el.removeEventListener('pointerdown', onPointerMove)
       el.removeEventListener('pointerleave', onPointerLeave)

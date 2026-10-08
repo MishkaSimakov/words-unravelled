@@ -2,7 +2,7 @@
   // The graph page: the canvas (canvas.js) with a search box, a settings panel, zoom buttons and
   // a card for the selected entry, floating over it.
   import { onMount, tick, untrack } from 'svelte'
-  import { replaceState } from '$app/navigation'
+  import { goto } from '$app/navigation'
   import { page } from '$app/state'
   import { entryName } from '#toolkit/model/schema.js'
   import { fold } from '#toolkit/model/slugs.js'
@@ -58,12 +58,16 @@
     if (selected && matches && !matches.has(selected)) select(null)
   }
 
+  /** Selects a node (or none), keeping ?focus= in step. */
   async function select(node, { center = false } = {}) {
     selected = node
-    const url = new URL(page.url)
-    if (node) url.searchParams.set('focus', node.id)
-    else url.searchParams.delete('focus')
-    replaceState(url, page.state)
+    // From location: page.url doesn't follow shallow navigations.
+    const url = new URL(location.href)
+    if ((node?.id ?? null) !== url.searchParams.get('focus')) {
+      if (node) url.searchParams.set('focus', node.id)
+      else url.searchParams.delete('focus')
+      goto(url, { replace: true, shallow: true, state: page.state })
+    }
     if (node && !view.shown().includes(node)) {
       // A node hidden by the category filters comes back with its neighbours' categories.
       for (const n of [node, ...node.neighbors]) shownCategories[n.category] = true
@@ -117,7 +121,7 @@
       onBackground: () => select(null),
     })
     const initial = data.byId.get(page.url.searchParams.get('focus'))
-    if (initial) setTimeout(() => select(initial, { center: true }), 60)
+    if (initial) select(initial, { center: true })
     return () => view.destroy()
   })
 </script>
