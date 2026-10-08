@@ -55,7 +55,8 @@ export function graphNodes(graph, layout, name) {
 export function graphCanvas(el, theme, data, { onClick, onBackground }) {
   const settings = { ...DEFAULTS }
   let hidden = new Set() // hidden categories
-  let hovered = null
+  let hoverNode = null // the node under the pointer, as force-graph last reported it
+  let canHover = false // a mouse or pen is over the canvas
   let selected = null
   let matches = null // Set of nodes matching the search, or null when not searching
   let userMoved = false // stop auto-fitting once the reader has zoomed or panned themselves
@@ -93,7 +94,10 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
     return { nodes: [...filtered].filter((n) => n.shownNeighbors.size), links }
   }
 
-  const focus = () => hovered ?? selected
+  // force-graph keeps the last pointer position after the pointer has left the canvas (for the
+  // card or a panel over it, or a lifted finger), so its hover only counts while a mouse or pen
+  // is over the canvas.
+  const focus = () => (canHover ? hoverNode : null) ?? selected
   /** 1 for highlighted nodes, a faint value for the rest while something is focused. */
   const emphasis = (node) => {
     const f = focus()
@@ -252,7 +256,7 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
       }
     })
     .onNodeHover((node) => {
-      hovered = node
+      hoverNode = node
     })
     .onNodeClick((node, ev) => {
       nodeClicked = true
@@ -278,6 +282,16 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
   setTimeout(() => !userMoved && !selected && fit(0), 50)
   const moved = () => (userMoved = true)
   el.addEventListener('wheel', moved, { passive: true })
+
+  const onPointerMove = (ev) => {
+    canHover = ev.pointerType !== 'touch'
+  }
+  const onPointerLeave = () => {
+    canHover = false
+  }
+  el.addEventListener('pointermove', onPointerMove)
+  el.addEventListener('pointerdown', onPointerMove)
+  el.addEventListener('pointerleave', onPointerLeave)
 
   // Background clicks are detected here: given a background click handler, force-graph drops
   // any click, also on a node, during which the mouse moved at all. Node clicks still come from
@@ -349,6 +363,9 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
       resize.disconnect()
       scheme.removeEventListener('change', onScheme)
       el.removeEventListener('wheel', moved)
+      el.removeEventListener('pointermove', onPointerMove)
+      el.removeEventListener('pointerdown', onPointerMove)
+      el.removeEventListener('pointerleave', onPointerLeave)
       el.removeEventListener('pointerdown', onPointerDown)
       el.removeEventListener('pointerup', onPointerUp)
       fg._destructor()
