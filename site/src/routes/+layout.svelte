@@ -50,6 +50,7 @@
       <a href={href('episodes')} aria-current={route === '/episodes' || route === '/episode/[id]' ? 'page' : undefined}
         >Episodes</a
       >
+      <a href={href('graph')} aria-current={route === '/graph' ? 'page' : undefined}>Graph</a>
       <a href={href('about')} aria-current={route === '/about' ? 'page' : undefined}>About</a>
       {#if edit}
         {#if debug.on}<a href={href('review')} aria-current={route === '/review' ? 'page' : undefined}>Review</a>{/if}

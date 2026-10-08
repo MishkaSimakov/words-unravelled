@@ -49,8 +49,10 @@ Superseded plans go in `docs/` with a status header at the top.
 
 - The site is Svelte 5 with SvelteKit (adapter-static, a single-page app). Data logic (slugs,
   links, search, indexes) stays in `toolkit/`, shared with the checks and the tools that edit data.
+  `toolkit/` is only for that shared data handling and retrieval: logic of a site feature that
+  only the site uses (like the graph page's graph and layout) lives in `site/src/lib/`.
 - Slugs, link parsing and link resolution live in `toolkit/` only; the site imports them.
-- Tests: `cd toolkit && npm test` and `cd ingest && npm test`.
+- Tests: `cd toolkit && npm test`, `cd site && npm test`, and `cd ingest && npm test`.
 - READMEs describe current behaviour. Update them in the same change as the code.
 - Commit subjects are imperative and prefixed with the area when there is one:
   `Site: …`, `toolkit: …`, `ingest: …`.

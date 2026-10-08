@@ -11,11 +11,13 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-kit sync && svelte-check"
+    "check": "svelte-kit sync && svelte-check",
+    "test": "node --import ./test/setup.js --test 'test/**/*.test.js'"
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.3.0",
-    "@fontsource-variable/source-serif-4": "^5.3.0"
+    "@fontsource-variable/source-serif-4": "^5.3.0",
+    "force-graph": "^1.52.0"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^4.0.0",

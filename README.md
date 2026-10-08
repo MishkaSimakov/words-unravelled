@@ -259,6 +259,7 @@ npm run dev        # http://localhost:5173, reads ../data live; debug mode and t
 npm run build      # -> site/dist (data copied into dist/data, 404.html is the app shell)
 npm run preview
 npm run check      # svelte-check
+npm test           # tests in test/ (node --test; test/setup.js resolves #toolkit/* as Vite does)
 ```
 
 The site is a SvelteKit single-page app (`ssr = false`, adapter-static with a `404.html`
@@ -270,7 +271,7 @@ it has loaded.
 site/src/app.html            the page shell
 site/src/app.css             colours, fonts, base styles and the classes several pages share
 site/src/routes/             pages: home (+page.svelte), entry/[slug], episode/[id], episodes,
-                             about, review (dev only), [...path] (unknown paths) and +error; +layout.svelte is the
+                             graph, about, review (dev only), [...path] (unknown paths) and +error; +layout.svelte is the
                              header, footer, loading state and the / shortcut
 site/src/lib/components/     EntryItem, EntryList, EntryName, Note, CategoryTag, Mention, Player…
 site/src/lib/db.js           loading, sorting and indexing the data (and reloading it after an edit); search
@@ -278,6 +279,10 @@ site/src/lib/debug.svelte.js the Debug switch (dev only)
 site/src/lib/edit/           the review tool (dev only): edit forms, the merge and confirmation dialogs,
                              the /review list, and the flow every edit goes through (edits.svelte.js)
 site/src/lib/entries.js      categories, display forms, role order, link titles
+site/src/lib/graph/          the graph page: GraphView (panel, search, card), canvas.js (drawing
+                             and forces, with force-graph), graph.js (linkGraph: the entries it
+                             shows and the links between them), layout.js (galaxyLayout: where
+                             each entry sits), data.js (both, cached per loaded dataset)
 site/src/lib/format.js       numbers, plurals, times, dates
 site/src/lib/paths.js        links under the base path
 site/src/lib/youtube.js      YouTube URLs and the IFrame API loader
@@ -286,7 +291,20 @@ site/src/lib/youtube.js      YouTube URLs and the IFrame API loader
 Each component's CSS is scoped to it. `src/lib` is imported as `#lib/*`.
 
 - Pages: home (search, category chips, language filter, suggestions), `/entry/<slug>`,
-  `/episode/<id>`, `/episodes`, `/about`.
+  `/episode/<id>`, `/episodes`, `/graph`, `/about`.
+- The graph page (a prototype) draws entries as nodes and the links in their notes as edges,
+  with force-graph. "See" links are left out (they are most of the links but the loosest, and
+  would tie most entries into one tangle), and so are entries without other links; entry pages
+  of the entries it shows link to them there ("Show in graph"). The layout is computed when the
+  page opens (`galaxyLayout()`, a fraction of a second): each group of linked entries is drawn on
+  its own by stress majorization (linked entries about 30 units apart, no two closer than 20),
+  then the groups are arranged like a galaxy, the largest in the middle and bigger ones nearer
+  it, none overlapping. Nodes start there and the simulation (link and repel forces) then moves
+  them freely; a dropped node isn't pinned, so its links pull it back towards its neighbours.
+  Unrelated links (a resemblance that isn't a connection, like
+  *emoji* and *emotion*) are red dashes. Category filters hide entries, leaving gaps. Clicking a
+  node, or a link in its card, selects it (a link to an entry that isn't in the graph opens its
+  page); `?focus=<slug>` selects one on load.
 - Categories: chips under the search box filter by category (`?cat=name`), and each chip counts
   the entries the current search and language filter leave. On narrow screens the chips scroll
   sideways. Result cards, entry pages and episode timelines show each entry's category in
@@ -352,4 +370,4 @@ toolkit code.
 **GitHub Pages:** build with `BASE_PATH=/<repo-name>/ npm run build` for a project site.
 `404.html` is the app shell, so deep links like `/entry/break-a-leg` work. The workflow
 in `.github/workflows/pages.yml` does this on every push to `main`, from the committed
-`data/*.json`.
+`data/*.json`, after the data check and the toolkit's and the site's tests.
