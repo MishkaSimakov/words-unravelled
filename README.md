@@ -369,4 +369,4 @@ toolkit code.
 **GitHub Pages:** build with `BASE_PATH=/<repo-name>/ npm run build` for a project site.
 `404.html` is the app shell, so deep links like `/entry/break-a-leg` work. The workflow
 in `.github/workflows/pages.yml` does this on every push to `main`, from the committed
-`data/*.json`.
+`data/*.json`, after the data check and the toolkit's and the site's tests.
