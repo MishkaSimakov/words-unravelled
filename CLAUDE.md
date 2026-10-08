@@ -55,5 +55,5 @@ Superseded plans go in `docs/` with a status header at the top.
 - Tests: `cd toolkit && npm test`, `cd site && npm test`, and `cd ingest && npm test`.
 - READMEs describe current behaviour. Update them in the same change as the code.
 - Commit subjects are imperative and prefixed with the area when there is one:
-  `Site: …`, `toolkit: …`, `ingest: …`.
+  `site:...`, `toolkit:...`, `ingest:...`, `ci:...`;
 - Known problems are tracked as GitHub issues (`gh issue list`).

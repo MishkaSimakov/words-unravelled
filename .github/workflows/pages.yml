@@ -31,16 +31,21 @@ jobs:
           cache-dependency-path: |
             site/package-lock.json
             toolkit/package-lock.json
+
+      # test toolkit
       - run: npm ci
         working-directory: toolkit
-      - run: npm run check # fails the deploy if the data has errors
+      - run: npm run check
         working-directory: toolkit
       - run: npm test
         working-directory: toolkit
+
+      # test site
       - run: npm ci
         working-directory: site
       - run: npm test
         working-directory: site
+
       - run: npm run build
         working-directory: site
         env:
