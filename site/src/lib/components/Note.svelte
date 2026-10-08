@@ -38,6 +38,7 @@
 {#each parts as part}{#if part.entry}<a
       class="note-link"
       href={entryHref(part.entry)}
+      data-slug={part.entry.slug}
       data-type={part.type}
       data-uncertain={part.uncertain ? '' : undefined}
       title={linkTitle(part.type, part.uncertain) + (part.entry.gloss ? `: ${entryName(part.entry)}` : '')}

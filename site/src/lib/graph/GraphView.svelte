@@ -88,7 +88,7 @@
   function onCardClick(ev) {
     const link = ev.target.closest('a.note-link')
     if (!link || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return
-    const node = data.byId.get(decodeURIComponent(new URL(link.href).pathname.split('/').pop()))
+    const node = data.byId.get(link.dataset.slug)
     if (!node) return
     ev.preventDefault()
     ev.stopPropagation() // keep the router from opening the entry page
