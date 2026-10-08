@@ -6,7 +6,7 @@ import { noteParts } from '#toolkit/query/index.js'
  * Link types the graph leaves out. "See" links are most of the links but the loosest: they would
  * tie most entries into one tangle.
  */
-export const GRAPH_IGNORED_LINK_TYPES = new Set(['see'])
+const IGNORED_LINK_TYPES = new Set(['see'])
 
 /**
  * The graph over the index's entries: { entries, edges, neighbors }. An edge { a, b, types } joins
@@ -20,9 +20,9 @@ export function linkGraph(index) {
   for (const entry of index.data.entries) {
     for (const mention of entry.mentions) {
       for (const part of noteParts(index, mention)) {
-        if (typeof part === 'string' || !part.slug || GRAPH_IGNORED_LINK_TYPES.has(part.type)) continue
+        // A link resolves to another entry or to nothing (slug null), never to its own entry.
+        if (typeof part === 'string' || !part.slug || IGNORED_LINK_TYPES.has(part.type)) continue
         const other = index.links.bySlug.get(part.slug)
-        if (!other || other === entry) continue
         const [a, b] = entry.slug < other.slug ? [entry, other] : [other, entry]
         const key = `${a.slug}\n${b.slug}`
         let edge = byKey.get(key)

@@ -210,7 +210,7 @@ function closePairs(C, R, slack = 80) {
  * points around the origin): bigger islands nearer the core, spread so that islands cover about
  * FILL of their belt, none overlapping each other or coming within CORE_GAP of the core.
  */
-export function placeIslands(core, radii, rand, sweeps = 300) {
+function placeIslands(core, radii, rand, sweeps = 300) {
   const n = radii.length
   if (!n) return []
   // Target distance from the centre: the island's place in the cumulative area, as rings,

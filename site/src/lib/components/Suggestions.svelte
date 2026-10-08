@@ -58,12 +58,6 @@
   }
 
   .link-button {
-    border: 0;
-    background: none;
-    padding: 0;
     color: var(--rubric);
-    text-decoration: underline;
-    text-underline-offset: 0.18em;
-    cursor: pointer;
   }
 </style>

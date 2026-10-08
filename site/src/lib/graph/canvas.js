@@ -3,6 +3,7 @@
 // GraphView.svelte drives it: filters, selection, search matches and settings go in through the
 // returned object.
 import ForceGraph from 'force-graph'
+import { LINK } from './layout.js'
 
 // Categories that get their own colour; the rest (mostly words) stay the neutral node colour.
 const COLORED_CATEGORIES = ['expression', 'name', 'about-language']
@@ -14,7 +15,7 @@ export const DEFAULTS = {
   linkWidth: 1,
   repel: 10,
   linkForce: 1,
-  linkDistance: 30,
+  linkDistance: LINK,
 }
 const FORCE_KEYS = ['repel', 'linkForce', 'linkDistance']
 
@@ -229,7 +230,6 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
     .backgroundColor(colors.bg)
     .graphData(visibleData())
     .nodeId('id')
-    .nodeLabel(() => '') // labels are drawn on the canvas
     .nodeCanvasObject(drawNode)
     .nodePointerAreaPaint((node, color, ctx, scale) => {
       ctx.fillStyle = color
@@ -253,15 +253,10 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
     })
     .onNodeHover((node) => {
       hovered = node
-      el.style.cursor = node ? 'pointer' : ''
     })
     .onNodeClick((node, ev) => {
       nodeClicked = true
       onClick(node, ev)
-    })
-    .onNodeDragEnd((node) => {
-      // Let the node settle among its neighbours, as in Obsidian (fx/fy would pin it).
-      node.fx = node.fy = undefined
     })
 
   const applyForces = () => {

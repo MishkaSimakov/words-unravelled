@@ -149,7 +149,7 @@
           <label class="graph-category">
             <input type="checkbox" bind:checked={shownCategories[c.id]} />
             <span class="swatch" style="background: var(--graph-cat-{c.id}, var(--graph-node))"></span>
-            {c.title} <span class="chip-count">{counts.get(c.id)}</span>
+            {c.title} <span class="count">{counts.get(c.id)}</span>
           </label>
         {/each}
       </div>
@@ -289,10 +289,6 @@
     -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
   }
-  .graph-page button {
-    font: inherit;
-    color: inherit;
-  }
   .graph-page svg {
     width: 20px;
     height: 20px;
@@ -302,13 +298,7 @@
     stroke-linecap: round;
   }
   .link-button {
-    border: 0;
-    background: none;
-    padding: 0;
-    cursor: pointer;
-    text-decoration: underline;
     text-decoration-color: var(--rule);
-    text-underline-offset: 0.18em;
   }
   .link-button:hover {
     color: var(--rubric);
@@ -403,7 +393,7 @@
     padding: 3px 0;
     cursor: pointer;
   }
-  .chip-count {
+  .count {
     margin-left: auto;
     color: var(--muted);
     font-size: 0.8rem;

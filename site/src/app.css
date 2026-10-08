@@ -156,6 +156,16 @@ img {
   margin: 0;
 }
 
+/* A button that looks like a link. */
+.link-button {
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
 /* Words too long for their box (lopadotemacho…): in a link, cut with an ellipsis, since the page
    it opens shows the word in full; in plain text, break the word onto the next line.
    Text still wraps at spaces either way. Line-clamped boxes break the word and let the clamp cut.
