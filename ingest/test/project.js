@@ -4,7 +4,7 @@
 // themselves, so they work on the copy as they do on the real checkout.
 
 import { spawnSync } from 'node:child_process'
-import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs'
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -34,7 +34,8 @@ const transcript = () =>
  * `transcript` its transcript in 2-transcripts/ (step 2's).
  */
 export function makeProject({ data = small(), captions = true, transcript: withTranscript = true } = {}) {
-  const root = mkdtempSync(join(tmpdir(), 'wordhoard-test-'))
+  // Resolved, so the paths the scripts see are the ones the tests build (macOS's /var is a symlink).
+  const root = realpathSync(mkdtempSync(join(tmpdir(), 'wordhoard-test-')))
   const at = (...p) => join(root, ...p)
   const copy = (path) => cpSync(join(REPO, path), at(path), { recursive: true })
   for (const path of ['toolkit/src', 'toolkit/package.json', 'ingest/lib', 'ingest/3-extract', 'ingest/4-verify', 'ingest/5-report']) copy(path)
