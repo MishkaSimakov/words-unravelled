@@ -1,0 +1,4 @@
+Passed: 113 mentions of foQR0vsAAIc, 103 new entries.
+Checked against HEAD: only data/entries.json and data/episodes.json changed; episodes.json gained exactly this episode;
+new entries have mentions of this episode only; existing entries changed only by a mention of this episode or a new gloss;
+mentions of other episodes changed only in links renamed by a new gloss; the data has no new errors.

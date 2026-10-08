@@ -2660,6 +2660,23 @@
   ]
  },
  {
+  "slug": "adelaide",
+  "term": "Adelaide",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2116,
+    "role": "subject",
+    "note": "Named after William IV's wife Queen Adelaide, whose name is from German [[from:Adelheid]], nobleness, the -heid akin to English -hood.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "adequate",
   "term": "adequate",
   "original": null,
@@ -4252,6 +4269,13 @@
     "role": "subject",
     "note": "The Arabic definite article, still found at the start of many English loanwords such as [[see:alcove]], [[see:algebra]], [[see:alcohol]] and [[see:acton]].",
     "confidence": "high"
+   },
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 695,
+    "role": "subject",
+    "note": "The Arabic definite article, often seen at the start of Spanish place names such as [[see:Almería]], [[see:Alicante]] and [[see:Algeciras]], legacies of Arab rule.",
+    "confidence": "high"
    }
   ]
  },
@@ -4268,6 +4292,23 @@
     "t": 265,
     "role": "aside",
     "note": "American gangster arguably the first [[see:public enemy number one]], since a newspaper dubbed him that.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "al-jazeera",
+  "term": "Al Jazeera",
+  "original": null,
+  "translation": "the island, the peninsula",
+  "language": "Arabic",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 647,
+    "role": "aside",
+    "note": "Arab television station whose name, the island or peninsula, is the same Arabic word as in [[same-root:Algiers]].",
     "confidence": "high"
    }
   ]
@@ -4293,6 +4334,23 @@
     "role": "subject",
     "note": "Mathematician of the 9th and 10th centuries, rediscovered in medieval Europe; his name means 'the person from' a place, like Da Vinci, and gave [[gave:algorithm]].",
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "al-madinah-al-munawwarah",
+  "term": "al-Madinah al-Munawwarah",
+  "original": null,
+  "translation": "the enlightened city",
+  "language": "Arabic",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 607,
+    "role": "subject",
+    "note": "The longer name of [[see:Medina]], meaning the enlightened city.",
+    "confidence": "low"
    }
   ]
  },
@@ -4582,6 +4640,13 @@
     "t": 2224,
     "role": "subject",
     "note": "A word for Britain, used as a grand, patriotic name for clubs like West Bromwich Albion.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1941,
+    "role": "subject",
+    "note": "Latin name for Britain, thought to come from albus, white, maybe for the white cliffs; nearly the name of [[see:Sydney]].",
     "confidence": "high"
    }
   ]
@@ -5310,6 +5375,57 @@
   ]
  },
  {
+  "slug": "algeciras",
+  "term": "Algeciras",
+  "original": null,
+  "translation": "the island, the peninsula",
+  "language": "Spanish",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 655,
+    "role": "subject",
+    "note": "Place in southern Spain whose name, like [[same-root:Algiers]], comes from Arabic for the island or peninsula.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "algeria",
+  "term": "Algeria",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 639,
+    "role": "aside",
+    "note": "Country named after its capital, [[from:Algiers]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "algiers",
+  "term": "Algiers",
+  "original": "al-Jazair",
+  "translation": "the island, the peninsula",
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 631,
+    "role": "subject",
+    "note": "Capital that gave its name to [[gave:Algeria]], from Arabic for the island or peninsula, the word also behind [[same-root:Al Jazeera]] and [[same-root:Algeciras]].",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "algorithm",
   "term": "algorithm",
   "original": null,
@@ -5346,6 +5462,23 @@
     "t": 356,
     "role": "subject",
     "note": "Started on TikTok: creators avoid words like [[see:to die]], [[see:kill]] and [[see:suicide]] for fear the algorithm will suppress their videos.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "alicante",
+  "term": "Alicante",
+  "original": null,
+  "translation": null,
+  "language": "Spanish",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 719,
+    "role": "subject",
+    "note": "From Arabic Alakant, based on Latin [[from:Lucentum]], from Greek [[from:leukos]], white, as in [[same-root:leukemia]].",
     "confidence": "high"
    }
   ]
@@ -5843,6 +5976,23 @@
     "t": 239,
     "role": "aside",
     "note": "Listed among English words that still carry the Arabic definite article [[see:al]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "almeria",
+  "term": "Almería",
+  "original": null,
+  "translation": "the watchtower",
+  "language": "Spanish",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 711,
+    "role": "subject",
+    "note": "Coastal Spanish city from Arabic for the watchtower, a lookout over the sea, beginning with the article [[from:al]].",
     "confidence": "high"
    }
   ]
@@ -10949,6 +11099,23 @@
   ]
  },
  {
+  "slug": "arthur-phillip",
+  "term": "Arthur Phillip",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1910,
+    "role": "aside",
+    "note": "Captain and first governor who named [[see:Sydney]] in 1788 and nearly called it [[see:Albion]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "arthur-roberts",
   "term": "Arthur Roberts",
   "original": null,
@@ -12648,6 +12815,23 @@
     "role": "subject",
     "note": "Said to mean the apricot, making it a vegetable named after a fruit.",
     "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "auckland",
+  "term": "Auckland",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2265,
+    "role": "subject",
+    "note": "Named after [[see:George Eden]], Earl of Auckland, the local governor's patron; its Māori name is [[see:Tāmaki Makaurau]].",
+    "confidence": "high"
    }
   ]
  },
@@ -15189,6 +15373,23 @@
   ]
  },
  {
+  "slug": "bareberp",
+  "term": "Bareberp",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1793,
+    "role": "subject",
+    "note": "Temporary name of [[see:Melbourne (Australia)]], spelt like 'bear' and 'burp' put together, alongside Bearbrass; an example of Australian humour in naming.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "barefaced-lie",
   "term": "barefaced lie",
   "original": null,
@@ -16054,6 +16255,23 @@
     "t": 220,
     "role": "subject",
     "note": "A dark layer of the ocean whose name just means deep.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "batmania",
+  "term": "Batmania",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1784,
+    "role": "subject",
+    "note": "Brief name of [[see:Melbourne (Australia)]], after co-founder [[see:John Batman]]; it sounds like a Batman comic.",
     "confidence": "high"
    }
   ]
@@ -17812,6 +18030,57 @@
     "role": "aside",
     "note": "In a BBC nature documentary clip he calls penguins [[see:pingwings]].",
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "beni",
+  "term": "beni",
+  "original": null,
+  "translation": "descendants of",
+  "language": "Arabic",
+  "category": "word-part",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 810,
+    "role": "subject",
+    "note": "Arabic for descendants of, found in Spanish place names such as [[see:Benidorm]] and [[see:Benicàssim]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "benicassim",
+  "term": "Benicàssim",
+  "original": null,
+  "translation": "descendants of Kasim",
+  "language": "Spanish",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 818,
+    "role": "subject",
+    "note": "Spanish resort whose name means descendants of Kasim, from Arabic [[from:beni]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "benidorm",
+  "term": "Benidorm",
+  "original": null,
+  "translation": "descendants of Darim",
+  "language": "Spanish",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 818,
+    "role": "subject",
+    "note": "Spanish resort known to British tourists, from Arabic Banu Darim, descendants of Darim, with [[from:beni]].",
+    "confidence": "low"
    }
   ]
  },
@@ -22522,6 +22791,23 @@
   ]
  },
  {
+  "slug": "bogota",
+  "term": "Bogotá",
+  "original": null,
+  "translation": null,
+  "language": "Spanish",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1300,
+    "role": "subject",
+    "note": "From the Chibcha name Bacatá, usually interpreted as the walling of the farmland; English speakers rarely stress the final A as in Spanish.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "bohrium",
   "term": "bohrium",
   "original": null,
@@ -22868,6 +23154,23 @@
     "t": 2333,
     "role": "subject",
     "note": "A frontier word from Spanish for good weather or prosperity, from Latin bonus, which also gave [[same-root:bonus]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "bonaria",
+  "term": "Bonaria",
+  "original": null,
+  "translation": "good air",
+  "language": "Italian",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1066,
+    "role": "subject",
+    "note": "Hilltop in Cagliari, Sardinia, with clearer air than below, its name the opposite of [[see:malaria]]; its Madonna, bringer of fair winds, gave [[gave:Buenos Aires]] its name.",
     "confidence": "high"
    }
   ]
@@ -23842,6 +24145,23 @@
     "t": 1697,
     "role": "subject",
     "note": "A collective noun of uncertain officialness Jess has seen in several places.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "bourne",
+  "term": "bourne",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "word-part",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1856,
+    "role": "subject",
+    "note": "Place-name element meaning a river or spring, as in [[see:Melbourne (England)]], mill stream; related to German Brunnen in [[same-root:Gesundbrunnen]].",
     "confidence": "high"
    }
   ]
@@ -25230,6 +25550,23 @@
   ]
  },
  {
+  "slug": "brisbane",
+  "term": "Brisbane",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2098,
+    "role": "subject",
+    "note": "Named after [[see:Thomas Brisbane]], governor of New South Wales from 1821 to 1825; also known as [[see:Meanjin]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "brit",
   "term": "Brit",
   "original": null,
@@ -25361,6 +25698,23 @@
     "t": 647,
     "role": "aside",
     "note": "Celtic nation across the water, a Little Britain beside [[see:Great Britain]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "brittonic",
+  "term": "Brittonic",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "about-language",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1602,
+    "role": "aside",
+    "note": "Branch of the Celtic languages to which [[see:Pictish]] probably belonged, unlike [[see:Goidelic]].",
     "confidence": "high"
    }
   ]
@@ -25693,6 +26047,23 @@
     "role": "subject",
     "note": "Also Miss Brown; a term for a woman's [[see:commodity]] that Grose doesn't explain.",
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "bruinen",
+  "term": "Bruinen",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1881,
+    "role": "aside",
+    "note": "River in The Lord of the Rings, surely an Anglo-Saxon reference to springs like [[see:bourne]].",
+    "confidence": "low"
    }
   ]
  },
@@ -26106,6 +26477,23 @@
   ]
  },
  {
+  "slug": "budapest",
+  "term": "Budapest",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 338,
+    "role": "subject",
+    "note": "A city named after several cities, Buda, Óbuda and Pest, joined as a compound rather than a [[see:portmanteau]]; saying 'Budapesht' in English can sound pretentious.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "budgerigar",
   "term": "budgerigar",
   "original": null,
@@ -26135,6 +26523,23 @@
     "t": 2077,
     "role": "subject",
     "note": "An Australian term, which leads to the origin of [[see:budgerigar]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "buenos-aires",
+  "term": "Buenos Aires",
+  "original": null,
+  "translation": "good airs",
+  "language": "Spanish",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1033,
+    "role": "subject",
+    "note": "Not named for its air but after Santa Maria del Buen Ayre, the sailors' Madonna of [[from:Bonaria]], who brought fair winds.",
     "confidence": "high"
    }
   ]
@@ -27620,6 +28025,40 @@
   ]
  },
  {
+  "slug": "byzantium",
+  "term": "Byzantium",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 118,
+    "role": "subject",
+    "note": "Greek settlement on the Bosphorus founded around 600 BC, supposedly named after legendary founder [[from?:Byzas]], or from a Thracian name; later renamed [[see:Constantinople]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "byzas",
+  "term": "Byzas",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 126,
+    "role": "aside",
+    "note": "Legendary founder of [[see:Byzantium]], said to be the son of [[see:Poseidon]] and a nymph, after whom the city was supposedly named.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "c",
   "term": "C",
   "original": null,
@@ -28888,6 +29327,23 @@
   ]
  },
  {
+  "slug": "canberra",
+  "term": "Canberra",
+  "original": null,
+  "translation": "meeting place",
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1958,
+    "role": "subject",
+    "note": "Australia's chosen capital, probably from an Aboriginal name meaning meeting place; rejected names included [[see:Kangaremu]], [[see:Meladneyperbane]] and [[see:Sydmeladperbrisho]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "cancer",
   "term": "cancer",
   "original": null,
@@ -29273,6 +29729,23 @@
     "t": 595,
     "role": "aside",
     "note": "A place name ending in [[from:burh]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "canterbury-association",
+  "term": "Canterbury Association",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2322,
+    "role": "aside",
+    "note": "Organisation set up to colonise part of New Zealand, many of whose members went to Christ Church, Oxford, hence [[see:Christchurch]].",
     "confidence": "high"
    }
   ]
@@ -32301,6 +32774,13 @@
     "role": "aside",
     "note": "Called Galápagos [[see:iguana]]s hideous, stupid and sluggish but skilful swimmers, and reportedly kept throwing one into the sea to see if it came back.",
     "confidence": "high"
+   },
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2140,
+    "role": "aside",
+    "note": "Naturalist after whom the port and city of [[see:Darwin]] are named, as are dozens of species.",
+    "confidence": "high"
    }
   ]
  },
@@ -34163,6 +34643,23 @@
     "role": "subject",
     "note": "One Greek name for oracles, from a word meaning to declare or proclaim.",
     "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "christchurch",
+  "term": "Christchurch",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2310,
+    "role": "subject",
+    "note": "Named after Christ Church, Oxford, where many of the [[see:Canterbury Association]] colonists studied; its Māori name is [[see:Ōtautahi]].",
+    "confidence": "high"
    }
   ]
  },
@@ -36788,6 +37285,23 @@
   ]
  },
  {
+  "slug": "coevorden",
+  "term": "Coevorden",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2515,
+    "role": "aside",
+    "note": "City in the Netherlands from which the Dutch surname behind [[gave:Vancouver]] comes.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "coffee",
   "term": "coffee",
   "original": null,
@@ -38802,6 +39316,23 @@
     "role": "subject",
     "note": "A rare word meaning to spit on, probably a fanciful Latinate form like [[same-root:sputum]], from Latin [[from:spuere]]; used in the Saturday Review about the Shakespeare–Bacon craze.",
     "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "constantinople",
+  "term": "Constantinople",
+  "original": null,
+  "translation": "Constantine's city",
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 101,
+    "role": "subject",
+    "note": "Constantine's city, its ending from Greek [[from:polis]], city; earlier [[see:Byzantium]] and [[see:Nova Roma]], later [[see:Istanbul]].",
+    "confidence": "high"
    }
   ]
  },
@@ -45119,6 +45650,23 @@
     "t": 2666,
     "role": "subject",
     "note": "Seems to mean dark father, [[see:vader]] being Dutch for father, but reportedly follows invader, as Darth Sidious follows insidious; Lucas hadn't planned the paternity.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "darwin",
+  "term": "Darwin",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2132,
+    "role": "subject",
+    "note": "Named after the port named for [[see:Charles Darwin]] by a Beagle crew member; the city was originally Palmerston, after Lord Palmerston.",
     "confidence": "high"
    }
   ]
@@ -52977,6 +53525,13 @@
     "role": "subject",
     "note": "New Zealand city known for rugby, another rendering of the old name for Edinburgh, [[from:Din Eidyn]].",
     "confidence": "high"
+   },
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2348,
+    "role": "subject",
+    "note": "Based on the Scottish Gaelic name for [[from:Edinburgh]], Dùn Èideann, chosen instead of New Edinburgh; its Māori name is [[see:Ōtepoti]].",
+    "confidence": "high"
    }
   ]
  },
@@ -53280,6 +53835,23 @@
     "role": "subject",
     "note": "Rob's tongue-in-cheek proposal for an English name for Germany, alongside [[see:Netherlandic]] for the people of the Netherlands.",
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "dutigalla",
+  "term": "Dutigalla",
+  "original": null,
+  "translation": "tribe",
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1827,
+    "role": "subject",
+    "note": "Suggested name for [[see:Melbourne (Australia)]], what the local Aboriginal people called themselves, meaning tribe.",
+    "confidence": "low"
    }
   ]
  },
@@ -54118,6 +54690,13 @@
     "t": 2671,
     "role": "subject",
     "note": "A Celtic–Anglo-Saxon hybrid: [[from:burh]] plus a Brittonic Edin-, possibly Welsh [[from?:eithin]], gorse; once called [[from:Din Eidyn]].",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2348,
+    "role": "aside",
+    "note": "Its Scottish Gaelic name, Dùn Èideann, gave New Zealand's [[gave:Dunedin]] its name; the etymology of Edinburgh was covered in an earlier episode.",
     "confidence": "high"
    }
   ]
@@ -68796,6 +69375,23 @@
   ]
  },
  {
+  "slug": "gassy-jack",
+  "term": "Gassy Jack",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2578,
+    "role": "aside",
+    "note": "Jack Deighton, whose tavern near Hastings Mill in 1867 became a gathering place for workers, giving [[gave:Gastown]] its name.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "gaster",
   "term": "gaster",
   "original": null,
@@ -68826,6 +69422,23 @@
     "role": "aside",
     "note": "Rival of [[see:Camille Jenatzy]]; the two staged publicity stunts to see who could build the fastest vehicle.",
     "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "gastown",
+  "term": "Gastown",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2570,
+    "role": "subject",
+    "note": "Long-time name of [[see:Vancouver]], not from gas but after [[see:Gassy Jack]], whose tavern became a workers' gathering place.",
+    "confidence": "high"
    }
   ]
  },
@@ -69757,6 +70370,23 @@
   ]
  },
  {
+  "slug": "george-eden",
+  "term": "George Eden",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2270,
+    "role": "aside",
+    "note": "Earl of Auckland, former governor general of India and patron of the local governor, after whom [[see:Auckland]] is named.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "george-formby",
   "term": "George Formby",
   "original": null,
@@ -69825,6 +70455,23 @@
   ]
  },
  {
+  "slug": "george-murray",
+  "term": "George Murray",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1496,
+    "role": "aside",
+    "note": "British MP and Secretary of State for War and the Colonies from Perthshire, in whose honour [[see:Perth (Australia)]] was named.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "george-orwell",
   "term": "George Orwell",
   "original": null,
@@ -69871,6 +70518,23 @@
     "t": 2048,
     "role": "subject",
     "note": "1500s English writer and critic whose The Art of English Poesy dissected rhetoric of disdain, sarcasm and mockery, like [[see:mycterismus]] and [[see:asteismus]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "george-vancouver",
+  "term": "George Vancouver",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2498,
+    "role": "aside",
+    "note": "British naval officer who explored the area named [[see:Vancouver]] after him; his surname is Dutch, meaning from [[from:Coevorden]].",
     "confidence": "high"
    }
   ]
@@ -70366,6 +71030,23 @@
   ]
  },
  {
+  "slug": "gesundbrunnen",
+  "term": "Gesundbrunnen",
+  "original": null,
+  "translation": "health spring",
+  "language": "German",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1861,
+    "role": "subject",
+    "note": "Area of Berlin where Rob lives, meaning health spring or spa; its Brunnen is related to English [[same-root:bourne]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "gesundheit",
   "term": "Gesundheit",
   "original": null,
@@ -70746,6 +71427,23 @@
     "t": 2502,
     "role": "subject",
     "note": "Grose defines it as the cant of thieves and gypsies, and a disguised language inserting a consonant between syllables, such as F gibberish.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "gibraltar",
+  "term": "Gibraltar",
+  "original": "Jabal Tariq",
+  "translation": "Tariq's mountain",
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 788,
+    "role": "subject",
+    "note": "From Arabic Jabal Tariq, the mountain of [[see:Tariq]], with jabal meaning mountain; controversially part of Britain, not Spain.",
     "confidence": "high"
    }
   ]
@@ -72119,6 +72817,23 @@
   ]
  },
  {
+  "slug": "goidelic",
+  "term": "Goidelic",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "about-language",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1610,
+    "role": "aside",
+    "note": "The branch of Celtic, distinct from [[see:Brittonic]], to which [[see:Scottish Gaelic]] belongs.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "going-dutch",
   "term": "going Dutch",
   "original": null,
@@ -73275,6 +73990,23 @@
   ]
  },
  {
+  "slug": "granada",
+  "term": "Granada",
+  "original": null,
+  "translation": null,
+  "language": "Spanish",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 873,
+    "role": "subject",
+    "note": "Its Arabic name may mean hill of strangers or pilgrims, but probably also relates to Latin for [[see?:pomegranate]], perhaps for its red soil and buildings.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "granddaddy-longlegs",
   "term": "granddaddy longlegs",
   "original": null,
@@ -73379,6 +74111,23 @@
     "t": 1967,
     "role": "subject",
     "note": "The original name of [[gave:Cambridge]], after the River [[from:Granta]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "granville",
+  "term": "Granville",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2604,
+    "role": "subject",
+    "note": "A former name of [[see:Vancouver]], after Lord Granville, Britain's Secretary of State for the Colonies; Rob's neighbour's cat shared the name.",
     "confidence": "high"
    }
   ]
@@ -74069,6 +74818,23 @@
   ]
  },
  {
+  "slug": "grenada",
+  "term": "Grenada",
+  "original": "La Grenade",
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 979,
+    "role": "subject",
+    "note": "Caribbean island probably named after [[from?:Granada]]; the French kept the name as La Grenade; earlier Camerhogne, and Columbus's La Concepción.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "grenade",
   "term": "grenade",
   "original": null,
@@ -74095,6 +74861,13 @@
     "t": 1531,
     "role": "subject",
     "note": "Literally means [[from:pomegranate]], which grenades resemble in shape and in scattering fragments like seeds.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 922,
+    "role": "subject",
+    "note": "Powder-filled fragmenting bombs named after the [[from:pomegranate]] because they look like them.",
     "confidence": "high"
    }
   ]
@@ -74775,6 +75548,40 @@
     "role": "subject",
     "note": "From Aztec [[from:āhuacamōlli]], avocado soup or sauce, built on the same word as [[same-root:avocado]], though the two share almost no letters.",
     "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "guadalajara",
+  "term": "Guadalajara",
+  "original": null,
+  "translation": "valley of stones",
+  "language": "Spanish",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 756,
+    "role": "subject",
+    "note": "The Mexican city is named after the Spanish one, from Arabic [[from:wadi]], valley, meaning valley or river of stones.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "guanabara-bay",
+  "term": "Guanabara Bay",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1203,
+    "role": "aside",
+    "note": "Bay supposedly mistaken by Portuguese navigators for the mouth of a river, giving [[gave:Rio de Janeiro]] its name.",
+    "confidence": "high"
    }
   ]
  },
@@ -88387,6 +89194,23 @@
   ]
  },
  {
+  "slug": "istanbul",
+  "term": "Istanbul",
+  "original": null,
+  "translation": null,
+  "language": "Turkish",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 156,
+    "role": "subject",
+    "note": "Explained either as a shortening of [[from?:Constantinople]] or from medieval Greek [[from?:eis tin polin]], 'to the city', an everyday name for it; its -bul is [[from:polis]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "istres",
   "term": "Istres",
   "original": null,
@@ -89548,6 +90372,23 @@
     "t": 2324,
     "role": "aside",
     "note": "Canadian-American YMCA instructor who invented [[see:basketball]] in 1891 with a soccer ball and two peach baskets to keep students busy in winter.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "james-stirling",
+  "term": "James Stirling",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1505,
+    "role": "aside",
+    "note": "Captain who chose the name [[see:Perth (Australia)]] when establishing the colony.",
     "confidence": "high"
    }
   ]
@@ -90907,6 +91748,23 @@
     "t": 1215,
     "role": "subject",
     "note": "From Hebrew [[from:Yochanan]], thought to mean God is gracious; its J came from Hebrew Y via Latin I.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "john-batman",
+  "term": "John Batman",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1793,
+    "role": "aside",
+    "note": "Co-founder of [[see:Melbourne (Australia)]], briefly called [[see:Batmania]] after him.",
     "confidence": "high"
    }
   ]
@@ -93124,6 +93982,23 @@
   ]
  },
  {
+  "slug": "kangaremu",
+  "term": "Kangaremu",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2023,
+    "role": "subject",
+    "note": "Proposed name for [[see:Canberra]], a cross of kangaroo and emu.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "kangaroo",
   "term": "kangaroo",
   "original": null,
@@ -94299,6 +95174,23 @@
     "role": "aside",
     "note": "In the story, the people of [[see:Gotham]] acted mad so he would build his hunting lodge somewhere else.",
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "king-omalley",
+  "term": "King O'Malley",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2007,
+    "role": "aside",
+    "note": "MP who argued that cold climates produce the greatest geniuses, influencing the chilly site chosen for [[see:Canberra]].",
+    "confidence": "low"
    }
   ]
  },
@@ -96617,6 +97509,23 @@
     "role": "subject",
     "note": "Assumed by the hosts to be related to [[same-root?:lagoon]].",
     "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "lake-ontario",
+  "term": "Lake Ontario",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2714,
+    "role": "aside",
+    "note": "A [[see:tautology]], since [[see:Ontario]] already means beautiful lake in Mohawk.",
+    "confidence": "high"
    }
   ]
  },
@@ -99262,6 +100171,23 @@
   ]
  },
  {
+  "slug": "leukemia",
+  "term": "leukemia",
+  "original": null,
+  "translation": "white blood",
+  "language": "English",
+  "category": "word",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 736,
+    "role": "aside",
+    "note": "Means white blood, from Greek [[from:leukos]], white, the same root as in [[same-root:Alicante]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "lev",
   "term": "lev",
   "original": null,
@@ -100136,6 +101062,23 @@
     "role": "subject",
     "note": "One of the other popular girls' names in England and Wales.",
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "lima",
+  "term": "Lima",
+  "original": null,
+  "translation": null,
+  "language": "Spanish",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1338,
+    "role": "subject",
+    "note": "From Quechua limaq, speaker or talker, referring to an oracle in the Rímac valley; Spanish pronunciation shifted it to Limac and then Lima.",
+    "confidence": "low"
    }
   ]
  },
@@ -103945,6 +104888,23 @@
   ]
  },
  {
+  "slug": "madinat-an-nabi",
+  "term": "Madinat an-Nabi",
+  "original": null,
+  "translation": "the city of the prophet",
+  "language": "Arabic",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 623,
+    "role": "subject",
+    "note": "A former name of [[see:Medina]], meaning the city of the prophet.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "maelkebotte",
   "term": "mælkebøtte",
   "original": "mælkebøtte",
@@ -104752,6 +105712,23 @@
     "t": 171,
     "role": "subject",
     "note": "A more egregious word mix-up, named after [[from:Mrs. Malaprop]] of Sheridan's The Rivals; contrasted with an [[see:eggcorn]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "malaria",
+  "term": "malaria",
+  "original": null,
+  "translation": "bad air",
+  "language": "English",
+  "category": "word",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1082,
+    "role": "aside",
+    "note": "Disease whose name means bad air, the opposite of [[see:Bonaria]], good air.",
     "confidence": "high"
    }
   ]
@@ -107069,6 +108046,23 @@
   ]
  },
  {
+  "slug": "meanjin",
+  "term": "Meanjin",
+  "original": null,
+  "translation": "spike of land",
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2108,
+    "role": "subject",
+    "note": "Name for [[see:Brisbane]] in a local language, meaning spike of land.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "measles",
   "term": "measles",
   "original": null,
@@ -107190,6 +108184,23 @@
     "t": 152,
     "role": "subject",
     "note": "Books linking mythology and morality to animals, with oddly drawn human-faced lions; Jess suspects overlap with the [[see:Book of St Albans]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "medina",
+  "term": "Medina",
+  "original": null,
+  "translation": "the city",
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 583,
+    "role": "subject",
+    "note": "Saudi city whose name just means the city, also the word for an Arab city's old town; formerly Yathrib, renamed by the Prophet Muhammad.",
     "confidence": "high"
    }
   ]
@@ -107416,6 +108427,23 @@
   ]
  },
  {
+  "slug": "meladneyperbane",
+  "term": "Meladneyperbane",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2046,
+    "role": "subject",
+    "note": "Proposed name for [[see:Canberra]], blending Melbourne, Adelaide, Sydney, Perth and Brisbane.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "melancholy",
   "term": "melancholy",
   "original": null,
@@ -107476,6 +108504,42 @@
     "t": 276,
     "role": "aside",
     "note": "The dark pigment in skin, sharing the melan- element meaning black with [[same-root:melancholy]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "melbourne-australia",
+  "term": "Melbourne",
+  "gloss": "Australia",
+  "original": null,
+  "translation": "mill stream",
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1646,
+    "role": "subject",
+    "note": "Named after [[see:William Lamb]], Viscount Melbourne; earlier called [[see:Batmania]], [[see:Bareberp]] and Bearbrass; its Indigenous name is [[see:Naarm]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "melbourne-england",
+  "term": "Melbourne",
+  "gloss": "England",
+  "original": null,
+  "translation": "mill stream",
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1634,
+    "role": "subject",
+    "note": "Derbyshire village near Rob's home, locally pronounced 'Melbun', meaning mill stream; it gave its title to the Viscount after whom [[see:Melbourne (Australia)]] is named.",
     "confidence": "high"
    }
   ]
@@ -109169,6 +110233,23 @@
   ]
  },
  {
+  "slug": "mexico",
+  "term": "Mexico",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1360,
+    "role": "subject",
+    "note": "Possibly named after Mexico City; the X, now an H sound in Spanish, was once a sh sound; the Aztec name for the area was [[see:Tenochtitlan]].",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "mezzo",
   "term": "mezzo",
   "original": "mezzo",
@@ -110469,6 +111550,23 @@
     "role": "aside",
     "note": "Named as another animal like the [[see:skunk]] in this branch of mammals.",
     "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "minneapolis",
+  "term": "Minneapolis",
+  "original": null,
+  "translation": "city of water",
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 290,
+    "role": "subject",
+    "note": "City of water, from Dakota [[from:mni]], water, plus Greek [[from:polis]]; US city names were covered in an earlier episode.",
+    "confidence": "high"
    }
   ]
  },
@@ -112566,6 +113664,23 @@
   ]
  },
  {
+  "slug": "montreal",
+  "term": "Montreal",
+  "original": null,
+  "translation": "royal mountain",
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2407,
+    "role": "subject",
+    "note": "Royal mountain, its spelling perhaps reaching French via Italian Monte Real, used by a Venetian geographer in 1556; earlier [[see:Ville-Marie]], also [[see:Mooniyang]] and [[see:Tiohtià:ke]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "montrer",
   "term": "montrer",
   "original": "montrer",
@@ -112711,6 +113826,23 @@
     "t": 1393,
     "role": "subject",
     "note": "Another Old English term for moon-induced madness, alongside [[see:moon sick]].",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "mooniyang",
+  "term": "Mooniyang",
+  "original": null,
+  "translation": "the first stopping place",
+  "language": "Ojibwe",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2448,
+    "role": "subject",
+    "note": "Ojibwe name for [[see:Montreal]], meaning the first stopping place in the Ojibwe migration story.",
     "confidence": "low"
    }
   ]
@@ -115686,6 +116818,23 @@
   ]
  },
  {
+  "slug": "naarm",
+  "term": "Naarm",
+  "original": null,
+  "translation": "the bay",
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1896,
+    "role": "subject",
+    "note": "Indigenous name for [[see:Melbourne (Australia)]], meaning the bay.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "nabisco",
   "term": "Nabisco",
   "original": null,
@@ -116022,6 +117171,23 @@
     "t": 1293,
     "role": "subject",
     "note": "Literally a small tablecloth or nap, related to [[same-root:apron]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "naples",
+  "term": "Naples",
+  "original": "Napoli",
+  "translation": "new city",
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 226,
+    "role": "subject",
+    "note": "Italian Napoli, from Greek [[from:Neapolis]], new city, a settlement built near the older [[see:Palaeopolis]]; the area was earlier called [[see:Parthenope]].",
     "confidence": "high"
    }
   ]
@@ -119971,6 +121137,23 @@
   ]
  },
  {
+  "slug": "nova-roma",
+  "term": "Nova Roma",
+  "original": null,
+  "translation": "New Rome",
+  "language": "Latin",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 135,
+    "role": "aside",
+    "note": "Name meaning New Rome that Constantine gave to [[see:Byzantium]] before it became [[see:Constantinople]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "novaboracensian",
   "term": "Novaboracensian",
   "original": null,
@@ -122566,6 +123749,23 @@
   ]
  },
  {
+  "slug": "ontario",
+  "term": "Ontario",
+  "original": null,
+  "translation": "beautiful lake",
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2705,
+    "role": "subject",
+    "note": "Means beautiful lake in Mohawk; the province is named after the lake, making [[see:Lake Ontario]] a tautology.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "onym",
   "term": "-onym",
   "original": null,
@@ -123015,6 +124215,13 @@
     "role": "subject",
     "note": "From Sanskrit via Persian narang, Arabic naranj, Italian, medieval Latin and French; the n was lost before reaching English, probably in Italian.",
     "confidence": "high"
+   },
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 954,
+    "role": "aside",
+    "note": "The fruit's name may have been influenced by the place [[see:Orange (town)]], or vice versa, as with [[see:Granada]] and the pomegranate.",
+    "confidence": "high"
    }
   ]
  },
@@ -123049,6 +124256,13 @@
     "t": 941,
     "role": "aside",
     "note": "French place name, as in William of Orange, [[unrelated:orange]] the fruit, though their spellings influenced each other.",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 954,
+    "role": "aside",
+    "note": "Like [[see:Granada]] and the pomegranate, its name and that of [[see:orange]] the fruit may have influenced each other.",
     "confidence": "high"
    }
   ]
@@ -123831,6 +125045,40 @@
     "role": "subject",
     "note": "From an ancient Greek vote on whom to exile, with names written on pot shards; related to [[same-root:oyster]].",
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "otautahi",
+  "term": "Ōtautahi",
+  "original": null,
+  "translation": "place of Tautahi",
+  "language": "Māori",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2339,
+    "role": "subject",
+    "note": "Māori name for [[see:Christchurch]], meaning place of Tautahi.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "otepoti",
+  "term": "Ōtepoti",
+  "original": null,
+  "translation": "place of Tapoti",
+  "language": "Māori",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2372,
+    "role": "subject",
+    "note": "Māori name for [[see:Dunedin]], meaning place of Tapoti.",
+    "confidence": "low"
    }
   ]
  },
@@ -124953,6 +126201,23 @@
     "role": "aside",
     "note": "Destroyed in 1834 by a fire that got out of control while disused [[see:tally]] sticks were being burned.",
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "palaeopolis",
+  "term": "Palaeopolis",
+  "original": null,
+  "translation": "old town",
+  "language": "Greek",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 259,
+    "role": "subject",
+    "note": "The old settlement beside the new one that became [[see:Naples]]; its name means old town, with the palaeo- of paleontology.",
+    "confidence": "low"
    }
   ]
  },
@@ -126308,6 +127573,13 @@
     "role": "subject",
     "note": "Named after the [[from:Parisii]]; Romans recorded it as [[from:Lutetia Parisiorum]], later shortened; like Berlin, it's named for a swamp.",
     "confidence": "high"
+   },
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 402,
+    "role": "aside",
+    "note": "An established English name pronounced differently from the French, almost a different word.",
+    "confidence": "high"
    }
   ]
  },
@@ -126569,6 +127841,23 @@
     "t": 1442,
     "role": "subject",
     "note": "A doublet of [[same-root:person]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "parthenope",
+  "term": "Parthenope",
+  "original": null,
+  "translation": null,
+  "language": "Greek",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 250,
+    "role": "aside",
+    "note": "Early name of the area of [[see:Naples]], after one of the sirens of Greek mythology.",
     "confidence": "high"
    }
   ]
@@ -128644,6 +129933,60 @@
   ]
  },
  {
+  "slug": "perth-australia",
+  "term": "Perth",
+  "gloss": "Australia",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1488,
+    "role": "subject",
+    "note": "Named after [[from:Perth (Scotland)]] for [[see:George Murray]], picked by [[see:James Stirling]]; its Noongar name, Boorloo, is widely used.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "perth-scotland",
+  "term": "Perth",
+  "gloss": "Scotland",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1580,
+    "role": "subject",
+    "note": "From a [[see:Pictish]] word meaning wood or copse, related to Welsh [[same-root:perth (Welsh)]], hedge or thicket; it gave its name to [[gave:Perth (Australia)]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "perth-welsh",
+  "term": "perth",
+  "gloss": "Welsh",
+  "original": null,
+  "translation": "hedge, thicket",
+  "language": "Welsh",
+  "category": "word",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1593,
+    "role": "aside",
+    "note": "Welsh for hedge or thicket, related to the [[see:Pictish]] word behind [[same-root:Perth (Scotland)]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "perturb",
   "term": "perturb",
   "original": null,
@@ -130404,6 +131747,23 @@
     "t": 2560,
     "role": "subject",
     "note": "Probably from French [[from:pique-nique]], though German has a candidate too; a supposed racist origin is false.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "pictish",
+  "term": "Pictish",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "about-language",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1582,
+    "role": "subject",
+    "note": "Language of the Picts, probably [[see:Brittonic]], unlike the [[see:Goidelic]] [[see:Scottish Gaelic]]; source of the name [[gave:Perth (Scotland)]].",
     "confidence": "high"
    }
   ]
@@ -133280,6 +134640,23 @@
   ]
  },
  {
+  "slug": "polis",
+  "term": "polis",
+  "original": null,
+  "translation": "city",
+  "language": "Greek",
+  "category": "word",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 73,
+    "role": "subject",
+    "note": "Greek for city, hidden in many city names such as [[see:Constantinople]], [[see:Istanbul]], [[see:Naples]] and [[see:Tripoli]]; Rob jokes about 'undercover polis'.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "politician",
   "term": "politician",
   "original": null,
@@ -133545,6 +134922,13 @@
     "t": 1542,
     "role": "subject",
     "note": "Means grainy apple, its first part being French [[from:pomme]], apple; it gave [[gave:grenade]].",
+    "confidence": "high"
+   },
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 914,
+    "role": "subject",
+    "note": "From Latin pomum granatum, apple of many seeds; it gave [[gave:grenade]] and possibly influenced the name [[see?:Granada]].",
     "confidence": "high"
    }
   ]
@@ -143390,6 +144774,23 @@
   ]
  },
  {
+  "slug": "rio-de-janeiro",
+  "term": "Rio de Janeiro",
+  "original": null,
+  "translation": "River of January",
+  "language": "Portuguese",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1166,
+    "role": "subject",
+    "note": "River of January: supposedly the Portuguese landed on 1 January 1502 and mistook [[see:Guanabara Bay]] for a river mouth; locals pronounce it roughly 'Hu-janeiro'.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "rio-de-la-plata",
   "term": "Río de la Plata",
   "original": "Río de la Plata",
@@ -147538,6 +148939,41 @@
   ]
  },
  {
+  "slug": "santiago-city",
+  "term": "Santiago",
+  "gloss": "city",
+  "original": null,
+  "translation": null,
+  "language": "Spanish",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1145,
+    "role": "subject",
+    "note": "One of many South American cities named after saints, here St James the Great; compare the given name [[see:Santiago]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "sao-paulo",
+  "term": "São Paulo",
+  "original": null,
+  "translation": "St Paul",
+  "language": "Portuguese",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1154,
+    "role": "subject",
+    "note": "Brazil's biggest city, though not its capital, named in Portuguese after St Paul.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "sapa-inca",
   "term": "Sapa Inca",
   "original": "Sapa Inca",
@@ -149649,6 +151085,23 @@
     "t": 400,
     "role": "aside",
     "note": "Popularised [[see:ambigram]]s alongside [[see:John Langdon]] in the 1970s.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "scottish-gaelic",
+  "term": "Scottish Gaelic",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "about-language",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1610,
+    "role": "aside",
+    "note": "The Celtic language of Scotland, a [[see:Goidelic]] language, not to be confused with [[see:Pictish]].",
     "confidence": "high"
    }
   ]
@@ -151874,6 +153327,23 @@
     "t": 2607,
     "role": "subject",
     "note": "Jess's Victorian-style grandmother had one, more like an upholstered bench or fainting couch.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "sevastopol",
+  "term": "Sevastopol",
+  "original": null,
+  "translation": "venerable city",
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 281,
+    "role": "subject",
+    "note": "Means venerable city, from Greek [[from:Sebastos]], venerable, plus [[from:polis]]; the -pol suffix is common in Ukraine.",
     "confidence": "high"
    }
   ]
@@ -164041,6 +165511,40 @@
   ]
  },
  {
+  "slug": "sydmeladperbrisho",
+  "term": "Sydmeladperbrisho",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2061,
+    "role": "subject",
+    "note": "Proposed name for [[see:Canberra]] blending Sydney, Melbourne, Adelaide, Perth, Brisbane and Hobart; not even a good [[see:portmanteau]].",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "sydney",
+  "term": "Sydney",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1902,
+    "role": "subject",
+    "note": "Named in 1788 by [[see:Arthur Phillip]] after Home Secretary [[see:Thomas Townshend]], Viscount Sydney; nearly called [[see:Albion]]; the cove was Warrane, the territory Gadi.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "syllable-reduction",
   "term": "syllable reduction",
   "original": null,
@@ -165345,6 +166849,23 @@
   ]
  },
  {
+  "slug": "tamaki-makaurau",
+  "term": "Tāmaki Makaurau",
+  "original": null,
+  "translation": "Tāmaki desired by many",
+  "language": "Māori",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2186,
+    "role": "subject",
+    "note": "Māori name for [[see:Auckland]]: Makaurau means desired by many, for its rich soil and two harbours; Tāmaki may refer to the isthmus or a chief's son.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "tan",
   "term": "tan",
   "original": null,
@@ -165591,6 +167112,74 @@
   ]
  },
  {
+  "slug": "tarantella",
+  "term": "tarantella",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "word",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2745,
+    "role": "subject",
+    "note": "A dance associated with the Italian city of [[from:Taranto]], like [[same-root:tarantula]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "taranto",
+  "term": "Taranto",
+  "original": null,
+  "translation": null,
+  "language": "Italian",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2721,
+    "role": "subject",
+    "note": "Italian city named after [[from:Taras]], son of [[see:Poseidon]]; [[unrelated:Toronto]] despite the similar sound; it gave [[gave:tarantula]] and [[gave:tarantella]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "tarantula",
+  "term": "tarantula",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "word",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2745,
+    "role": "subject",
+    "note": "Named after the Italian city of [[from:Taranto]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "taras",
+  "term": "Taras",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2737,
+    "role": "aside",
+    "note": "Greek mythological son of [[see:Poseidon]], after whom [[gave:Taranto]] is named.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "tare",
   "term": "Tare",
   "original": null,
@@ -165604,6 +167193,23 @@
     "role": "subject",
     "note": "T in the [[see:Able Baker alphabet]].",
     "confidence": "low"
+   }
+  ]
+ },
+ {
+  "slug": "tariq",
+  "term": "Tariq",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 865,
+    "role": "aside",
+    "note": "Berber commander whose mountain, Jabal Tariq, gave [[gave:Gibraltar]] its name.",
+    "confidence": "high"
    }
   ]
  },
@@ -165952,6 +167558,23 @@
   ]
  },
  {
+  "slug": "taybah",
+  "term": "Taybah",
+  "original": null,
+  "translation": "the kind, the good",
+  "language": "Arabic",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 615,
+    "role": "subject",
+    "note": "A name the Prophet Muhammad gave to [[see:Medina]], still used today, meaning the kind or the good.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "tb",
   "term": "TB",
   "original": null,
@@ -165965,6 +167588,23 @@
     "role": "subject",
     "note": "Rob thinks the abbreviation for tuberculosis is used out of taboo as much as for brevity.",
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "te-whanganui-a-tara",
+  "term": "Te Whanganui-a-Tara",
+  "original": null,
+  "translation": "the great harbour of Tara",
+  "language": "Māori",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2283,
+    "role": "subject",
+    "note": "Māori name for [[see:Wellington]], the great harbour of Tara, a chief's son sent south to find fertile land who settled the harbour.",
+    "confidence": "low"
    }
   ]
  },
@@ -166663,6 +168303,23 @@
     "role": "subject",
     "note": "A [[see:boomerang word]] from French [[from:tenez]], 'take', called out when hitting the ball; French borrowed tennis back for the sport and for tennis shoes.",
     "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "tenochtitlan",
+  "term": "Tenochtitlan",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1369,
+    "role": "aside",
+    "note": "The Aztec name for the area of [[see:Mexico]] City.",
+    "confidence": "low"
    }
   ]
  },
@@ -170422,6 +172079,23 @@
   ]
  },
  {
+  "slug": "thomas-brisbane",
+  "term": "Thomas Brisbane",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2098,
+    "role": "aside",
+    "note": "Governor of New South Wales from 1821 to 1825, after whom [[see:Brisbane]] is named.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "thomas-crapper",
   "term": "Thomas Crapper",
   "original": null,
@@ -170581,6 +172255,23 @@
     "t": 578,
     "role": "aside",
     "note": "Strictly an engine, not a [[see:train]], except when he has his carriages behind him.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "thomas-townshend",
+  "term": "Thomas Townshend",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1910,
+    "role": "aside",
+    "note": "First Viscount Sydney, British Home Secretary at the time of colonisation, after whom [[see:Sydney]] was named.",
     "confidence": "high"
    }
   ]
@@ -172036,6 +173727,23 @@
   ]
  },
  {
+  "slug": "tiohtia-ke",
+  "term": "Tiohtià:ke",
+  "original": null,
+  "translation": "where the group divided",
+  "language": "Mohawk",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2466,
+    "role": "subject",
+    "note": "Mohawk name for [[see:Montreal]], abbreviating a phrase meaning where the group divided or parted ways, involving a turtle-shaped island where people rested.",
+    "confidence": "low"
+   }
+  ]
+ },
+ {
   "slug": "tip",
   "term": "tip",
   "original": null,
@@ -173439,6 +175147,23 @@
     "t": 881,
     "role": "subject",
     "note": "Coined in English in the early 1500s from Spanish [[from:tronada]], thunderstorm, reshuffled by metathesis under [[see:tornar]], to turn; Spanish later borrowed it back.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "toronto",
+  "term": "Toronto",
+  "original": null,
+  "translation": "where there are trees standing in the water",
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2630,
+    "role": "subject",
+    "note": "From Mohawk for where there are trees standing in the water, describing Wendat fish weirs of saplings between Lake Simcoe and Lake Couchiching; [[unrelated:Taranto]].",
     "confidence": "high"
    }
   ]
@@ -175064,6 +176789,40 @@
     "t": 502,
     "role": "aside",
     "note": "Three feet, an example of the -pod ending for feet seen in [[same-root:theropod]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "tripoli",
+  "term": "Tripoli",
+  "original": null,
+  "translation": "three cities",
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 319,
+    "role": "subject",
+    "note": "Means three cities, the coastal settlements of Oea, Sabratha and Leptis Magna in the wider region of [[see:Tripolitania]]; from [[from:polis]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "tripolitania",
+  "term": "Tripolitania",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 329,
+    "role": "aside",
+    "note": "The wider region containing the three coastal settlements that gave [[see:Tripoli]] its name.",
     "confidence": "high"
    }
   ]
@@ -179222,6 +180981,23 @@
   ]
  },
  {
+  "slug": "vancouver",
+  "term": "Vancouver",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2498,
+    "role": "subject",
+    "note": "Named in 1886 after [[see:George Vancouver]], a Dutch-origin name, 'from [[from:Coevorden]]'; formerly [[see:Gastown]] and [[see:Granville]]; its Squamish name means place of many maple trees.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "vandals",
   "term": "Vandals",
   "original": null,
@@ -180563,6 +182339,23 @@
     "t": 616,
     "role": "aside",
     "note": "Like [[see:clown]], it originally meant a person from the countryside or a peasant farmer, before taking on moral overtones.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "ville-marie",
+  "term": "Ville-Marie",
+  "original": null,
+  "translation": "city of Mary",
+  "language": "French",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2431,
+    "role": "subject",
+    "note": "Name French colonists gave [[see:Montreal]] in 1642, city of Mary, honouring the Virgin Mary.",
     "confidence": "high"
    }
   ]
@@ -183388,6 +185181,23 @@
   ]
  },
  {
+  "slug": "wellington",
+  "term": "Wellington",
+  "original": null,
+  "translation": null,
+  "language": "English",
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 2304,
+    "role": "subject",
+    "note": "Named after Arthur Wellesley, first Duke of Wellington; its Māori name is [[see:Te Whanganui-a-Tara]].",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
   "slug": "wellington-boot",
   "term": "Wellington boot",
   "original": null,
@@ -185266,6 +187076,23 @@
     "t": 2408,
     "role": "aside",
     "note": "Philosopher who coined [[see:multiverse]] in the 1890s.",
+    "confidence": "high"
+   }
+  ]
+ },
+ {
+  "slug": "william-lamb",
+  "term": "William Lamb",
+  "original": null,
+  "translation": null,
+  "language": null,
+  "category": "name",
+  "mentions": [
+   {
+    "episode_id": "foQR0vsAAIc",
+    "t": 1647,
+    "role": "aside",
+    "note": "Second Viscount Melbourne, named after [[see:Melbourne (England)]], and after whom [[see:Melbourne (Australia)]] was named.",
     "confidence": "high"
    }
   ]
