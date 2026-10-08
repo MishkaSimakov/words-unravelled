@@ -322,6 +322,7 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
     shown: () => fg.graphData().nodes,
     /** Hides the nodes of these categories (and those left without links). */
     setHidden(categories) {
+      if (categories.length === hidden.size && categories.every((c) => hidden.has(c))) return
       hidden = new Set(categories)
       fg.graphData(visibleData())
     },
@@ -330,8 +331,10 @@ export function graphCanvas(el, theme, data, { onClick, onBackground }) {
     },
     /** Changes settings (keys of DEFAULTS); forces take effect at once. */
     setSettings(changes) {
+      const changed = Object.keys(changes).filter((k) => settings[k] !== changes[k])
+      if (!changed.length) return
       Object.assign(settings, changes)
-      if (FORCE_KEYS.some((k) => k in changes)) applyForces()
+      if (changed.some((k) => FORCE_KEYS.includes(k))) applyForces()
     },
     /**
      * Selects a node (or none). With `center`, zooms to it, keeping it above a bottom sheet of
