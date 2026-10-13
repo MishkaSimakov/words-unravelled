@@ -251,6 +251,11 @@ Mark connections inside the note as `[[type:target]]`:
 | `unrelated` | the hosts say they look related but aren't | `unrelated to [[unrelated:desert]]` |
 | `see` | any other connection: a pun, a story, a contrast, an example | `a pun on [[see:umbles]]` |
 
+- **The note's words say the relation.** A reader sees only a link's text, never its type, so
+  a link adds no words to the note. Write the relation out, as the examples above do: "unrelated
+  to `[[unrelated:desert]]`", not "…the table was cleared; `[[unrelated:desert]]`", which reads
+  "…the table was cleared; desert". The note must read correctly with every link replaced by
+  its text.
 - **Link to the whole index.** When a note names something that is an entry anywhere in the
   index, from this episode or any other, link it. Find such entries with `search`. Link only
   to the same thing: a target resolves by spelling, so `[[see:Virgin Mary]]` leads to whatever
